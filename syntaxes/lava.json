@@ -1,0 +1,190 @@
+{
+	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+	"name": "Lava (HTML)",
+	"scopeName": "text.html.lava",
+	"fileTypes": [
+		"lava"
+	],
+	"patterns": [
+		{
+			"name": "comment.block.lava",
+			"begin": "{%-?\\s*comment\\s*-?%}",
+			"end": "{%-?\\s*endcomment\\s*-?%}"
+		},
+		{
+			"name": "punctuation.output.lava",
+			"begin": "{{-?",
+			"end": "-?}}",
+			"patterns": [
+				{
+					"include": "#template_var"
+				}
+			]
+		},
+		{
+			"name": "punctuation.tag.lava",
+			"begin": "{%-?",
+			"end": "-?%}",
+			"patterns": [
+				{
+					"include": "#template_tag_name"
+				},
+				{
+					"include": "#template_var"
+				}
+			]
+		},
+		{
+			"include": "text.html.basic"
+		}
+	],
+	"repository": {
+		"assign_op": {
+			"patterns": [
+				{
+					"name": "keyword.operator.assignment.augmented.lava",
+					"match": "/="
+				}
+			]
+		},
+		"logic_expression": {
+			"patterns": [
+				{
+					"match": "/=",
+					"name": "keyword.operator.assignment.augmented.lava"
+				}
+			]
+		},
+		"logic_op": {
+			"patterns": [
+				{
+					"name": "keyword.operator.logical.lava",
+					"match": "\\s+(and|or|not|contains|(\\!\\=|\\=\\=|<\\=|>\\=|<|>)\\s+"
+				}
+			]
+		},
+		"template_tag_name": {
+			"patterns": [
+				{
+					"name": "entity.name.tag.lava",
+					"match": "(?<={%)\\s*(\\w+)"
+				},
+				{
+					"name": "entity.name.tag.lava",
+					"match": "(?<={%-)\\s*(\\w+)"
+				}
+			]
+		},
+		"template_var": {
+			"patterns": [
+				{
+					"name": "support.class.lava",
+					"match": "(\\'now\\'|\\'Global\\'|\\'Lava\\')"
+				},
+				{
+					"match": "(\\[)(\\|)(?=[^\\]]*)(?=\\])",
+					"captures": {
+						"2": {
+							"name": "invalid.illegal.filter.lava"
+						},
+						"3": {
+							"name": "invalid.illegal.filter.lava"
+						}
+					}
+				},
+				{
+					"name": "invalid.illegal.filter.lava",
+					"match": "(?<=\\s)(\\+|\\-|\\/|\\*)(?=\\s)"
+				},
+				{
+					"name": "constant.language.lava",
+					"match": "(false|true|nil)"
+				},
+				{
+					"match": "(?=if|unless|elsif)\\s*[^%}]+\\s(in)\\s",
+					"captures": {
+						"3": {
+							"name": "invalid.illegal.operator.lava"
+						}
+					}
+				},
+				{
+					"name": "keyword.operator.lava",
+					"match": "\\s+(and|or|contains|((\\!|\\=|\\<|\\>)\\=))\\s+"
+				},
+				{
+					"match": "(?<=assign)([^\\=]+)(\\=\\=+)",
+					"captures": {
+						"2": {
+							"name": "invalid.illegal.assignment.lava"
+						}
+					}
+				},
+				{
+					"name": "support.function.with-args.lava",
+					"match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\:\\s*"
+				},
+				{
+					"name": "support.function.without-args.lava",
+					"match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\s+"
+				},
+				{
+					"name": "keyword.control.lava",
+					"match": "(?<=\\s)(with|offset\\:|limit\\:)(?=\\s)"
+				},
+				{
+					"match": "(?<=include)(.*)(with\\:|offset|limit)(?=\\s)",
+					"captures": {
+						"2": {
+							"name": "invalid.illegal.argument.lava"
+						}
+					}
+				},
+				{
+					"name": "invalid.illegal.lava",
+					"match": "(?<=\\s)(\\w+\\:)(?=\\:\\s)"
+				},
+				{
+					"name": "string.quoted.double.lava",
+					"begin": "\"",
+					"end": "\""
+				},
+				{
+					"name": "string.quoted.single.lava",
+					"begin": "'",
+					"end": "'"
+				},
+				{
+					"name": "constant.numeric.lava",
+					"match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
+				},
+				{
+					"name": "support.class.lava",
+					"match": "\\b(CurrentPage|CurrentPerson|PageParameter|Campuses|Person|RockVersion|CurrentPersonCanEdit|CurrentPersonCanAdministrate)\\b"
+				},
+				{
+					"name": "support.class.lava",
+					"match": "\\b(group|grouplocation|groupmember|groupmemberrequirement|grouprequirement|grouptype|grouptyperole|page|person|personaldevice|personalias|personbadge|personduplicate|personpreviousname|personsignal|phonenumber|prayerrequest|registration|registrationinstance|registrationregistrant|registrationregistrantfee|registrationtemplate|registrationtemplatediscount|registrationtemplatefee|registrationtemplateform|registrationtemplateformfield)\\b"
+				},
+				{
+					"name": "support.class.lava",
+					"match": "\\b(workflow|workflowaction|workflowactionform|workflowactionformattribute|workflowactiontype)\\b"
+				},
+				{
+					"name": "variable.parameter.lava",
+					"match": "((?<=\\w\\:\\s)\\w+)"
+				},
+				{
+					"name": "support.variable.lava",
+					"match": "(?<=\\.)\\w+\\b"
+				},
+				{
+					"name": "variable.other.lava",
+					"match": "\\w+"
+				}
+			]
+		}
+	},
+	"foldingStartMarker": "{%-?\\s*(if|unless|for|capture|case|raw|comment|cache|execute|javascript|search|stylesheet|sql|webrequest)[^(%})]+-?%}",
+	"foldingStopMarker": "{%-?\\s*(endif|endunless|endfor|endcapture|endcase|endraw|endcomment|endcache|endexecute|endjavascript|endsearch|endstylesheet|endsql|endwebrequest)[^(%})]+-?%}"
+}
