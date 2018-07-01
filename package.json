@@ -2,12 +2,14 @@
 	"name": "language-lava",
 	"displayName": "Lava Languages Support",
 	"description": "Lava Languages Syntax Highlighter",
-	"version": "0.0.1",
-	"publisher": "Garrett Johnson",
+	"version": "0.0.2",
+	"publisher": "GarrettJohnson",
 	"engines": {
 		"vscode": "^1.16.0"
 	},
-	"categories": [ "Programming Languages" ],
+	"categories": [
+		"Programming Languages"
+	],
 	"icon": "images/rockrms-icon.jpg",
 	"galleryBanner": {
 		"color": "#161821",
@@ -38,6 +40,11 @@
 					".lava"
 				],
 				"configuration": "./lava.language-configuration.json"
+			},
+			{
+				"id": "xml",
+				"aliases": ["Master (Rock Theme)"],
+				"extensions": [".master"]
 			}
 		],
 		"grammars": [
