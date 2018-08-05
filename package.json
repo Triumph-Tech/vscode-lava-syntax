@@ -1,8 +1,8 @@
 {
 	"name": "language-lava",
-	"displayName": "Lava Languages Support",
-	"description": "Lava Languages Syntax Highlighter",
-	"version": "0.0.2",
+	"displayName": "Lava",
+	"description": "Rock RMS Lava language support for Visual Studio Code.",
+	"version": "0.0.3",
 	"publisher": "GarrettJohnson",
 	"engines": {
 		"vscode": "^1.16.0"
@@ -12,7 +12,7 @@
 	],
 	"icon": "images/rockrms-icon.jpg",
 	"galleryBanner": {
-		"color": "#161821",
+		"color": "#2f383a",
 		"theme": "dark"
 	},
 	"preview": true,
@@ -42,16 +42,26 @@
 				"configuration": "./lava.language-configuration.json"
 			},
 			{
-				"id": "xml",
-				"aliases": ["Master (Rock Theme)"],
-				"extensions": [".master"]
+				"id": "html",
+				"aliases": [
+					"Master (Rock Theme)"
+				],
+				"extensions": [
+					".master"
+				]
 			}
 		],
 		"grammars": [
 			{
 				"language": "lava",
 				"scopeName": "text.html.lava",
-				"path": "./syntaxes/lava.json"
+				"path": "./syntaxes/lava.json",
+				"embeddedLanguages": {
+					"source.sql": "sql",
+					"source.js": "javascript",
+					"source.css": "css",
+					"source.cs": "csharp"
+				}
 			}
 		]
 	}

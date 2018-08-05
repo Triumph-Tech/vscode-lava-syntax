@@ -22,6 +22,110 @@
 			]
 		},
 		{
+			"contentName": "text.css.embedded.lava",
+			"begin": "{%-?\\s*(stylesheet)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				},
+				"3": {
+					"name": "variable.parameter.lava"
+				},
+				"4": {
+					"name": "string.quoted.single.lava"
+				}
+			},
+			"end": "{%-?\\s*(endstylesheet)\\s*-?%}",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.css"
+				}
+			]
+		},
+		{
+			"contentName": "text.sql.embedded.lava",
+			"begin": "{%-?\\s*(sql)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				},
+				"3": {
+					"name": "variable.parameter.lava"
+				},
+				"4": {
+					"name": "string.quoted.single.lava"
+				}
+			},
+			"end": "{%-?\\s*(endsql)\\s*-?%}",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.sql"
+				}
+			]
+		},
+		{
+			"contentName": "text.js.embedded.lava",
+			"begin": "{%-?\\s*(javascript)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				},
+				"3": {
+					"name": "variable.parameter.lava"
+				},
+				"4": {
+					"name": "string.quoted.single.lava"
+				}
+			},
+			"end": "{%-?\\s*(endjavascript)\\s*-?%}",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.js"
+				}
+			]
+		},
+		{
+			"contentName": "text.csharp.embedded.lava",
+			"begin": "{%-?\\s*(execute)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"beginCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				},
+				"3": {
+					"name": "variable.parameter.lava"
+				},
+				"4": {
+					"name": "string.quoted.single.lava"
+				}
+			},
+			"end": "{%-?\\s*(endexecute)\\s*-?%}",
+			"endCaptures": {
+				"1": {
+					"name": "keyword.control.lava"
+				}
+			},
+			"patterns": [
+				{
+					"include": "source.cs"
+				}
+			]
+		},
+		{
 			"name": "punctuation.tag.lava",
 			"begin": "{%-?",
 			"end": "-?%}",
