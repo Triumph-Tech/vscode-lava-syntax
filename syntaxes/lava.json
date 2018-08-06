@@ -23,7 +23,7 @@
 		},
 		{
 			"contentName": "text.css.embedded.lava",
-			"begin": "{%-?\\s*(stylesheet)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"begin": "{%-?\\s*(stylesheet)(\\s*(\\S*?:)\\s*('[^']+'))*\\s*-?%}",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.lava"
@@ -49,7 +49,7 @@
 		},
 		{
 			"contentName": "text.sql.embedded.lava",
-			"begin": "{%-?\\s*(sql)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"begin": "{%-?\\s*(sql)(\\s*(\\S*?:)\\s*('[^']+'))*\\s*-?%}",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.lava"
@@ -75,7 +75,7 @@
 		},
 		{
 			"contentName": "text.js.embedded.lava",
-			"begin": "{%-?\\s*(javascript)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"begin": "{%-?\\s*(javascript)(\\s*(\\S*?:)\\s*('[^']+'))*\\s*-?%}",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.lava"
@@ -101,7 +101,7 @@
 		},
 		{
 			"contentName": "text.csharp.embedded.lava",
-			"begin": "{%-?\\s*(execute)(\\s*(\\S*?:)\\s*('[^']+'))\\s*-?%}",
+			"begin": "{%-?\\s*(execute)(\\s*(\\S*?:)\\s*('[^']+'))*\\s*-?%}",
 			"beginCaptures": {
 				"1": {
 					"name": "keyword.control.lava"
