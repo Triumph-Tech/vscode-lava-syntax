@@ -1,0 +1,189 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "HTML (C#)",
+  "scopeName": "text.html.cshtml",
+  "patterns": [
+      { "include": "#directives" },
+      { "include": "#script-tag-cs" },
+      { "include": "#controls" },
+      { "include": "text.html.basic" }
+  ],
+  "injections": {
+      "text.html.cshtml - (meta.embedded | meta.tag | comment.block.cshtml)": {
+          "patterns": [
+              { "include": "#comments" },
+              { "include": "#block-cs" }
+          ]
+      },
+      "L:text.html.cshtml meta.tag, L:text.html.cshtml source.js - (comment.block.cshtml),  L:text.html.cshtml source.css - (comment.block.cshtml)": {
+          "comment": "The L: means 'injected to the left,' that is, before other possible matches",
+          "patterns": [
+              { "include": "#comments" },
+              { "include": "#block-cs" }
+          ]
+      }
+  },
+  "repository": {
+      "comments": {
+          "name": "comment.block.cshtml",
+          "begin": "<%--",
+          "beginCaptures": {
+              "0": { "name": "comment.block.begin.cshtml" }
+          },
+          "end": "--%>",
+          "endCaptures": {
+              "0": { "name": "comment.block.end.cshtml" }
+          },
+          "patterns": []
+      },
+      "directives": {
+          "patterns": [
+              {
+                  "begin": "<%@",
+                  "beginCaptures": {
+                      "0": { "name": "punctuation.section.embedded.begin.cshtml" }
+                  },
+                  "end": "%>",
+                  "endCaptures": {
+                      "0": { "name": "punctuation.section.embedded.end.cshtml" }
+                  },
+                  "patterns": [
+                      {
+                          "match": "\\b(\\w+)\\s*(=)\\s*((\")[^\"]*(\"))\\s*",
+                          "captures": {
+                              "1": { "name": "entity.other.attribute-name.cshtml" },
+                              "2": { "name": "punctuation.separator.key-value.cshtml" },
+                              "3": { "name": "string.quoted.double.cshtml" },
+                              "4": { "name": "punctuation.definition.string.begin.cshtml" },
+                              "5": { "name": "punctuation.definition.string.end.cshtml" }
+                          }
+                      },
+                      {
+                          "match": "\\s*(Application|Page|Control|Import|Implements|Register|Assembly|OutputCache|Reference|Master|PreviousPageType|MasterType|WebHandler)\\b(?:(=)\"([^\"]+)\")?",
+                          "captures": {
+                              "1": { "name": "constant.language.processing-directive.cshtml" },
+                              "2": { "name": "punctuation.separator.key-value.cshtml" },
+                              "3": { "name": "string.quoted.double.cshtml" }
+                          }
+                      }
+                  ]
+              }
+          ]
+      },
+      "controls": {
+    "begin": "(</?)(?:([-\\w\\.]+)((:)))?([-\\w\\.:]+)",
+    "captures": {
+      "1": {
+        "name": "punctuation.definition.tag.cshtml"
+      },
+      "2": {
+        "name": "entity.name.tag.namespace.cshtml"
+      },
+      "3": {
+        "name": "entity.name.tag.cshtml"
+      },
+      "4": {
+        "name": "punctuation.separator.namespace.cshtml"
+      },
+      "5": {
+        "name": "entity.name.tag.localname.cshtml"
+      }
+    },
+    "end": "(/?>)",
+    "name": "meta.tag.cshtml",
+    "patterns": [
+      {
+        "include": "text.xml#tagStuff"
+      }
+    ]
+  },
+      "block-cs": {
+          "patterns": [
+              {
+                  "begin": "<%[=#:$]",
+                  "beginCaptures": {
+                      "0": { "name": "punctuation.section.embedded.begin.cshtml" }
+                  },
+                  "end": "%>",
+                  "endCaptures": {
+                      "0": { "name": "punctuation.section.embedded.end.cshtml" }
+                  },
+                  "name": "meta.embedded.block.cs",
+                  "contentName": "source.cs",
+                  "patterns": [
+                      { "include": "source.cs" }
+                  ]
+              },
+              {
+                  "begin": "<%(?![=#:$])",
+                  "beginCaptures": {
+                      "0": { "name": "punctuation.section.embedded.begin.cshtml" }
+                  },
+                  "end": "%>",
+                  "endCaptures": {
+                      "0": { "name": "punctuation.section.embedded.end.cshtml" }
+                  },
+                  "name": "meta.embedded.block.cs",
+                  "contentName": "source.cs",
+                  "patterns": []
+              }
+          ]
+      },
+      "script-tag-cs": {
+          "begin": "(?i)(<)(script)[^>]+(runat)(=)(?:((')server('))|((\")server(\")))",
+          "beginCaptures": {
+              "0": { "name": "meta.tag.metadata.script.start.html" },
+              "1": { "name": "punctuation.definition.tag.begin.html" },
+              "2": { "name": "entity.name.tag.script.html" },
+              "3": { "name": "constant.language.processing-directive.cshtml" },
+              "4": { "name": "punctuation.separator.key-value.cshtml" },
+              "5": { "name": "string.quoted.single.cshtml" },
+              "6": { "name": "punctuation.definition.string.begin.cshtml" },
+              "7": { "name": "punctuation.definition.string.end.cshtml" },
+              "8": { "name": "string.quoted.double.cshtml" },
+              "9": { "name": "punctuation.definition.string.begin.cshtml" },
+              "10": { "name": "punctuation.definition.string.end.cshtml" }
+          },
+          "end": "(/)((?i:script))(>)",
+          "endCaptures": {
+              "0": { "name": "meta.tag.metadata.script.end.html" },
+              "1": { "name": "punctuation.definition.tag.begin.html" },
+              "2": { "name": "entity.name.tag.html" },
+              "3": { "name": "punctuation.definition.tag.end.html" }
+          },
+          "patterns": [
+              {
+                  "comment": "\\G is the beginning of the line",
+                  "begin": "\\G",
+                  "end": "(?=/)",
+                  "patterns": [
+                      {
+                          "begin": "(>)",
+                          "beginCaptures": {
+                              "0": { "name": "meta.tag.metadata.script.start.html" },
+                              "1": { "name": "punctuation.definition.tag.end.html" }
+                          },
+                          "end": "((<))(?=/(?i:script))",
+                          "endCaptures": {
+                              "0": { "name": "meta.tag.metadata.script.end.html" },
+                              "1": { "name": "punctuation.definition.tag.begin.html" },
+                              "2": { "name": "source.cs" }
+                          },
+                          "patterns": [
+                              {
+                                  "begin": "\\G",
+                                  "end": "(?=</(?i:script))",
+                                  "name": "source.cs",
+                                  "patterns": [
+                                      { "include": "source.cs" }
+                                  ]
+                              }
+                          ]
+                      },
+                      { "include": "text.html.basic#attribute" }
+                  ]
+              }
+          ]
+      }
+  }
+}

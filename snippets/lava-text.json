@@ -1,0 +1,223 @@
+{
+  "Filter append": {
+    "prefix": "Append",
+    "description": "Adds a given string to the end of the input.",
+    "body": "Append:'${1:string}'"
+  },
+  "Filter capitalize": {
+    "prefix": "Capitalize",
+    "description": "Capitalizes the first letter of each word in the string. The string 'lorem ipsum dolor' would become 'Lorem Ipsum Dolor'.",
+    "body": "Capitalize"
+  },
+  "Filter decrypt": {
+    "prefix": "Decrypt",
+    "description": "Decrypts an encrypted value.",
+    "body": "Decrypt"
+  },
+  "Filter default": {
+    "prefix": "Default",
+    "description": "Returns the passed default value if the value is undefined or empty, otherwise the value of the variable.",
+    "body": "Default:'${1:string}'"
+  },
+  "Filter downcase": {
+    "prefix": "Downcase",
+    "description": "This filter transforms the string to lower case. The string 'Lorem Ipsum Dolor' would become 'lorem ipsum dolor'.",
+    "body": "Downcase"
+  },
+  "Filter escape": {
+    "prefix": "Escape",
+    "description": "HTML encode string. All <tags> will be encoded to '&lt;tags&gt;'",
+    "body": "Escape"
+  },
+  "Filter escapedatastring": {
+    "prefix": "EscapeDataString",
+    "description": "Converts a string to its escaped representation using Uri.EscapeDataString (aka URL Encoding).",
+    "body": "EscapeDataString"
+  },
+  "Filter url encode": {
+    "prefix": "UrlEncode",
+    "description": "Alias for EscapeDataString. Converts a string to its escaped representation using Uri.EscapeDataString",
+    "body": "EscapeDataString"
+  },
+  "Filter frommarkdown": {
+    "prefix": "FromMarkdown",
+    "description": "Converts a string of Markdown to HTML. See the Commonmark website for details on Markdown syntax.",
+    "body": "FromMarkdown"
+  },
+  "Filter htmldecode": {
+    "prefix": "HtmlDecode",
+    "description": "Decodes and escaped string of HTML.",
+    "body": "HtmlDecode"
+  },
+  "Filter humanize": {
+    "prefix": "Humanize",
+    "description": "This filter takes computer friendly strings like 'camelCase', 'underscore_a_point' or 'css-classes' and makes them friendly to us humans... 'Camel case', 'underscore a point' or 'css classes'.",
+    "body": "Humanize"
+  },
+  "Filter linkify": {
+    "prefix": "Linkify",
+    "description": "Convert strings within the text that appear to be http/ftp/https links into clickable html links",
+    "body": "Linkify"
+  },
+  "Filter newline to br": {
+    "prefix": "NewlineToBr",
+    "description": "Add <br/> tags in front of all newlines in the string",
+    "body": "NewlineToBr"
+  },
+  "Filter ObfuscateEmail": {
+    "prefix": "ObfuscateEmail",
+    "description": "Hides the details of an email address with enough information to confirm that it was sent to an address the user would recognize.",
+    "body": "ObfuscateEmail"
+  },
+  "Filter pluralize": {
+    "prefix": "Pluralize",
+    "description": "Pluralizes the provided input while taking irregular and uncountable words into consideration.",
+    "body": "Pluralize"
+  },
+  "Filter pluralizeforquantity": {
+    "prefix": "PluralizeForQuantity",
+    "description": "Pluralizes the provided word if the quantity provided is greater than 1.",
+    "body": "{{ '${1:Word}' | PluralizeForQuantity:${2:wordCount} }}"
+  },
+  "Filter possessive": {
+    "prefix": "Possessive",
+    "description": "Returns the possessive form of the string.",
+    "body": "Possessive"
+  },
+  "Filter prepend": {
+    "prefix": "Prepend",
+    "description": "Adds a given string to the beginning of the input.",
+    "body": "Prepend:'${1:string}'"
+  },
+  "Filter RegExMatch": {
+    "prefix": "RegExMatch",
+    "description": "Tests the input against a Regular Expression to determine if it is a match.",
+    "body": "RegExMatch:'${1:string}'"
+  },
+  "Filter RegExMatchValue": {
+    "prefix": "RegExMatchValue",
+    "description": "Tests the input against a Regular Expression and returns the matching substring if a match is made; otherwise it returns nothing.",
+    "body": "RegExMatchValue:'${1:string}'"
+  },
+  "Filter RegExMatchValues": {
+    "prefix": "RegExMatchValues",
+    "description": "Tests the input against a Regular Expression and returns an array of the matching substrings. If no match is made, it will return an empty array.",
+    "body": "RegExMatchValues:'${1:string}'"
+  },
+  "Filter remove": {
+    "prefix": "Remove",
+    "description": "Remove all occurrences of a given string.",
+    "body": "Remove:'${1:string}'"
+  },
+  "Filter remove first": {
+    "prefix": "RemoveFirst",
+    "description": "Removed the first occurrence of a given string.",
+    "body": "RemoveFirst:'${1:string}'"
+  },
+  "Filter replace": {
+    "prefix": "Replace",
+    "description": "Replace all occurrences of a given string.",
+    "body": "Replace:'${1:target}','${2:replace}'"
+  },
+  "Filter replace first": {
+    "prefix": "ReplaceFirst",
+    "description": "Replace the first occurrence of a given string.",
+    "body": "ReplaceFirst:'${1:target}','${2:replace}'"
+  },
+  "Filter replace last": {
+    "prefix": "ReplaceLast",
+    "description": "Replaces the last occurance of a string pattern with a new value.",
+    "body": "ReplaceLast:'${1:target}','${2:replace}'"
+  },
+  "Filter right": {
+    "prefix": "Right",
+    "description": "Returns the right most part of a string of the given length.",
+    "body": "Right:${1:Integer}"
+  },
+  "Filter sanitize sql": {
+    "prefix": "SanitizeSql",
+    "description": "Accepts a string as input and sanitizes it for use in a SQL statement.",
+    "body": "SanitizeSql"
+  },
+  "Filter sentence case": {
+    "prefix": "SentenceCase",
+    "description": "Changes the string to be in sentence case.",
+    "body": "SentenceCase"
+  },
+  "Filter singularize": {
+    "prefix": "Singularize",
+    "description": "It’s like the antidote to pluralize. Makes plural words singular.",
+    "body": "Singularize"
+  },
+  "Filter size": {
+    "prefix": "Size",
+    "description": "Returns the length of the string.",
+    "body": "Size"
+  },
+  "Filter slice": {
+    "prefix": "Slice",
+    "description": "The slice filter returns a substring, starting at the specified index. An optional second parameter can be passed to specify the length of the substring. If no second parameter is given, a substring of one character will be returned.",
+    "body": "Slice:${1:0}, ${2:5}"
+  },
+  "Filter split": {
+    "prefix": "Split",
+    "description": "Splits a string into an array based on a matching pattern.",
+    "body": "Split:'${1:,}'"
+  },
+  "Filter strip": {
+    "prefix": "StripHtml",
+    "description": "Remove all HTML tags from the string.",
+    "body": "StripHtml"
+  },
+  "Filter strip newlines": {
+    "prefix": "StripNewlines",
+    "description": "Remove all new line characters (\r\n) from the string.",
+    "body": "StripNewlines"
+  },
+  "Filter title case": {
+    "prefix": "TitleCase",
+    "description": "Takes and ordinary string like 'of mice and men' and makes it usable as a title, 'Of Mice And Men'.",
+    "body": "TitleCase"
+  },
+  "Filter to css class": {
+    "prefix": "ToCssClass",
+    "description": "Converts string to a CSS class name format (e.g. home-phone).",
+    "body": "ToCssClass"
+  },
+  "Filter to pascal": {
+    "prefix": "ToPascal",
+    "description": "For all the programmers in the house.. this will take a string and return it back in PascalCase.",
+    "body": "ToPascal"
+  },
+  "Filter trim": {
+    "prefix": "Trim",
+    "description": "Removes all blank spaces at the beginning and end of a string.",
+    "body": "Trim"
+  },
+  "Filter truncate": {
+    "prefix": "Truncate",
+    "description": "Will shorten the input down to the provided size and append an optional string to the end. The length of the appending string will be counted in the truncate size. If no appending string is provided '...' will be used.",
+    "body": "Truncate: ${1:20}, '${2:...}'"
+  },
+  "Filter truncatewords": {
+    "prefix": "TruncateWords",
+    "description": "Shortens the input to the number of words provided and appends an optional string to the end. If no appending string is provided it will use '...'.",
+    "body": "TruncateWords:${1:5},'${2:...}'"
+  },
+  
+  "Filter unescape data string": {
+    "prefix": "UnescapeDataString",
+    "description": "Converts a string to its escaped representation using Uri.EscapeDataString (aka URL Decoding).",
+    "body": "UnescapeDataString"
+  },
+  "Filter upcase": {
+    "prefix": "Upcase",
+    "description": "This filter transforms the string to all upper case. The string 'Lorem Ipsum Dolor' would become 'LOREM IPSUM DOLOR'.",
+    "body": "Upcase"
+  },
+  "Filter with fallback": {
+    "prefix": "WithFallback",
+    "description": "This filter allows you to eliminate conditional tests for null or empty values by allowing you to provide fallback text.",
+    "body": "WithFallback:'${1:Has Value}','${2:Missing Value}'"
+  }
+}

@@ -1,0 +1,278 @@
+{
+  "Tag": {
+    "prefix": "tag",
+    "description": "Empty tag",
+    "body": ["{% $1 %}"]
+  },
+  "Filter Url": {
+    "prefix": "Global",
+    "description": "Other filter: Url",
+    "body":
+      "{{ 'Global' | Attribute:'${1|CurrencySymbol,EmailFooter,EmailHeader,EmailHeaderLogo,GoogleAPIKey,GradeTransitionDate,InternalApplicationRoot,OrganizationAbbreviation,OrganizationAddress,OrganizationEmail,OrganizationName,OrganizationPhone,OrganizationWebsite,PublicApplicationRoot|}' }}"
+  },
+  "Attribute": {
+    "prefix": "attr",
+    "description": "Attribute",
+    "body": ["Attribute:'${1:AttributeName}'"]
+  },
+  "Tag if": {
+    "prefix": "if",
+    "description": "Executes a block of code only if a certain condition is true",
+    "body": ["{% if ${1:condition} %}$2{% endif %}"]
+  },
+  "Tag else": {
+    "prefix": "else",
+    "description": "Control flow tag: else",
+    "body": ["{% else %}", "\t"]
+  },
+  "Tag elsif": {
+    "prefix": "elseif",
+    "description": "Control flow tag: elseif",
+    "body": ["{% elseif ${1:condition} %}", "\t"]
+  },
+  "Tag if else": {
+    "prefix": "ifelse",
+    "description": "Control flow tag: if else",
+    "body": [
+      "{% if ${1:condition} %}",
+      "\t$2",
+      "{% else %}",
+      "\t$3",
+      "{% endif %}"
+    ]
+  },
+  "Tag unless": {
+    "prefix": "unless",
+    "description": "The opposite of if – executes a block of code only if a certain condition is not met.",
+    "body": ["{% unless ${1:condition} %} $2 {% endunless %}"]
+  },
+  "Tag case": {
+    "prefix": "case",
+    "description": "Control flow tag: case",
+    "body": [
+      "{% case ${1:variable} %}",
+      "\t{% when ${2:condition} %}",
+      "\t\t$3",
+      "\t{% else %}",
+      "\t\t$4",
+      "{% endcase %}"
+    ]
+  },
+  "Tag when": {
+    "prefix": "when",
+    "description": "Control flow tag: when",
+    "body": ["{% when ${1:condition} %}", "$0"]
+  },
+  "Tag cycle": {
+    "prefix": "cycle",
+    "description": "Iteration tag: cycle",
+    "body": ["{% cycle '${1:odd}', '${2:even}' %}"]
+  },
+  "Tag cycle group": {
+    "prefix": "cyclegroup",
+    "description": "Iteration tag: cycle group",
+    "body": ["{% cycle '${1:group name}': '${2:odd}', '${3:even}' %}"]
+  },
+  "Tag for": {
+    "prefix": "for",
+    "description": "Iteration tag: for",
+    "body": ["{% for ${1:item} in ${2:collection} %}", "\t$3", "{% endfor %}"]
+  },
+  "Tag break": {
+    "prefix": "break",
+    "description": "Iteration tag: break",
+    "body": ["{% break %}"]
+  },
+  "Tag continue": {
+    "prefix": "continue",
+    "description": "Iteration tag: continue",
+    "body": ["{% continue %}"]
+  },
+  "Tag assign": {
+    "prefix": "assign",
+    "description": "Creates a new variable.",
+    "body": ["{%- assign ${1:variable} = ${2:value} -%}"]
+  },
+  "Tag assign attribute": {
+    "prefix": "assignAttribute",
+    "description": "Creates a new variable from an attribute.",
+    "body": ["{%- assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' -%}"]
+  },
+  "Tag assign page parameter": {
+    "prefix": "assignPageParameter",
+    "description": "Creates a new variable from a page parameter.",
+    "body": ["{%- assign ${1:variable} = PageParameter.${2:value} -%}"]
+  },
+  "Tag capture": {
+    "prefix": "capture",
+    "description": "Captures the string inside of the opening and closing tags and assigns it to a variable.",
+    "body": ["{% capture ${1:variable} %}$2{% endcapture %}"]
+  },
+  "Tag include": {
+    "prefix": "include",
+    "description": "Theme tag: include",
+    "body": ["{%- include '${1:~~/Assets/Lava/${TM_FILENAME}}' -%}"]
+  },
+  "Tag include with parameters": {
+    "prefix": "includewith",
+    "description": "Theme tag: include with parameters",
+    "body": ["{% include '${1:snippet}', ${2:variable}: ${3:value} %}"]
+  },
+  "Tag execute": {
+    "prefix": "execute",
+    "description": "Command tag: execute",
+    "body": ["{%- execute -%}", "\t$3", "{%- endexecute -%}"]
+  },
+  "Tag raw": {
+    "prefix": "raw",
+    "description": "Raw temporarily disables tag processing. This is useful for generating content (eg, Mustache, Handlebars) which uses conflicting syntax.",
+    "body": ["{% raw %}$1{% endraw %}"]
+  },
+  "Tag comment, whitespaced": {
+    "prefix": "comment-",
+    "description": "Allows you to leave un-rendered code inside a Lava template. Any text within the opening and closing comment blocks will not be printed, and any Lava code within will not be executed.",
+    "body": ["{%- comment -%}$1{%- endcomment -%}"]
+  },
+  "Tag if, whitespaced": {
+    "prefix": "if-",
+    "description": "Control flow tag: if, whitespaced",
+    "body": ["{%- if ${1:condition} -%}", "\t$2", "{%- endif -%}"]
+  },
+  "Tag else, whitespaced": {
+    "prefix": "else-",
+    "description": "Control flow tag: else, whitespaced",
+    "body": ["{%- else -%}", "\t"]
+  },
+  "Tag elsif, whitespaced": {
+    "prefix": "elseif-",
+    "description": "Control flow tag: elsif, whitespaced",
+    "body": ["{%- elseif ${1:condition} -%}", "\t"]
+  },
+  "Tag if else, whitespaced": {
+    "prefix": "ifelse-",
+    "description": "Control flow tag: if else, whitespaced",
+    "body": [
+      "{%- if ${1:condition} -%}",
+      "\t$2",
+      "{%- else -%}",
+      "\t$3",
+      "{%- endif -%}"
+    ]
+  },
+  "Tag unless, whitespaced": {
+    "prefix": "unless-",
+    "description": "Control flow tag: unless, whitespaced",
+    "body": ["{%- unless ${1:condition} -%}", "\t$2", "{%- endunless -%}"]
+  },
+  "Tag case, whitespaced": {
+    "prefix": "case-",
+    "description": "Creates a switch statement to compare a variable with different values. case initializes the switch statement, and when compares its values.",
+    "body": [
+      "{%- case ${1:variable} -%}",
+      "\t{%- when ${2:condition} -%}",
+      "\t\t$3",
+      "\t{%- else -%}",
+      "\t\t$4",
+      "{%- endcase -%}"
+    ]
+  },
+  "Tag when, whitespaced": {
+    "prefix": "when-",
+    "description": "Control flow tag: when, whitespaced",
+    "body": ["{%- when ${1:condition} -%}", "$0"]
+  },
+  "Tag cycle, whitespaced": {
+    "prefix": "cycle-",
+    "description": "Iteration tag: cycle, whitespaced",
+    "body": ["{%- cycle '${1:odd}', '${2:even}' -%}"]
+  },
+  "Tag cycle group, whitespaced": {
+    "prefix": "cyclegroup-",
+    "description": "Iteration tag: cycle group, whitespaced",
+    "body": ["{%- cycle '${1:group name}': '${2:odd}', '${3:even}' -%}"]
+  },
+  "Tag for, whitespaced": {
+    "prefix": "for-",
+    "description": "Iteration tag: for, whitespaced",
+    "body": [
+      "{%- for ${1:item} in ${2:collection} -%}",
+      "\t$3",
+      "{%- endfor -%}"
+    ]
+  },
+  "Tag continue, whitespaced": {
+    "prefix": "continue-",
+    "description": "Iteration tag: continue, whitespaced",
+    "body": ["{%- continue -%}"]
+  },
+  "Tag capture, whitespaced": {
+    "prefix": "capture-",
+    "description": "Variable tag: capture, whitespaced",
+    "body": ["{%- capture ${1:variable} -%}$2{%- endcapture -%}"]
+  },
+  "Filter first": {
+    "prefix": "First",
+    "description": "Returns the first item of an array.",
+    "body": "First"
+  },
+  "Filter index": {
+    "prefix": "Index",
+    "description": "Provides an easy way to retrieve an item from an array using its index when chaining filters.",
+    "body": "Index:'${1:0}'"
+  },
+  "Filter join": {
+    "prefix": "Join",
+    "description": "Combines the items in an array into a single string using the argument as a separator.",
+    "body": "Join:'${1:, }'"
+  },
+  "Filter last": {
+    "prefix": "Last",
+    "description": "Returns the last item of an array.",
+    "body": "Last"
+  },
+  "Filter map": {
+    "prefix": "Map",
+    "description": "Creates an array of values by extracting the values of a named property from another object.",
+    "body": "Map:'${1:key}'"
+  },
+  "Filter select": {
+    "prefix": "Select",
+    "description": "Returns a single property from an object.",
+    "body": "Select:'${1:key}'"
+  },
+  "Filter shuffle": {
+    "prefix": "Shuffle",
+    "description": "Randomizes the order of an array. Useful for ads on a homepage where you'd like a different ad to be first for each visit.",
+    "body": "Shuffle"
+  },
+  "Filter size": {
+    "prefix": "Size",
+    "description": "Returns the number of characters in a string or the number of items in an array.",
+    "body": "Size"
+  },
+  "Filter sort": {
+    "prefix": "Sort",
+    "description": "Sorts the array/collection based on the property provided (note: does not work with attribute values).",
+    "body": "Sort:'${1:key}'"
+  },
+  "Filter sort by attribute": {
+    "prefix": "SortByAttribute",
+    "description": "Sorts an array of items based on a attribute value.",
+    "body": "SortByAttribute:'${1:key}'"
+  },
+  "Filter uniq": {
+    "prefix": "uniq",
+    "description": "Removes any duplicate elements in an array.",
+    "body": "Uniq"
+  },
+  "Filter where": {
+    "prefix": "Where",
+    "description": "Creates an array including only the objects with a given property value, or any truthy value by default.",
+    "body": "Where:'${1:key}','${2:value}'"
+  },
+  "Filter reverse": {
+    "prefix": "Reverse",
+    "description": "Reverses the order of the items in an array. reverse cannot reverse a string.",
+    "body": "Reverse"
+  }
+}

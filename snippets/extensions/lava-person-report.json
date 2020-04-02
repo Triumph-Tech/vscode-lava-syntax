@@ -1,0 +1,25 @@
+{
+  "Person Report Pledges Last Year": {
+    "prefix": "prl-pledge",
+    "description": "Person Report Lava: Pledges for Last Year",
+    "body": [
+      "{%- assign thisjan = 'Now' | Date:'yyyy-01-01' -%}",
+      "{%- assign lastjan = thisjan | DateAdd:-365 | Date:'yyyy-01-01' -%}",
+      "{%- assign paliasid = ${1:Id} | PersonById | Property:'PrimaryAlias.Id' -%}",
+      "{%- financialpledge where:'PersonAliasId == \"{{ paliasid }} && StartDate >= \"{{ lastjan }}\" && StartDate < \"{{ thisjan }}\"' -%}",
+      "\t{%- assign pledgetotal = 0 -%}",
+      "\t{%- for pledge in financialpledgeItems -%}",
+      "\t\t{%- assign pledgetotal = pledgetotal | Plus:pledge.TotalAmount -%}",
+      "\t{%- endfor -%}",
+      "\t{{ pledgetotal }}",
+      "{%- endfinancialpledge -%}"
+    ]
+  },
+  "Person Report Children": {
+    "prefix": "prl-children",
+    "description": "Person Report Lava: List children by Nickname",
+    "body": [
+      "{%- assign children = ${1:Id} | PersonById | Children | Map:'NickName' | Join:', ' | ReplaceLast:',',', and' -%}"
+    ]
+  }
+}

@@ -2,7 +2,7 @@
 	"name": "language-lava",
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
-	"version": "0.0.4",
+	"version": "1.0.0",
 	"publisher": "GarrettJohnson",
 	"engines": {
 		"vscode": "^1.16.0"
@@ -15,10 +15,10 @@
 		"color": "#2f383a",
 		"theme": "dark"
 	},
-	"preview": true,
 	"keywords": [
 		"rockrms",
 		"lava",
+		"rock",
 		"grammar",
 		"church"
 	],
@@ -29,11 +29,23 @@
 	},
 	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"contributes": {
+		"configurationDefaults": {
+			"[lava]": {
+				"editor.insertSpaces": true,
+				"editor.tabSize": 2,
+				"editor.autoIndent": "none",
+				"files.insertFinalNewline": true,
+				"files.trimTrailingWhitespace": true
+			},
+			"emmet.includeLanguages": {
+				"lava": "html"
+			}
+		},
 		"languages": [
 			{
 				"id": "lava",
 				"aliases": [
-					"Lava (HTML)",
+					"Lava",
 					"lava"
 				],
 				"extensions": [
@@ -42,26 +54,86 @@
 				"configuration": "./lava.language-configuration.json"
 			},
 			{
-				"id": "html",
+				"id": "cshtml",
 				"aliases": [
-					"Master (Rock Theme)"
+					"HTML (C#)",
+					"HTML with embedded C#",
+					"ASP.NET",
+					"aspx",
+					"cshtml",
+					"Master Page"
 				],
 				"extensions": [
+					".aspx",
+					".ascx",
+					".asax",
+					".cshtml",
 					".master"
-				]
+				],
+				"firstLine": "^\\s*<%@",
+				"configuration": "./cshtml.language-configuration.json"
 			}
 		],
 		"grammars": [
 			{
 				"language": "lava",
 				"scopeName": "text.html.lava",
-				"path": "./syntaxes/lava.json",
+				"path": "./syntaxes/lava.tmLanguage.json",
 				"embeddedLanguages": {
-					"source.sql": "sql",
-					"source.js": "javascript",
-					"source.css": "css",
-					"source.cs": "csharp"
+					"meta.embedded.inline.css": "css",
+					"meta.embedded.inline.javascript": "javascript",
+					"meta.embedded.inline.json": "json",
+					"meta.embedded.inline.less": "less",
+					"meta.embedded.inline.sql": "sql",
+					"meta.embedded.inline.csharp": "csharp"
 				}
+			},
+			{
+				"language": "cshtml",
+				"scopeName": "text.html.cshtml",
+				"path": "./syntaxes/cshtml.tmLanguage.json"
+			}
+		],
+		"snippets": [
+			{
+				"language": "lava",
+				"path": "./snippets/lava.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-commands.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-dates.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-numeric.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-other.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-person.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/lava-text.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/extensions/lava-shortcodes.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/extensions/lava-cms.json"
+			},
+			{
+				"language": "cshtml",
+				"path": "./snippets/rock-controls.json"
 			}
 		]
 	}

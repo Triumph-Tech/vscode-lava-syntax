@@ -1,0 +1,156 @@
+{
+  "Filter AddLinkTagToHead": {
+    "prefix": "AddLinkTagToHead",
+    "description": "Adds a link to the HTML head of the current page.",
+    "body": "AddLinkTagToHead:'${1:tag}','${2:Value}'"
+  },
+  "Filter AddMetaTagToHead": {
+    "prefix": "AddMetaTagToHead",
+    "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. <meta TAG=\"VALUE\" content=\"/...\">",
+    "body": "AddMetaTagToHead:'${1:tag}','${2:Value}'"
+  },
+  "Filter AddCssLink": {
+    "prefix": "AddCssLink",
+    "description": "Adds a CSS link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
+    "body": "AddCssLink"
+  },
+  "Filter AddScriptLink": {
+    "prefix": "AddScriptLink",
+    "description": "Adds a script link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
+    "body": "AddScriptLink"
+  },
+  "Filter AsBoolean": {
+    "prefix": "AsBoolean",
+    "description": "Converts the input to a Boolean (true/false) value.",
+    "body": "AsBoolean"
+  },
+  "Filter AsInteger": {
+    "prefix": "AsInteger",
+    "description": "Converts the input to an integer value.",
+    "body": "AsInteger"
+  },
+  "Filter AsDecimal": {
+    "prefix": "AsDecimal",
+    "description": "Converts the input to a decimal value.",
+    "body": "AsDecimal"
+  },
+  "Filter AsDouble": {
+    "prefix": "AsDouble",
+    "description": "Converts the input to a double value (which has less precision than a decimal).",
+    "body": "AsDouble"
+  },
+  "Filter AsString": {
+    "prefix": "AsString",
+    "description": "Converts the input to an string value.",
+    "body": "AsString"
+  },
+  "Filter AsDateTime": {
+    "prefix": "AsDateTime",
+    "description": "Converts the input to a DateTime value.",
+    "body": "AsDateTime"
+  },
+  "Filter Base64Encode": {
+    "prefix": "Base64Encode",
+    "description": "Converts a binary file to a base-64 encoded string.",
+    "body": "Base64Encode"
+  },
+  "Filter CreateShortlink": {
+    "prefix": "CreateShortLink",
+    "description": "Creates a URL short link for the provided URL.",
+    "body":
+      "CreateShortLink${1::'${2:}',${3:siteId},${4:'OverwriteT/F'},${5:lengthInt}}"
+  },
+  "Filter Lava Debug": {
+    "prefix": "debug",
+    "description": "Debug lava variables on page, with optional username restriction.",
+    "body": "{{ ${1:'Lava'} | Debug${2::'${3:username}'} }}"
+  },
+  "Filter FromCache": {
+    "prefix": "FromCache",
+    "description": "Reads objects from the Rock cache which will reduce the number of database reads your Lava produces.",
+    "body":
+      "FromCache:'${1|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}'"
+  },
+  "Filter FromJSON": {
+    "prefix": "FromJSON",
+    "description": "Takes a JSON string and makes a Lava object from it.",
+    "body": "FromJSON"
+  },
+  "Filter GroupById": {
+    "prefix": "GroupById",
+    "description": "Provides a full Group object by providing an Id of the group.",
+    "body": "GroupById"
+  },
+  "Filter GroupByGuid": {
+    "prefix": "GroupByGuid",
+    "description": "Returns a full Group object from the Guid of the group.",
+    "body": "GroupByGuid"
+  },
+  "Filter Has Rights to": {
+    "prefix": "HasRightsTo",
+    "description": "This filter helps you check the security of the model you pass it.",
+    "body": "HasRightsTo:'${1:View}'"
+  },
+  "Filter Has Rights to Id": {
+    "prefix": "HasRightsToId",
+    "description": "This filter helps you check the security of the model you pass it.",
+    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${1:Rock.Model.Group}'"
+  },
+  "FilterNotes": {
+    "prefix": "Notes",
+    "description": "Retrieves notes for the provided entity.",
+    "body": "Notes:'${1:noteTypeIds}','${2|desc,asc|}',${3:limit}"
+  },
+  "Filter Set Page Title": {
+    "prefix": "SetPageTitle",
+    "description": "Takes a string as input and sets the page's title.",
+    "body": "SetPageTitle"
+  },
+  "Filter PropertyToKeyValue": {
+    "prefix": "PropertyToKeyValue",
+    "description": "Takes a property and returns it as a key/value pair. This is helpful for iterating over a list of properties.",
+    "body": "PropertyToKeyValue"
+  },
+  "Filter Page": {
+    "prefix": "Page",
+    "description": "Use with {{ 'Global' | Page:'...' }}",
+    "body":
+      "Page:'${1|Title,Description,Url,Id,Host,Path,SiteName,SiteId,Theme,Layout,Scheme,QueryString|}'"
+  },
+  "Filter Page Parameter": {
+    "prefix": "PageParameter",
+    "description": "Returns the value of a specified page parameter.",
+    "body": "PageParameter:'${1:GroupId}'"
+  },
+  "Filter Page Redirect": {
+    "prefix": "PageRedirect",
+    "description": "Will redirect the page to the provided URL.",
+    "body": "PageRedirect"
+  },
+  "Filter Postback": {
+    "prefix": "Postback",
+    "description": "This is a very specialized Lava filter that helps to wire-up ASP.Net postbacks. This is only available on specific blocks that provide 'Postback Commands'. The 'Group Details Lava' is an example of a block that provides these hooks.",
+    "body": "Postback:'${1:name}'"
+  },
+  "Filter Property": {
+    "prefix": "Property",
+    "description": "Returns the property of a provided object. This often saves you from having to assign an object to a variable to get just one of its properties.",
+    "body": "Property:'${1:key}'"
+  },
+  "Filter ResolveRockUrl": {
+    "prefix": "ResolveRockUrl",
+    "description": "Resolves '~/' application route and '~~/' theme route.",
+    "body": "ResolveRockUrl"
+  },
+  "Filter ToJSON": {
+    "prefix": "ToJSON",
+    "description": "Returns a JSON representation of the object.",
+    "body": "ToJSON"
+  },
+  "Filter Url": {
+    "prefix": "Url",
+    "description": "Returns information about the current page.",
+    "body":
+      "Page:'${1|host,port,segments,scheme,protocol,localpath,pathandquery,queryparameter,url|}'"
+  }
+}

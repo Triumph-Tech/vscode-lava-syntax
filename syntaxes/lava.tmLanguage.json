@@ -1,0 +1,1135 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Lava",
+  "scopeName": "text.html.lava",
+  "fileTypes": [
+    "html",
+    "lava"
+  ],
+  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest)[^(%})]+-?%}",
+  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
+  "patterns": [
+    {
+      "include": "#comments"
+    },
+    {
+      "include": "#raw"
+    },
+    {
+      "include": "#cache"
+    },
+    {
+      "include": "#csharp"
+    },
+    {
+      "include": "#sql"
+    },
+    {
+      "include": "#search"
+    },
+    {
+      "include": "#javascript"
+    },
+    {
+      "include": "#stylesheet"
+    },
+    {
+      "include": "#webrequest"
+    },
+    {
+      "include": "#template-tags"
+    },
+    {
+      "include": "#template-vars"
+    },
+    {
+      "include": "#entity"
+    },
+    {
+      "include": "#shortcode"
+    },
+    {
+      "include": "#html"
+    }
+  ],
+  "repository": {
+    "template-tags": {
+      "name": "punctuation.tag.lava",
+      "begin": "({%)(-)?",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        }
+      },
+      "end": "(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#invalid-control"
+        },
+        {
+          "include": "#constant-boolean"
+        },
+        {
+          "include": "#constant-numeric"
+        },
+        {
+          "include": "#constant-boolean"
+        },
+        {
+          "include": "#entity-name-tag"
+        },
+        {
+          "include": "#include-tag"
+        },
+        {
+          "include": "#invalid-ampersand"
+        },
+        {
+          "include": "#invalid-or"
+        },
+        {
+          "include": "#invalid-array"
+        },
+        {
+          "include": "#invalid-conditions"
+        },
+        {
+          "include": "#invalid-operators"
+        },
+        {
+          "include": "#keyword-control"
+        },
+        {
+          "include": "#keyword-operators"
+        },
+        {
+          "include": "#keyword-operator-assignment"
+        },
+        {
+          "include": "#quoted-support-class"
+        },
+        {
+          "include": "#string-quoted-double"
+        },
+        {
+          "include": "#string-quoted-single"
+        },
+        {
+          "include": "#support-class"
+        },
+        {
+          "include": "#support-function"
+        },
+        {
+          "include": "#support-variable"
+        },
+        {
+          "include": "#support-constant"
+        },
+        {
+          "include": "#variable-parameter"
+        },
+        {
+          "include": "#variable-other"
+        },
+        {
+          "include": "#invalid-assignment"
+        }
+      ]
+    },
+    "comments": {
+      "name": "comment.block.lava",
+      "begin": "{%-?\\s*comment\\s*-?%}",
+      "end": "{%-?\\s*endcomment\\s*-?%}"
+    },
+    "raw": {
+      "name": "markup.raw.block.lava",
+      "begin": "({%)(-)?\\s*(raw)\\s*(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "end": "({%)(-)?\\s*(endraw)\\s*(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      }
+    },
+    "template-vars": {
+      "name": "punctuation.output.lava",
+      "begin": "({{)(-)?",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        }
+      },
+      "end": "(-)?(}})",
+      "endCaptures": {
+        "1": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "2": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#object-properties"
+        },
+        {
+          "include": "#quoted-support-class"
+        },
+        {
+          "include": "#string-quoted-double"
+        },
+        {
+          "include": "#string-quoted-single"
+        },
+        {
+          "include": "#support-class"
+        },
+        {
+          "include": "#support-function"
+        },
+        {
+          "include": "#support-variable"
+        },
+        {
+          "include": "#support-function-with-args"
+        },
+        {
+          "include": "#support-function-without-args"
+        },
+        {
+          "include": "#var-support-variable"
+        },
+        {
+          "include": "#variable-parameter"
+        },
+        {
+          "include": "#variable-other"
+        }
+      ]
+    },
+    "invalid-control": {
+      "name": "invalid.illegal.control.lava",
+      "match": "elsif"
+    },
+    "constant-boolean": {
+      "name": "constant.language.lava",
+      "match": "(false|true|nil|null|empty|blank)"
+    },
+    "constant-numeric": {
+      "name": "constant.numeric.lava",
+      "match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
+    },
+    "entity-name-tag": {
+      "match": "(((?<={%)|(?<={%-))\\s*(\\w+))",
+      "captures": {
+        "1":{
+          "name": "entity.name.tag.lava"
+        }
+      }
+    },
+    "include-tag":{
+      "name": "string.quoted.lava",
+      "match": "((?<=include)|(?<=include_relative))\\s[^{,'\"]+?\\s+"
+    },
+    "invalid-ampersand": {
+      "match": "&",
+      "name": "invalid.illegal.bad-ampersand.lava"
+    },
+    "invalid-or": {
+      "match": "\\|\\|",
+      "name": "invalid.illegal.bad-or.lava"
+    },
+    "invalid-array": {
+      "match": "(\\[)(\\|)(?=[^\\]]*)(?=\\])",
+      "captures": {
+        "2": {
+          "name": "invalid.illegal.filter.lava"
+        },
+        "3": {
+          "name": "invalid.illegal.filter.lava"
+        }
+      }
+    },
+    "invalid-conditions": {
+      "match": "(?=if|unless|elseif)\\s*[^%}]+\\s*(in|\\|[^%}]*)",
+      "captures": {
+        "1": {
+          "name": "invalid.illegal.operator.lava"
+        }
+      }
+    },
+    "invalid-operators": {
+      "name": "invalid.illegal.filter.lava",
+      "match": "(?<=\\s)(\\+|\\-|\\/|\\*)(?=\\s)"
+    },
+    "invalid-assignment": {
+      "match": "(?<=assign)([^\\=]+)(\\=\\=+)",
+      "captures": {
+        "2": {
+          "name": "invalid.illegal.assignment.lava"
+        }
+      }
+    },
+    "keyword-control": {
+      "name": "keyword.control.lava",
+      "match": "(?<=\\s)(with|offset\\:|limit\\:)(?=\\s)"
+    },
+    "keyword-control-conditional": {
+      "name": "keyword.control.conditional.lava"
+    },
+    "keyword-operators": {
+      "name": "keyword.operator.lava",
+      "match": "\\s+(and|or|not|contains|in|by|((\\!|\\=|\\<|\\>)\\=))\\s+"
+    },
+    "keyword-operator-assignment": {
+      "match": "/=",
+      "name": "keyword.operator.assignment.augmented.lava"
+    },
+    "object-properties": {
+      "match": "(?<=\\w.)(?<=\\w.)\\b\\w+?\\b\\s+?",
+      "name": "variable.parameter.lava"
+    },
+    "string-quoted-single": {
+      "name": "string.quoted.single.lava",
+      "begin": "'",
+      "end": "'"
+    },
+    "string-quoted-double": {
+      "name": "string.quoted.double.lava",
+      "begin": "\"",
+      "end": "\""
+    },
+    "support-class": {
+      "name": "support.class.lava",
+      "match": "\\b(PageParameter|comment|CurrentPerson|Campuses|CurrentPage|Person|CurrentBrowser|forloop|item|Items|javascript|order|scripts|search|settings|style|stylesheet|tablerow|tags|taxonomy|template|url)\\b"
+    },
+    "quoted-support-class": {
+      "name": "support.class.lava",
+      "match": "('Now'|'Global'|'Lava')"
+    },
+    "support-function": {
+      "name": "support.function.lava",
+      "match": "\\b(Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|First|Last|Index|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON)\\b"
+    },
+    "support-variable": {
+        "name": "support.variable.lava",
+        "match": "\\b(Date|Index|Size)\\b"
+    },
+    "support-constant": {
+      "name":"support.constant.lava",
+      "match": "\\b(default|default_errors|default_pagination|first|last|script_tag|stylesheet_tag|img_tag|customer_login_link|global_asset_url|payment_type_img_url|shopify_asset_url)\\b"
+    },
+    "support-function-with-args": {
+      "name": "support.function.with-args.lava",
+      "match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\:\\s+"
+    },
+    "support-function-without-args": {
+      "name": "support.function.without-args.lava",
+      "match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\s+"
+    },
+    "var-support-variable": {
+      "name": "support.variable.lava",
+      "match": "(?<=\\.)\\w+\\b"
+    },
+    "variable-parameter": {
+      "name": "variable.parameter.lava",
+      "match": "((?<=\\w\\:\\s)\\w+)"
+    },
+    "variable-other": {
+      "name": "variable.other.lava",
+      "match": "\\w+"
+    },
+    "stylesheet": {
+      "contentName": "meta.embedded.block.less",
+			"begin": "({%)(-)?\\s*(stylesheet)\\s*(.*?)\\s*(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(id:|compile:|import:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(cacheduration:)\\s*('[0-9]*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(cacheduration:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "invalid.illegal.string.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)\\s+(endstylesheet)\\s+(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.control.lava"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.css.less"
+        }
+      ]
+    },
+    "javascript": {
+      "contentName": "meta.embedded.block.javascript",
+      "begin": "({%)(-)?\\s*(javascript)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(id:|references:|disableanonymousfunction:|url:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endjavascript)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
+    },
+    "sql": {
+      "name": "embed.sql.lava",
+      "contentName": "meta.embedded.inline.sql",
+			"begin": "({%)(-)?\\s*(sql)\\s*(.*?)\\s*(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endsql)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.sql"
+        }
+      ]
+    },
+    "search": {
+			"begin": "({%)(-)?\\s*(search)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(query:|entities:|fieldcriteria:|criteriasearchtype:|searchtype:|iterator:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(limit:|offset:)\\s*('[0-9]*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(limit:|offset:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "invalid.illegal.string.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endsearch)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "webrequest": {
+      "contentName": "meta.embedded.block.cache",
+			"begin": "({%)(-)?\\s*(webrequest)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(url:|parameters:|headers:|method:|basicauth:|body:|requestcontenttype:|responsecontenttype:|return:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endwebrequest)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "cache": {
+      "contentName": "meta.embedded.block.cache",
+			"begin": "({%)(-)?\\s*(cache)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(key:|twopass:|tags:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(duration:|maxcachesize:)\\s*('[0-9]*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(duration:|maxcachesize:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "invalid.illegal.string.lava"
+                }
+              }
+            },
+            {
+              "match": "\\S",
+              "name": "invalid.illegal.bad-command.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endcache)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "csharp": {
+      "contentName": "meta.embedded.block.csharp",
+			"begin": "({%)(-)?\\s*(execute)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(import:|type:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\S",
+              "name": "invalid.illegal.bad-command.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endexecute)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "source.cs"
+        }
+      ]
+    },
+    "entity": {
+			"begin": "({%)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.$3.begin.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "begin": "\\b(where:)\\s*'",
+              "beginCaptures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                }
+              },
+              "end": "'",
+              "patterns": [
+                {
+                  "name": "keyword.operator.comparison.lava",
+                  "match": "\\s+(\\*\\!|\\_\\!|\\>|\\<|((\\!|\\=|\\^|\\*|\\_|\\<|\\>\\$)\\=))\\s+"
+                },
+                {
+                  "name": "constant.language.lava",
+                  "match": "(false|true)"
+                },
+                {
+                  "name": "keyword.numeric.lava",
+                  "match": "\\b([0-9]+)"
+                },
+                {
+                  "name": "keyword.entity.lava",
+                  "match": "\\b([.a-zA-Z0-9]+)"
+                },
+                {
+                  "name": "keyword.operator.thing.lava",
+                  "match": "\\s+(\\|\\||&&)\\s+"
+                },
+                {
+                  "include": "text.html.lava#template-vars"
+                },
+                {
+                  "name": "string.quoted.double.lava",
+                  "begin": "\"",
+                  "end": "\""
+                },
+                {
+                  "match": "\\S",
+                  "name": "invalid.illegal.good-command.lava"
+                }
+              ]
+            },
+            {
+              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(id:|dataview:|limit:|offset:)\\s*('[0-9]*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(id:|dataview:|limit:|offset:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "invalid.illegal.string.lava"
+                }
+              }
+            },
+            {
+              "match": "\\S",
+              "name": "invalid.illegal.bad-command.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(end([a-zA-Z0-9]+))\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.$4.end.lava"
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "shortcode": {
+			"begin": "({\\[)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(\\]})",
+			"beginCaptures": {
+        "0": {
+          "name": "meta.tag.structure.$3.start.lava"
+        },
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({\\[)(-)?\\s+(end([a-zA-Z0-9]+))\\s+(-)?(\\]})",
+      "endCaptures": {
+        "0": {
+          "name": "meta.tag.structure.$4.end.lava"
+        },
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.lava"
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#shortcodeitem"
+        },
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "shortcodeitem": {
+      "name": "punctuation.shortcodeitem.lava",
+      "begin": "(\\[\\[)",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        }
+      },
+      "end": "(\\]\\])",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "match": "((?<=\\[\\[)\\s*(\\w+))",
+          "captures": {
+            "1":{
+              "name": "entity.name.tag.lava"
+            }
+          }
+        },
+        {
+          "include": "#string-quoted-double"
+        },
+        {
+          "include": "#string-quoted-single"
+        },
+        {
+          "include": "#var-support-variable"
+        },
+        {
+          "include": "#variable-parameter"
+        },
+        {
+          "include": "#variable-other"
+        }
+      ]
+    },
+    "entitywhere": {
+      "begin": "\\b(where:)\\s*'",
+      "beginCaptures": {
+        "1": {
+          "name": "variable.parameter.lava"
+        }
+      },
+      "end": "'",
+      "patterns": [
+        {
+          "include": "text.html.basic"
+        }
+      ]
+    },
+    "html": {
+      "include": "text.html.basic"
+    }
+  }
+}

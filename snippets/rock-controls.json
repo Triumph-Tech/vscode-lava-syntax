@@ -1,0 +1,33 @@
+{
+  "Tag": {
+    "prefix": "RockLava",
+    "description": "Empty tag",
+    "body": ["<Rock:Lava ID=\"${1:idstring}\" runat=\"server\">", "\t$2", "</Rock:Lava>"]
+  },
+  "Filter Url": {
+    "prefix": "RockHead",
+    "description": "Adds Rock Header Scripts to Page",
+    "body":
+      "<asp:ContentPlaceHolder ID=\"head\" runat=\"server\"></asp:ContentPlaceHolder>"
+  },
+  "Attribute": {
+    "prefix": "RockZone",
+    "description": "Attribute",
+    "body": ["<Rock:Zone Name=\"${1:ZoneName}\" runat=\"server\" />"]
+  },
+  "Placeholder": {
+    "prefix": "RockContentPlaceHolder",
+    "description": "Attribute",
+    "body": ["<asp:ContentPlaceHolder ID=\"${1:feature}\" runat=\"server\" />"]
+  },
+  "PageBreadCrumbs": {
+    "prefix": "RockPageBreadCrumbs",
+    "description": "Attribute",
+    "body": ["<Rock:PageBreadCrumbs ID=\"${1:PageBreadCrumbs}\" runat=\"server\" />"]
+  },
+  "PageIcon": {
+    "prefix": "RockPageIcon",
+    "description": "Attribute",
+    "body": ["<Rock:PageIcon ID=\"${1:PageIcon}\" runat=\"server\" />"]
+  }
+}
