@@ -2,7 +2,7 @@
   "Tag": {
     "prefix": "tag",
     "description": "Empty tag",
-    "body": ["{% $1 %}"]
+    "body": ["{% $0 %}"]
   },
   "Filter Url": {
     "prefix": "Global",
@@ -18,7 +18,7 @@
   "Tag if": {
     "prefix": "if",
     "description": "Executes a block of code only if a certain condition is true",
-    "body": ["{% if ${1:condition} %}$2{% endif %}"]
+    "body": ["{% if ${1:condition} %}$0{% endif %}"]
   },
   "Tag else": {
     "prefix": "else",
@@ -76,7 +76,7 @@
   "Tag for": {
     "prefix": "for",
     "description": "Iteration tag: for",
-    "body": ["{% for ${1:item} in ${2:collection} %}", "\t$3", "{% endfor %}"]
+    "body": ["{% for ${1:item} in ${2:collection} %}", "\t$0", "{% endfor %}"]
   },
   "Tag break": {
     "prefix": "break",
@@ -98,6 +98,11 @@
     "description": "Creates a new variable from an attribute.",
     "body": ["{%- assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' -%}"]
   },
+  "Tag Persisted Dataset": {
+    "prefix": "PersistedDataset",
+    "description": "Creates a new variable from an attribute.",
+    "body": ["{%- assign ${1:variable} = '${2:Dataset}' | PersistedDataset -%}"]
+  },
   "Tag assign page parameter": {
     "prefix": "assignPageParameter",
     "description": "Creates a new variable from a page parameter.",
@@ -116,27 +121,27 @@
   "Tag include with parameters": {
     "prefix": "includewith",
     "description": "Theme tag: include with parameters",
-    "body": ["{% include '${1:snippet}', ${2:variable}: ${3:value} %}"]
+    "body": ["{% include '${1:snippet}', ${2:variable}:${3:value} %}"]
   },
   "Tag execute": {
     "prefix": "execute",
     "description": "Command tag: execute",
-    "body": ["{%- execute -%}", "\t$3", "{%- endexecute -%}"]
+    "body": ["{%- execute -%}", "\t$0", "{%- endexecute -%}"]
   },
   "Tag raw": {
     "prefix": "raw",
     "description": "Raw temporarily disables tag processing. This is useful for generating content (eg, Mustache, Handlebars) which uses conflicting syntax.",
-    "body": ["{% raw %}$1{% endraw %}"]
+    "body": ["{% raw %}$0{% endraw %}"]
   },
   "Tag comment, whitespaced": {
     "prefix": "comment-",
     "description": "Allows you to leave un-rendered code inside a Lava template. Any text within the opening and closing comment blocks will not be printed, and any Lava code within will not be executed.",
-    "body": ["{%- comment -%}$1{%- endcomment -%}"]
+    "body": ["{%- comment -%}$0{%- endcomment -%}"]
   },
   "Tag if, whitespaced": {
     "prefix": "if-",
     "description": "Control flow tag: if, whitespaced",
-    "body": ["{%- if ${1:condition} -%}", "\t$2", "{%- endif -%}"]
+    "body": ["{%- if ${1:condition} -%}", "\t$0", "{%- endif -%}"]
   },
   "Tag else, whitespaced": {
     "prefix": "else-",
@@ -162,7 +167,7 @@
   "Tag unless, whitespaced": {
     "prefix": "unless-",
     "description": "Control flow tag: unless, whitespaced",
-    "body": ["{%- unless ${1:condition} -%}", "\t$2", "{%- endunless -%}"]
+    "body": ["{%- unless ${1:condition} -%}", "\t$0", "{%- endunless -%}"]
   },
   "Tag case, whitespaced": {
     "prefix": "case-",
@@ -196,7 +201,7 @@
     "description": "Iteration tag: for, whitespaced",
     "body": [
       "{%- for ${1:item} in ${2:collection} -%}",
-      "\t$3",
+      "\t$0",
       "{%- endfor -%}"
     ]
   },

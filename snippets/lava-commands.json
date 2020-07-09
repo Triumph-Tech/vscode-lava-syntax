@@ -4,8 +4,38 @@
     "description": "Control flow tag: case",
     "body": [
       "{%- cache key:'${1:variable}' duration:'${2:3600}' twopass:'${3|false,true|}' ${4:tags:'${5:tag,list,optional}'} -%}",
-      "\t$6",
+      "\t$0",
       "{%- endcache -%}"
+    ]
+  },
+  "Persisted entity loop": {
+    "prefix": "persistedEntity",
+    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "body": [
+      "[",
+      "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' -%}",
+      "\t{%- for ${5:item} in $4 -%}",
+      "\t{",
+      "\t\t\"Id\": {{ ${5:/downcase}.Id }},",
+      "\t\t$0",
+      "\t}{% unless forloop.last -%},{% endunless %}",
+      "\t{%- endfor -%}",
+      "{%- end${1:/downcase} -%}",
+      "]"
+    ]
+  },
+  "Persisted Property": {
+    "prefix": "persistedProperty",
+    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "body": [
+      "\"${1:propertyName}\": {{ ${2:item}.${3:${1}} | ToJSON }},"
+    ]
+  },
+  "Persisted Attribute": {
+    "prefix": "persistedAttribute",
+    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "body": [
+      "\"${1:attributeName}\": {{ ${2:item} | Attribute:'${3:${1}}' | ToJSON }},"
     ]
   },
   "Command entity loop": {
@@ -14,7 +44,7 @@
     "body": [
       "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' -%}",
       "\t{%- for ${5:item} in $4 -%}",
-      "\t\t$6",
+      "\t\t$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
     ]
@@ -34,7 +64,7 @@
     "body": [
       "{%- ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' -%}",
       "\t{%- for ${4:item} in $3 -%}",
-      "\t\t$5",
+      "\t\t$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
     ]
@@ -45,7 +75,7 @@
     "body": [
       "{%- ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' -%}",
       "\t{%- for ${4:item} in $3 -%}",
-      "\t\t$5",
+      "\t\t$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
     ]
@@ -64,7 +94,7 @@
     "description": "Control flow tag: case",
     "body": [
       "{%- javascript -%}",
-      "\t$1",
+      "\t$0",
       "{%- endjavascript -%}"
     ]
   },
@@ -80,7 +110,7 @@
     "description": "Control flow tag: case",
     "body": [
       "{%- javascript disableanonymousfunction:'true' -%}</script>",
-      "\t$1",
+      "\t$0",
       "<script>{%- endjavascript -%}"
     ]
   },
@@ -103,7 +133,7 @@
       "\t$3", 
       "{%- endsql -%}",
       "{% for item in ${1} %}",
-      "\t$4", 
+      "\t$0", 
       "{% endfor %}"
     ]
   },
@@ -112,7 +142,7 @@
     "description": "Control flow tag: case",
     "body": [
       "{%- stylesheet id:'${1:uniqueid}' -%}",
-      "\t$2",
+      "\t$0",
       "{%- endstylesheet -%}"
     ]
   },
@@ -129,7 +159,7 @@
     "body": [
       "{%- webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' -%}",
       "\t{%- for item in results -%}",
-      "\t\t$3",
+      "\t\t$0",
       "\t{%- endfor -%}",
       "{%- endwebrequest -%}"
     ]

@@ -1,0 +1,24 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "XAML",
+  "scopeName": "text.xml.xaml",
+  "fileTypes": [
+    "xaml"
+  ],
+  "patterns": [
+    {
+      "include": "#xml"
+    },
+    {
+      "include": "#lava"
+    }
+  ],
+  "repository": {
+    "xml": {
+      "include": "text.xml"
+    },
+    "lava": {
+      "include": "text.html.lava"
+    }
+  }
+}

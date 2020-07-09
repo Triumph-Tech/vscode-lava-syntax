@@ -43,10 +43,10 @@
       "include": "#template-vars"
     },
     {
-      "include": "#entity"
+      "include": "#shortcode"
     },
     {
-      "include": "#shortcode"
+      "include": "#entity"
     },
     {
       "include": "#html"
@@ -85,6 +85,9 @@
         },
         {
           "include": "#constant-boolean"
+        },
+        {
+          "include": "#entity-danger-name-tag"
         },
         {
           "include": "#entity-name-tag"
@@ -234,12 +237,10 @@
         {
           "include": "#support-variable"
         },
-        {
-          "include": "#support-function-with-args"
-        },
-        {
-          "include": "#support-function-without-args"
-        },
+
+
+
+
         {
           "include": "#var-support-variable"
         },
@@ -262,6 +263,14 @@
     "constant-numeric": {
       "name": "constant.numeric.lava",
       "match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
+    },
+    "entity-danger-name-tag": {
+      "match": "(((?<={%)|(?<={%-))\\s*(campus|endcampus|definedvalue|enddefinedvalue|definedtype|enddefineddype))",
+      "captures": {
+        "1":{
+          "name": "invalid.deprecated.tag.lava"
+        }
+      }
     },
     "entity-name-tag": {
       "match": "(((?<={%)|(?<={%-))\\s*(\\w+))",
@@ -353,7 +362,11 @@
     },
     "support-function": {
       "name": "support.function.lava",
-      "match": "\\b(Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|First|Last|Index|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON)\\b"
+      "match": "\\|\\s+(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON)\\b"
+    },
+    "support-function-bbm": {
+      "name": "support.function.bluebox.lava",
+      "match": "\\|\\s+(BBM_AddToArray|BBM_Distinct|BBM_GroupBy|BBM_OrderBy|BBM_RemoveFromArray|BBM_Sum|BBM_AddToDictionary|BBM_AllKeysFromDictionary|BBM_RemoveFromDictionary|BBM_AddHttpHeader|BBM_ComputeHash|BBM_FromBase64|BBM_PageRoute|BBM_RunLava|BBM_ToBase64|BBM_RegExMatches|BBM_RegExReplace|BBM_Function)\\b"
     },
     "support-variable": {
         "name": "support.variable.lava",
@@ -361,7 +374,7 @@
     },
     "support-constant": {
       "name":"support.constant.lava",
-      "match": "\\b(default|default_errors|default_pagination|first|last|script_tag|stylesheet_tag|img_tag|customer_login_link|global_asset_url|payment_type_img_url|shopify_asset_url)\\b"
+      "match": "\\b(Default|First|Last)\\b"
     },
     "support-function-with-args": {
       "name": "support.function.with-args.lava",
@@ -444,15 +457,21 @@
           "name": "punctuation.definition.tag.end.lava"
         }
 			},
-      "end": "({%)\\s+(endstylesheet)\\s+(%})",
+      "end": "({%)(-)?\\s+(endstylesheet)\\s+(-)?(%})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2": {
-          "name": "keyword.control.lava"
+        "2":{
+          "name": "keyword.other.whitespace.lava"
         },
         "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
           "name": "punctuation.definition.tag.end.lava"
         }
       },

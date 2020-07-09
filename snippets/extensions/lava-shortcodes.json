@@ -7,7 +7,7 @@
       "\t[[ item title:'${2:Small Groups}' ]]", 
       "\t\t$3",
       "\t[[ enditem ]]",
-      "\t$4",
+      "\t$0",
       "{[ endaccordion ]}"
     ]
   },
@@ -16,7 +16,7 @@
     "description": "Shortcode Lava",
     "body": [
       "[[ item title:'${1:Small Groups}' ]]", 
-      "\t$2",
+      "\t$0",
       "[[ enditem ]]"
     ]
   },
@@ -26,7 +26,7 @@
     "body": [
       "{[ chart type:'${1|bar,line,radar,pie,doughnut,polarArea|}' ]}",
       "[[ dataitem label:'${2:Small Groups}' value:'${3:45}' ]] [[ enddataitem ]]",
-      "\t$2",
+      "\t$0",
       "{[ endgooglemap ]}"
     ]
   },
@@ -43,7 +43,7 @@
     "body": [
       "{[ googlemap ${1:height:'${2:600px}'} ${3:width :'${4:100%}'} ${5:showzoom :'${6|true,false|}'} ${7:showstreetview:'${8|true,false|}'} ${9:showfullscreen:'${10|true,false|}'} ${11:showmapttype:'${12|true,false|}'} ${13:scrollwheel:'${14|true,false|}'} ${15:draggable:'${16|true,false|}'} ]}",
       "[[ marker location:'${17:10451 W Palmeras Dr Sun City, AZ 85373-2000}' ]] [[ endmarker ]]",
-      "\t$2",
+      "\t$0",
       "{[ endgooglemap ]}"
     ]
   },
@@ -60,7 +60,7 @@
     "description": "Shortcode Lava",
     "body": [
       "{[ googlestaticmap ]}",
-      "[[ marker location:'${1:1 Cardinals Dr, Glendale, AZ 85305}' ]] [[ endmarker ]]",
+      "[[ marker location:'${1:1 Cardinals Dr, Glendale, AZ 85305}' ]] [[ endmarker ]]$0",
       "{[ endgooglestaticmap ]}"
     ]
   },
@@ -76,7 +76,7 @@
     "description": "Shortcode Lava",
     "body": [
       "{[ panel  title:'${1:panel title}' icon:'${2:fa fa-star}' ]}",
-      "\t$3",
+      "\t$0",
       "{[ endpanel ]}"
     ]
   },
@@ -85,7 +85,7 @@
     "description": "Shortcode Lava",
     "body": [
       "{[ parallax image:'${1:https://...}' contentpadding:'${2:20px}' ]}",
-      "\t$3",
+      "\t$0",
       "{[ endparallax ]}"
     ]
   },
@@ -101,7 +101,7 @@
     "description": "Shortcode Lava",
     "body": [
       "{[ wordcloud ]}",
-      "\t$1",
+      "\t$0",
       "{[ endwordcloud ]}"
     ]
   },

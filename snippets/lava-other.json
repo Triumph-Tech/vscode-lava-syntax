@@ -89,12 +89,12 @@
   "Filter Has Rights to": {
     "prefix": "HasRightsTo",
     "description": "This filter helps you check the security of the model you pass it.",
-    "body": "HasRightsTo:'${1:View}'"
+    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}'"
   },
   "Filter Has Rights to Id": {
     "prefix": "HasRightsToId",
     "description": "This filter helps you check the security of the model you pass it.",
-    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${1:Rock.Model.Group}'"
+    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${2:Rock.Model.Group}'"
   },
   "FilterNotes": {
     "prefix": "Notes",
@@ -152,5 +152,35 @@
     "description": "Returns information about the current page.",
     "body":
       "Page:'${1|host,port,segments,scheme,protocol,localpath,pathandquery,queryparameter,url|}'"
+  },
+  "get_img": {
+    "prefix": "get_img",
+    "description": "Returns information about the current page.",
+    "body":
+      "<img src='/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}' class='${3:img-responsive}' alt='${4}'>"
+  },
+  "get_img_full": {
+    "prefix": "get_img_wh",
+    "description": "Returns information about the current page.",
+    "body":
+      "<img src='/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}&w=${3:200}&h=${4:200}' class='${3:img-responsive}' alt='${4}'>"
+  },
+  "get_communication": {
+    "prefix": "get_communication",
+    "description": "Returns information about the current page.",
+    "body":
+      "/GetCommunication.ashx?c={{ ${1:communicationGuid} }}&p={{ ${2:CurrentPerson.${3:UrlEncodedKey}} }}"
+  },
+  "get_file": {
+    "prefix": "get_file",
+    "description": "Returns information about the current page.",
+    "body":
+      "/GetFile.ashx?${1|Guid,Id|}={{ ${2} }}"
+  },
+  "get_file_download": {
+    "prefix": "get_file_download",
+    "description": "Returns information about the current page.",
+    "body":
+      "/GetFile.ashx?${1|Guid,Id|}={{ ${2} }}&attachment=true"
   }
 }

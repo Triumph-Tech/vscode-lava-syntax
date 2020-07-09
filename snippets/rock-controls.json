@@ -2,7 +2,7 @@
   "Tag": {
     "prefix": "RockLava",
     "description": "Empty tag",
-    "body": ["<Rock:Lava ID=\"${1:idstring}\" runat=\"server\">", "\t$2", "</Rock:Lava>"]
+    "body": ["<Rock:Lava ID=\"${1:idstring}\" runat=\"server\">", "\t$0", "</Rock:Lava>"]
   },
   "Filter Url": {
     "prefix": "RockHead",

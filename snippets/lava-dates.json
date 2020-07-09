@@ -3,7 +3,7 @@
     "prefix": "Date",
     "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
     "body": [
-      "Date:'${0:dddd, MMMM d, yyyy}' "
+      "Date:'${0|M/d/yyyy,dddd\\, MMMM d\\, yyyy|}' "
     ]
   },
   "Filter Date ISO": {
@@ -108,7 +108,7 @@
     "prefix": "SundayDate ",
     "description": "Returns the Sunday date portion (without any time portion) of the date provided.",
     "body": [
-      "ToMidnight"
+      "SundayDate"
     ]
   },
   "Filter Date ToMidnight": {
