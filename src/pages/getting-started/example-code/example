@@ -1,0 +1,30 @@
+{
+	"folders":  {
+			"path": "C:\\Github\\Rock"
+		}
+    ,
+	"extensions": {
+		"recommendations": [
+			"garrettjohnson.language-lava",
+			"ms-dotnettools.csharp",
+			"mrcrowl.easy-less",
+			"editorconfig.editorconfig",
+			"mkxml.vscode-filesize",
+			"eamodio.gitlens"
+		],
+		"unwantedRecommendations": []
+	},
+	"settings": {
+		"files.eol": "\r\n",
+		"less.compile": {
+			 "main": [
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\theme.less", 
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\bootstrap.less"
+			],
+			"compress":  false,  // true => remove surplus whitespace
+			"sourceMap": true,  // true => generate source maps (.css.map files)
+			"out":       true
+		},
+		"files.defaultLanguage": "lava"
+	}
+}

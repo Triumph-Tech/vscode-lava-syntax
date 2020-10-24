@@ -1,0 +1,92 @@
+---
+title: Configuration
+description: Quick start guide for getting acclimated with gatsby-theme-carbon
+---
+
+<PageDescription>
+
+This project is a [Gatsby theme](https://www.gatsbyjs.org/docs/themes/what-are-gatsby-themes/) that empowers developers, writers, and designers to create fast, accessible sites that look and feel like Carbon. Follow along to start creating your own site.
+
+</PageDescription>
+
+## Code Workspace Examples
+
+<AnchorLinks small>
+  <AnchorLink>Windows Theme</AnchorLink>
+  <AnchorLink>Small link 2</AnchorLink>
+  <AnchorLink>Small link 3</AnchorLink>
+</AnchorLinks>
+
+### Windows Theme
+
+<Title>Windows .code-workspace File</Title>
+
+```json path=Theme.code-workspace src=example/example
+{
+	"folders": [
+    {
+			"path": "C:\\Github\\Rock"
+		}
+  ],
+	"extensions": {
+		"recommendations": [
+			"garrettjohnson.language-lava",
+			"ms-dotnettools.csharp",
+			"mrcrowl.easy-less",
+			"editorconfig.editorconfig",
+			"mkxml.vscode-filesize",
+			"eamodio.gitlens"
+		],
+	},
+	"settings": {
+		"files.eol": "\r\n",
+		"less.compile": {
+			 "main": [
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\theme.less", 
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\bootstrap.less"
+			],
+			"compress":  false,  // true => remove surplus whitespace
+			"sourceMap": true,  // true => generate source maps (.css.map files)
+			"out":       true
+		},
+		"files.defaultLanguage": "lava"
+	}
+}
+```
+
+### Windows Rock
+
+<Title>Windows .code-workspace File</Title>
+
+```json path=Theme.code-workspace src=example/example
+{
+	"folders": [
+    {
+			"path": "C:\\Github\\Rock"
+		}
+  ],
+	"extensions": {
+		"recommendations": [
+			"garrettjohnson.language-lava",
+			"ms-dotnettools.csharp",
+			"mrcrowl.easy-less",
+			"editorconfig.editorconfig",
+			"mkxml.vscode-filesize",
+			"eamodio.gitlens"
+		],
+	},
+	"settings": {
+		"files.eol": "\r\n",
+		"less.compile": {
+			 "main": [
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\theme.less", 
+				 "${workspaceRoot}\\RockWeb\\Themes\\Rock\\Styles\\bootstrap.less"
+			],
+			"compress":  false,  // true => remove surplus whitespace
+			"sourceMap": true,  // true => generate source maps (.css.map files)
+			"out":       true
+		},
+		"files.defaultLanguage": "lava"
+	}
+}
+```

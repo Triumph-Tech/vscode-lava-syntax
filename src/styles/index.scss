@@ -1,0 +1,6 @@
+// This is where your application styles could go.
+
+.container--homepage div[class*=Callout-module--grid], .container--homepage div[class*=Main-module--main], .container--homepage div[class*=NextPrevious-module--wrapper] {
+  position: relative;
+  z-index: 2;
+}

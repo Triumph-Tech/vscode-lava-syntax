@@ -1,0 +1,306 @@
+---
+title: Lava Commands
+description: Usage instructions for the Art Direction component
+---
+
+export const Title = () => (
+  <span>
+    Lava Commands
+  </span>
+);
+;
+
+<PageDescription>
+
+This page is meant to demonstrate some of the components in action. You can check out the markdown used for this page [on github](https://github.com/carbon-design-system/gatsby-theme-carbon/blob/master/packages/example/src/pages/demo/index.mdx).
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Cache</AnchorLink>
+  <AnchorLink>Entity Commands</AnchorLink>
+  <AnchorLink>Execute</AnchorLink>
+  <AnchorLink>Javascript</AnchorLink>
+  <AnchorLink>Search</AnchorLink>
+  <AnchorLink>SQL</AnchorLink>
+  <AnchorLink>Interactions</AnchorLink>
+</AnchorLinks>
+
+## Cache
+
+```
+{%- cache key:'variable' duration:'3600' twopass:'false' tags:'tag,list,optional' -%}
+  
+{%- endcache -%}
+```
+
+----
+
+
+## Entity Commands
+
+### Entity
+
+
+Create entity commands in just a few keystrokes!
+
+1. EntityByID
+2. EntityByIds
+3. EntityByDataview
+4. EntityCount
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/entity-commands" />
+</CardGroup>
+
+```
+{%- entityname where:'conditions' limit:'10' iterator:'Items' -%}
+  {%- for item in Items -%}
+    
+  {%- endfor -%}
+{%- endentityname -%}
+```
+
+----
+
+### EntityById
+
+
+```
+{%- entityname id:'100' securityenabled:'false' -%}
+  {{ entityname. }}
+{%- endentityname -%}
+```
+
+#### Tabstops
+
+
+1. Entity Name
+2. Id
+3. Security Enabled (false/true)
+4. Output Property
+
+----
+
+### EntityByIds
+
+
+```
+{%- entityname ids:'3,4,5' iterator:'Items' -%}
+  {%- for item in Items -%}
+    
+  {%- endfor -%}
+{%- endentityname -%}
+```
+
+#### Tabstops
+
+
+1. Entity Name
+2. Ids
+3. Iterator
+4. Security Enabled (false/true)
+5. Item Name
+6. Output Property
+
+----
+
+### EntityByDataview
+
+
+```
+{%- entityname dataview:'3' iterator:'Items' -%}
+  {%- for item in Items -%}
+    
+  {%- endfor -%}
+{%- endentityname -%}
+```
+
+#### Tabstops
+
+
+1. Entity Name
+2. Dataview Id
+3. Iterator
+4. Security Enabled (false/true)
+5. Item Name
+6. Output Property
+
+----
+
+### EntityCount
+
+
+```
+{%- entityname where:'conditions' count:'true' -%}
+  {%- assign entitynameCount = count -%}
+{%- endentityname -%}
+```
+#### Tabstops
+
+
+
+1. Entity Name
+2. Conditions
+3. Count Variable Name
+
+----
+
+
+## Execute
+
+```
+{%- execute -%}
+  
+{%- endexecute -%}
+```
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/execute-commands" />
+</CardGroup>
+
+----
+
+
+## Javascript
+
+### JS
+
+```
+{%- javascript -%}
+  
+{%- endjavascript -%}
+```
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/javascript-commands" />
+</CardGroup>
+
+
+### JS-url
+
+```
+{%- javascript url:'https://' id:'uniqueid' -%}{%- endjavascript -%}
+```
+
+## Search
+
+```
+{%- search query:'variable' entities'person,group' limit:'50' offset:'0' searchtype:'exactmatch' -%}
+  {%- for item in results -%}
+    
+  {%- endfor -%}
+{%- endsearch -%}
+```
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/search-commands" />
+</CardGroup>
+
+
+----
+
+
+## SQL
+
+#### Prefix
+
+
+`sql`
+
+```
+{%- sql return:'listvariable' -%}
+  
+{%- endsql -%}
+{% for item in listvariable %}
+  
+{% endfor %}
+```
+
+#### Tabstops
+
+
+1. List Variable
+2. SQL Command
+3. Lava Output
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/sql-commands" />
+</CardGroup>
+
+----
+
+## Stylesheet
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/stylesheet-commands" />
+</CardGroup>
+
+
+----
+
+## Web Request
+
+#### Prefix
+
+
+`webrequest`
+
+#### Snippet
+
+
+```
+{%- webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' -%}
+  {%- for item in results -%}
+    
+  {%- endfor -%}
+{%- endwebrequest -%}
+```
+
+#### Tabstops
+
+
+1. URL
+2. Content
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/web-request-commands" />
+</CardGroup>
+
+----
+
+## Interactions
+
+### Interaction Content Channel Item Write
+
+
+```
+{% interactioncontentchannelitemwrite contentchannelitemid:'1' operation:'View' summary:'Viewed content channel item #1' personaliasid:'10' %}
+```
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/interaction-content-channel-item-write" />
+</CardGroup>
+
+### Interaction Write
+
+
+```
+{% interactionwrite channeltypemediumvalueid:'1' channelentityid:'1' channelname:'Some Channel' componententitytypeid:'1' interactionentitytypeid:'1' componententityid:'1' componentname:'Some Component' entityid:'1' operation:'View' summary:'Viewed Some Page' relatedentitytypeid:'1' relatedentityid:'1' channelcustom1:'Some Custom Value' channelcustom2:'Another Custom Value' channelcustomindexed1:'Some Indexed Custom Value'  personaliasid:'10' %}
+    Here is the interaction data.
+{% endinteractionwrite %}
+```
+
+<CardGroup>
+  <MiniCard title="View Lava Docs" href="https://community.rockrms.com/lava/commands/interaction-write" />
+</CardGroup>
+
+----
+
+## Workflow Activate
+
+```
+{% workflowactivate workflowtype:'workflowId' %}
+  Activated new workflow with the id of #{{ Workflow.Id }}.
+{% endworkflowactivate %}
+```

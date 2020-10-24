@@ -1,0 +1,32 @@
+- title: Getting started
+  pages:
+    - title: Installation
+      path: /getting-started
+    - title: Configuration
+      path: /getting-started/configuration
+    - title: Recommended Extensions
+      path: /getting-started/recommended-extensions
+- title: Syntax Highlighting
+  pages:
+    - path: /syntax-highlighting
+- title: Snippets
+  pages:
+    - title: Introduction
+      path: /snippets
+    - title: General
+      path: /snippets/general
+    - title: Filters
+      path: /snippets/filters
+    - title: Commands
+      path: /snippets/commands
+    - title: Shortcodes
+      path: /snippets/shortcodes
+- title: Updates
+  pages:
+    - path: /updates
+- title: FAQ
+  pages:
+    - path: /faq
+- title: Feedback and Bugs
+  pages:
+    - path: /feedback

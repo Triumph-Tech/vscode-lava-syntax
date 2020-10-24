@@ -1,0 +1,221 @@
+---
+title: General
+description: Usage instructions for the Art Direction component
+---
+
+export const startTag = '<pre>{%-'
+
+export const endTag = '-%}</pre>'
+
+<PageDescription>
+
+This page is meant to demonstrate some of the components in action. You can check out the markdown used for this page [on github](https://github.com/carbon-design-system/gatsby-theme-carbon/blob/master/packages/example/src/pages/demo/index.mdx).
+
+</PageDescription>
+
+<AnchorLinks>
+  <AnchorLink>Cache</AnchorLink>
+  <AnchorLink>Entity Commands</AnchorLink>
+  <AnchorLink>Execute</AnchorLink>
+  <AnchorLink>Javascript</AnchorLink>
+  <AnchorLink>Search</AnchorLink>
+  <AnchorLink>SQL</AnchorLink>
+  <AnchorLink>Interactions</AnchorLink>
+</AnchorLinks>
+
+
+
+## Generic Triggers
+
+<Row>
+  <Column>
+
+|     Prefix | Method                            |
+| ---------: | --------------------------------- |
+|     `tag→` | <code>{%  %}</code>                          |
+| `comment→` | <code>{%- assign variable = value -%}</code> |
+|     `raw→` | <code>{%- assign variable = value -%}</code> |
+
+  </Column>
+</Row>
+
+## Control Flow Tag
+
+<Row>
+  <Column>
+
+|    Prefix | Method                                                                                  |
+| --------: | --------------------------------------------------------------------------------------- |
+|      `if` | <code>{% if condition %} ... {% endif %}</code>                                                    |
+|    `else` | <code>{% else %}</code>                                                                            |
+|  `elseif` | <code>{% elseif condition %}</code>                                                                |
+|  `ifelse` | <code>{% if condition %} ... {% else %} ... {% endif %}</code>                                     |
+|  `unless` | <code>{% unless condition %} ... {% endunless %}</code>                                            |
+|    `case` | <code>{% case variable %} ... {% when condition %} ... {% else %} ... {% endcase %}</code>         |
+|    `when` | <code>{% when condition %}</code>                                                                  |
+|     `if-` | <code>{%- if condition -%} ... {%- endif -%}</code>                                                |
+|   `else-` | <code>{%- else -%}</code>                                                                          |
+| `elseif-` | <code>{%- elseif condition -%}</code>                                                              |
+| `ifelse-` | <code>{%- if condition -%} ... {%- else -%} ... {%- endif -%}</code>                               |
+| `unless-` | <code>{%- unless condition -%} ... {%- endunless -%}</code>                                        |
+|   `case-` | <code>{%- case variable -%} ... {%- when condition -%} ... {%- else -%} ... {%- endcase -%}</code> |
+|   `when-` | <code>{%- when condition -%}</code>                                                                |
+
+  </Column>
+</Row>
+
+## Iteration Tag
+
+<Row>
+  <Column>
+
+|        Prefix | Method                            |
+| ------------: | --------------------------------- |
+|       `cycle` | <code>{%- assign variable = value -%}</code> |
+|  `cyclegroup` | <code> </code>                                |
+|         `for` | <code> </code>                                |
+|       `break` | <code> </code>                                |
+|    `continue` | <code> </code>                                |
+|      `cycle-` | <code>{%- assign variable = value -%}</code> |
+| `cyclegroup-` | <code> </code>                                |
+|        `for-` | <code> </code>                                |
+|      `break-` | <code> </code>                                |
+|   `continue-` | <code> </code>                                |
+
+  </Column>
+</Row>
+
+
+
+## Variable Tag
+
+<Row>
+<Column>
+
+<table>
+<thead>
+<th>Prefix</th>
+<th>Method</th>
+</thead>
+<tbody>
+<tr>
+  <td align="right">
+
+  `assign`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign variable = PageParameter.value -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `assignAttribute`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign variable = Item | Attribute:'variable' -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `assignPageProperty`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign variable = PageParameter.value -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `increment`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign count = count | Plus:1 -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `decrement`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign count = count | Minus:1 -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `capture`
+
+  </td>
+  <td>
+
+  ```
+  {% capture variable %}{% endcapture %}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `capture-`
+
+  </td>
+  <td>
+
+  ```
+  {%- capture variable -%}{%- endcapture -%}
+  ```
+
+  </td>
+</tr>
+
+</tbody>
+</table>
+
+</Column>
+</Row>
+
+
+
+## Theme Tag
+
+
+|        Prefix | Method                                    |
+| ------------: | ----------------------------------------- |
+|     `include` | <code>{%- assign variable = value -%}</code>         |
+| `includewith` | <code>{% include 'snippet', variable:value %}</code> |
+|         `raw` | ` ... `                                   |
+
+
+## Theme Tag
+
+
+

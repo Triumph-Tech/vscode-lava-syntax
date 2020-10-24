@@ -1,160 +1,24 @@
 {
-	"name": "language-lava",
-	"displayName": "Lava",
-	"description": "Rock RMS Lava language support for Visual Studio Code.",
-	"version": "1.0.1",
-	"publisher": "GarrettJohnson",
-	"engines": {
-		"vscode": "^1.16.0"
-	},
-	"categories": [
-		"Programming Languages"
-	],
-	"icon": "images/rockrms-icon.jpg",
-	"galleryBanner": {
-		"color": "#2f383a",
-		"theme": "dark"
-	},
-	"keywords": [
-		"rockrms",
-		"lava",
-		"rock",
-		"grammar",
-		"church"
-	],
-	"homepage": "https://github.com/garrettjohnson/vscode-lava-syntax",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/garrettjohnson/vscode-lava-syntax.git"
-	},
-	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
-	"contributes": {
-		"configurationDefaults": {
-			"[lava]": {
-				"editor.insertSpaces": true,
-				"editor.tabSize": 2,
-				"editor.autoIndent": "none",
-				"files.insertFinalNewline": true,
-				"files.trimTrailingWhitespace": true
-			},
-			"[xaml]": {
-				"editor.wordBasedSuggestions": false,
-				"files.insertFinalNewline": true,
-				"files.trimTrailingWhitespace": true
-			}
-		},
-		"languages": [
-			{
-				"id": "lava",
-				"aliases": [
-					"Lava",
-					"lava"
-				],
-				"extensions": [
-					".lava"
-				],
-				"configuration": "./lava.language-configuration.json"
-			},
-			{
-				"id": "xaml",
-				"aliases": [
-					"Rock XAML",
-					"XAML"
-				],
-				"extensions": [
-					".xaml"
-				],
-				"configuration": "./xaml.language-configuration.json"
-			},
-			{
-				"id": "cshtml",
-				"aliases": [
-					"HTML (C#)",
-					"HTML with embedded C#",
-					"ASP.NET",
-					"aspx",
-					"cshtml",
-					"Master Page"
-				],
-				"extensions": [
-					".aspx",
-					".ascx",
-					".asax",
-					".cshtml",
-					".master"
-				],
-				"configuration": "./cshtml.language-configuration.json"
-			}
-		],
-		"grammars": [
-			{
-				"language": "lava",
-				"scopeName": "text.html.lava",
-				"path": "./syntaxes/lava.tmLanguage.json",
-				"embeddedLanguages": {
-					"meta.embedded.inline.css": "css",
-					"meta.embedded.inline.javascript": "javascript",
-					"meta.embedded.inline.json": "json",
-					"meta.embedded.inline.less": "less",
-					"meta.embedded.inline.sql": "sql",
-					"meta.embedded.inline.csharp": "csharp"
-				}
-			},
-			{
-				"language": "xaml",
-				"scopeName": "text.xml.xaml",
-				"path": "./syntaxes/xaml.tmLanguage.json"
-			}
-		],
-		"snippets": [
-			{
-				"language": "lava",
-				"path": "./snippets/lava.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-commands.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-dates.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-numeric.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-other.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-person.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-text.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/extensions/lava-shortcodes.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/extensions/lava-cms.json"
-			},
-			{
-				"language": "cshtml",
-				"path": "./snippets/rock-controls.json"
-			},
-			{
-				"language": "xaml",
-				"path": "./snippets/rock-xaml.json"
-			},
-			{
-				"language": "xaml",
-				"path": "./snippets/lava.json"
-			}
-		]
-	}
+  "name": "lava-documentation",
+  "private": true,
+  "version": "1.26.6",
+  "license": "",
+  "scripts": {
+    "deploy": "gh-pages -d public",
+    "dev": "gatsby develop -H 0.0.0.0",
+    "dev:clean": "yarn clean && yarn dev",
+    "build": "gatsby build",
+    "build:clean": "yarn clean && gatsby build",
+    "serve": "gatsby serve",
+    "clean": "gatsby clean"
+  },
+  "dependencies": {
+    "gatsby": "^2.20.4",
+    "gatsby-theme-carbon": "^1.26.6",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "gh-pages": "^2.2.0"
+  }
 }
