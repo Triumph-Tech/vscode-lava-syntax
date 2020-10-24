@@ -2,4 +2,4 @@
 
 # Lava for VSCode
 
-[Check out the docs!](https://lavadocs.garrett.io)
+[Documentation Site](https://lavadocs.garrett.io)
