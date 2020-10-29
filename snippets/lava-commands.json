@@ -42,8 +42,8 @@
     "prefix": "Entity",
     "description": "Basic entity command with conditions, a limit, and iterator option.",
     "body": [
-      "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' -%}",
-      "\t{%- for ${5:item} in $4 -%}",
+      "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' -%}",
+      "\t{%- for ${6:item} in $4 -%}",
       "\t\t$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
@@ -53,8 +53,8 @@
     "prefix": "EntityById",
     "description": "Get an entity by an ID.",
     "body": [
-      "{%- ${1:entityname} id:'${2:100}' -%}",
-      "\t{{ ${1:/downcase}.${3} }}",
+      "{%- ${1:entityname} id:'${2:100}' securityenabled:'${3|false,true|}' -%}",
+      "\t{{ ${1:/downcase}.${4} }}$0",
       "{%- end${1:/downcase} -%}"
     ]
   },
@@ -62,9 +62,9 @@
     "prefix": "EntityByIds",
     "description": "Get an entity by a comma seperated list of ids.",
     "body": [
-      "{%- ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' -%}",
-      "\t{%- for ${4:item} in $3 -%}",
-      "\t\t$0",
+      "{%- ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
+      "\t{%- for ${5:item} in $3 -%}",
+      "\t\t{{ ${5}.${6} }}$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
     ]
@@ -73,8 +73,8 @@
     "prefix": "EntityByDataview",
     "description": "Get an entity by a dataview ID",
     "body": [
-      "{%- ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' -%}",
-      "\t{%- for ${4:item} in $3 -%}",
+      "{%- ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
+      "\t{%- for ${5:item} in $3 -%}",
       "\t\t$0",
       "\t{%- endfor -%}",
       "{%- end${1:/downcase} -%}"
@@ -84,8 +84,8 @@
     "prefix": "EntityCount",
     "description": "Control flow tag: case",
     "body": [
-      "{%- ${1:entityname} where:'${2:conditions}' count:'true' -%}",
-      "\t{%- assign ${1:entityname}Count = count -%}",
+      "{%- ${1:entityname} where:'${2:conditions}' count:'true' securityenabled:'false' -%}",
+      "\t{%- assign ${3:${1:entityname}Count} = count -%}",
       "{%- end${1:/downcase} -%}"
     ]
   },
@@ -120,7 +120,7 @@
     "body": [
       "{%- search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' -%}",
       "\t{%- for item in results -%}",
-      "\t\t",
+      "\t\t$0",
       "\t{%- endfor -%}",
       "{%- endsearch -%}"
     ]
@@ -129,8 +129,8 @@
     "prefix": "sql",
     "description": "Theme tag: SQL",
     "body": [
-      "{%- sql return:'${1:listvariable}' -%}", 
-      "\t$3", 
+      "{%- sql return:'${1:listvariable}' ${2:timeout:'${3:10}'} -%}", 
+      "\t$4", 
       "{%- endsql -%}",
       "{% for item in ${1} %}",
       "\t$0", 

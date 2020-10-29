@@ -3,21 +3,21 @@
     "prefix": "Date",
     "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
     "body": [
-      "Date:'${0|M/d/yyyy,dddd\\, MMMM d\\, yyyy|}' "
+      "Date:'${1|M/d/yyyy,dddd\\, MMMM d\\, yyyy|}' "
     ]
   },
   "Filter Date ISO": {
     "prefix": "DateIso",
     "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
     "body": [
-      "Date:'${0:yyyy-MM-ddTHH:mm:sszzz}' "
+      "Date:'${1:yyyy-MM-ddTHH:mm:sszzz}' "
     ]
   },
   "Filter Date Time": {
     "prefix": "Date-time",
     "description": "",
     "body": [
-      "Date:'${0:h:mm tt}' ${1:| Downcase} "
+      "Date:'${1:h:mm tt}' ${2:| Downcase} "
     ]
   },
   "Assign Date Now": {
@@ -31,21 +31,21 @@
     "prefix": "now",
     "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
     "body": [
-      "{{ 'Now' | Date:'${0:M/d/yyyy}' $1}}"
+      "{{ 'Now' | Date:'${1:M/d/yyyy}' $2}}"
     ]
   },
   "Filter Date DateAdd": {
     "prefix": "DateAdd",
     "description": "Adds a span of time to a provided date (default is in days).",
     "body": [
-      "DateAdd:${0:DateValue},'${1|d,Y,M,h,m,s|}'"
+      "DateAdd:${1:DateValue},'${2|d,Y,M,h,m,s|}'"
     ]
   },
   "Filter Date DateDiff": {
     "prefix": "DateDiff",
     "description": "Takes two datetimes and returns the difference in the unit you provide. You can provide the value 'Now' for either the start or end date.",
     "body": [
-      "DateDiff:${0:DateValue},'${1|d,Y,M,h,m,s|}'"
+      "DateDiff:${1:DateValue},'${2|d,Y,M,h,m,s|}'"
     ]
   },
   "Filter Date DatesFromICal": {
@@ -87,14 +87,14 @@
     "prefix": "HumanizeDateTime",
     "description": "Compares the provided date/time to the current date/time and returns a human friendly string like 'yesterday' or '2 hours ago'.",
     "body": [
-      "HumanizeDateTime:"
+      "HumanizeDateTime"
     ]
   },
   "Filter Date HumanizeTimeSpan": {
     "prefix": "HumanizeTimeSpan",
     "description": "Takes two datetimes and humanizes the difference like '1 day'. Supports 'Now' in either the start or end date.",
     "body": [
-      "HumanizeTimeSpan:"
+      "HumanizeTimeSpan"
     ]
   },
   "Filter Date NextDayOfTheWeek": {

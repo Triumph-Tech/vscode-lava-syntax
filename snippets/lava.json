@@ -11,7 +11,7 @@
       "{{ 'Global' | Attribute:'${1|CurrencySymbol,EmailFooter,EmailHeader,EmailHeaderLogo,GoogleAPIKey,GradeTransitionDate,InternalApplicationRoot,OrganizationAbbreviation,OrganizationAddress,OrganizationEmail,OrganizationName,OrganizationPhone,OrganizationWebsite,PublicApplicationRoot|}' }}"
   },
   "Attribute": {
-    "prefix": "attr",
+    "prefix": "Attribute",
     "description": "Attribute",
     "body": ["Attribute:'${1:AttributeName}'"]
   },
@@ -44,7 +44,7 @@
   "Tag unless": {
     "prefix": "unless",
     "description": "The opposite of if – executes a block of code only if a certain condition is not met.",
-    "body": ["{% unless ${1:condition} %} $2 {% endunless %}"]
+    "body": ["{% unless ${1:condition} %}$0{% endunless %}"]
   },
   "Tag case": {
     "prefix": "case",
@@ -71,7 +71,7 @@
   "Tag cycle group": {
     "prefix": "cyclegroup",
     "description": "Iteration tag: cycle group",
-    "body": ["{% cycle '${1:group name}': '${2:odd}', '${3:even}' %}"]
+    "body": ["{% cycle '${1:group name}': '${2:odd}', '${3:even}' %}$0"]
   },
   "Tag for": {
     "prefix": "for",
@@ -97,6 +97,16 @@
     "prefix": "assignAttribute",
     "description": "Creates a new variable from an attribute.",
     "body": ["{%- assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' -%}"]
+  },
+  "Tag increment": {
+    "prefix": "increment",
+    "description": "Creates a new variable.",
+    "body": ["{%- assign ${1:count} = ${2:$1} | Plus:${3:1} -%}"]
+  },
+  "Tag decrement": {
+    "prefix": "decrement",
+    "description": "Creates a new variable.",
+    "body": ["{%- assign ${1:count} = ${2:$1} | Minus:${3:1} -%}"]
   },
   "Tag Persisted Dataset": {
     "prefix": "PersistedDataset",
@@ -213,7 +223,7 @@
   "Tag capture, whitespaced": {
     "prefix": "capture-",
     "description": "Variable tag: capture, whitespaced",
-    "body": ["{%- capture ${1:variable} -%}$2{%- endcapture -%}"]
+    "body": ["{%- capture ${1:variable} -%}$0{%- endcapture -%}"]
   },
   "Filter first": {
     "prefix": "First",
@@ -266,7 +276,7 @@
     "body": "SortByAttribute:'${1:key}'"
   },
   "Filter uniq": {
-    "prefix": "uniq",
+    "prefix": "Uniq",
     "description": "Removes any duplicate elements in an array.",
     "body": "Uniq"
   },
@@ -279,5 +289,27 @@
     "prefix": "Reverse",
     "description": "Reverses the order of the items in an array. reverse cannot reverse a string.",
     "body": "Reverse"
+  },
+  "Pagination": {
+    "prefix": "Pagination",
+    "body": [
+      "<div class=\"${1:clearfix mt-5}\">",
+      "  {%- assign nextPageString = Pagination.NextPage | ToString -%}",
+      "  {%- assign prevPageString = Pagination.PreviousPage | ToString -%}",
+      "",
+      "  {% if Pagination.PreviousPage != -1 %}",
+      "  <a class=\"btn btn-primary pull-left\" href=\"{{Pagination.UrlTemplate | Replace:'PageNum', prevPageString}}\">",
+      "    ${2:Previous}",
+      "  </a>",
+      "  {% endif %}",
+      "",
+      "  {% if Pagination.NextPage != -1 %}",
+      "  <a class=\"btn btn-primary pull-right\" href=\"{{Pagination.UrlTemplate | Replace:'PageNum', nextPageString}}\">",
+      "    ${3:Next}",
+      "  </a>",
+      "  {% endif %}",
+      "</div>"
+    ],
+    "description": ""
   }
 }

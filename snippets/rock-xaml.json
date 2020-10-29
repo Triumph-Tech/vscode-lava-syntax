@@ -54,6 +54,11 @@
     "description": "Margin=\"Left,Top,Right,Bottom\"",
     "body": ["Margin=\"${1:0}\" $0"]
   },
+  "Opacity": {
+    "prefix": "Opacity",
+    "description": "",
+    "body": ["Opacity=\"${1:0.5}\" $0"]
+  },
   "Padding": {
     "prefix": "Padding",
     "description": "Padding=\"Left,Top,Right,Bottom\"",
@@ -234,9 +239,9 @@
     "description": "",
     "body": ["<Rock:Image Source=\"${1:source}\"",
              "            HeightRequest=\"${2:}\"",
-             "            Aspect=\"${1|AspectFill,AspectFit,Fill|}\"",
-             "            HorizontalOptions=\"${1|Center,FillAndExpand|}\"",
-             "            VerticalOptions=\"${1|FillAndExpand|}\" />"]
+             "            Aspect=\"${3|AspectFill,AspectFit,Fill,Source|}\"",
+             "            HorizontalOptions=\"${4|Center,FillAndExpand,Source|}\"",
+             "            VerticalOptions=\"${5|FillAndExpand,Source|}\" />"]
   },
   "Interaction": {
     "prefix": "Interaction",
@@ -352,6 +357,16 @@
     "prefix": "StackLayout",
     "description": "",
     "body": ["<StackLayout>", "\t$0", "</StackLayout>"]
+  },
+  "RelativeLayout": {
+    "prefix": "RelativeLayout",
+    "description": "",
+    "body": ["<RelativeLayout>", "\t$0", "</RelativeLayout>"]
+  },
+  "RelativeLayoutWidthConstraint": {
+    "prefix": "RelativeLayout.WidthConstraint",
+    "description": "",
+    "body": ["RelativeLayout.WidthConstraint=\"{ConstraintExpression Type=${1:RelativeToParent}, Property=${2:Width}, Constant=${3:0}}\""]
   },
   "StackLayoutGestureRecognizers": {
     "prefix": "StackLayout.GestureRecognizers",

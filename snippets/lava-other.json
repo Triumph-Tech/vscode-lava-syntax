@@ -71,6 +71,12 @@
     "body":
       "FromCache:'${1|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}'"
   },
+  "Filter EntityFromCachedObject": {
+    "prefix": "EntityFromCachedObject",
+    "description": " ",
+    "body":
+      "EntityFromCachedObject"
+  },
   "Filter FromJSON": {
     "prefix": "FromJSON",
     "description": "Takes a JSON string and makes a Lava object from it.",
@@ -157,13 +163,13 @@
     "prefix": "get_img",
     "description": "Returns information about the current page.",
     "body":
-      "<img src='/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}' class='${3:img-responsive}' alt='${4}'>"
+      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}\" class=\"${3:img-responsive}\" alt=\"${4}\">"
   },
   "get_img_full": {
     "prefix": "get_img_wh",
     "description": "Returns information about the current page.",
     "body":
-      "<img src='/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}&w=${3:200}&h=${4:200}' class='${3:img-responsive}' alt='${4}'>"
+      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}&w=${3:200}&h=${4:200}\" class=\"${3:img-responsive}\" alt=\"${4}\">"
   },
   "get_communication": {
     "prefix": "get_communication",

@@ -237,10 +237,6 @@
         {
           "include": "#support-variable"
         },
-
-
-
-
         {
           "include": "#var-support-variable"
         },
@@ -360,6 +356,10 @@
       "name": "support.class.lava",
       "match": "('Now'|'Global'|'Lava')"
     },
+    "invalid-support-function": {
+      "name": "invalid.illegal.function.lava",
+      "match": "\\|\\s+[a-z].*\\b"
+     },
     "support-function": {
       "name": "support.function.lava",
       "match": "\\|\\s+(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON)\\b"
@@ -909,18 +909,26 @@
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
-          "name": "keyword.control.$3.begin.lava"
+          "name": "entity.name.tag.$3.begin.lava"
         },
         "4": {
           "patterns": [
             {
-              "begin": "\\b(where:)\\s*'",
+              "begin": "\\b(where:)\\s*(')",
               "beginCaptures": {
                 "1": {
                   "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
                 }
               },
-              "end": "'",
+              "end": "(')",
+              "endCaptures": {
+                "1": {
+                  "name": "string.quoted.single.lava"
+                }
+              },
               "patterns": [
                 {
                   "name": "keyword.operator.comparison.lava",
@@ -939,7 +947,7 @@
                   "match": "\\b([.a-zA-Z0-9]+)"
                 },
                 {
-                  "name": "keyword.operator.thing.lava",
+                  "name": "keyword.operator.entity",
                   "match": "\\s+(\\|\\||&&)\\s+"
                 },
                 {
@@ -1011,7 +1019,7 @@
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
-          "name": "keyword.control.$4.end.lava"
+          "name": "entity.name.tag.$4.end.lava"
         },
         "5":{
           "name": "keyword.other.whitespace.lava"
