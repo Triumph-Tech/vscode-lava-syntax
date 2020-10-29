@@ -4,11 +4,15 @@
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"version": "1.0.2",
 	"publisher": "GarrettJohnson",
+	"author": {
+		"name": "Garrett Johnson"
+	},
 	"engines": {
 		"vscode": "^1.16.0"
 	},
 	"categories": [
-		"Programming Languages"
+		"Programming Languages",
+		"Snippets"
 	],
 	"icon": "images/rockrms-icon.jpg",
 	"galleryBanner": {
@@ -22,12 +26,13 @@
 		"grammar",
 		"church"
 	],
-	"homepage": "https://github.com/garrettjohnson/vscode-lava-syntax",
+	"homepage": "https://lavadocs.garrett.io",
 	"repository": {
 		"type": "git",
 		"url": "https://github.com/garrettjohnson/vscode-lava-syntax.git"
 	},
 	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
+	"qna": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"main": "./main.js",
 	"activationEvents": [
 		"onCommand:rock-lava.openconnectionstrings"

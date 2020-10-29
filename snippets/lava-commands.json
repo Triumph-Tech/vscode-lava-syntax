@@ -1,7 +1,7 @@
 {
   "Command cache": {
     "prefix": "cache",
-    "description": "Control flow tag: case",
+    "description": "Cache the output of lava for reuse.",
     "body": [
       "{%- cache key:'${1:variable}' duration:'${2:3600}' twopass:'${3|false,true|}' ${4:tags:'${5:tag,list,optional}'} -%}",
       "\t$0",
@@ -26,21 +26,21 @@
   },
   "Persisted Property": {
     "prefix": "persistedProperty",
-    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "description": "Persisted Dataset Property.",
     "body": [
       "\"${1:propertyName}\": {{ ${2:item}.${3:${1}} | ToJSON }},"
     ]
   },
   "Persisted Attribute": {
     "prefix": "persistedAttribute",
-    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "description": "Persisted Dataset Attribute.",
     "body": [
       "\"${1:attributeName}\": {{ ${2:item} | Attribute:'${3:${1}}' | ToJSON }},"
     ]
   },
   "Command entity loop": {
     "prefix": "Entity",
-    "description": "Basic entity command with conditions, a limit, and iterator option.",
+    "description": "Entity command with conditions, a limit, and iterator option.",
     "body": [
       "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' -%}",
       "\t{%- for ${6:item} in $4 -%}",
@@ -51,7 +51,7 @@
   },
   "Command single entity": {
     "prefix": "EntityById",
-    "description": "Get an entity by an ID.",
+    "description": "Entity Command to get an entity by an ID.",
     "body": [
       "{%- ${1:entityname} id:'${2:100}' securityenabled:'${3|false,true|}' -%}",
       "\t{{ ${1:/downcase}.${4} }}$0",
@@ -82,7 +82,7 @@
   },
   "Command entity count": {
     "prefix": "EntityCount",
-    "description": "Control flow tag: case",
+    "description": "Entity command to return the count only.",
     "body": [
       "{%- ${1:entityname} where:'${2:conditions}' count:'true' securityenabled:'false' -%}",
       "\t{%- assign ${3:${1:entityname}Count} = count -%}",
@@ -91,7 +91,7 @@
   },
   "Command javascript": {
     "prefix": "js",
-    "description": "Control flow tag: case",
+    "description": "",
     "body": [
       "{%- javascript -%}",
       "\t$0",
@@ -100,14 +100,14 @@
   },
   "Command javascript url": {
     "prefix": "jsurl",
-    "description": "Control flow tag: case",
+    "description": "Javascript URL",
     "body": [
       "{%- javascript url:'${1:https://}' id:'${2:uniqueid}' -%}{%- endjavascript -%}"
     ]
   },
   "Command Function Escape": {
     "prefix": "js-escape",
-    "description": "Control flow tag: case",
+    "description": "",
     "body": [
       "{%- javascript disableanonymousfunction:'true' -%}</script>",
       "\t$0",
@@ -116,7 +116,7 @@
   },
   "Command search": {
     "prefix": "search",
-    "description": "Control flow tag: case",
+    "description": "Search command",
     "body": [
       "{%- search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' -%}",
       "\t{%- for item in results -%}",
@@ -129,17 +129,17 @@
     "prefix": "sql",
     "description": "Theme tag: SQL",
     "body": [
-      "{%- sql return:'${1:listvariable}' ${2:timeout:'${3:10}'} -%}", 
+      "{%- sql return:'${1:Items}' ${2:timeout:'${3:10}'} -%}", 
       "\t$4", 
       "{%- endsql -%}",
-      "{% for item in ${1} %}",
+      "{% for ${5:item} in ${1} %}",
       "\t$0", 
       "{% endfor %}"
     ]
   },
   "Command stylesheet": {
     "prefix": "style",
-    "description": "Control flow tag: case",
+    "description": "",
     "body": [
       "{%- stylesheet id:'${1:uniqueid}' -%}",
       "\t$0",
@@ -148,7 +148,7 @@
   },
   "Command stylesheet url": {
     "prefix": "styleurl",
-    "description": "Control flow tag: case",
+    "description": "",
     "body": [
       "{{ '${1:styleurl}' | AddCssLink }}"
     ]
@@ -169,7 +169,7 @@
     "description": "Command tag: Workflow Activate",
     "body": [
       "{% workflowactivate workflowtype:'${1:workflowId}' %}",
-      "\tActivated new workflow with the id of #{{ Workflow.Id }}.$2",
+      "\tActivated new workflow with the id of #{{ Workflow.Id }}.$0",
       "{% endworkflowactivate %}"
     ]
   }

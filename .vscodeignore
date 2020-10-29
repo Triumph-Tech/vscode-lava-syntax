@@ -1,0 +1,14 @@
+*
+*/**
+
+# Whitelist what you need.
+!LICENSE
+!main.js
+!*.json
+!.vscodeignore
+!package.json
+!images/rockrms-icon.jpg
+!snippets
+!snippets/*/**
+!README.md
+!syntaxes

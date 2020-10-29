@@ -27,7 +27,7 @@ function activate(context) {
 					await vscode.workspace.fs.stat(vscode.Uri.parse(connectionStringFile));
 					vscode.commands.executeCommand('vscode.open', vscode.Uri.parse(connectionStringFile));
 				} catch {
-					vscode.window.showInformationMessage(`Rock Connection Strings file does not exist`);
+					vscode.window.showInformationMessage(`Rock Connection Strings file does not exist. `);
 				}
 			}
 		});
