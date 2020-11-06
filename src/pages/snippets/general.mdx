@@ -14,13 +14,11 @@ WIP
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Cache</AnchorLink>
-  <AnchorLink>Entity Commands</AnchorLink>
-  <AnchorLink>Execute</AnchorLink>
-  <AnchorLink>Javascript</AnchorLink>
-  <AnchorLink>Search</AnchorLink>
-  <AnchorLink>SQL</AnchorLink>
-  <AnchorLink>Interactions</AnchorLink>
+  <AnchorLink>Generic Triggers</AnchorLink>
+  <AnchorLink>Control Flow Tag</AnchorLink>
+  <AnchorLink>Iteration Tag</AnchorLink>
+  <AnchorLink>Variable Tag</AnchorLink>
+  <AnchorLink>Theme Tag</AnchorLink>
 </AnchorLinks>
 
 
@@ -33,8 +31,8 @@ WIP
 |     Prefix | Method                            |
 | ---------: | --------------------------------- |
 |     `tag→` | <code>{%  %}</code>                          |
-| `comment→` | <code>{%- assign variable = value -%}</code> |
-|     `raw→` | <code>{%- assign variable = value -%}</code> |
+| `comment→` | <code>{%- comment -%}{%- endcomment -%}</code> |
+|     `raw→` | <code>{% raw %}{% endraw %}</code> |
 
   </Column>
 </Row>
@@ -71,16 +69,15 @@ WIP
 
 |        Prefix | Method                            |
 | ------------: | --------------------------------- |
-|       `cycle` | <code>{%- assign variable = value -%}</code> |
-|  `cyclegroup` | <code> </code>                                |
-|         `for` | <code> </code>                                |
-|       `break` | <code> </code>                                |
-|    `continue` | <code> </code>                                |
-|      `cycle-` | <code>{%- assign variable = value -%}</code> |
-| `cyclegroup-` | <code> </code>                                |
-|        `for-` | <code> </code>                                |
-|      `break-` | <code> </code>                                |
-|   `continue-` | <code> </code>                                |
+|       `cycle` | <code>{% cycle 'odd', 'even' %}</code> |
+|  `cyclegroup` | <code>{% cycle 'group name': 'odd', 'even' %}</code>                                |
+|         `for` | <code>{% for item in collection %} … {% endfor %}</code>                                |
+|       `break` | <code>{% break %}</code>                                |
+|    `continue` | <code>{% continue %}</code>                                |
+|      `cycle-` | <code>{%- cycle 'odd', 'even' -%}</code> |
+| `cyclegroup-` | <code>{%- cycle 'group name': 'odd', 'even' -%}</code>                                |
+|        `for-` | <code>{%- for item in collection -%} … {%- endfor -%}</code>                                |
+|   `continue-` | <code>{%- continue -%}</code>                                |
 
   </Column>
 </Row>
@@ -107,7 +104,21 @@ WIP
   <td>
 
   ```
-  {%- assign variable = PageParameter.value -%}
+  {%- assign variable = value -%}
+  ```
+
+  </td>
+</tr>
+<tr>
+  <td align="right">
+
+  `assignNow`
+
+  </td>
+  <td>
+
+  ```
+  {%- assign now = 'Now' | Date -%}
   ```
 
   </td>
@@ -129,7 +140,7 @@ WIP
 <tr>
   <td align="right">
 
-  `assignPageProperty`
+  `assignPageParameter`
 
   </td>
   <td>
@@ -177,7 +188,7 @@ WIP
   <td>
 
   ```
-  {% capture variable %}{% endcapture %}
+  {% capture variable %} ... {% endcapture %}
   ```
 
   </td>
@@ -191,7 +202,7 @@ WIP
   <td>
 
   ```
-  {%- capture variable -%}{%- endcapture -%}
+  {%- capture variable -%} ... {%- endcapture -%}
   ```
 
   </td>
@@ -210,12 +221,7 @@ WIP
 
 |        Prefix | Method                                    |
 | ------------: | ----------------------------------------- |
-|     `include` | <code>{%- assign variable = value -%}</code>         |
-| `includewith` | <code>{% include 'snippet', variable:value %}</code> |
-|         `raw` | ` ... `                                   |
-
-
-## Theme Tag
-
-
+|     `include` | <code>{%- include ’~~/Assets/Lava/CURRENT_FILE_NAME’ -%}</code>         |
+| `includewith` | <code>{% include ‘snippet’, variable:value %}</code> |
+|         `raw` | `{% raw %}{% endraw %}`                                   |
 

@@ -1,23 +1,12 @@
 module.exports = {
   siteMetadata: {
     title: 'Lava for VSCode',
-    description: 'A Gatsby theme for the carbon design system',
-    keywords: 'gatsby,theme,carbon',
+    description: 'Documentation for the Lava for VSCode Plugin',
+    keywords: 'Rock RMS,Lava,VSCode',
     lang: 'en',
   },
-  pathPrefix: `/vscode-lava-syntax`,
+  pathPrefix: `/`,
   plugins: [
-    {
-      resolve: 'gatsby-plugin-manifest',
-      options: {
-        name: 'Lava for VSCode',
-        short_name: 'VSCode Lava',
-        start_url: '/',
-        background_color: '#ffffff',
-        theme_color: '#0062ff',
-        display: 'browser',
-      },
-    },
     {
       resolve: 'gatsby-theme-carbon',
       options: {
@@ -27,5 +16,19 @@ module.exports = {
         titleType: 'prepend',
       },
     },
+    {
+      resolve: `gatsby-plugin-offline`,
+    },
+    {
+      resolve: 'gatsby-plugin-manifest',
+      options: {
+        name: 'Lava for VSCode',
+        short_name: 'VSCode Lava',
+        start_url: '/',
+        background_color: '#ffffff',
+        theme_color: '#0062ff',
+        display: 'minimal-ui',
+      },
+    }
   ],
 };

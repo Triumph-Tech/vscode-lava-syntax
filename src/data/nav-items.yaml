@@ -2,17 +2,17 @@
   pages:
     - title: Installation
       path: /getting-started
-    - title: Configuration
-      path: /getting-started/configuration
+    # - title: Configuration
+    #   path: /getting-started/configuration
     - title: Recommended Extensions
       path: /getting-started/recommended-extensions
-- title: Syntax Highlighting
-  pages:
-    - path: /syntax-highlighting
+# - title: Syntax Highlighting
+#   pages:
+#     - path: /syntax-highlighting
 - title: Snippets
   pages:
-    - title: Introduction
-      path: /snippets
+    # - title: Introduction
+    #   path: /snippets
     - title: General
       path: /snippets/general
     - title: Filters

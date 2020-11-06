@@ -5,16 +5,152 @@ description:
 
 <PageDescription>
 
-WIP
+A shortcode lets you do nifty things with very little effort. Think of a shortcode as a shortcut to add features to Rock that would normally require lots of complicated computer code and technical ability.
 
 </PageDescription>
 
 <AnchorLinks>
-  <AnchorLink>Cache</AnchorLink>
-  <AnchorLink>Entity Commands</AnchorLink>
-  <AnchorLink>Execute</AnchorLink>
-  <AnchorLink>Javascript</AnchorLink>
-  <AnchorLink>Search</AnchorLink>
-  <AnchorLink>SQL</AnchorLink>
-  <AnchorLink>Interactions</AnchorLink>
+  <AnchorLink>Accordion</AnchorLink>
+  <AnchorLink>Chart</AnchorLink>
+  <AnchorLink>Map</AnchorLink>
+  <AnchorLink>Panel</AnchorLink>
+  <AnchorLink>Parallax</AnchorLink>
+  <AnchorLink>Vimeo</AnchorLink>
+  <AnchorLink>YouTube</AnchorLink>
 </AnchorLinks>
+
+<Row className="resource-card-group">
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Lava Snippets"
+      title="Quick Reference"
+      actionIcon="arrowRight"
+      aspectRatio="2:1"
+      href="#quick-reference"
+      >
+
+
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="RockRMS.com"
+      title="Shortcode Manual"
+      aspectRatio="2:1"
+      actionIcon="launch"
+      href="https://community.rockrms.com/developer/book/33/121/content"
+      >
+
+
+
+  </ResourceCard>
+</Column>
+<Column colMd={4} colLg={4} noGutterSm>
+    <ResourceCard
+      subTitle="Lava Shortcodes"
+      title="Rock U"
+      aspectRatio="2:1"
+      actionIcon="launch"
+      href="https://community.rockrms.com/rocku/lava/lava-shortcodes"
+      >
+
+
+
+  </ResourceCard>
+</Column>
+</Row>
+
+## Quick Reference
+- `shortcode:accordion` embeds a collapsable panel. [» Full instructions](#accordion)
+- `shortcode:accordionitem` item embeds a additional item to the accordion. [» Full instructions](#accordion)
+- `shortcode:chart` embeds a ChartJS chart. [» Full instructions](#chart)
+- `shortcode:map` embeds Google Maps. [» Full instructions](#map)
+- `shortcode:mapstatic` embeds a static Google Map. [» Full instructions](#map)
+- `shortcode:panel` embeds a bootstrap panel. [» Full instructions](#panel)
+- `shortcode:parallax` embeds a parallax image section. [» Full instructions](#parallax)
+- `shortcode:vimeo` embeds a Vimeo video. [» Full instructions](#vimeo)
+- `shortcode:youtube` embeds a YouTube video. [» Full instructions](#youtube)
+
+
+## Accordion
+`shortcode:accordion`
+
+```
+{[ accordion ]}
+  [[ item title:'Small Groups' ]]
+    
+  [[ enditem ]]
+  
+{[ endaccordion ]}
+```
+
+`shortcode:accordionitem`
+
+```
+[[ item title:'Small Groups' ]]
+  
+[[ enditem ]]
+```
+
+## Chart
+`shortcode:chart`
+```
+{[ chart type:'bar' ]}
+[[ dataitem label:'Small Groups' value:'45' ]] [[ enddataitem ]]
+  
+{[ endgooglemap ]}
+```
+
+## Map
+`shortcode:map`
+
+```
+{[ googlemap height:'600px' width:'100%' showzoom:'true' showstreetview:'true' showfullscreen:'true' showmapttype:'true' scrollwheel:'true' draggable:'true' ]}
+[[ marker location:'10451 W Palmeras Dr Sun City, AZ 85373-2000' ]] [[ endmarker ]]
+  
+{[ endgooglemap ]}
+```
+
+`shortcode:mapstatic`
+
+```
+{[ googlestaticmap center:'10451 W Palmeras Dr Sun City, AZ 85373-2000' zoom:'12' ]}
+{[ endgooglestaticmap ]}
+```
+
+## Panel
+
+`shortcode:panel`
+
+```
+{[ panel  title:'panel title' icon:'fa fa-star' ]}
+  
+{[ endpanel ]}
+```
+
+## Parallax
+
+`shortcode:parallax`
+
+```
+{[ parallax image:'https://...' contentpadding:'20px' ]}
+  
+{[ endparallax ]}
+```
+
+## Vimeo
+
+`shortcode:vimeo`
+
+```
+{[ vimeo id:'Id' ]}
+```
+
+## YouTube
+
+`shortcode:youtube`
+
+```
+{[ youtube id:'Id' controls:'true' autoplay:'false' showinfo:'false' ]}
+```
