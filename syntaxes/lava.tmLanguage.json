@@ -13,6 +13,12 @@
       "include": "#comments"
     },
     {
+      "include": "#comments-new"
+    },
+    {
+      "include": "#comment-oneline"
+    },
+    {
       "include": "#raw"
     },
     {
@@ -156,6 +162,32 @@
       "begin": "{%-?\\s*comment\\s*-?%}",
       "end": "{%-?\\s*endcomment\\s*-?%}"
     },
+    "comments-new": {
+      "name": "comment.block.lava",
+      "begin": "(^[ \\t]+)?(?=/-)",
+      "end": "-/"
+		},
+    "comment-oneline": {
+			"begin": "(^[ \\t]+)?(?=//-)",
+			"beginCaptures": {
+				"1": {
+					"name": "punctuation.whitespace.comment.leading.lava"
+				}
+			},
+			"end": "(?!\\G)",
+			"patterns": [
+				{
+					"begin": "//-",
+					"beginCaptures": {
+						"0": {
+							"name": "punctuation.definition.comment.lava"
+						}
+					},
+					"end": "\\n",
+					"name": "comment.line.double-slash.lava"
+				}
+			]
+		},
     "raw": {
       "name": "markup.raw.block.lava",
       "begin": "({%)(-)?\\s*(raw)\\s*(-)?(%})",
