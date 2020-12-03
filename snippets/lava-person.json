@@ -2,7 +2,7 @@
   "Filter address": {
     "prefix": "Address",
     "description": "Provides an address for the person you provide.",
-    "body": "| Address:'${1:|Home,Work|}','${2:[[city]], [[state]]}'"
+    "body": "| Address:'${1|Home,Work|}','${2:[[city]], [[state]]}'"
   },
   "Filter campus": {
     "prefix": "Campus",
@@ -24,7 +24,7 @@
     "description":
       "Returns the salutation of the family for a given person. (Options: includeKids, includeInactive,useFormalName,FinalSelerator,Separator)",
     "body":
-      "FamilySalutation:'${1:|true,false|}','${2:|true,false|}','${3:|true,false|}','${4:and}','${5:,}'"
+      "FamilySalutation:'${1|true,false|}','${2|true,false|}','${3|true,false|}','${4:and}','${5:,}'"
   },
   "Filter GeofencingGroupMembers": {
     "prefix": "GeofencingGroupMembers",
@@ -49,12 +49,12 @@
   "Filter Group": {
     "prefix": "Group",
     "description": "Returns group member information if a person is in a specific group.",
-    "body": "Group:'${1:GroupId}','${2:|All,Active,Inactive,Pending|}'"
+    "body": "Group:'${1:GroupId}','${2|All,Active,Inactive,Pending|}'"
   },
   "Filter Groups": {
     "prefix": "Groups",
     "description": "Returns a list of group member models of a specified group type that an individual belongs to.",
-    "body": "Group:'${1:GroupTypeId}','${2:|All,Active,Inactive,Pending|}'"
+    "body": "Group:'${1:GroupTypeId}','${2|All,Active,Inactive,Pending|}'"
   },
   "Filter Groups Attended": {
     "prefix": "GroupsAttended",
@@ -143,7 +143,7 @@
   "Filter PhoneNumber": {
     "prefix": "PhoneNumber",
     "description": "Provides a phone number for the person you provide.",
-    "body": "PhoneNumber:'${1:|Home,Mobile,Work,Other|}'"
+    "body": "PhoneNumber:'${1|Mobile,Home,Work,Other|}'"
   },
   "Filter SetUserPreference": {
     "prefix": "SetUserPreference",

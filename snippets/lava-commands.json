@@ -172,6 +172,43 @@
       "\tActivated new workflow with the id of #{{ Workflow.Id }}.$0",
       "{% endworkflowactivate %}"
     ]
+  },
+  "Tag calendarevents": {
+    "prefix": "calendarevents",
+    "description": "Command tag: Calendar Events",
+    "body": [
+      "{%- calendarevents calendarid:'${1:1}' ${2:audienceids:'${3:0}'} maxoccurrences:'${4:100}' -%}",
+      "\t{%- for ${5:item} in EventScheduledInstances -%}",
+      "\t\t$0",
+      "\t{%- endfor -%}",
+      "{%- endcalendarevents -%}"
+    ]
+  },
+  "Tag eventscheduledinstance": {
+    "prefix": "eventscheduledinstance",
+    "description": "Command: Event Scheduled Instance",
+    "body": [
+      "{%- eventscheduledinstance eventid:'${1:1}' ${2:maxoccurrences:'${3:100}'} ${4:daterange:'${5:2m}'} -%}",
+      "\t{%- for ${6:item} in ${7|EventScheduledInstances,EventItems|} -%}",
+      "\t\t$0",
+      "\t{%- endfor -%}",
+      "{%- endeventscheduledinstance -%}"
+    ]
+  },
+  "Tag interactionwrite": {
+    "prefix": "interactionwrite",
+    "description": "Command: interactionwrite",
+    "body": [
+      "{%- assign currentUrl = 'Global'| Page:'Url' -%}",
+      "{%- assign siteId = 'Global' | Page:'SiteId' -%}",
+      "{%- interactionwrite channeltypemediumvalueid:'${1:1}' channelentityid:'${2:{{ Item.ChannelId \\}\\}}' channelname:'${3:{{ Item.ChannelName \\}\\}}' componententitytypeid:'${4:4}' componententityid:'${5:{{ Item.Id \\}\\}}' componentname:'${6:{{ Item.Title \\}\\}}' operation:'${7:View}' summary:'${8:Viewed \"{{ Item.Title \\}\\}\"}' channelcustom1:'${9:{{ siteId \\}\\}}' personaliasid:'${10:{{ CurrentPerson.PrimaryAliasId \\}\\}}' source:'${11:{{ PageParameter.utm_source \\}\\}}' medium:'${12:{{ PageParameter.utm_medium \\}\\}}' campaign:'${13:{{ PageParameter.utm_campaign \\}\\}}' -%}${14:{{ currentUrl \\}\\}}{%- endinteractionwrite -%}"
+    ]
+  },
+  "Tag interactioncontentchannelitemwrite": {
+    "prefix": "interactioncontentchannelitemwrite",
+    "description": "Command: Interaction Content Channel Item Write",
+    "body": [
+      "{%- interactioncontentchannelitemwrite contentchannelitemid:'${1:1}' operation:'${2:View}' summary:'${3:Viewed content channel item}' ${4:personaliasid:'${5:100}'} source:'${6:{{ PageParameter.utm_source \\}\\}}' medium:'${7:{{ PageParameter.utm_medium \\}\\}}' campaign:'${8:{{ PageParameter.utm_campaign \\}\\}}' -%}"
+    ]
   }
 }
-
