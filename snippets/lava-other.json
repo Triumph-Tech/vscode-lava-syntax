@@ -9,6 +9,11 @@
     "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. <meta TAG=\"VALUE\" content=\"/...\">",
     "body": "AddMetaTagToHead:'${1:tag}','${2:Value}'"
   },
+  "Filter AddResponseHeader": {
+    "prefix": "AddResponseHeader",
+    "description": "Adds a header to the HTTP response. This allows you to set custom headers. Note that any headers already being set in Rock will overrite the values you provide. These should only be used to add custom headers.",
+    "body": "AddResponseHeader:'${1:cache-control}'"
+  },
   "Filter AddCssLink": {
     "prefix": "AddCssLink",
     "description": "Adds a CSS link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
@@ -159,6 +164,24 @@
     "body":
       "Page:'${1|host,port,segments,scheme,protocol,localpath,pathandquery,queryparameter,url|}'"
   },
+  "Filter Write Cookie": {
+    "prefix": "WriteCookie",
+    "description": "Write a cookie.",
+    "body":
+      "WriteCookie:'${1:Value}',${2:'${3:expire-in-mins}'}"
+  },
+  "Filter Read Cookie": {
+    "prefix": "ReadCookie",
+    "description": "Read cookie for value",
+    "body":
+      "ReadCookie"
+  },
+  "Filter ImageUrl": {
+    "prefix": "ImageUrl",
+    "description": "Returns information about the current page.",
+    "body":
+      "ImageUrl:'${1:}',${2|false,true|}"
+  },
   "get_img": {
     "prefix": "get_img",
     "description": "Returns information about the current page.",
@@ -188,5 +211,11 @@
     "description": "Returns information about the current page.",
     "body":
       "/GetFile.ashx?${1|Guid,Id|}={{ ${2} }}&attachment=true"
+  },
+  "Filter RockInstance Config": {
+    "prefix": "RockInstanceConfig",
+    "description": "Return a named configuration setting for the current Rock instance.",
+    "body":
+      "{{ '${1|ApplicationDirectory,PhysicalDirectory,MachineName,IsClustered,SystemDateTime|}' | RockInstanceConfig }}"
   }
 }

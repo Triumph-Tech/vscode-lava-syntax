@@ -27,7 +27,7 @@
       "{[ chart type:'${1|bar,line,radar,pie,doughnut,polarArea|}' ]}",
       "[[ dataitem label:'${2:Small Groups}' value:'${3:45}' ]] [[ enddataitem ]]",
       "\t$0",
-      "{[ endgooglemap ]}"
+      "{[ endchart ]}"
     ]
   },
   "Shortcode Chart Item": {
@@ -41,7 +41,7 @@
     "prefix": "shortcode:map",
     "description": "Shortcode Lava",
     "body": [
-      "{[ googlemap ${1:height:'${2:600px}'} ${3:width :'${4:100%}'} ${5:showzoom :'${6|true,false|}'} ${7:showstreetview:'${8|true,false|}'} ${9:showfullscreen:'${10|true,false|}'} ${11:showmapttype:'${12|true,false|}'} ${13:scrollwheel:'${14|true,false|}'} ${15:draggable:'${16|true,false|}'} ]}",
+      "{[ googlemap ${1:height:'${2:600px}'} ${3:width:'${4:100%}'} ${5:showzoom:'${6|true,false|}'} ${7:showstreetview:'${8|true,false|}'} ${9:showfullscreen:'${10|true,false|}'} ${11:showmapttype:'${12|true,false|}'} ${13:scrollwheel:'${14|true,false|}'} ${15:draggable:'${16|true,false|}'} ]}",
       "[[ marker location:'${17:10451 W Palmeras Dr Sun City, AZ 85373-2000}' ]] [[ endmarker ]]",
       "\t$0",
       "{[ endgooglemap ]}"
