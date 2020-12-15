@@ -4,7 +4,7 @@
   "version": "1.26.6",
   "license": "",
   "scripts": {
-		"predeploy": "yarn run build",
+    "predeploy": "yarn run build",
     "deploy": "gh-pages -d public",
     "dev": "gatsby develop -H 0.0.0.0",
     "dev:clean": "yarn clean && yarn dev",
@@ -14,8 +14,8 @@
     "clean": "gatsby clean"
   },
   "dependencies": {
-		"gatsby": "^2.20.4",
-		"gatsby-plugin-google-analytics": "^2.3.3",
+    "gatsby": "^2.20.4",
+    "gatsby-plugin-google-analytics": "^2.3.3",
     "gatsby-plugin-manifest": "^2.4.9",
     "gatsby-plugin-offline": "^3.2.7",
     "gatsby-theme-carbon": "^1.26.6",
