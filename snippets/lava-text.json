@@ -157,7 +157,7 @@
   "Filter slice": {
     "prefix": "Slice",
     "description": "The slice filter returns a substring, starting at the specified index. An optional second parameter can be passed to specify the length of the substring. If no second parameter is given, a substring of one character will be returned.",
-    "body": "Slice:${1:0}, ${2:5}"
+    "body": "Slice:${1:0},${2:5}"
   },
   "Filter split": {
     "prefix": "Split",

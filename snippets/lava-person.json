@@ -54,7 +54,7 @@
   "Filter Groups": {
     "prefix": "Groups",
     "description": "Returns a list of group member models of a specified group type that an individual belongs to.",
-    "body": "Group:'${1:GroupTypeId}','${2|All,Active,Inactive,Pending|}'"
+    "body": "Groups:'${1:GroupTypeId}','${2|All,Active,Inactive,Pending|}'"
   },
   "Filter Groups Attended": {
     "prefix": "GroupsAttended",

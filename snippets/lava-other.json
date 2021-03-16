@@ -104,7 +104,7 @@
   },
   "Filter Has Rights to Id": {
     "prefix": "HasRightsToId",
-    "description": "This filter helps you check the security of the model you pass it.",
+    "description": "This filter helps you check the security of the ID you pass it. (Using the Rock Model)",
     "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${2:Rock.Model.Group}'"
   },
   "FilterNotes": {
