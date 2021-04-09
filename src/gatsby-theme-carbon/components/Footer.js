@@ -8,7 +8,7 @@ const Content = ({ buildTime }) => (
     </p>
     <p>
       Last updated {buildTime}<br/>
-      Copyright © 2020 Garrett Johnson
+      Copyright © 2021 Garrett Johnson
     </p>
   </>
 );
