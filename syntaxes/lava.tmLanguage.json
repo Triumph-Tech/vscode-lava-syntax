@@ -10,6 +10,9 @@
   "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
   "patterns": [
     {
+      "include": "#frontMatter"
+    },
+    {
       "include": "#comments"
     },
     {
@@ -157,6 +160,16 @@
         }
       ]
     },
+    "frontMatter": {
+			"begin": "\\A{%-?\\s*comment\\s*-?%}\\s*-{3}\\s*$",
+			"contentName": "meta.embedded.block.frontmatter",
+			"patterns": [
+				{
+					"include": "source.yaml"
+				}
+			],
+			"end": "(^|\\G)-{3}\\s*{%-?\\s*endcomment\\s*-?%}"
+		},
     "comments": {
       "name": "comment.block.lava",
       "begin": "{%-?\\s*comment\\s*-?%}",
