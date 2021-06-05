@@ -108,6 +108,13 @@
     "description": "Transform an existing Lava variable",
     "body": ["{%- assign ${1:variable} = ${1} $0 -%}"]
   },
+  "Tag assign Person Aliases": {
+    "prefix": "assignPersonAliases",
+    "body": [
+      "{% assign personAliases = ${1:CurrentPerson}.Aliases | Map:'Id' | Join:'\" || PersonAliasId == \"' | Prepend:'PersonAliasId ==\"' | Append:'\"' %}"
+    ],
+    "description": "Generate Person Aliases"
+  },
   "Tag increment": {
     "prefix": "increment",
     "description": "Creates a new variable.",
@@ -294,11 +301,6 @@
     "prefix": "Where",
     "description": "Creates an array including only the objects with a given property value, or any truthy value by default.",
     "body": "Where:'${1:key}','${2:value}'"
-  },
-  "Filter reverse": {
-    "prefix": "Reverse",
-    "description": "Reverses the order of the items in an array. reverse cannot reverse a string.",
-    "body": "Reverse"
   },
   "Pagination": {
     "prefix": "Pagination",

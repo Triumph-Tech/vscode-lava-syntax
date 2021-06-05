@@ -26,5 +26,9 @@
         ["(", ")"],
         ["\"", "\""],
         ["'", "'"]
-    ]
+    ],
+    "indentationRules": {
+        "decreaseIndentPattern": ".*{%(.*?end).*%}*.",
+        "increaseIndentPattern": ".*{%\\s+(?!(assign|break|continue)|(.*end)).*%}.*"
+    }
 }

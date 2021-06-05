@@ -299,7 +299,7 @@
     },
     "constant-boolean": {
       "name": "constant.language.lava",
-      "match": "(false|true|nil|null|empty|blank)"
+      "match": "(false|true|nil|null|empty|blank)\\b"
     },
     "constant-numeric": {
       "name": "constant.numeric.lava",
@@ -734,7 +734,7 @@
       ]
     },
     "webrequest": {
-      "contentName": "meta.embedded.block.cache",
+      "contentName": "meta.embedded.block.webrequest",
 			"begin": "({%)(-)?\\s*(webrequest)\\s*(.*?)\\s*(-)?(%})",
 			"beginCaptures": {
         "1": {
@@ -749,7 +749,7 @@
         "4": {
           "patterns": [
             {
-              "match": "\\b(url:|parameters:|headers:|method:|basicauth:|body:|requestcontenttype:|responsecontenttype:|return:)\\s*('[^']*')",
+              "match": "\\b(url:|parameters:|headers:|method:|basicauth:|body:|requestcontenttype:|responsecontenttype:|return:|requesttype:|timeout:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
