@@ -2,7 +2,7 @@
 	"name": "language-lava",
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
-	"version": "1.0.8",
+	"version": "1.0.9",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
