@@ -35,18 +35,20 @@
 	"qna": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"main": "./main.js",
 	"scripts": {
-    "pack": "vsce package",
-    "publish": "vsce publish"
-  },
+		"pack": "vsce package",
+		"publish": "vsce publish"
+	},
 	"activationEvents": [
 		"onCommand:rock-lava.openconnectionstrings"
 	],
 	"contributes": {
-		"commands": [{
-			"command": "rock-lava.openconnectionstrings",
-			"title": "Open Connection Strings",
-			"category": "Rock"
-		}],
+		"commands": [
+			{
+				"command": "rock-lava.openconnectionstrings",
+				"title": "Open Connection Strings",
+				"category": "Rock"
+			}
+		],
 		"configurationDefaults": {
 			"[lava]": {
 				"editor.insertSpaces": true,
