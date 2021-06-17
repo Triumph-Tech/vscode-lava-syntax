@@ -2,7 +2,7 @@
 	"name": "language-lava",
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
-	"version": "1.0.6",
+	"version": "1.0.8",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
@@ -34,6 +34,10 @@
 	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"qna": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"main": "./main.js",
+	"scripts": {
+    "pack": "vsce package",
+    "publish": "vsce publish"
+  },
 	"activationEvents": [
 		"onCommand:rock-lava.openconnectionstrings"
 	],

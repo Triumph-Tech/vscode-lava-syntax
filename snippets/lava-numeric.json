@@ -65,6 +65,11 @@
     "description": "Takes 1, 2 or 3 and returns one, two or three.",
     "body": "NumberToWords "
   },
+  "Filter RandomNumber": {
+    "prefix": "RandomNumber",
+    "description": "Generates a random number between 0 and up to (but not including) the number you pass in as input.",
+    "body": "RandomNumber"
+  },
   "Filter money": {
     "prefix": "Money",
     "description": "Provides a simple way to display an internationalized currency amount. The filter uses the currency symbol defined in the 'CurrencySymbol' global attribute.",

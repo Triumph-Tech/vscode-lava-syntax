@@ -303,7 +303,7 @@
     },
     "constant-numeric": {
       "name": "constant.numeric.lava",
-      "match": "(-|\\+)?\\s*[0-9]+(\\.[0-9]+)?"
+      "match": "(-|\\+)?\\b[0-9]+(\\.[0-9]+)?\\b"
     },
     "entity-danger-name-tag": {
       "match": "(((?<={%)|(?<={%-))\\s*(campus|endcampus|definedvalue|enddefinedvalue|definedtype|enddefineddype))",

@@ -59,6 +59,11 @@
     "description": "Converts a binary file to a base-64 encoded string.",
     "body": "Base64Encode"
   },
+  "Filter FromBase64": {
+    "prefix": "FromBase64",
+    "description": "Decodes the base 64 encoded string and returns the resulting data.",
+    "body": "FromBase64"
+  },
   "Filter CreateShortlink": {
     "prefix": "CreateShortLink",
     "description": "Creates a URL short link for the provided URL.",
@@ -78,7 +83,7 @@
   },
   "Filter EntityFromCachedObject": {
     "prefix": "EntityFromCachedObject",
-    "description": " ",
+    "description": "Returns a full entity object loaded from the database from its cached counterpart.",
     "body":
       "EntityFromCachedObject"
   },
@@ -106,6 +111,16 @@
     "prefix": "HasRightsToId",
     "description": "This filter helps you check the security of the ID you pass it. (Using the Rock Model)",
     "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${2:Rock.Model.Group}'"
+  },
+  "Filter PageRoute": {
+    "prefix": "PageRoute",
+    "description": "Converts a page identifier into a URL string.",
+    "body": "PageRoute:'${1:key}=${2:value}${3:^${4:additionalkey}=${5:value}}'"
+  },
+  "Filter IsFollowed": {
+    "prefix": "IsFollowed",
+    "description": "Takes an entity object as input and tests if it is being followed by the current person. Returns a boolean value of either true or false.",
+    "body": "IsFollowed"
   },
   "FilterNotes": {
     "prefix": "Notes",
@@ -153,6 +168,11 @@
     "description": "Resolves '~/' application route and '~~/' theme route.",
     "body": "ResolveRockUrl"
   },
+  "Filter RunLava": {
+    "prefix": "RunLava",
+    "description": "Executes Lava that is inside a string.",
+    "body": "RunLava"
+  },
   "Pre JSON": {
     "prefix": "prejson",
     "description": "Returns a JSON representation of the object.",
@@ -179,13 +199,19 @@
     "prefix": "ReadCookie",
     "description": "Read cookie for value",
     "body":
-      "ReadCookie"
+      "{{ '${1:cookieName}' | ReadCookie }}"
   },
   "Filter ImageUrl": {
     "prefix": "ImageUrl",
     "description": "Returns information about the current page.",
     "body":
       "ImageUrl:'${1:}',${2|false,true|}"
+  },
+  "Filter UniqueIdentifier": {
+    "prefix": "UniqueIdentifier",
+    "description": "Generates a new GUID (UUID) string. ",
+    "body":
+      "UniqueIdentifier"
   },
   "get_img": {
     "prefix": "get_img",

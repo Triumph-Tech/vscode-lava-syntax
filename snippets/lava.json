@@ -133,7 +133,7 @@
   "Tag assign page parameter": {
     "prefix": "assignPageParameter",
     "description": "Creates a new variable from a page parameter.",
-    "body": ["{%- assign ${1:variable} = PageParameter.${2:value} -%}"]
+    "body": ["{%- assign ${2:$1} = PageParameter.${1:variable} -%}"]
   },
   "Tag capture": {
     "prefix": "capture",
@@ -242,10 +242,40 @@
     "description": "Variable tag: capture, whitespaced",
     "body": ["{%- capture ${1:variable} -%}${0:$TM_SELECTED_TEXT}{%- endcapture -%}"]
   },
+  "Filter AddToArray": {
+    "prefix": "AddToArray",
+    "description": "Add a new item to an existing array.",
+    "body": "AddToArray:'${1:item}'"
+  },
+  "Filter AddToDictionary ": {
+    "prefix": "AddToDictionary",
+    "description": "Takes an existing (or empty) dictionary and returns a new dictionary with the added key and value.",
+    "body": "AddToDictionary:'${1:key}','${2:value}'"
+  },
+  "Filter AllKeysFromDictionary ": {
+    "prefix": "AllKeysFromDictionary ",
+    "description": "Retrieves all keys that exist in the dictionary object and returns them in an array.",
+    "body": "AllKeysFromDictionary"
+  },
+  "Filter Contains": {
+    "prefix": "Contains",
+    "description": "The contains filter returns true if the specified value is in the array",
+    "body": "Contains:'${1:0}'"
+  },
+  "Filter Distinct": {
+    "prefix": "Distinct",
+    "description": "Takes an array as input and returns the distinct (unique) elements of the array.",
+    "body": "Distinct"
+  },
   "Filter first": {
     "prefix": "First",
     "description": "Returns the first item of an array.",
     "body": "First"
+  },
+  "Filter GroupBy": {
+    "prefix": "GroupBy",
+    "description": "Takes a collection of items and groups them by the specified property tree value.",
+    "body": "GroupBy:'${1:0}'"
   },
   "Filter index": {
     "prefix": "Index",
@@ -266,6 +296,16 @@
     "prefix": "Map",
     "description": "Creates an array of values by extracting the values of a named property from another object.",
     "body": "Map:'${1:key}'"
+  },
+  "Filter OrderBy": {
+    "prefix": "OrderBy",
+    "description": "Orders a collection of elements by the specified property tree and returns a new collection in that order.",
+    "body": "OrderBy:'${1:key}'"
+  },
+  "Filter RemoveFromDictionary": {
+    "prefix": "RemoveFromDictionary",
+    "description": "Removes the specified key from a dictionary of keys and values.",
+    "body": "RemoveFromDictionary:'${1:key}'"
   },
   "Filter select": {
     "prefix": "Select",
@@ -291,6 +331,11 @@
     "prefix": "SortByAttribute",
     "description": "Sorts an array of items based on a attribute value.",
     "body": "SortByAttribute:'${1:key}'"
+  },
+  "Filter Sum": {
+    "prefix": "Sum",
+    "description": "Performs a mathematical summation of all numeric values in an array and outputs the result.",
+    "body": "Sum:'${1:key}'"
   },
   "Filter uniq": {
     "prefix": "Uniq",
