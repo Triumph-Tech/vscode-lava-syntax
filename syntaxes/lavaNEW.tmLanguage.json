@@ -28,6 +28,15 @@
       "include": "#cache"
     },
     {
+      "include": "#assign"
+    },
+    {
+      "include": "#forLoop"
+    },
+    {
+      "include": "#entity"
+    },
+    {
       "include": "#csharp"
     },
     {
@@ -105,6 +114,12 @@
           "include": "#include-tag"
         },
         {
+          "include": "#entity-danger-name-tag"
+        },
+        {
+          "include": "#entity-name-tag"
+        },
+        {
           "include": "#invalid-ampersand"
         },
         {
@@ -142,6 +157,9 @@
         },
         {
           "include": "#support-function"
+        },
+        {
+          "include": "#invalid-support-function"
         },
         {
           "include": "#support-variable"
@@ -277,7 +295,13 @@
           "include": "#support-class"
         },
         {
+          "include": "#invalid-support-function"
+        },
+        {
           "include": "#support-function"
+        },
+        {
+          "include": "#support-function-bbm"
         },
         {
           "include": "#support-variable"
@@ -322,8 +346,12 @@
       }
     },
     "include-tag":{
-      "name": "string.quoted.lava",
-      "match": "((?<=include)|(?<=include_relative))\\s[^{,'\"]+?\\s+"
+      "match": "(((?<={%)|(?<={%-))\\s*(include))",
+      "captures": {
+        "1":{
+          "name": "entity.name.tag.lava"
+        }
+      }
     },
     "invalid-ampersand": {
       "match": "&",
@@ -406,12 +434,15 @@
       "match": "\\|\\s+[a-z].*\\b"
      },
     "support-function": {
-      "name": "support.function.lava",
-      "match": "\\|\\s+(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|BBM_ComputeHash|FromBase64|PageRoute|RunLava|BBM_ToBase64|RegExMatches|RegExReplace|BBM_Function|WriteCookie|RandomNumber|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|TriumphImgCdn)\\b"
-    },
-    "support-function-bbm": {
-      "name": "support.function.bluebox.lava",
-      "match": "\\|\\s+(BBM_AddToArray|BBM_Distinct|BBM_GroupBy|BBM_OrderBy|BBM_RemoveFromArray|BBM_Sum|BBM_AddToDictionary|BBM_AllKeysFromDictionary|BBM_RemoveFromDictionary|BBM_AddHttpHeader|BBM_ComputeHash|BBM_FromBase64|BBM_PageRoute|BBM_RunLava|BBM_ToBase64|BBM_RegExMatches|BBM_RegExReplace|BBM_Function)\\b"
+      "match": "(\\|)\\s*(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|BBM_ComputeHash|FromBase64|PageRoute|RunLava|BBM_ToBase64|RegExMatches|RegExReplace|BBM_Function|WriteCookie|RandomNumber|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier)\\b",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.lava"
+        },
+        "2": {
+          "name": "entity.name.function.lava"
+        }
+      }
     },
     "support-variable": {
         "name": "support.variable.lava",
@@ -944,6 +975,46 @@
         }
       ]
     },
+    "assign": {
+			"match": "({%)(-)?\\s*(assign)\\s+([a-zA-Z0-9]+)\\s*(=)\\s*((?:'[^']*')|[a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
+			"captures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "storage.type.lava"
+        },
+        "4": {
+          "name": "variable.other.readwrite.lava"
+        },
+        "5": {
+          "name": "keyword.operator.assignment.lava"
+        },
+        "6": {
+          "name": "variable.other.constant.object.lava"
+        },
+        "7": {
+          "patterns": [
+            {
+              "include": "#support-function"
+            },
+            {
+              "match": "\\S",
+              "name": "invalid.illegal.bad-command.lava"
+            }
+          ]
+        },
+        "8":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "9": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			}
+    },
     "entity": {
 			"begin": "({%)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
 			"beginCaptures": {
@@ -1010,7 +1081,7 @@
               ]
             },
             {
-              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:)\\s*('[^']*')",
+              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|count:|include:|expression:|select:|selectmany:|groupby:)\\s*(?:('[^']*')|[a-zA-Z0-9]+)",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -1021,7 +1092,7 @@
               }
             },
             {
-              "match": "\\b(id:|dataview:|limit:|offset:)\\s*('[0-9]*')",
+              "match": "\\b(securityenabled:|lazyloadenabled:)\\s*('(?:true|false)')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -1032,7 +1103,18 @@
               }
             },
             {
-              "match": "\\b(id:|dataview:|limit:|offset:)\\s*('[^']*')",
+              "match": "\\b(id:|dataview:|limit:|offset:)\\s*(?:('[0-9]*')|[a-zA-Z0-9]+)",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(id:|dataview:|limit:|offset:|securityenabled:|lazyloadenabled:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -1070,6 +1152,58 @@
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "forLoop": {
+			"begin": "({%)(-)?\\s*(for)\\s*([a-zA-Z0-9]+)\\s*(in)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.for.begin.lava"
+        },
+        "4": {
+          "name": "support.class.lava"
+        },
+        "5": {
+          "name": "keyword.operator.lava"
+        },
+        "6": {
+          "name": "variable.other.lava"
+        },
+        "7":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "8": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endfor)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.for.end.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
           "name": "punctuation.definition.tag.end.lava"
         }
       },

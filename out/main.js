@@ -12,7 +12,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.activate = void 0;
 const vscode_1 = require("vscode");
 const vscode = require("vscode");
-const providers_1 = require("./src/providers");
+const providers_1 = require("./providers");
+const config = vscode.workspace.getConfiguration('lava');
 function getRockWeb(workspace) {
     return __awaiter(this, void 0, void 0, function* () {
         const foundFiles = yield workspace.findFiles('**/web.config');
@@ -33,6 +34,12 @@ function activate(context) {
         let documentSelector;
         documentSelector = "lava";
         const actions = ['openconnectionstrings'];
+        let filterProvider = (0, providers_1.getFilterProvider)(documentSelector);
+        let snippetProvider = (0, providers_1.getSnippetProvider)(documentSelector);
+        context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
+        if (config.hover === true) {
+            context.subscriptions.push(providers_1.getHoverFilterProvider);
+        }
         actions.forEach(action => {
             let disposable = vscode_1.commands.registerCommand(`rock-lava.${action}`, () => __awaiter(this, void 0, void 0, function* () {
                 if (action == 'openconnectionstrings') {
@@ -48,9 +55,6 @@ function activate(context) {
             }));
             context.subscriptions.push(disposable);
         });
-        let filterProvider = (0, providers_1.getFilterProvider)(documentSelector);
-        let snippetProvider = (0, providers_1.getSnippetProvider)(documentSelector);
-        context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
     });
 }
 exports.activate = activate;

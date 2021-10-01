@@ -1,245 +1,31 @@
 {
-  "Filter AddLinkTagToHead": {
-    "prefix": "AddLinkTagToHead",
-    "description": "Adds a link to the HTML head of the current page.",
-    "body": "AddLinkTagToHead:'${1:tag}','${2:Value}'"
-  },
-  "Filter AddMetaTagToHead": {
-    "prefix": "AddMetaTagToHead",
-    "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. <meta TAG=\"VALUE\" content=\"/...\">",
-    "body": "AddMetaTagToHead:'${1:tag}','${2:Value}'"
-  },
-  "Filter AddResponseHeader": {
-    "prefix": "AddResponseHeader",
-    "description": "Adds a header to the HTTP response. This allows you to set custom headers. Note that any headers already being set in Rock will overrite the values you provide. These should only be used to add custom headers.",
-    "body": "AddResponseHeader:'${1:cache-control}'"
-  },
-  "Filter AddCssLink": {
-    "prefix": "AddCssLink",
-    "description": "Adds a CSS link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
-    "body": "AddCssLink"
-  },
-  "Filter AddScriptLink": {
-    "prefix": "AddScriptLink",
-    "description": "Adds a script link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
-    "body": "AddScriptLink"
-  },
-  "Filter AsBoolean": {
-    "prefix": "AsBoolean",
-    "description": "Converts the input to a Boolean (true/false) value.",
-    "body": "AsBoolean"
-  },
-  "Filter AsInteger": {
-    "prefix": "AsInteger",
-    "description": "Converts the input to an integer value.",
-    "body": "AsInteger"
-  },
-  "Filter AsDecimal": {
-    "prefix": "AsDecimal",
-    "description": "Converts the input to a decimal value.",
-    "body": "AsDecimal"
-  },
-  "Filter AsDouble": {
-    "prefix": "AsDouble",
-    "description": "Converts the input to a double value (which has less precision than a decimal).",
-    "body": "AsDouble"
-  },
-  "Filter AsString": {
-    "prefix": "AsString",
-    "description": "Converts the input to an string value.",
-    "body": "AsString"
-  },
-  "Filter AsDateTime": {
-    "prefix": "AsDateTime",
-    "description": "Converts the input to a DateTime value.",
-    "body": "AsDateTime"
-  },
-  "Filter Base64Encode": {
-    "prefix": "Base64Encode",
-    "description": "Converts a binary file to a base-64 encoded string.",
-    "body": "Base64Encode"
-  },
-  "Filter FromBase64": {
-    "prefix": "FromBase64",
-    "description": "Decodes the base 64 encoded string and returns the resulting data.",
-    "body": "FromBase64"
-  },
-  "Filter CreateShortlink": {
-    "prefix": "CreateShortLink",
-    "description": "Creates a URL short link for the provided URL.",
-    "body":
-      "CreateShortLink${1::'${2:}',${3:siteId},${4:'OverwriteT/F'},${5:lengthInt}}"
-  },
-  "Filter Lava Debug": {
-    "prefix": "debug",
-    "description": "Debug lava variables on page, with optional username restriction.",
-    "body": "{{ ${1:'Lava'} | Debug${2::'${3:username}'} }}"
-  },
-  "Filter FromCache": {
-    "prefix": "FromCache",
-    "description": "Reads objects from the Rock cache which will reduce the number of database reads your Lava produces.",
-    "body":
-      "FromCache:'${1|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}'"
-  },
-  "Filter EntityFromCachedObject": {
-    "prefix": "EntityFromCachedObject",
-    "description": "Returns a full entity object loaded from the database from its cached counterpart.",
-    "body":
-      "EntityFromCachedObject"
-  },
-  "Filter FromJSON": {
-    "prefix": "FromJSON",
-    "description": "Takes a JSON string and makes a Lava object from it.",
-    "body": "FromJSON"
-  },
-  "Filter GroupById": {
-    "prefix": "GroupById",
-    "description": "Provides a full Group object by providing an Id of the group.",
-    "body": "GroupById"
-  },
-  "Filter GroupByGuid": {
-    "prefix": "GroupByGuid",
-    "description": "Returns a full Group object from the Guid of the group.",
-    "body": "GroupByGuid"
-  },
-  "Filter Has Rights to": {
-    "prefix": "HasRightsTo",
-    "description": "This filter helps you check the security of the model you pass it.",
-    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}'"
-  },
-  "Filter Has Rights to Id": {
-    "prefix": "HasRightsToId",
-    "description": "This filter helps you check the security of the ID you pass it. (Using the Rock Model)",
-    "body": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}','${2:Rock.Model.Group}'"
-  },
-  "Filter PageRoute": {
-    "prefix": "PageRoute",
-    "description": "Converts a page identifier into a URL string.",
-    "body": "PageRoute:'${1:key}=${2:value}${3:^${4:additionalkey}=${5:value}}'"
-  },
-  "Filter IsFollowed": {
-    "prefix": "IsFollowed",
-    "description": "Takes an entity object as input and tests if it is being followed by the current person. Returns a boolean value of either true or false.",
-    "body": "IsFollowed"
-  },
-  "FilterNotes": {
-    "prefix": "Notes",
-    "description": "Retrieves notes for the provided entity.",
-    "body": "Notes:'${1:noteTypeIds}','${2|desc,asc|}',${3:limit}"
-  },
-  "Filter Set Page Title": {
-    "prefix": "SetPageTitle",
-    "description": "Takes a string as input and sets the page's title.",
-    "body": "SetPageTitle"
-  },
-  "Filter PropertyToKeyValue": {
-    "prefix": "PropertyToKeyValue",
-    "description": "Takes a property and returns it as a key/value pair. This is helpful for iterating over a list of properties.",
-    "body": "PropertyToKeyValue"
-  },
-  "Filter Page": {
-    "prefix": "Page",
-    "description": "Use with {{ 'Global' | Page:'...' }}",
-    "body":
-      "Page:'${1|Title,Description,Url,Id,Host,Path,SiteName,SiteId,Theme,Layout,Scheme,QueryString|}'"
-  },
-  "Filter Page Parameter": {
-    "prefix": "PageParameter",
-    "description": "Returns the value of a specified page parameter.",
-    "body": "PageParameter:'${1:GroupId}'"
-  },
-  "Filter Page Redirect": {
-    "prefix": "PageRedirect",
-    "description": "Will redirect the page to the provided URL.",
-    "body": "PageRedirect"
-  },
-  "Filter Postback": {
-    "prefix": "Postback",
-    "description": "This is a very specialized Lava filter that helps to wire-up ASP.Net postbacks. This is only available on specific blocks that provide 'Postback Commands'. The 'Group Details Lava' is an example of a block that provides these hooks.",
-    "body": "Postback:'${1:name}'"
-  },
-  "Filter Property": {
-    "prefix": "Property",
-    "description": "Returns the property of a provided object. This often saves you from having to assign an object to a variable to get just one of its properties.",
-    "body": "Property:'${1:key}'"
-  },
-  "Filter ResolveRockUrl": {
-    "prefix": "ResolveRockUrl",
-    "description": "Resolves '~/' application route and '~~/' theme route.",
-    "body": "ResolveRockUrl"
-  },
-  "Filter RunLava": {
-    "prefix": "RunLava",
-    "description": "Executes Lava that is inside a string.",
-    "body": "RunLava"
-  },
-  "Pre JSON": {
-    "prefix": "prejson",
-    "description": "Returns a JSON representation of the object.",
-    "body": "<pre>{{ ${1:$TM_SELECTED_TEXT} | ToJSON }}</pre>"
-  },
-  "Filter ToJSON": {
-    "prefix": "ToJSON",
-    "description": "Returns a JSON representation of the object.",
-    "body": "ToJSON"
-  },
-  "Filter Url": {
-    "prefix": "Url",
-    "description": "Returns information about the current page.",
-    "body":
-      "Page:'${1|host,port,segments,scheme,protocol,localpath,pathandquery,queryparameter,url|}'"
-  },
-  "Filter Write Cookie": {
-    "prefix": "WriteCookie",
-    "description": "Write a cookie.",
-    "body":
-      "WriteCookie:'${1:Value}',${2:'${3:expire-in-mins}'}"
-  },
-  "Filter Read Cookie": {
-    "prefix": "ReadCookie",
-    "description": "Read cookie for value",
-    "body":
-      "{{ '${1:cookieName}' | ReadCookie }}"
-  },
-  "Filter ImageUrl": {
-    "prefix": "ImageUrl",
-    "description": "Returns information about the current page.",
-    "body":
-      "ImageUrl:'${1:}',${2|false,true|}"
-  },
-  "Filter UniqueIdentifier": {
-    "prefix": "UniqueIdentifier",
-    "description": "Generates a new GUID (UUID) string. ",
-    "body":
-      "UniqueIdentifier"
-  },
   "get_img": {
     "prefix": "get_img",
-    "description": "Returns information about the current page.",
+    "description": "",
     "body":
-      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}\" class=\"${3:img-responsive}\" alt=\"${4}\">"
+      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2:${3:item}${4: | Attribute:'${5:Image}'}} }}\" class=\"${6:img-responsive}\" alt=\"${7}\">"
   },
   "get_img_full": {
     "prefix": "get_img_wh",
-    "description": "Returns information about the current page.",
+    "description": "",
     "body":
-      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2} }}&w=${3:200}&h=${4:200}\" class=\"${3:img-responsive}\" alt=\"${4}\">"
+      "<img src=\"/GetImage.ashx?${1|Guid,Id|}={{ ${2:${3:item}${4: | Attribute:'${5:Image}'}} }}&w=${6:200}&h=${7:200}\" class=\"${8:img-responsive}\" alt=\"${9}\">"
   },
   "get_communication": {
     "prefix": "get_communication",
-    "description": "Returns information about the current page.",
+    "description": "",
     "body":
       "/GetCommunication.ashx?c={{ ${1:communicationGuid} }}&p={{ ${2:CurrentPerson.${3:UrlEncodedKey}} }}"
   },
   "get_file": {
     "prefix": "get_file",
-    "description": "Returns information about the current page.",
+    "description": "",
     "body":
       "/GetFile.ashx?${1|Guid,Id|}={{ ${2} }}"
   },
   "get_file_download": {
     "prefix": "get_file_download",
-    "description": "Returns information about the current page.",
+    "description": "",
     "body":
       "/GetFile.ashx?${1|Guid,Id|}={{ ${2} }}&attachment=true"
   },

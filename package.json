@@ -2,7 +2,8 @@
 	"name": "language-lava",
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
-	"version": "1.0.9",
+	"license": "MIT",
+	"version": "1.0.10",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
@@ -27,19 +28,20 @@
 		"church"
 	],
 	"homepage": "https://lavadocs.garrett.io",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/garrettjohnson/vscode-lava-syntax.git"
-	},
+	"repository": "https://github.com/garrettjohnson/vscode-lava-syntax.git",
 	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"qna": "https://github.com/garrettjohnson/vscode-lava-syntax",
-	"main": "./main.js",
+	"main": "./out/main.js",
 	"scripts": {
+		"vscode:prepublish": "npm run compile",
+		"compile": "tsc -p ./",
 		"pack": "vsce package",
-		"publish": "vsce publish"
+		"publish": "vsce publish",
+		"test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath="
 	},
 	"activationEvents": [
-		"onCommand:rock-lava.openconnectionstrings"
+		"onCommand:rock-lava.openconnectionstrings",
+		"onLanguage:lava"
 	],
 	"contributes": {
 		"commands": [
@@ -49,11 +51,28 @@
 				"category": "Rock"
 			}
 		],
+		"configuration": {
+			"type": "object",
+			"title": "Lava Language Configuration",
+			"properties": {
+				"lava.snippets": {
+					"type": "boolean",
+					"default": true,
+					"description": "Activates Lava snippets."
+				},
+				"lava.hover": {
+					"type": "boolean",
+					"default": true,
+					"description": "Enable Lava on hover."
+				}
+			}
+		},
 		"configurationDefaults": {
 			"[lava]": {
 				"editor.insertSpaces": true,
 				"editor.tabSize": 4,
 				"editor.autoIndent": "full",
+				"editor.snippetSuggestions": "bottom",
 				"files.insertFinalNewline": true,
 				"files.trimTrailingWhitespace": true
 			},
@@ -73,7 +92,15 @@
 				"extensions": [
 					".lava"
 				],
-				"configuration": "./lava.language-configuration.json"
+				"configuration": "./syntaxes/lava.language-configuration.json"
+			},
+			{
+				"id": "lavadoc",
+				"aliases": [
+					"Lava Documentation"
+				],
+				"extensions": [],
+				"configuration": "./syntaxes/lava.language-configuration.json"
 			},
 			{
 				"id": "xaml",
@@ -84,7 +111,7 @@
 				"extensions": [
 					".xaml"
 				],
-				"configuration": "./xaml.language-configuration.json"
+				"configuration": "./syntaxes/xaml.language-configuration.json"
 			},
 			{
 				"id": "cshtml",
@@ -103,7 +130,7 @@
 					".cshtml",
 					".master"
 				],
-				"configuration": "./cshtml.language-configuration.json"
+				"configuration": "./syntaxes/cshtml.language-configuration.json"
 			}
 		],
 		"grammars": [
@@ -121,6 +148,11 @@
 				}
 			},
 			{
+				"language": "lavadoc",
+				"scopeName": "text.html.lavadoc",
+				"path": "./syntaxes/lavadoc.tmLanguage.json"
+			},
+			{
 				"language": "xaml",
 				"scopeName": "text.xml.xaml",
 				"path": "./syntaxes/xaml.tmLanguage.json"
@@ -129,31 +161,7 @@
 		"snippets": [
 			{
 				"language": "lava",
-				"path": "./snippets/lava.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-commands.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-dates.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-numeric.json"
-			},
-			{
-				"language": "lava",
 				"path": "./snippets/lava-other.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-person.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/lava-text.json"
 			},
 			{
 				"language": "lava",
@@ -170,11 +178,20 @@
 			{
 				"language": "xaml",
 				"path": "./snippets/rock-xaml.json"
-			},
-			{
-				"language": "xaml",
-				"path": "./snippets/lava.json"
 			}
 		]
+	},
+	"devDependencies": {
+		"@types/glob": "^7.1.4",
+		"@types/node": "^16.7.6",
+		"@types/vscode": "^1.59.0",
+		"typescript": "^4.4.3",
+		"@vscode/test-web": "^0.0.12",
+		"ts-loader": "^9.2.5",
+		"webpack": "^5.52.1",
+		"webpack-cli": "^4.8.0",
+		"@types/webpack-env": "^1.16.2",
+		"assert": "^2.0.0",
+		"process": "^0.11.10"
 	}
 }

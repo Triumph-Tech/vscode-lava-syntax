@@ -1,0 +1,44 @@
+{
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Lava Docs",
+  "scopeName": "text.html.lavadoc",
+  "fileTypes": [
+    "lavadoc"
+  ],
+  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest)[^(%})]+-?%}",
+  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
+  "patterns": [
+    {
+      "include": "#string-quoted-single"
+    },
+    {
+      "include": "#string-quoted-double"
+    },
+    {
+      "include": "#entityname"
+    },
+    {
+      "include": "#parameter-other"
+    }
+  ],
+  "repository": {
+    "string-quoted-single": {
+      "name": "string.quoted.single.lava",
+      "begin": "'",
+      "end": "'"
+    },
+    "string-quoted-double": {
+      "name": "string.quoted.double.lava",
+      "begin": "\"",
+      "end": "\""
+    },
+    "parameter-other": {
+      "name": "variable.parameter.lava",
+      "match": "\\w+"
+    },
+    "entityname": {
+      "name": "entity.name.function.lava",
+      "match": "^[a-zA-Z0-9_-]+\\b"
+    }
+  }
+}

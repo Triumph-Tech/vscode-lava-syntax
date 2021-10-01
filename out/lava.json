@@ -1,0 +1,3538 @@
+{
+    "$schema": "./lavaspecs.json",
+    "engine": "Lava",
+    "updated": "03-05-2020",
+    "snippets": {
+        "assign": {
+            "description": "Create a variables",
+            "example": "{% assign name = 'Ted Decker' %}",
+            "snippet": "{%- assign ${1:variable} = ${2:value} $0-%}"
+        },
+        "capture": {
+            "description": "Captures the string inside of the opening and closing tags and assigns it to a variable.",
+            "example": "{% capture myVariable %}I am being captured.{% endcapture %}",
+            "snippet": [
+                "{% capture ${1:variable} %}$2{% endcapture %}"
+            ]
+        },
+        "for": {
+            "description": "Iteration tag: for",
+            "example": "{% for item in collection %} \n\t... \n{% endfor %}",
+            "snippet": [
+                "{% for ${1:item} in ${2:collection} %}",
+                "\t$0",
+                "{% endfor %}"
+            ]
+        },
+        "forCount": {
+            "description": "Iteration tag: For range. Defines a range of numbers to loop through. The range can be defined by both literal and variable numbers.",
+            "example": "{% for i in (1..10) %}\n\t...\n{% endfor %}",
+            "snippet": [
+                "{% for ${1:i} in (${2:1}..${3:10}) %}",
+                "\t$0",
+                "{% endfor %}"
+            ]
+        },
+        "include": {
+            "description": "Theme tag: include",
+            "snippet": [
+                "{%- include '${1:~~/Assets/Lava/${TM_FILENAME}}' -%}"
+            ]
+        },
+        "Global": {
+            "description": "Create a variable",
+            "example": "{{ 'Global' | Attribute:'AttributeKey' }}",
+            "snippet": "{{ 'Global' | Attribute:'${1|CurrencySymbol,EmailFooter,EmailHeader,EmailHeaderLogo,GoogleAPIKey,GradeTransitionDate,InternalApplicationRoot,OrganizationAbbreviation,OrganizationAddress,OrganizationEmail,OrganizationName,OrganizationPhone,OrganizationWebsite,PublicApplicationRoot|}' }}"
+        },
+        "if-": {
+            "description": "Control flow tag: if, whitespaced",
+            "example": "{%- if condition -%}\n\t...\n{%- endif -%}",
+            "snippet": [
+                "{%- if ${1:condition} -%}",
+                "\t$0",
+                "{%- endif -%}"
+            ]
+        },
+        "ifelse-": {
+            "description": "Control flow tag: if else, whitespaced",
+            "snippet": [
+                "{%- if ${1:condition} -%}",
+                "\t$2",
+                "{%- else -%}",
+                "\t$3",
+                "{%- endif -%}"
+            ]
+        },
+        "else": {
+            "description": "Control flow tag: else",
+            "example": "{% else %}",
+            "snippet": [
+                "{% else %}",
+                "\t"
+            ]
+        },
+        "elseif": {
+            "description": "Control flow tag: elseif",
+            "example": "{% elseif condition %}",
+            "snippet": [
+                "{% elseif ${1:condition} %}",
+                "\t"
+            ]
+        },
+        "if": {
+            "description": "Executes a block of code only if a certain condition is true",
+            "example": "{% if condition %}{% endif %}",
+            "snippet": [
+                "{% if ${1:condition} %}$0{% endif %}"
+            ]
+        },
+        "ifelse": {
+            "description": "Control flow tag: if else",
+            "snippet": [
+                "{% if ${1:condition} %}",
+                "\t$2",
+                "{% else %}",
+                "\t$3",
+                "{% endif %}"
+            ]
+        },
+        "unless": {
+            "description": "The opposite of if – executes a block of code only if a certain condition is not met.",
+            "example": "{% unless condition %} {% endunless %}",
+            "snippet": [
+                "{% unless ${1:condition} %}$0{% endunless %}"
+            ]
+        },
+        "case": {
+            "description": "Control flow tag: case",
+            "example": "{% case variable %}\n\t{% when condition %}\n\t...\n\t{% else %}\n\t...\n{% endcase %}",
+            "snippet": [
+                "{% case ${1:variable} %}",
+                "\t{% when ${2:condition} %}",
+                "\t\t$3",
+                "\t{% else %}",
+                "\t\t$4",
+                "{% endcase %}"
+            ]
+        },
+        "break": {
+            "description": "Iteration tag: break",
+            "example": "{% break %}",
+            "snippet": [
+                "{% break %}"
+            ]
+        },
+        "continue": {
+            "description": "Iteration tag: continue",
+            "example": "{% continue %}",
+            "snippet": [
+                "{% continue %}"
+            ]
+        },
+        "assignAttribute": {
+            "description": "Create a variable from an attribute.",
+            "example": "{%- assign variable = Item | Attribute:'variable' -%}",
+            "snippet": [
+                "{%- assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' -%}"
+            ]
+        },
+        "assignTransform": {
+            "description": "Transform an existing Lava variable",
+            "example": "{%- assign variable = variable -%}",
+            "snippet": [
+                "{%- assign ${1:variable} = ${1} $0 -%}"
+            ]
+        },
+        "assignPersonAliases": {
+            "description": "Generate Person Aliases for use in a entity command.",
+            "example": "{% assign personAliases = CurrentPerson.Aliases | Map:'Id' | Join:'\" || PersonAliasId == \"' | Prepend:'PersonAliasId ==\"' | Append:'\"' %}",
+            "snippet": [
+                "{% assign personAliases = ${1:CurrentPerson}.Aliases | Map:'Id' | Join:'\" || PersonAliasId == \"' | Prepend:'PersonAliasId ==\"' | Append:'\"' %}"
+            ]
+        },
+        "assignNow": {
+            "description": "Assigns current date time to now.",
+            "example": "{%- assign now = 'Now' | Date -%}",
+            "snippet": [
+                "{%- assign now = 'Now' | Date -%}"
+            ]
+        },
+        "now": {
+            "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
+            "example": "{{ 'Now' | Date:'M/d/yyyy' }}",
+            "snippet": [
+                "{{ 'Now' | Date:'${1:M/d/yyyy}' $2}}"
+            ]
+        },
+        "increment": {
+            "description": "Increments a variable.",
+            "example": "{%- assign count = count | Plus:1 -%}",
+            "snippet": [
+                "{%- assign ${1:count} = ${2:$1} | Plus:${3:1} -%}"
+            ]
+        },
+        "decrement": {
+            "description": "Decreases a variable.",
+            "example": "{%- assign count = count | Minus:1 -%}",
+            "snippet": [
+                "{%- assign ${1:count} = ${2:$1} | Minus:${3:1} -%}"
+            ]
+        },
+        "debug": {
+            "description": "Debug Lava",
+            "example": "{{ 'Lava' | Debug }}",
+            "snippet": [
+                "{{ ${1:'Lava'} | Debug }}"
+            ]
+        },
+        "PersistedDataset": {
+            "description": "Creates a variable from an attribute.",
+            "example": "{%- assign variable = 'Dataset' | PersistedDataset -%}",
+            "snippet": [
+                "{%- assign ${1:variable} = '${2:Dataset}' | PersistedDataset -%}"
+            ]
+        },
+        "assignPageParameter": {
+            "description": "Creates a variable from a page parameter.",
+            "example": "{%- assign variable = PageParameter.variable -%}",
+            "snippet": [
+                "{%- assign ${2:$1} = PageParameter.${1:variable} -%}"
+            ]
+        },
+        "Entity": {
+            "description": "Entity command with conditions, a limit, and iterator option.",
+            "example": "{%- entityname where:'conditions' -%}\n\n\n{%- endentityname -%}",
+            "snippet": [
+                "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' -%}",
+                "\t{%- for ${6:item} in $4 -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- end${1:/downcase} -%}"
+            ]
+        },
+        "EntityById": {
+            "description": "Entity Command to get an entity by an ID.",
+            "example": "{%- entityname id:'100' -%}\n\t...\n{%- endentityname -%}",
+            "snippet": [
+                "{%- ${1:entityname} id:'${2:100}' securityenabled:'${3|false,true|}' -%}",
+                "\t{{ ${1:/downcase}.${4} }}$0",
+                "{%- end${1:/downcase} -%}"
+            ]
+        },
+        "EntityByIds": {
+            "description": "Get an entity by a comma separated list of ids.",
+            "example": "{%- entityname ids:'3,4,5' -%}\n\t{%- for item in Items -%}\n\n\t{%- endfor -%}\n{%- endentityname -%}",
+            "snippet": [
+                "{%- ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
+                "\t{%- for ${5:item} in $3 -%}",
+                "\t\t{{ ${5}.${6} }}$0",
+                "\t{%- endfor -%}",
+                "{%- end${1:/downcase} -%}"
+            ]
+        },
+        "EntityByDataview": {
+            "description": "Get an entity by a dataview ID",
+            "example": "{%- entityname dataview:'3' -%}\n\t{%- for item in Items -%}\n\n\t{%- endfor -%}\n{%- endentityname -%}",
+            "snippet": [
+                "{%- ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
+                "\t{%- for ${5:item} in $3 -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- end${1:/downcase} -%}"
+            ]
+        },
+        "EntityCount": {
+            "description": "Entity command to return the count only.",
+            "example": "{%- entityname where:'conditions' count:'true' -%}\n\t{%- assign entitynameCount = count -%}\n{%- endentityname -%}",
+            "snippet": [
+                "{%- ${1:entityname} where:'${2:conditions}' count:'true' securityenabled:'false' -%}",
+                "\t{%- assign ${3:${1:entityname}Count} = count -%}",
+                "{%- end${1:/downcase} -%}"
+            ]
+        },
+        "Cache": {
+            "description": "Cache the output of lava for reuse.",
+            "example": "{%- cache key:'variable' -%}\n\t...\n{%- endcache -%}",
+            "snippet": [
+                "{%- cache key:'${1:variable}' duration:'${2:3600}' twopass:'${3|false,true|}' ${4:tags:'${5:tag,list,optional}'} -%}",
+                "\t$0",
+                "{%- endcache -%}"
+            ]
+        },
+        "HasSignedIf": {
+            "description": "If statement to determine if someone has signed a document.",
+            "example": "{%- assign hasSigned = CurrentPerson | HasSignedDocument:DocumentId -%}\n{%- if hasSigned -%}\n\t{{ CurrentPerson.NickName }} has signed this document.\n{%- endif -%}",
+            "snippet": [
+                "{%- assign hasSigned = ${1:CurrentPerson} | HasSignedDocument:${2:DocumentId} -%}",
+                "{%- if hasSigned -%}",
+                "\t{{ ${1}.NickName }} has signed this document.",
+                "{%- endif -%}"
+            ]
+        },
+        "persistedEntity": {
+            "description": "Basic entity command with conditions, a limit, and iterator option.",
+            "snippet": [
+                "[",
+                "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' -%}",
+                "\t{%- for ${5:item} in $4 -%}",
+                "\t{",
+                "\t\t\"Id\": {{ ${5:/downcase}.Id }},",
+                "\t\t$0",
+                "\t}{% unless forloop.last -%},{% endunless %}",
+                "\t{%- endfor -%}",
+                "{%- end${1:/downcase} -%}",
+                "]"
+            ]
+        },
+        "persistedSql": {
+            "description": "Basic SQL persisted dataset builder",
+            "snippet": [
+                "{%- sql return:'${1:Items}' timeout:'90' -%}",
+                "\t$2",
+                "{%- endsql -%}",
+                "[",
+                "{% for ${3:item} in ${1} %}",
+                "\t{",
+                "\t\t\"Id\": {{ ${3}.Id }},",
+                "\t\t$0",
+                "\t}{% unless forloop.last -%},{% endunless %}",
+                "\t{%- endfor -%}",
+                "]"
+            ]
+        },
+        "persistedProperty": {
+            "description": "Persisted Dataset Property.",
+            "example": "\"propertyName\": {{ item.propertyName | ToJSON }},",
+            "snippet": [
+                "\"${1:propertyName}\": {{ ${2:item}.${3:${1}} | ToJSON }},"
+            ]
+        },
+        "persistedAttribute": {
+            "description": "Persisted Dataset Attribute.",
+            "example": "\"attributeName\": {{ item | Attribute:'attributeName' | ToJSON }},",
+            "snippet": [
+                "\"${1:attributeName}\": {{ ${2:item} | Attribute:'${3:${1}}' | ToJSON }},"
+            ]
+        },
+        "PersonTokenRead": {
+            "description": "Converts a person token to a person object.",
+            "example": "{%- assign token = 'Global' | PageParameter:'rckipid' -%}\n{%- assign person = token | PersonTokenRead:false,optionalPageId -%}",
+            "snippet": [
+                "{%- assign token = 'Global' | PageParameter:'${1:rckipid}' -%}",
+                "{%- assign person = token | PersonTokenRead:${2:false},${3:optionalPageId} -%}"
+            ]
+        },
+        "PluralizeForQuantity": {
+            "description": "Pluralizes the provided word if the quantity provided is greater than 1.",
+            "example": "{{ 'Word' | PluralizeForQuantity:wordCount }}",
+            "snippet": "{{ '${1:Word}' | PluralizeForQuantity:${2:wordCount} }}"
+        },
+        "js": {
+            "description": "Place a script into the page header",
+            "example": "{%- javascript -%}\n\n{%- endjavascript -%}",
+            "snippet": [
+                "{%- javascript -%}",
+                "\t$0",
+                "{%- endjavascript -%}"
+            ]
+        },
+        "jsurl": {
+            "description": "Javascript URL",
+            "example": "{%- javascript url:'https://' id:'uniqueid' -%}{%- endjavascript -%}",
+            "snippet": [
+                "{%- javascript url:'${1:https://}' id:'${2:uniqueid}' -%}{%- endjavascript -%}"
+            ]
+        },
+        "js-escape": {
+            "description": "",
+            "snippet": [
+                "{%- javascript disableanonymousfunction:'true' -%}</script>",
+                "\t$0",
+                "<script>{%- endjavascript -%}"
+            ]
+        },
+        "search": {
+            "description": "Search using Universal Search",
+            "example": "{%- search query:'variable' -%}\n\t{%- for item in results -%}\n\n\n\t{%- endfor -%}\n{%- endsearch -%}",
+            "snippet": [
+                "{%- search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' -%}",
+                "\t{%- for item in results -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- endsearch -%}"
+            ]
+        },
+        "sql": {
+            "description": "Theme tag: SQL",
+            "snippet": [
+                "{%- sql return:'${1:Items}' ${2:timeout:'${3:10}'} -%}",
+                "\t$4",
+                "{%- endsql -%}",
+                "{% for ${5:item} in ${1} %}",
+                "\t$0",
+                "{% endfor %}"
+            ]
+        },
+        "style": {
+            "description": "Place a CSS stylesheet into the page header",
+            "example": "{% stylesheet %}\n#content-wrapper {\n\tbackground-color: red !important;\n\tcolor: #fff;\n}\n{% endstylesheet %}",
+            "snippet": [
+                "{%- stylesheet id:'${1:uniqueid}' -%}",
+                "\t$0",
+                "{%- endstylesheet -%}"
+            ]
+        },
+        "webrequest": {
+            "description": "Send a HTTP request to a remote server.",
+            "example": "{%- webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' -%}\n\n{%- endwebrequest -%}",
+            "snippet": [
+                "{%- webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' -%}",
+                "\t{%- for item in results -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- endwebrequest -%}"
+            ]
+        },
+        "workflowactivate": {
+            "description": "Launch a new workflow or activate a new activity on a current workflow.",
+            "example": "{% workflowactivate workflowtype:'workflowId' %}\nActivated new workflow with the id of #{{ Workflow.Id }}.\n{% endworkflowactivate %}",
+            "snippet": [
+                "{% workflowactivate workflowtype:'${1:workflowId}' %}",
+                "\tActivated new workflow with the id of #{{ Workflow.Id }}.$0",
+                "{% endworkflowactivate %}"
+            ]
+        },
+        "eventscheduledinstance": {
+            "description": "Get a summary list of EventScheduledInstances from the provided event.",
+            "example": "{%- eventscheduledinstance eventid:'1' -%}\n\t...\n{%- endeventscheduledinstance -%}",
+            "snippet": [
+                "{%- eventscheduledinstance eventid:'${1:1}' ${2:maxoccurrences:'${3:100}'} ${4:daterange:'${5:2m}'} ${6:campusids:'${7:1}'} -%}",
+                "\t{%- for ${8:item} in ${9|EventScheduledInstances,EventItems|} -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- endeventscheduledinstance -%}"
+            ]
+        },
+        "interactionwrite": {
+            "description": "Write a Rock interaction.",
+            "example": "{%- interactionwrite ... -%}{{ currentUrl }}{%- endinteractionwrite -%}",
+            "snippet": [
+                "{%- assign currentUrl = 'Global'| Page:'Url' -%}",
+                "{%- assign siteId = 'Global' | Page:'SiteId' -%}",
+                "{%- interactionwrite channeltypemediumvalueid:'${1:1}' channelentityid:'${3:{{ ${2:Item}.ChannelId \\}\\}}' channelname:'${4:{{ $2.ChannelName \\}\\}}' componententitytypeid:'${5:4}' componententityid:'${6:{{ $2.Id \\}\\}}' componentname:'${7:{{ $2.Title \\}\\}}' operation:'${8:View}' summary:'${9:Viewed \"{{ Item.Title \\}\\}\"}' channelcustom1:'${10:{{ siteId \\}\\}}' personaliasid:'${11:{{ CurrentPerson.PrimaryAliasId \\}\\}}' source:'${12:{{ PageParameter.utm_source \\}\\}}' medium:'${13:{{ PageParameter.utm_medium \\}\\}}' campaign:'${14:{{ PageParameter.utm_campaign \\}\\}}' -%}${15:{{ currentUrl \\}\\}}{%- endinteractionwrite -%}"
+            ]
+        },
+        "interactioncontentchannelitemwrite": {
+            "description": "Write a content channel interaction for the specified content channel item.",
+            "example": "{%- interactioncontentchannelitemwrite contentchannelitemid:'1' operation:'View' summary:'Viewed content channel item' ... -%}",
+            "snippet": [
+                "{%- interactioncontentchannelitemwrite contentchannelitemid:'${1:1}' operation:'${2:View}' summary:'${3:Viewed content channel item}' ${4:personaliasid:'${5:100}'} source:'${6:{{ PageParameter.utm_source \\}\\}}' medium:'${7:{{ PageParameter.utm_medium \\}\\}}' campaign:'${8:{{ PageParameter.utm_campaign \\}\\}}' -%}"
+            ]
+        },
+        "styleurl": {
+            "description": "",
+            "example": "{{ 'styleurl' | AddCssLink }}",
+            "snippet": [
+                "{{ '${1:styleurl}' | AddCssLink }}"
+            ]
+        },
+        "CalendarEvents": {
+            "description": "Get a summary list of EventScheduledInstances from the provided calendar.",
+            "example": "{%- calendarevents calendarid:'1' -%}\n\t...\n{%- endcalendarevents -%}",
+            "snippet": [
+                "{%- calendarevents calendarid:'${1:1}' ${2:audienceids:'${3:0}'} maxoccurrences:'${4:100}' ${5:campusids:'${6:1}'} -%}",
+                "\t{%- for ${7:item} in EventScheduledInstances -%}",
+                "\t\t$0",
+                "\t{%- endfor -%}",
+                "{%- endcalendarevents -%}"
+            ]
+        },
+        "when": {
+            "description": "Control flow tag: when",
+            "example": "{% when condition %}",
+            "snippet": [
+                "{% when ${1:condition} %}",
+                "$0"
+            ]
+        },
+        "cycle": {
+            "description": "Iteration tag: cycle",
+            "example": "{% cycle 'odd', 'even' %}",
+            "snippet": [
+                "{% cycle '${1:odd}', '${2:even}' %}"
+            ]
+        },
+        "cyclegroup": {
+            "description": "Iteration tag: cycle group",
+            "example": "{% cycle 'group name': 'odd', 'even' %}",
+            "snippet": [
+                "{% cycle '${1:group name}': '${2:odd}', '${3:even}' %}$0"
+            ]
+        },
+        "includewith": {
+            "description": "Theme tag: include with parameters",
+            "example": "{% include 'snippet', variable:value %}",
+            "snippet": [
+                "{% include '${1:snippet}', ${2:variable}:${3:value} %}"
+            ]
+        },
+        "execute": {
+            "description": "Command tag: execute",
+            "example": "{%- execute -%}\n\t...\n{%- endexecute -%}",
+            "snippet": [
+                "{%- execute -%}",
+                "\t$0",
+                "{%- endexecute -%}"
+            ]
+        },
+        "raw": {
+            "description": "Raw temporarily disables tag processing. This is useful for generating content (eg, Mustache, Handlebars) which uses conflicting syntax.",
+            "example": "{% raw %}{% endraw %}",
+            "snippet": [
+                "{% raw %}$0{% endraw %}"
+            ]
+        },
+        "return": {
+            "description": "Stop processing any remaining lava/html.",
+            "example": "{% return %}",
+            "snippet": [
+                "{% return %}"
+            ]
+        },
+        "comment-": {
+            "description": "Allows you to leave un-rendered code inside a Lava template. Any text within the opening and closing comment blocks will not be printed, and any Lava code within will not be executed.",
+            "example": "{%- comment -%}{%- endcomment -%}",
+            "snippet": [
+                "{%- comment -%}$0{%- endcomment -%}"
+            ]
+        },
+        "else-": {
+            "description": "Control flow tag: else, whitespaced",
+            "example": "{%- else -%}",
+            "snippet": [
+                "{%- else -%}",
+                "\t$0"
+            ]
+        },
+        "elseif-": {
+            "description": "Control flow tag: elsif, whitespaced",
+            "example": "{%- elseif condition -%}",
+            "snippet": [
+                "{%- elseif ${1:condition} -%}",
+                "\t$0"
+            ]
+        },
+        "unless-": {
+            "description": "Control flow tag: unless, whitespaced",
+            "example": "{%- unless condition -%}\n\t...\n{%- endunless -%}",
+            "snippet": [
+                "{%- unless ${1:condition} -%}",
+                "\t$0",
+                "{%- endunless -%}"
+            ]
+        },
+        "case-": {
+            "description": "Creates a switch statement to compare a variable with different values. case initializes the switch statement, and when compares its values.",
+            "example": "{%- case variable -%}\n\t{%- when condition -%}\n\t...\n\t{%- else -%}\n\t...\n{%- endcase -%}",
+            "snippet": [
+                "{%- case ${1:variable} -%}",
+                "\t{%- when ${2:condition} -%}",
+                "\t\t$3",
+                "\t{%- else -%}",
+                "\t\t$4",
+                "{%- endcase -%}"
+            ]
+        },
+        "when-": {
+            "description": "Control flow tag: when, whitespaced",
+            "example": "{%- when condition -%}",
+            "snippet": [
+                "{%- when ${1:condition} -%}",
+                "$0"
+            ]
+        },
+        "cycle-": {
+            "description": "Iteration tag: cycle, whitespaced",
+            "example": "{%- cycle 'odd', 'even' -%}",
+            "snippet": [
+                "{%- cycle '${1:odd}', '${2:even}' -%}"
+            ]
+        },
+        "cyclegroup-": {
+            "description": "Iteration tag: cycle group, whitespaced",
+            "example": "{%- cycle 'group name': 'odd', 'even' -%}",
+            "snippet": [
+                "{%- cycle '${1:group name}': '${2:odd}', '${3:even}' -%}"
+            ]
+        },
+        "for-": {
+            "description": "Iteration tag: for, whitespaced",
+            "example": "{%- for item in collection -%}\n\t...\n{%- endfor -%}",
+            "snippet": [
+                "{%- for ${1:item} in ${2:collection} -%}",
+                "\t$0",
+                "{%- endfor -%}"
+            ]
+        },
+        "continue-": {
+            "description": "Iteration tag: continue, whitespaced",
+            "example": "{%- continue -%}",
+            "snippet": [
+                "{%- continue -%}"
+            ]
+        },
+        "capture-": {
+            "description": "Variable tag: capture, whitespaced",
+            "example": "{%- capture variable -%}{%- endcapture -%}",
+            "snippet": [
+                "{%- capture ${1:variable} -%}$0{%- endcapture -%}"
+            ]
+        },
+        "Pagination": {
+            "snippet": [
+                "<div class=\"${1:clearfix mt-5}\">",
+                "  {%- assign nextPageString = Pagination.NextPage | ToString -%}",
+                "  {%- assign prevPageString = Pagination.PreviousPage | ToString -%}",
+                "",
+                "  {% if Pagination.PreviousPage != -1 %}",
+                "  <a class=\"btn btn-primary pull-left\" href=\"{{Pagination.UrlTemplate | Replace:'PageNum', prevPageString}}\">",
+                "    ${2:Previous}",
+                "  </a>",
+                "  {% endif %}",
+                "",
+                "  {% if Pagination.NextPage != -1 %}",
+                "  <a class=\"btn btn-primary pull-right\" href=\"{{Pagination.UrlTemplate | Replace:'PageNum', nextPageString}}\">",
+                "    ${3:Next}",
+                "  </a>",
+                "  {% endif %}",
+                "</div>"
+            ],
+            "description": ""
+        },
+        "tag": {
+            "description": "Tag, creates the logic and control flow for templates.",
+            "example": "{% %}",
+            "snippet": [
+                "{% $0 %}"
+            ]
+        },
+        "obj": {
+            "description": "Objects, display liquid on a page.",
+            "example": "{{ }}",
+            "snippet": [
+                "{{ $0 }}"
+            ]
+        }
+    },
+    "filters": {
+        "Attribute": {
+            "description": "Gets a attribute from a given object",
+            "example": "{{ object | Attribute:'AttributeName' }}",
+            "snippet": "Attribute:'${1:AttributeName}'",
+            "type": "Text",
+            "link": "https://community.rockrms.com/lava",
+            "sortPriority": 0,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "AttributeKey",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "FilterQualifier",
+                    "description": "Optional qualifier to access additional properties on an attribute. Typical values include `RawValue`, `Object`, `Url`, `Id`, `Guid`",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Append": {
+            "description": "Appends characters to a string.",
+            "example": "{{ content | Append:'string' }}",
+            "snippet": "Append:'${1:string}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#append",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "Characters to append to a string.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Capitalize": {
+            "description": "Capitalizes the first letter of each word. The string 'lorem ipsum dolor' would become 'Lorem Ipsum Dolor'. To capitalize the first word only use `SentenceCase`.",
+            "example": "{{ content | Capitalize }}",
+            "snippet": "Capitalize",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#capitalize"
+        },
+        "Decrypt": {
+            "description": "Decrypts an encrypted value.",
+            "example": "{{ content | Decrypt }}",
+            "snippet": "Decrypt",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#decrypt"
+        },
+        "Default": {
+            "description": "Returns the passed default value if the value is undefined or empty, otherwise the value of the variable.",
+            "example": "{{ content | Default:'string' }}",
+            "snippet": "Default:'${1:string}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#default",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "Default string to return when undefined or empty.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Downcase": {
+            "description": "Converts a string into lowercase.",
+            "example": "{{ 'LOWERCASE' | Downcase }}\nlowercase",
+            "snippet": "Downcase",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#downcase"
+        },
+        "Escape": {
+            "description": "HTML encode string. All <tags> will be encoded to '&lt;tags&gt;'",
+            "example": "{{ content | Escape }}",
+            "snippet": "Escape",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#escape"
+        },
+        "EscapeDataString": {
+            "description": "Converts a string to its escaped representation using Uri.EscapeDataString (aka URL Encoding).",
+            "example": "{{ content | EscapeDataString }}",
+            "snippet": "EscapeDataString",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#escapedatastring"
+        },
+        "FromMarkdown": {
+            "description": "Converts a string of Markdown to HTML. See the Commonmark website for details on Markdown syntax.",
+            "example": "{{ content | FromMarkdown }}",
+            "snippet": "FromMarkdown",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#frommarkdown"
+        },
+        "HtmlDecode": {
+            "description": "Decodes an escaped string of HTML.",
+            "example": "{{ content | HtmlDecode }}",
+            "snippet": "HtmlDecode",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#htmldecode"
+        },
+        "Humanize": {
+            "description": "This filter takes computer friendly strings like 'camelCase', 'underscore_a_point' or 'css-classes' and makes them friendly to us humans... 'Camel case', 'underscore a point' or 'css classes'.",
+            "example": "{{ content | Humanize }}",
+            "snippet": "Humanize",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#humanize"
+        },
+        "Linkify": {
+            "description": "Convert strings within the text that appear to be http/ftp/https links into clickable html links.",
+            "example": "{{ content | Linkify }}",
+            "snippet": "Linkify",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#linkify"
+        },
+        "NewlineToBr": {
+            "description": "Add <br/> tags in front of all newlines in the string",
+            "example": "{{ content | NewlineToBr }}",
+            "snippet": "NewlineToBr",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#newlinetobr"
+        },
+        "ObfuscateEmail": {
+            "description": "Hides the details of an email address with enough information to confirm that it was sent to an address the user would recognize.",
+            "example": "{{ content | ObfuscateEmail }}",
+            "snippet": "ObfuscateEmail",
+            "type": "Text",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#obfuscateemail"
+        },
+        "Pluralize": {
+            "description": "Pluralizes the provided input while taking irregular and uncountable words into consideration.",
+            "example": "{{ content | Pluralize }}",
+            "snippet": "Pluralize",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#pluralize"
+        },
+        "PluralizeForQuantity": {
+            "description": "Pluralizes the provided word if the quantity provided is greater than 1.",
+            "example": "{{ 'Item' | PluralizeForQuantity:Quantity }}",
+            "snippet": "PluralizeForQuantity:${1:Quantity}",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#pluralizeforquantity",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Quantity",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Possessive": {
+            "description": "Returns the possessive form of the string.",
+            "example": "{{ 'Ted' | Possessive }}",
+            "snippet": "Possessive",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#possessive"
+        },
+        "Prepend": {
+            "description": "Prepends characters to a string.",
+            "example": "{{ content | Prepend:'string' }}",
+            "snippet": "Prepend:'${1:string}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#prepend",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ReadTime": {
+            "description": "Calculates the approximate reading time for a given string.",
+            "example": "{{ content | ReadTime }}",
+            "snippet": "ReadTime",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#readtime",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "WordsPerMinute",
+                    "description": "Reading speed, defaults to 275.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "SecondsPerImage",
+                    "description": "The seconds per image calculation uses 12 seconds (or the provided value), and subtracts a second for each subsequent image, with each additional image adding a minimum of 3 seconds to the read time.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RegExMatch": {
+            "description": "Tests the input against a Regular Expression to determine if it is a match.",
+            "example": "{{ content | RegExMatch:'\\w+' }}",
+            "snippet": "RegExMatch:${1:expression}",
+            "type": "Text",
+            "returns": "boolean",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#regexmatch",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Expression",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RegExMatchValue": {
+            "description": "Tests the input against a Regular Expression and returns the matching substring if a match is made; otherwise it returns nothing.",
+            "example": "{{ content | RegExMatchValue:'\\w+' }}",
+            "snippet": "RegExMatchValue:${1:expression}",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#regexmatchvalue",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Expression",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RegExMatchValues": {
+            "description": "Tests the input against a Regular Expression and returns an array of the matching substrings. If no match is made, it will return an empty array.",
+            "example": "{{ content | RegExMatchValues:'\\w+' }}",
+            "snippet": "RegExMatchValues:${1:expression}",
+            "type": "Text",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#regexmatchvalues",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Expression",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RegExReplace": {
+            "description": "Replaces a portion of the string passed as the input to the filter with Regular Expression matching.",
+            "example": "{{ 'The Rock is awesome.' | RegExReplace:'the rock','Rock','i' }}",
+            "snippet": "RegExReplace:${1:matchExpression},${2:'${3:replacement}'},'${4|i,m|}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#regexreplace",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "MatchExpression",
+                    "description": "The regular expression to match on.",
+                    "required": true,
+                    "accepts": [
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Replacement",
+                    "description": "The replacement string.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Flags",
+                    "description": "...",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Remove": {
+            "description": "Removes all occurrences of a substring from a string.",
+            "example": "{{ 'Hello world. Goodbye world.' | Remove:' world' }}",
+            "snippet": "Remove:'${1:string}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#remove",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RemoveFirst": {
+            "description": "Removes only the first occurrence of a substring from a string.",
+            "example": "{{ 'Hello world. Goodbye world.' | RemoveFirst:' world' }}",
+            "snippet": "RemoveFirst:'${1:string}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#removefirst",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Replace": {
+            "description": "Replaces all occurrences of a string with a substring.",
+            "example": "{{ 'Hello' | Replace:'Hello','Goodbye' }}",
+            "snippet": "Replace:'${1:target}','${2:replace}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#replace",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Target",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Replacement",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ReplaceFirst": {
+            "description": "Replaces the first occurrence of a string with a substring.",
+            "example": "{{ 'We Will We Will Rock You' | ReplaceFirst:'We Will','Rock Will' }}",
+            "snippet": "ReplaceFirst:'${1:target}','${2:replace}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#replacefirst",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Target",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Replacement",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ReplaceLast": {
+            "description": "Replaces the last occurrence of a string with a substring.",
+            "example": "{{ 'Red, White, Blue' | ReplaceLast:',',' and' }}",
+            "snippet": "ReplaceLast:'${1:target}','${2:replace}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#replacelast",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Target",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Replacement",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Right": {
+            "description": "Returns the right most part of a string of the given length.",
+            "example": "{{ cardNumber | Right:4 }}",
+            "snippet": "Right:${1:Integer}",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#right",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Length",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "SanitizeSql": {
+            "description": "Accepts a string as input and sanitizes it for use in a SQL statement.",
+            "example": "{{ content | SanitizeSql }}",
+            "snippet": "SanitizeSql",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#sanitizesql"
+        },
+        "SentenceCase": {
+            "description": "Changes the string to be in sentence case.",
+            "example": "{{ 'Good To Great.' | SentenceCase }}",
+            "snippet": "SentenceCase",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#sentencecase"
+        },
+        "Singularize": {
+            "description": "It’s like the antidote to pluralize. Makes plural words singular.",
+            "example": "{{ 'Members' | Singularize }}",
+            "snippet": "Singularize",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#singularize"
+        },
+        "Size": {
+            "description": "Returns the length of the string, including all characters and spaces.",
+            "example": "{{ string | Size }}",
+            "snippet": "Size",
+            "type": "Text",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#size"
+        },
+        "Slice": {
+            "description": "The slice filter returns a substring, starting at the specified index. An optional second parameter can be passed to specify the length of the substring.",
+            "example": "{{ string | Slice: 0, 2 }}",
+            "snippet": "Slice:${1:0},${2:5}",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#slice",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Index",
+                    "description": "Index value to begin returning a substring.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Length",
+                    "description": "Optional length to return. If no value given, a substring of one character will be returned.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Split": {
+            "description": "The split filter takes on a substring as a parameter. The substring is used as a delimiter to divide a string into an array. You can output different parts of an array using array filters.",
+            "example": "{% assign array = commaSeparated | Split:',' %}",
+            "snippet": "Split:'${1:,}'",
+            "type": "Text",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#split",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "StripHtml": {
+            "description": "Strips HTML tags from a string.",
+            "example": "{{ string | StripHtml }}",
+            "snippet": "StripHtml",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#striphtml"
+        },
+        "StripNewlines": {
+            "description": "Removes any line breaks/newlines from a string.",
+            "example": "{{ string | StripNewlines }}",
+            "snippet": "StripNewlines",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#stripnewlines"
+        },
+        "TitleCase": {
+            "description": "Takes an ordinary string like 'of mice and men' and makes it usable as a title, 'Of Mice And Men'.",
+            "example": "{{ string | TitleCase }}",
+            "snippet": "TitleCase",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#titlecase"
+        },
+        "ToCssClass": {
+            "description": "Converts string to a CSS class name format (e.g. `home-phone`).",
+            "example": "{{ 'home phone' | ToCssClass }}",
+            "snippet": "ToCssClass",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#tocssclass"
+        },
+        "ToPascal": {
+            "description": "For all the programmers in the house. This will take a string and return it back in PascalCase.",
+            "example": "{{ string | ToPascal }}",
+            "snippet": "ToPascal",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#topascal"
+        },
+        "Trim": {
+            "description": "Removes all blank spaces at the beginning and end of a string.",
+            "example": "{{ string | Trim }}",
+            "snippet": "Trim",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#trim"
+        },
+        "Truncate": {
+            "description": "Truncates a string down to the number of characters passed as the first parameter. An ellipsis (...) is appended to the truncated string and is included in the character count.",
+            "example": "{{ string | Truncate:9,'...' }}",
+            "snippet": "Truncate:${1:20},'${2:...}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#truncate",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "CharacterCount",
+                    "description": "Number of characters to truncate to.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "AppendingString",
+                    "description": "String to append to end of a truncated string. The length of the appending string will be counted in the truncate size. If no appending string is provided '...' will be used.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "TruncateWords": {
+            "description": "Truncates a string down to the number of words passed as the first parameter. An ellipsis (...) is appended to the truncated string.",
+            "example": "{{ string | TruncateWords:9,'...' }}",
+            "snippet": "TruncateWords:${1:5},'${2:...}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#truncatewords",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "WordCount",
+                    "description": "Number of words to truncate to.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "AppendingString",
+                    "description": "If no appending string is provided an ellipsis (...) is appended to the truncated string.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "UnescapeDataString": {
+            "description": "Converts a string to its escaped representation using Uri.EscapeDataString (aka URL Decoding).",
+            "example": "{{ 'Hello%20There' | UnescapeDataString }}",
+            "snippet": "UnescapeDataString",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#unescapedatastring-aka-urldecode-"
+        },
+        "Upcase": {
+            "description": "Converts a string into uppercase.",
+            "example": "{{ 'yelling' | Upcase }}\nYELLING",
+            "snippet": "Upcase",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#upcase"
+        },
+        "WithFallback": {
+            "description": "This filter allows you to eliminate conditional tests for `null` or empty values by allowing you to provide fallback text.",
+            "example": "{{ CurrentPerson.NickName | WithFallback:', are', 'Are' }}",
+            "snippet": "WithFallback:'${1:Has Value}','${2:Missing Value}'",
+            "type": "Text",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/text-filters#withfallback",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "SuccessText",
+                    "description": "Shown when input is not `null` or an empty string.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "FallbackText",
+                    "description": "Shown when input is `null` or an empty string.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Date": {
+            "description": "Displays the date given a format string. The string 'Now' can be used for the current date/time.",
+            "example": "{{ date | Date:'M/d/yyyy' }}",
+            "snippet": "Date:'${1|M/d/yyyy,MMMM d\\, yyyy,dddd\\, MMMM d\\, yyyy,yyyy-MM-ddTHH:mm:sszzz,h:mm tt,sd,st|}'",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#date",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "DateFormat",
+                    "description": "Format for a given date using [.NET Custom Date Formatting](https://docs.microsoft.com/en-us/dotnet/standard/base-types/custom-date-and-time-format-strings?redirectedfrom=MSDN)",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "DateAdd": {
+            "description": "Adds a span of time to a provided date (default is in days).",
+            "example": "{{ date | DateAdd:14,'d' }}",
+            "snippet": "DateAdd:${1:DateValue},'${2|d,Y,M,h,m,s|}'",
+            "type": "Date",
+            "returns": "date",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#dateadd",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "TimeSpan",
+                    "description": "Value to add to the initial date.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Unit",
+                    "description": "Unit of intervals to add, default is in days. Valid units are: `Y` - Years, `M` - Months, `w` - Weeks, `d` - Days, `h` - Hours, `m` - Minutes, `s` - Seconds",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "DateDiff": {
+            "description": "Takes two DateTimes and returns the difference in the unit you provide. You can provide the value 'Now' for either the start or end date.",
+            "example": "{{ FirstVisit | DateDiff:SecondVisit,'d' }}",
+            "snippet": "DateDiff:${1:DateValue},'${2|d,Y,M,h,m,s|}'",
+            "type": "Date",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#datediff",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "EndDate",
+                    "description": "DateTime for second date",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Unit",
+                    "description": "The difference in the unit provided. Valid units are: `Y` - Years, `M` - Months, `d` - Days, `h` - Hours, `m` - Minutes, `s` - Seconds",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "DatesFromICal": {
+            "description": "Returns a list of upcoming dates from an iCal string or List of iCal strings.",
+            "example": "{{ object.Schedule.iCalendarContent | DatesFromICal }}",
+            "snippet": "DatesFromICal:'${1:All}'",
+            "type": "Date",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#datesfromical",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "OccurrenceCount",
+                    "description": "The number of occurrences to display. `All` can be used to return up to one year of events.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "EndDateTime",
+                    "description": "If 'EndDateTime' is provided, the EndTime property of the iCal's occurrence is returned instead of the StartTime.",
+                    "required": false,
+                    "accepts": [
+                        "$string"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "StartDateTime",
+                    "description": "An optional date/time value that represents the start of the occurrence period.",
+                    "required": false,
+                    "accepts": [
+                        "$reference",
+                        "$string"
+                    ]
+                }
+            ]
+        },
+        "DaysFromNow": {
+            "description": "Returns a humanized string of the number of days from now without concern for time.",
+            "example": "{{ date | DaysFromNow }}",
+            "snippet": "DaysFromNow",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#daysfromnow"
+        },
+        "DaysInMonth": {
+            "description": "Returns the number of days in the month you provide.",
+            "example": "{{ date | DaysInMonth }}",
+            "snippet": "DaysInMonth",
+            "type": "Date",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#daysinmonth",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Month",
+                    "description": "Optional integer value of month, if not passing date object.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Year",
+                    "description": "Optional integer value of year, if not passing date object.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "DaysSince": {
+            "description": "Returns the number of days that have passed since a given date.",
+            "example": "{{ date | DaysSince }}",
+            "snippet": "DaysSince",
+            "type": "Date",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#dayssince"
+        },
+        "DaysUntil": {
+            "description": "Returns the number of days from now.",
+            "example": "{{ date | DaysUntil }}",
+            "snippet": "DaysUntil",
+            "type": "Date",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#daysuntil"
+        },
+        "HumanizeDateTime": {
+            "description": "Compares the provided date/time to the current date/time and returns a human friendly string like 'yesterday' or '2 hours ago'.",
+            "example": "{{ date | HumanizeDateTime }}",
+            "snippet": "HumanizeDateTime",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#humanizedatetime",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "DateComparison",
+                    "description": "DO NOT USE",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "HumanizeTimeSpan": {
+            "description": "Takes two DateTimes and humanizes the difference like '1 day'. Supports 'Now' in either the start or end date.",
+            "example": "{{ date | HumanizeTimeSpan:secondDate,precision }}",
+            "snippet": "HumanizeTimeSpan:${1:secondDate},${2|2,3,4,5,1|}",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#humanizetimespan",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "EndDateTime",
+                    "description": "...",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Precision",
+                    "description": "Optional precision value to enhance the detail of the description.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "NextDayOfTheWeek": {
+            "description": "Advances the date to a specific day in the next 7 days.",
+            "example": "{{ date | NextDayOfTheWeek:'Monday' }}",
+            "snippet": "NextDayOfTheWeek:'${1|Sunday,Monday,Tuesday,Wednesday,Thursday,Friday,Saturday|}'",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#nextdayoftheweek",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "DayOfWeek",
+                    "description": "Name of the day of the week.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "NumberOfWeeks",
+                    "description": "Number of weeks from the current date.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$integer",
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "SundayDate": {
+            "description": "Returns the Sunday date (without time) of the date provided.",
+            "example": "{{ date | SundayDate }}",
+            "snippet": "SundayDate",
+            "type": "Date",
+            "returns": "date",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#sundaydate"
+        },
+        "ToMidnight": {
+            "description": "Sets the time to midnight for a specific day.",
+            "example": "{{ date | ToMidnight }}",
+            "snippet": "ToMidnight",
+            "type": "Date",
+            "returns": "date",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#tomidnight"
+        },
+        "AtLeast": {
+            "description": "Limits a number to a minimum value.",
+            "example": "{{ number | AtLeast:5 }}",
+            "snippet": "AtLeast:${1:5}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#atleast",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "MinimumValue",
+                    "description": "Numeric minimum value.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AtMost": {
+            "description": "Limits a number to a maximum value.",
+            "example": "{{ number | AtMost:5 }}",
+            "snippet": "AtMost:${1:5}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#atmost",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "MaximumValue",
+                    "description": "Numeric maximum value.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Ceiling": {
+            "description": "Takes a number and returns the next largest integer.",
+            "example": "{{ number | Ceiling }}",
+            "snippet": "Ceiling",
+            "type": "Numeric",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#ceiling"
+        },
+        "DividedBy": {
+            "description": "Divides a number by the number provided.",
+            "example": "{{ number | DividedBy:2 }}",
+            "snippet": "DividedBy:${1:2}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#dividedby",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Floor": {
+            "description": "Takes a number and returns the next smallest integer.",
+            "example": "{{ number | Floor }}",
+            "snippet": "Floor",
+            "type": "Numeric",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#floor"
+        },
+        "Format": {
+            "description": "Formats the number based on a pattern your provide.",
+            "example": "{{ number | Format:'#,##0.00' }}",
+            "snippet": "Format:'${1:#,##0.00}'",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#format",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "FormatString",
+                    "description": "Pattern to format the number with. [Documentation](https://msdn.microsoft.com/en-us/library/dwhawy9k%28v=vs.110%29.aspx)",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "FormatAsCurrency": {
+            "description": "Provides a simple way to display an internationalized currency amount. The filter uses the currency symbol defined in the 'CurrencySymbol' global attribute.",
+            "example": "{{ number | FormatAsCurrency }}",
+            "snippet": "FormatAsCurrency",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#formatascurrency"
+        },
+        "Minus": {
+            "description": "Subtracts a number from the number provided.",
+            "example": "{{ number | Minus:1 }}",
+            "snippet": "Minus:${1:1}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#minus",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Modulo": {
+            "description": "The modulo filter returns the remainder of division of one number by another.",
+            "example": "{{ number | Modulo:2 }}",
+            "snippet": "Modulo:${1:2}",
+            "type": "Numeric",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#modulo",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "NumberToOrdinal": {
+            "description": "Takes 1, 2 or 3 and returns 1st, 2nd or 3rd.",
+            "example": "{{ number | NumberToOrdinal }}",
+            "snippet": "NumberToOrdinal",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#numbertoordinal"
+        },
+        "NumberToOrdinalWords": {
+            "description": "Takes 1, 2 or 3 and returns first, second or third.",
+            "example": "{{ number | NumberToOrdinalWords }}",
+            "snippet": "NumberToOrdinalWords",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#numbertoordinalwords"
+        },
+        "NumberToRomanNumerals": {
+            "description": "Takes 1, 2 or 3 and returns I, II or III.",
+            "example": "{{ number | NumberToRomanNumerals }}",
+            "snippet": "NumberToRomanNumerals",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#numbertoromannumerals"
+        },
+        "NumberToWords": {
+            "description": "Takes 1, 2 or 3 and returns one, two or three.",
+            "example": "{{ number | NumberToWords }}",
+            "snippet": "NumberToWords",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#numbertowords"
+        },
+        "Plus": {
+            "description": "Adds a number to the number provided.",
+            "example": "{{ number | Plus:1 }}",
+            "snippet": "Plus:${1:1}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#plus",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RandomNumber": {
+            "description": "Generates a random number between 0 and up to (but not including) the number you pass in as input.",
+            "example": "{{ 100 | RandomNumber }}",
+            "snippet": "RandomNumber",
+            "type": "Numeric",
+            "returns": "integer",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#randomnumber"
+        },
+        "Times": {
+            "description": "Multiplies a number by the number provided.",
+            "example": "{{ number | Times:2 }}",
+            "snippet": "Times:${1:1}",
+            "type": "Numeric",
+            "returns": "numeric",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#times",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ToQuantity": {
+            "description": "Many times you want to call Singularize and Pluralize to prefix a word with a number; e.g. \"2 requests\", \"3 men\". ToQuantity prefixes the provided word with the number and accordingly pluralizes or singularizes the word.",
+            "example": "{{ 'Men' | ToQuantity:integer }}",
+            "snippet": "ToQuantity:${1:integer}",
+            "type": "Numeric",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#toquantity",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Number",
+                    "description": "Pluralize or singularize the input string based on the integer.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ToString": {
+            "description": "Converts a number to a string.",
+            "example": "{{ 4 | ToString }}",
+            "snippet": "ToString",
+            "type": "Other",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/numeric-filters#tostring"
+        },
+        "AddToArray": {
+            "description": "Add a new item to an existing array.",
+            "example": "{{ array | AddToArray:item }}",
+            "snippet": "AddToArray:'${1:item}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#addtoarray",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "item",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AddToDictionary": {
+            "description": "Takes an existing (or empty) dictionary and returns a new dictionary with the added key and value.",
+            "example": "{% assign data = Object | AddToDictionary:'CalculatedValue',89 %}",
+            "snippet": "AddToDictionary:'${1:key}','${2:value}'",
+            "type": "Array",
+            "returns": "object",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#addtodictionary",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Value",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AllKeysFromDictionary": {
+            "description": "Retrieves all keys that exist in the dictionary object and returns them in an array.",
+            "example": "{% assign keys = Object | AllKeysFromDictionary %}",
+            "snippet": "AllKeysFromDictionary",
+            "type": "Array",
+            "returns": "object",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#allkeysfromdictionary"
+        },
+        "Contains": {
+            "description": "The contains filter returns `true` if the specified value is in the array.",
+            "example": "{% hasBanana = Fruits | Contains:'Banana' %}",
+            "snippet": "Contains:'${1:0}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#contains",
+            "returns": "boolean",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Value",
+                    "description": "The containing value.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Distinct": {
+            "description": "Takes an array as input and returns the distinct (unique) elements of the array.",
+            "example": "{% assign array = Items | Distinct %}",
+            "snippet": "Distinct",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#distinct"
+        },
+        "First": {
+            "description": "Returns the first item of an array.",
+            "example": "{% assign firstItem = Items | First %}",
+            "snippet": "First",
+            "type": "Array",
+            "returns": "object",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#first"
+        },
+        "GroupBy": {
+            "description": "Takes a collection of items and groups them by the specified property tree value.",
+            "example": "{% assign dictionary = Members | GroupBy:'GroupRole.Name' %}",
+            "snippet": "GroupBy:'${1:0}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#groupby",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Property",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Index": {
+            "description": "Provides an easy way to retrieve an item from an array using its index when chaining filters.",
+            "example": "{% assign secondItem = Items | Index:1 %}",
+            "snippet": "Index:'${1:0}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#index",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "IndexValue",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Join": {
+            "description": "Combines the items in an array into a single string using the argument as a separator.",
+            "example": "{% assign string = Array | Join:', ' %}",
+            "snippet": "Join:'${1:, }'",
+            "type": "Array",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#join",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "String",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Last": {
+            "description": "Returns the last item of an array.",
+            "example": "{% assign item = Items | Last %}",
+            "snippet": "Last",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#last"
+        },
+        "Map": {
+            "description": "Creates an array of values by extracting the values of a named property from another object.",
+            "example": "{{ Campuses | Map:'Name' }}",
+            "snippet": "Map:'${1:key}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#map",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "OrderBy": {
+            "description": "Orders a collection of elements by the specified property tree and returns a new collection in that order.",
+            "example": "{% assign members = Members | OrderBy:'GroupRole.IsLeader desc,Person.FirstName' %}",
+            "snippet": "OrderBy:'${1:key}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#orderby",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RemoveFromArray": {
+            "description": "Removes the specified key from an array",
+            "example": "{% assign array = Items | RemoveFromArray:'two' %}",
+            "snippet": "RemoveFromArray:'${1:key}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#removefromarray",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "RemoveFromDictionary": {
+            "description": "Removes the specified key from a dictionary of keys and values.",
+            "example": "{% assign data = Object | RemoveFromDictionary:'FirstName' %}",
+            "snippet": "RemoveFromDictionary:'${1:key}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#removefromdictionary",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Select": {
+            "description": "Returns a single property from an object.",
+            "example": "{{ CurrentPerson.PhoneNumbers | Where:'NumberTypeValueId', 136 | Select:'NumberFormatted' }}",
+            "snippet": "Select:'${1:key}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#select",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "PropertyKey",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Shuffle": {
+            "description": "Randomizes the order of an array. Useful for ads on a homepage where you'd like a different ad to be first for each visit.",
+            "example": "{% assign reordered = Array | Shuffle %}",
+            "snippet": "Shuffle",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#shuffle"
+        },
+        "Sort": {
+            "description": "Sorts the array/collection based on the property provided (note: does not work with attribute values).",
+            "example": "{% assign campusesSorted = Campuses | Sort:'Name' %}",
+            "snippet": "Sort:'${1:key}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#sort",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "PropertyKey",
+                    "description": "Property to sort on.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "SortByAttribute": {
+            "description": "Sorts an array of items based on a attribute value.",
+            "example": "{% assign sortedItems = Items | SortByAttribute:'SeatingCapacity' %}",
+            "snippet": "SortByAttribute:'${1:key}'",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#sortbyattribute",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "AttributeKey",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Sum": {
+            "description": "Performs a mathematical summation of all numeric values in an array and outputs the result.",
+            "example": "{{ Items | Select:'Price' | Sum }}",
+            "snippet": "Sum:'${1:key}'",
+            "type": "Array",
+            "returns": "Numeric",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#sum"
+        },
+        "Uniq": {
+            "description": "Removes any duplicate elements in an array.",
+            "example": "{% assign array = Items | Uniq %}",
+            "snippet": "Uniq",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#uniq"
+        },
+        "Where": {
+            "description": "Creates an array including only the objects with a given property value, or any truthy value by default.",
+            "example": "{{ CurrentPerson.PhoneNumbers | Where:'NumberTypeValueId',136 }}",
+            "snippet": "Where:'${1:key}','${2:value}'",
+            "type": "Array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#where",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Value",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Condition",
+                    "description": "Optionally set to `equal` or `notequal`.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Address": {
+            "description": "Provides an address for the person you provide.",
+            "example": "{{ Person | Address:'Home' }}",
+            "snippet": "Address:'${1|Home,Work|}','${2:[[city]], [[state]]}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#address",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "AddressType",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "FormatTemplate",
+                    "description": "...",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Campus": {
+            "description": "Campus returns the person's campus.",
+            "example": "{{ Person | Campus }}",
+            "snippet": "Campus",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#campus",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Option",
+                    "description": "Use option `All` to return an array of campuses.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Children": {
+            "description": "Returns a list of children for the person",
+            "example": "{{ Person | Children }}",
+            "snippet": "Children",
+            "type": "Person",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#children"
+        },
+        "DeleteUserPreference": {
+            "description": "Rock has the concept of saved settings / preferences for each user. This filter allows you to clean up the setting based on it's key.",
+            "example": "{{ CurrentPerson | DeleteUserPreference:'block-id-12-last-run-date' }}",
+            "snippet": "DeleteUserPreference:'${1:Key}'",
+            "type": "Person",
+            "returns": "null",
+            "cacheable": false,
+            "link": "https://community.rockrms.com/lava/filters/person-filters#deleteuserpreference",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "Key to the requested user preference.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "FamilySalutation": {
+            "description": "Returns the salutation of the family for a given person.",
+            "example": "{{ Person | FamilySalutation }}",
+            "snippet": "FamilySalutation:'${1|true,false|}','${2|true,false|}','${3|true,false|}','${4:and}','${5:,}'",
+            "type": "Person",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#familysalutation",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "IncludeChildren",
+                    "description": "Should children be included on the list? The default is no (false).",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "IncludeInactive",
+                    "description": "Determines if inactive people should be listed. By default inactive people are displayed but deceased are never shown. We default to show inactive as many families are entirely inactive and therefore no salutation would be returned... which is... confusing...",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "UseFormalName",
+                    "description": "Should we use the nick name or first (formal) name By default informal names will be displayed.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "FinalSeparator",
+                    "description": "What should the final separator be? By default the & character will be used, but you can change this to something like 'and' if you'd rather.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Separator",
+                    "description": "Commas not good enough for you? Well you can provide your own separator if you wish.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "GeofencingGroupMembers": {
+            "description": "Returns a collection of group members whose groups geofence the person's map location address.",
+            "example": "{% assign areaLeaders = Person | GeofencingGroupMembers:'GroupTypeId','GroupRoleId'  %}",
+            "snippet": "GeofencingGroupMembers:'${1:GroupTypeId}','${2:GroupRoleId}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#geofencinggroupmembers",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "The Group Type ID to filter on.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "GroupRoleId",
+                    "description": "The Group Role ID to filter on.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "GeofencingGroups": {
+            "description": "Returns a collection of groups that geofence the person's map location address.",
+            "example": "{% assign areas = Person | GeofencingGroups:'GroupTypeId'  %}",
+            "snippet": "GeofencingGroups:'${1:GroupTypeId}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#geofencinggroups",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "The Group Type ID to filter on.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "GetPersonAlternateId": {
+            "description": "Returns the person's alternate id.",
+            "snippet": "GetPersonAlternateId",
+            "example": "{{ Person | GetPersonAlternateId }}",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#getpersonalternateid"
+        },
+        "GetUserPreference": {
+            "description": "Rock has the concept of saved settings / preferences for each user. This filter allows you to retrieve the setting based on it's key. This is a great way of remembering something about the user (like settings from the last time they ran something) for use when they return.",
+            "example": "{{ Person | GetUserPreference:'key' }}",
+            "snippet": "GetUserPreference:'${1:Key}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#getuserpreference",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "Key to the requested user preference.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Group": {
+            "description": "Returns group member information if a person is in a specific group.",
+            "example": "{% assign groupMembers = Person | Group:'GroupId' %}",
+            "snippet": "Group:'${1:GroupId}','${2|All,Active,Inactive,Pending|}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#group",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupId",
+                    "description": "The ID of the group.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Status",
+                    "description": "...",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Groups": {
+            "description": "Returns a list of group member models of a specified group type that an individual belongs to.",
+            "example": "{% assign groupMembers = Person | Groups:'GroupTypeId' %}",
+            "snippet": "Groups:'${1:GroupTypeId}','${2|All,Active,Inactive,Pending|}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#groups",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "The group type that should be used as a filter. Returned groups must be of this type.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Status",
+                    "description": "You can also pass in a specific group member status you're looking for ('Active', 'Inactive' or 'Pending'). The default if none is provided is 'Active'. You can also pass in 'All' if you want all statuses.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "GroupStatus",
+                    "description": "By default the filter will only include active groups. Pass the string 'All' to include inactive groups as well.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "GroupsAttended": {
+            "description": "Returns a list of groups that a person attended within a provided group type.",
+            "example": "{% assign groups = Person | GroupsAttended:'GroupTypeId' %}",
+            "snippet": "GroupsAttended:'${1:GroupTypeId}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#groupsattended",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "HasSignedDocument": {
+            "description": "Allows you to determine if someone has signed a document.",
+            "example": "{% assign hasSigned = Person | HasSignedDocument:1 %}",
+            "snippet": "HasSignedDocument:${1:DocumentId},'${2:ifTrue}','${3:ifFalse}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#hassigneddocument",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "DocumentId",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "IfTrue",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "IfFalse",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "HeadOfHousehold": {
+            "description": "Returns the head of household of the provided person.",
+            "snippet": "HeadOfHousehold",
+            "example": "{% assign head = Person | HeadOfHousehold %}",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#headofhousehold"
+        },
+        "LastAttendedGroupOfType": {
+            "description": "Returns the latest attendance record for a group of the type given.",
+            "example": "{% assign group = CurrentPerson | LastAttendedGroupOfType:'GroupTypeId' %}",
+            "snippet": "LastAttendedGroupOfType:'${1:GroupTypeId}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#lastattendedgroupoftype",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "NearestGroup": {
+            "description": "Returns the nearest group of a specified group type to the person's mapped location address.",
+            "example": "{% assign group = Person | NearestGroup:'25'  %}",
+            "snippet": "NearestGroup:'${1:GroupTypeId}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#nearestgroup",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "GroupTypeId",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Parents": {
+            "description": "Returns a list of the adults in the family of a specified person.",
+            "example": "{% assign parents = Person | Parents %}",
+            "snippet": "Parents",
+            "type": "Person",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#parents"
+        },
+        "PersonActionIdentifier": {
+            "description": "Creates a non-security type token that identifies a person and a corresponding action. This action is intended for use by developers.",
+            "example": "{{ Person | PersonActionIdentifier }}",
+            "snippet": "PersonActionIdentifier",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personactionidentifier",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "ActionName",
+                    "description": "The name of an action that the corresponding block knows how to decode.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PersonByAliasGuid": {
+            "description": "Returns a full person object from the Guid of a person alias.",
+            "example": "{% assign person = aliasGuid | PersonByAliasGuid %}",
+            "snippet": "PersonByAliasGuid",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personbyaliasguid"
+        },
+        "PersonByAliasId": {
+            "description": "Returns a full person object from the Id of a person alias.",
+            "example": "{% assign person = aliasId | PersonByAliasId %}",
+            "snippet": "PersonByAliasId",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personbyaliasid"
+        },
+        "PersonByGuid": {
+            "description": "Returns a full person object from the Guid of the person.",
+            "example": "{% assign person = personGuid | PersonByGuid %}",
+            "snippet": "PersonByGuid",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personbyaliasid"
+        },
+        "PersonById": {
+            "description": "Returns a full person object from the Id of the person.",
+            "example": "{% assign person = personId | PersonById %}",
+            "snippet": "PersonById",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personbyid"
+        },
+        "PersonByPersonAlternateId": {
+            "description": "Returns a full person object from the Id of the person.",
+            "example": "{% assign person =  alternateId | PersonByPersonAlternateId %}",
+            "snippet": "PersonByPersonAlternateId",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#personbypersonalternateid"
+        },
+        "PersonTokenCreate": {
+            "description": "Creates a person token for a provided person.",
+            "example": "{{ Person | PersonTokenCreate }}",
+            "snippet": "PersonTokenCreate",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#persontokencreate",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Minutes",
+                    "description": "The number of minutes that the token is good for.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "MaxUsage",
+                    "description": "The number of times the token can be used.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "PageId",
+                    "description": "The page the token is good for.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PersonTokenRead": {
+            "description": "Converts a person token to a person object.",
+            "example": "{% assign person = personToken | PersonTokenRead %}",
+            "snippet": "PersonTokenRead",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#persontokenread",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "IncrementUsage",
+                    "description": "[true/false] This would determine if the usage counter should be incremented by the reading of the token.",
+                    "required": false,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "PageId",
+                    "description": "In rare cases tokens are only good on specific pages. In these cases you'll need to provide the page id to use for the check.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PhoneNumber": {
+            "description": "Provides a phone number for the person you provide.",
+            "example": "{{ Person | PhoneNumber:'Mobile' }}",
+            "snippet": "PhoneNumber:'${1|Mobile,Home,Work,Other|}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#phonenumber",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "PhoneType",
+                    "description": "The name of the phone type you want to fetch (such as Home, Mobile, Work as defined by the Phone Type Defined Value).",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "ShowCountryCode",
+                    "description": "By default the number's country code is not output but if you include an additional `true` parameter the country code will be shown.",
+                    "required": false,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "SetUserPreference": {
+            "description": "Rock has the concept of saved settings / preferences for each user. This filter allows you to save the setting based on its key and provided value. This is a great way of remembering something about the user (like settings from the last time they ran something) for use when they return.",
+            "example": "{{ Person | SetUserPreference:'key','value' }}",
+            "snippet": "SetUserPreference:'${1:settingKey}','${2:settingValue}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#setuserpreference",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Value",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Spouse": {
+            "description": "Returns the spouse of the provided person.",
+            "example": "{% assign spouse = Person | Spouse %}",
+            "snippet": "Spouse",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#spouse"
+        },
+        "ZebraPhoto": {
+            "description": "Returns a person's profile photo data in ZPL format for use in Zebra printer labels. If the person has no photo, the default silhouette photo (adult/child, male/female) is used.",
+            "example": "{{ Person | ZebraPhoto:'100' }}",
+            "snippet": "ZebraPhoto:'${1:sizeInteger}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#zebraphoto",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Size",
+                    "description": "Specifies the width and height of the image in pixels. If not specified it will default to 395 which is good for a 300 dpi Zebra printer but possibly not for a 203 dpi printer. If using a 203 dpi printer try using a number like 150 or so.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Brightness",
+                    "description": "Specifies the brightness adjustment (0 to 1.99 fully white).",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Contrast",
+                    "description": "Specifies the contrast adjustment (0 to 1.99).",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Filename",
+                    "description": "The filename that should be used when sending photo contents to the printer.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Rotate Degree",
+                    "description": "The degree of rotation to apply to the photo. Valid values are 90, 180 or 270.",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AddCssLink": {
+            "description": "Adds a CSS link to the page. If the link has previously been registered (by a block or other Lava) it will not be duplicated.",
+            "example": "{{ 'http://...' | AddCssLink }}",
+            "snippet": "AddCssLink",
+            "cacheable": false,
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addcsslink",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "FingerprintLink",
+                    "description": "[true/false] Enable to add a cache busting fingerprint to locally hosted files.",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AddLinkTagToHead": {
+            "description": "Adds a link to the HTML head of the current page.",
+            "example": "{{ CurrentPerson.PhotoUrl | AddLinkTagToHead:'rel','image_src' }}",
+            "snippet": "AddLinkTagToHead:'${1:tag}','${2:Value}'",
+            "cacheable": false,
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addlinktagtohead",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "AttributeName",
+                    "description": "The value of the attribute, usually `rel`. _(Example: `rel=\"author\"`)_",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "AttributeValue",
+                    "description": "Value of the `AttributeName`.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AddMetaTagToHead": {
+            "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. <meta TAG=\"VALUE\" content=\"/...\">",
+            "example": "{{ PhotoUrl | AddMetaTagToHead:'property','og:image' }}",
+            "snippet": "AddMetaTagToHead:'${1:tag}','${2:Value}'",
+            "cacheable": false,
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addmetatagtohead"
+        },
+        "AddResponseHeader": {
+            "description": "Adds a header to the HTTP response. This allows you to set custom headers. Note that any headers already being set in Rock will override the values you provide. These should only be used to add custom headers.",
+            "example": "{{ 'public, max-age=120' | AddResponseHeader:'cache-control' }}",
+            "snippet": "AddResponseHeader:'${1:cache-control}'",
+            "cacheable": false,
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addresponseheader",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "HeaderName",
+                    "description": "Name of the header to add.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AddScriptLink": {
+            "description": "Adds a script link to the page. If the link has already been previously registered (by a block or other Lava) it will not be duplicated.",
+            "example": "{{ 'http://...' | AddScriptLink }}",
+            "snippet": "AddScriptLink",
+            "cacheable": false,
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addscriptlink",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "FingerprintLink",
+                    "description": "[true/false] Enable to add a cache busting fingerprint to locally hosted files.",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "AsBoolean": {
+            "description": "Converts the input to a Boolean (true/false) value.",
+            "example": "{{ content | AsBoolean }}",
+            "snippet": "AsBoolean",
+            "type": "Other",
+            "returns": "boolean",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asboolean"
+        },
+        "AsInteger": {
+            "description": "Converts the input to an integer value.",
+            "example": "{{ content | AsInteger }}",
+            "snippet": "AsInteger",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asinteger"
+        },
+        "AsDecimal": {
+            "description": "Converts the input to a decimal value.",
+            "example": "{{ content | AsDecimal }}",
+            "snippet": "AsDecimal",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asdecimal"
+        },
+        "AsDouble": {
+            "description": "Converts the input to a double value (which has less precision than a decimal).",
+            "example": "{{ content | AsDouble }}",
+            "snippet": "AsDouble",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asdouble"
+        },
+        "AsString": {
+            "description": "Converts the input to an string value.",
+            "example": "{{ content | AsString }}",
+            "snippet": "AsString",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asstring"
+        },
+        "AsDateTime": {
+            "description": "Converts the input to a DateTime value.",
+            "example": "{{ content | AsDateTime }}",
+            "snippet": "AsDateTime",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetime"
+        },
+        "Base64Encode": {
+            "description": "Converts a binary file to a base-64 encoded string.",
+            "example": "{{ binaryFile | Base64Encode }}",
+            "snippet": "Base64Encode",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#base64encode"
+        },
+        "FromBase64": {
+            "description": "Decodes the base 64 encoded string and returns the resulting data.",
+            "example": "{{ base64String | FromBase64 }}",
+            "snippet": "FromBase64",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#frombase64"
+        },
+        "CreateShortLink": {
+            "description": "Decodes the base 64 encoded string and returns the resulting data.",
+            "example": "{{ url | CreateShortlink }}",
+            "snippet": "CreateShortLink${1::'${2:}',${3:siteId},${4:'OverwriteT/F'},${5:lengthInt}}",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#createshortlink",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Token",
+                    "description": " If you'd like to provide the token to use in the short code you can provide it here. Leave this blank ('') to use a random code.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "SiteId",
+                    "description": "The id of the site to use for the shorting. By default the first site found with the 'Enabled for Shortening' set to `true` will be used. Pass in 0 if you'd like to force the default site.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Overwrite",
+                    "description": "This determines what to do if the token you provided already exists. By default it will not overwrite an existing shortcode. If you provided a token, it exists and overwrite is set to false, a new random token will be returned. When set to `true` then the existing token will be used.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "RandomLength",
+                    "description": "If using a random code, this determines how long it should be.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Debug": {
+            "description": "Debug lava variables on page, with optional username restriction.",
+            "example": "{{ 'Lava' | Debug }}",
+            "snippet": "Debug${1::'${2:username}'}",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#debug"
+        },
+        "FromCache": {
+            "description": "Reads objects from the Rock cache which will reduce the number of database reads your Lava produces.",
+            "example": "{{ CurrentPerson.PrimaryCampusId | FromCache:'Campus' }}",
+            "snippet": "FromCache:'${1|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}'",
+            "type": "Other",
+            "returns": "Object",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#fromcache",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "EntityFromCachedObject": {
+            "description": "Returns a full entity object loaded from the database from its cached counterpart.",
+            "example": "{% assign cached = Workflow | Attribute:'TargetCampus','Object' %}\n{% assign campus = cached | EntityFromCachedObject %}\n{{ campus.Location.FormattedAddress }}",
+            "snippet": "EntityFromCachedObject",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#entityfromcachedobject"
+        },
+        "FromJSON": {
+            "description": "Takes a JSON string and makes a Lava object from it.",
+            "example": "{% assign object = json | FromJSON %}",
+            "snippet": "FromJSON",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#fromjson"
+        },
+        "GroupById": {
+            "description": "Returns a Group object from the Id of a group.",
+            "example": "{% assign group = Id | GroupById %}",
+            "snippet": "GroupById",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#groupbyid"
+        },
+        "GroupByGuid": {
+            "description": "Returns a Group object from the Id of a group.",
+            "example": "{% assign group = Guid | GroupByGuid %}",
+            "snippet": "GroupByGuid",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#groupbyguid"
+        },
+        "HasRightsTo": {
+            "description": "This filter helps you check the security of the model you pass it.",
+            "example": "{{ person | HasRightsTo:'View' }}",
+            "snippet": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}'",
+            "type": "Other",
+            "returns": "boolean",
+            "cacheable": false,
+            "link": "https://community.rockrms.com/lava/filters/other-filters#hasrightsto",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "SecurityVerb",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "TypeName",
+                    "description": "The name of the model to check against, usually `Rock.Model.xxx`",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "HmacSha1": {
+            "description": "Converts a string into a SHA-1 hash using a hash message authentication code (HMAC).",
+            "example": "{{ 'string' | HmacSha1:'key' }}",
+            "snippet": "HmacSha1:'${1:key}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#hmacsha1",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "SecretKey",
+                    "description": "The key to encrypt the contents with.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "HmacSha256": {
+            "description": "Converts a string into a SHA-256 hash using a hash message authentication code (HMAC).",
+            "example": "{{ 'string' | HmacSha256:'key' }}",
+            "snippet": "HmacSha256:'${1:key}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#hmacsha256",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "SecretKey",
+                    "description": "The key to encrypt the contents with.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "ImageUrl": {
+            "description": "Simplifies making an image URL with a fallback.",
+            "example": "{{ imageId | ImageUrl }}",
+            "snippet": "ImageUrl",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#imageurl"
+        },
+        "IsFollowed": {
+            "description": "Takes an entity object as input and tests if it is being followed by the current person. Returns a boolean value of either `true` or `false`.",
+            "example": "{% assign followed = group | IsFollowed %}",
+            "snippet": "IsFollowed",
+            "type": "Other",
+            "returns": "boolean",
+            "cacheable": false,
+            "link": "https://community.rockrms.com/lava/filters/other-filters#isfollowed"
+        },
+        "Md5": {
+            "description": "Converts a string into an MD5 hash.",
+            "example": "{{ 'string' | Md5 }}",
+            "snippet": "Md5",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#md5"
+        },
+        "Notes": {
+            "description": "Retrieves notes for the provided entity.",
+            "example": "{% assign notes = Person | Notes:'4,5','asc',2 %}",
+            "snippet": "Notes:'${1:noteTypeIds}','${2|desc,asc|}',${3:limit}",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#notes",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "NoteTypeIds",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "SortOrder",
+                    "description": "`asc` or `desc` - If no option is provided `desc` is assumed.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Count",
+                    "description": "Integer, How many notes to return.",
+                    "required": true,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Page": {
+            "description": "Use with global to get info about a current page.",
+            "example": "{{ 'Global' | Page:'Title' }}",
+            "snippet": "Page:'${1|Title,Description,Url,Id,Host,Path,SiteName,SiteId,Theme,Layout,Scheme,QueryString|}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#page",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Property",
+                    "description": "A property to request information about. Options include: `Title` `Description` `Url` `Id` `Host` `Path` `SiteName` `SiteId` `Theme` `Layout` `Scheme` `QueryString`",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PageRedirect": {
+            "description": "Will redirect the page to the provided URL.",
+            "example": "{{ url | PageRedirect }}",
+            "snippet": "PageRedirect",
+            "type": "Other",
+            "cacheable": false,
+            "link": "https://community.rockrms.com/lava/filters/other-filters#pageredirect"
+        },
+        "PageRoute": {
+            "description": "This filter helps you check the security of the model you pass it.",
+            "example": "{{ pageId | PageRoute:'WorkflowTypeId=10^WorkflowId=324' }}",
+            "snippet": "PageRoute:'${1:key}=${2:value}${3:^${4:additionalkey}=${5:value}}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#pageroute",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Parameters",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PersistedDataset": {
+            "description": "Returns data contained in a Persisted Dataset as a Lava object.",
+            "example": "{% assign data = 'key' | PersistedDataset %}",
+            "snippet": "PersistedDataset",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#persisteddataset"
+        },
+        "Postback": {
+            "description": "Specialized Lava filter that helps to wire-up ASP.Net postbacks. This is only available on specific blocks that provide 'Postback Commands'. The 'Group Details Lava' is an example of a block that provides these hooks.",
+            "example": "{{ id | Postback:'EditGroup' }}",
+            "snippet": "Postback:'${1:key}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#postback",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Command",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Property": {
+            "description": "Returns the property of a provided object. This often saves you from having to assign an object to a variable to get just one of its properties.",
+            "example": "{{ Person | Campus | Property:'Name' }}",
+            "snippet": "Property:'${1:key}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#property",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$boolean",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "PropertyToKeyValue": {
+            "description": "Takes a property and returns it as a key/value pair. This is helpful for iterating over a list of properties.",
+            "example": "{% assign attributeParts = attribute | PropertyToKeyValue %}",
+            "snippet": "PropertyToKeyValue",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#propertytokeyvalue"
+        },
+        "ReadCookie": {
+            "description": "Gets the value of a HTTP cookie for the current user session.",
+            "example": "{{ 'cookieName' | ReadCookie }}",
+            "snippet": "ReadCookie",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#readcookie",
+            "cacheable": false
+        },
+        "ResolveRockUrl": {
+            "description": "Resolves '~/' application route and '~~/' theme route.",
+            "example": "{{ '~~' | ResolveRockUrl }}",
+            "snippet": "ResolveRockUrl",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#resolverockurl"
+        },
+        "RockInstanceConfig": {
+            "description": "Shows configuration values for the current Rock instance.\n\n**Valid Input Strings:**\n- `ApplicationDirectory`\n- `PhysicalDirectory`\n- `MachineName`\n- `IsClustered`\n- `SystemDateTime`",
+            "example": "{{ 'ApplicationDirectory' | RockInstanceConfig }}",
+            "snippet": "RockInstanceConfig",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#rockinstanceconfig"
+        },
+        "RunLava": {
+            "description": "Executes Lava inside a string.",
+            "example": "{{ content | RunLava }}",
+            "snippet": "RunLava",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#runlava"
+        },
+        "AddQuickReturn": {
+            "description": "Adds a QuickReturn link to PersonalLinks",
+            "example": "{{ url | AddQuickReturn:'typeName','typeOrder' }}",
+            "snippet": "AddQuickReturn",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#addquickreturn",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "TypeName",
+                    "description": "...",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "TypeOrder",
+                    "description": "...",
+                    "required": false,
+                    "accepts": [
+                        "$integer",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "SetPageTitle": {
+            "description": "Takes a string as input and sets the page's title.",
+            "example": "{{ title | SetPageTitle }}",
+            "snippet": "SetPageTitle:'${1|All,BrowserTitle,PageTitle|}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#setpagetitle",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "TitleLocation",
+                    "description": "The title location. `BrowserTitle` `PageTitle` or `All`",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "Sha1": {
+            "description": "Converts a string into a SHA-1 hash.",
+            "example": "{{ 'string' | Sha1 }}",
+            "snippet": "Sha1",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#sha1"
+        },
+        "Sha256": {
+            "description": "Converts a string into a SHA-256 hash.",
+            "example": "{{ 'string' | Sha256 }}",
+            "snippet": "Sha256",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#sha256"
+        },
+        "ToJSON": {
+            "description": "Returns a JSON representation of the object.",
+            "example": "{{ object | ToJSON }}",
+            "snippet": "ToJSON",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#tojson"
+        },
+        "UniqueIdentifier": {
+            "description": "Generates a new GUID (UUID) string. ",
+            "example": "{{ '' | UniqueIdentifier }}",
+            "snippet": "UniqueIdentifier",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#uniqueidentifier"
+        },
+        "Url": {
+            "description": "The Url filter allows you to easily get access to parts of a URL without a ton of string manipulation.",
+            "example": "{{ url | Url:'host' }}",
+            "snippet": "Url:'${1|host,port,segments,scheme,protocol,localpath,pathandquery,queryparameter,url|}'",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#url",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "UrlPart",
+                    "description": "The part of the Uri object to retrieve.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "Key",
+                    "description": "Extra parameter used by the QueryParameter key for which query parameter to retrieve.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "WriteCookie": {
+            "description": "Write a cookie.",
+            "example": "{{ 'cookieName' | WriteCookie:'value','expiryInMinutes' }}",
+            "snippet": "WriteCookie:'${1:Value}',${2:'${3:expire-in-mins}'}",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#writecookie",
+            "cacheable": false,
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "CookieValue",
+                    "description": "The value to be stored in the cookie.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                },
+                {
+                    "type": "argument",
+                    "name": "ExpiryInMinutes ",
+                    "description": "Time, in minutes, before expiring the cookie. If you do not specify an expiry time, the cookie will be available until it is overwritten, deleted by the user, or the session expires.",
+                    "required": false,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
+        "XamlWrap": {
+            "description": "Wraps XAML in CDATA tags to make it XML compliant.",
+            "example": "{{ Item.Content | XamlWrap }}",
+            "snippet": "XamlWrap",
+            "type": "Other",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#xamlwrap"
+        }
+    }
+}
