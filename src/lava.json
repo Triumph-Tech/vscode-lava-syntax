@@ -1,7 +1,7 @@
 {
   "$schema": "./lavaspecs.json",
   "engine": "Lava",
-  "updated": "03-05-2020",
+  "updated": "10-17-2020",
   "snippets": {
     "assign": {
       "description": "Create a variables",
@@ -203,8 +203,8 @@
       "description": "Entity command with conditions, a limit, and iterator option.",
       "example": "{%- entityname where:'conditions' -%}\n\n\n{%- endentityname -%}",
       "snippet": [
-        "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' -%}",
-        "\t{%- for ${6:item} in $4 -%}",
+        "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' ${5:sort:'${6:Order}'} securityenabled:'${7|false,true|}' -%}",
+        "\t{%- for ${8:item} in $4 -%}",
         "\t\t$0",
         "\t{%- endfor -%}",
         "{%- end${1:/downcase} -%}"
@@ -440,7 +440,7 @@
       "description": "Get a summary list of EventScheduledInstances from the provided calendar.",
       "example": "{%- calendarevents calendarid:'1' -%}\n\t...\n{%- endcalendarevents -%}",
       "snippet": [
-        "{%- calendarevents calendarid:'${1:1}' ${2:audienceids:'${3:0}'} maxoccurrences:'${4:100}' ${5:campusids:'${6:1}'} -%}",
+        "{%- calendarevents calendarid:'${1:1}' maxoccurrences:'${2:100}' ${3:audienceids:'${4:0}'} ${5:campusids:'${6:1}'} -%}",
         "\t{%- for ${7:item} in EventScheduledInstances -%}",
         "\t\t$0",
         "\t{%- endfor -%}",
@@ -589,6 +589,7 @@
       ]
     },
     "Pagination": {
+      "description": "Simple pagination starter template.",
       "snippet": [
         "<div class=\"${1:clearfix mt-5}\">",
         "  {%- assign nextPageString = Pagination.NextPage | ToString -%}",
@@ -606,8 +607,7 @@
         "  </a>",
         "  {% endif %}",
         "</div>"
-      ],
-      "description": ""
+      ]
     },
     "tag": {
       "description": "Tag, creates the logic and control flow for templates.",
@@ -621,6 +621,20 @@
       "example": "{{ }}",
       "snippet": [
         "{{ $0 }}"
+      ]
+    },
+    "StripHtml": {
+      "description": "Remove HTML (and HTML blocks) from a string.",
+      "snippet": [
+        "{% capture stripHtmlBlocks %}<script[\\S\\s]*?<\/script>|<!--[\\S\\s]*?-->|<style[\\S\\s]*?<\/style>{% endcapture %}",
+        "{%- assign ${1:variable} = ${1} | RegExReplace:stripHtmlBlocks,'' | Replace:'</',' </' | StripHtml | StripNewlines -%}"
+      ]
+    },
+    "prejson": {
+      "description": "Quickly troubleshoot individual properties.",
+      "example": "<pre>{{ $0 | ToJSON }}</pre>",
+      "snippet": [
+        "<pre>{{ $0 | ToJSON }}</pre>"
       ]
     }
   },
@@ -1228,7 +1242,7 @@
       "link": "https://community.rockrms.com/lava/filters/text-filters#tocssclass"
     },
     "ToPascal": {
-      "description": "For all the programmers in the house. This will take a string and return it back in PascalCase.",
+      "description": "Converts a string to PascalCase.",
       "example": "{{ string | ToPascal }}",
       "snippet": "ToPascal",
       "type": "Text",
@@ -1700,7 +1714,7 @@
     "Format": {
       "description": "Formats the number based on a pattern your provide.",
       "example": "{{ number | Format:'#,##0.00' }}",
-      "snippet": "Format:'${1:#,##0.00}'",
+      "snippet": "Format:'${1|#\\,##0.00,#,###,N0|}'",
       "type": "Numeric",
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/numeric-filters#format",
@@ -2810,6 +2824,45 @@
       "snippet": "Spouse",
       "type": "Person",
       "link": "https://community.rockrms.com/lava/filters/person-filters#spouse"
+    },
+    "Steps": {
+      "description": "Returns a filtered list of steps that the person has engaged with.",
+      "example": "{% assign steps = CurrentPerson | Steps: '1','Complete' %}",
+      "snippet": "Steps:'${1:stepProgramId}','${2:stepStatus}','${3:stepType}'",
+      "type": "Person",
+      "link": "https://community.rockrms.com/lava/filters/person-filters#steps",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "StepProgram",
+          "description": "An Id or Guid, and returned steps must be related to this program.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "StepStatus",
+          "description": "A status Name or Guid, and returned steps must have this status.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "StepType",
+          "description": "An Id or Guid, and returned steps must be related to this step type.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
     },
     "ZebraPhoto": {
       "description": "Returns a person's profile photo data in ZPL format for use in Zebra printer labels. If the person has no photo, the default silhouette photo (adult/child, male/female) is used.",

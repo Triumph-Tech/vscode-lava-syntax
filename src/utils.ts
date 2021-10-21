@@ -47,6 +47,6 @@ function isObjectInPrefix(prefix: string) {
   return false;
 }
 
-export const isLavaFilterable = new RegExp(/{%-?\s+assign\s+[a-z]+\s+=\s+[a-zA-Z0-9.'"\[\]]+|{{-?\s+([^}\n\s|]+)\s/);
+export const isLavaFilterable = new RegExp(/{%-?\s+assign\s+[a-zA-Z0-9]+\s+=\s+[a-zA-Z0-9.'"\[\]]+|{{-?\s+([^}\n\s|]+)\s/);
 
 export const lineHasPipe = new RegExp(/[^}\n]\s*\|\s*\w*$/); // ([^}\n\s]+)\s+\|\s+\w+$

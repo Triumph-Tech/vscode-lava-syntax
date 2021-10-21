@@ -1,14 +1,15 @@
 {
-  "$schema": "http://json-schema.org/draft-07/schema",
-  "$id": "shopify-section-schema",
-  "version": 1.1,
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "rock-lava-schema",
+  "version": 1.0,
   "type": "object",
-  "title": "Shopify Section Schema (Liquid Language Server)",
-  "description": "Shopify schema store reference for the schema Liquid tag used in Shopify themes.",
+  "title": "Lava Schema (Lava Language Server)",
+  "description": "Schema reference for the Lava used in Rock RMS.",
+  "allowComments": true,
   "definitions": {
     "$schema": {
       "title": "Schema",
-      "description": "The schema used to verify this document.",
+      "description": "The schema to verify this document against.",
       "type": "string"
     },
     "engine": {

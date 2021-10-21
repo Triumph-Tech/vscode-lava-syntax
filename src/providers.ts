@@ -87,7 +87,6 @@ const getFilterProvider = (documentSelector: string | string[]) => {
       let lineSuffix = document.lineAt(position).text.substr(position.character);
 
       //let documentPrefix = document.getText(new vscode.Range(documentStart, position));
-
       if (!utils.isLavaFilterable.test(linePrefix)) {
         return;
       }

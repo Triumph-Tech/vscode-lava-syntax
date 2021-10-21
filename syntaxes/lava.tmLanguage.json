@@ -84,6 +84,9 @@
       },
       "patterns": [
         {
+          "include": "#assign"
+        },
+        {
           "include": "#invalid-control"
         },
         {
@@ -97,6 +100,9 @@
         },
         {
           "include": "#entity-danger-name-tag"
+        },
+        {
+          "include": "#keyword-name-tag"
         },
         {
           "include": "#entity-name-tag"
@@ -151,6 +157,9 @@
         },
         {
           "include": "#variable-parameter"
+        },
+        {
+          "include": "#object-properties"
         },
         {
           "include": "#variable-other"
@@ -278,18 +287,6 @@
         },
         {
           "include": "#support-function"
-        },
-        {
-          "include": "#support-variable"
-        },
-        {
-          "include": "#var-support-variable"
-        },
-        {
-          "include": "#variable-parameter"
-        },
-        {
-          "include": "#variable-other"
         }
       ]
     },
@@ -310,6 +307,14 @@
       "captures": {
         "1":{
           "name": "invalid.deprecated.tag.lava"
+        }
+      }
+    },
+    "keyword-name-tag": {
+      "match": "(((?<={%)|(?<={%-))\\s*(if|endif|case|endcase|when|elseif|else|for|endfor|capture|endcapture|unless|endunless))",
+      "captures": {
+        "1":{
+          "name": "keyword.control.loop.lava"
         }
       }
     },
@@ -373,14 +378,14 @@
     },
     "keyword-operators": {
       "name": "keyword.operator.lava",
-      "match": "\\s+(and|or|not|contains|in|by|((\\!|\\=|\\<|\\>)\\=))\\s+"
+      "match": "\\s+(and|or|not|contains|in|by|\\!=|\\=\\=|\\<|\\>|\\<\\=|\\>\\=)\\s+"
     },
     "keyword-operator-assignment": {
       "match": "/=",
       "name": "keyword.operator.assignment.augmented.lava"
     },
     "object-properties": {
-      "match": "(?<=\\w.)(?<=\\w.)\\b\\w+?\\b\\s+?",
+      "match": "(?<=\\w\\.)\\w+?\\b\\s+",
       "name": "variable.parameter.lava"
     },
     "string-quoted-single": {
@@ -395,7 +400,7 @@
     },
     "support-class": {
       "name": "support.class.lava",
-      "match": "\\b(PageParameter|comment|CurrentPerson|Campuses|CurrentPage|Person|CurrentBrowser|forloop|item|Items|javascript|order|scripts|search|settings|style|stylesheet|tablerow|tags|taxonomy|template|url)\\b"
+      "match": "\\b(CurrentPerson|Context|Campuses|PageParameter|CurrentPage|Person|CurrentBrowser|forloop|Item|item|Items|javascript|order|tablerow)\\b"
     },
     "quoted-support-class": {
       "name": "support.class.lava",
@@ -406,12 +411,15 @@
       "match": "\\|\\s+[a-z].*\\b"
      },
     "support-function": {
-      "name": "support.function.lava",
-      "match": "\\|\\s+(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|BBM_ComputeHash|FromBase64|PageRoute|RunLava|BBM_ToBase64|RegExMatches|RegExReplace|BBM_Function|WriteCookie|RandomNumber|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|TriumphImgCdn)\\b"
-    },
-    "support-function-bbm": {
-      "name": "support.function.bluebox.lava",
-      "match": "\\|\\s+(BBM_AddToArray|BBM_Distinct|BBM_GroupBy|BBM_OrderBy|BBM_RemoveFromArray|BBM_Sum|BBM_AddToDictionary|BBM_AllKeysFromDictionary|BBM_RemoveFromDictionary|BBM_AddHttpHeader|BBM_ComputeHash|BBM_FromBase64|BBM_PageRoute|BBM_RunLava|BBM_ToBase64|BBM_RegExMatches|BBM_RegExReplace|BBM_Function)\\b"
+      "match": "(\\|)\\s*(First|Last|AppendFollowing|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Linkify|NewlineToBr|PluralizeForQuantity|Pluralize|Possessive|Prepend|ReadTime|RegExMatchValues|RegExMatchValue|RegExMatch|Remove|RemoveFirst|ReplaceFirst|ReplaceLast|Replace|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|TruncateWords|Truncate|UnescapeDataString|Upcase|WithFallback|DateAdd|DateDiff|DatesFromICal|Date|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|Humanize|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|FormatAsCurrency|Format|Minus|Modulo|NumberToOrdinalWords|NumberToOrdinal|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|SortByAttribute|Sort|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Property|PageRedirect|PageParameter|PageRoute|Page|HasRightsTo|Notes|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|FromBase64|RunLava|RegExReplace|WriteCookie|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|TriumphImgCdn|Steps)\\:?",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.lava"
+        },
+        "2": {
+          "name": "entity.name.function.lava"
+        }
+      }
     },
     "support-variable": {
         "name": "support.variable.lava",
@@ -943,6 +951,46 @@
           "include": "source.cs"
         }
       ]
+    },
+    "assign": {
+			"match": "\\s*(assign)\\s+([a-zA-Z0-9]+)\\s*(=)\\s*([.a-zA-Z0-9]*|'[^']*')\\s*(.*?)\\s*",
+			"captures": {
+        "1": {
+          "name": "storage.type.lava"
+        },
+        "2": {
+          "name": "variable.other.readwrite.lava"
+        },
+        "3": {
+          "name": "keyword.operator.assignment.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "include": "#string-quoted-double"
+            },
+            {
+              "include": "#string-quoted-single"
+            },
+            {
+              "name": "variable.other.readwrite.lava",
+              "begin": "\\[",
+              "end": "\\]"
+            },
+            {
+              "match": "[.a-zA-Z0-9]+",
+              "name": "variable.other.constant.object.lava"
+            }
+          ]
+        },
+        "5": {
+          "patterns": [
+            {
+              "include": "#support-function"
+            }
+          ]
+        }
+			}
     },
     "entity": {
 			"begin": "({%)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",

@@ -9,7 +9,7 @@
 		"name": "Garrett Johnson"
 	},
 	"engines": {
-		"vscode": "^1.16.0"
+		"vscode": "^1.59.0"
 	},
 	"categories": [
 		"Programming Languages",
@@ -37,7 +37,7 @@
 		"compile": "tsc -p ./",
 		"pack": "vsce package",
 		"publish": "vsce publish",
-		"test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath="
+		"test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=$extensionLocation"
 	},
 	"activationEvents": [
 		"onCommand:rock-lava.openconnectionstrings",
