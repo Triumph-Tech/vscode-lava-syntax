@@ -190,7 +190,7 @@
 		"ts-loader": "^9.2.5",
 		"webpack": "^5.59.0",
 		"webpack-cli": "^4.9.1",
-		"@types/webpack-env": "^1.16.2",
+		"@types/webpack-env": "^1.16.3",
 		"assert": "^2.0.0",
 		"process": "^0.11.10"
 	}
