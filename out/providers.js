@@ -66,9 +66,13 @@ const getFilterProvider = (documentSelector) => {
     const rockFilters = filters.filters;
     return registerCompletionItemProvider(documentSelector, {
         provideCompletionItems(document, position) {
-            let linePrefix = document.lineAt(position).text.substr(0, position.character);
-            let lineSuffix = document.lineAt(position).text.substr(position.character);
+            let currentLine = document.lineAt(position).text;
+            let linePrefix = currentLine.substr(0, position.character);
+            let lineSuffix = currentLine.substr(position.character);
             //let documentPrefix = document.getText(new vscode.Range(documentStart, position));
+            if (!utils.isInsideBrackets(currentLine, position.character) && !utils.isInsideObject(currentLine, position.character)) {
+                return;
+            }
             if (!utils.isLavaFilterable.test(linePrefix)) {
                 return;
             }

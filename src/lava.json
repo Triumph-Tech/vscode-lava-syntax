@@ -319,7 +319,7 @@
       "example": "{%- assign token = 'Global' | PageParameter:'rckipid' -%}\n{%- assign person = token | PersonTokenRead:false,optionalPageId -%}",
       "snippet": [
         "{%- assign token = 'Global' | PageParameter:'${1:rckipid}' -%}",
-        "{%- assign person = token | PersonTokenRead:${2:false},${3:optionalPageId} -%}"
+        "{%- assign person = token | PersonTokenRead:${2|false,true|},${3:optionalPageId} -%}"
       ]
     },
     "PluralizeForQuantity": {
