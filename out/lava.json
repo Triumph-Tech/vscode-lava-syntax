@@ -1994,6 +1994,7 @@
                 {
                     "type": "argument",
                     "name": "Property",
+                    "description": "Tree property value to group by.",
                     "required": true,
                     "accepts": [
                         "$string",
@@ -2252,7 +2253,7 @@
         "Address": {
             "description": "Provides an address for the person you provide.",
             "example": "{{ Person | Address:'Home' }}",
-            "snippet": "Address:'${1|Home,Work|}','${2:[[city]], [[state]]}'",
+            "snippet": "Address:'${1|Home,Work,Mailing,MapLocation|}','${2|[[FormattedAddress]],[[FormattedHtmlAddress]],[[Street1]] [[Street2]],[[city]]\\, [[state]] [[PostalCode]],[[GeoPoint]],[[Latitude]],[[Longitude]],[[Name]],[[Guid]]|}'",
             "type": "Person",
             "link": "https://community.rockrms.com/lava/filters/person-filters#address",
             "arguments": [
@@ -2269,7 +2270,7 @@
                 {
                     "type": "argument",
                     "name": "FormatTemplate",
-                    "description": "...",
+                    "description": "Fields surrounded in [[brakets]]. Valid fields include: Street1, Street2, City, State, PostalCode, Country, FormattedAddress, FormattedHtmlAddress, GeoPoint, Latitude, Longitude, Name, and Guid.",
                     "required": false,
                     "accepts": [
                         "$string",
@@ -2329,7 +2330,7 @@
         "FamilySalutation": {
             "description": "Returns the salutation of the family for a given person.",
             "example": "{{ Person | FamilySalutation }}",
-            "snippet": "FamilySalutation:'${1|true,false|}','${2|true,false|}','${3|true,false|}','${4:and}','${5:,}'",
+            "snippet": "FamilySalutation:'${1|false,true|}','${2|true,false|}','${3|false,true|}','${4:and}','${5:,}'",
             "type": "Person",
             "returns": "string",
             "link": "https://community.rockrms.com/lava/filters/person-filters#familysalutation",
@@ -2337,7 +2338,7 @@
                 {
                     "type": "argument",
                     "name": "IncludeChildren",
-                    "description": "Should children be included on the list? The default is no (false).",
+                    "description": "Include children in the list.",
                     "required": false,
                     "accepts": [
                         "$string",
@@ -2347,7 +2348,7 @@
                 {
                     "type": "argument",
                     "name": "IncludeInactive",
-                    "description": "Determines if inactive people should be listed. By default inactive people are displayed but deceased are never shown. We default to show inactive as many families are entirely inactive and therefore no salutation would be returned... which is... confusing...",
+                    "description": "Display inactive people (Deceased are never shown). True is recommended so that inactivated families with no active members have a salutation.",
                     "required": false,
                     "accepts": [
                         "$string",
@@ -2357,7 +2358,7 @@
                 {
                     "type": "argument",
                     "name": "UseFormalName",
-                    "description": "Should we use the nick name or first (formal) name By default informal names will be displayed.",
+                    "description": "Use FirstNames instead of NickNames when they're available.",
                     "required": false,
                     "accepts": [
                         "$string",
@@ -2367,7 +2368,7 @@
                 {
                     "type": "argument",
                     "name": "FinalSeparator",
-                    "description": "What should the final separator be? By default the & character will be used, but you can change this to something like 'and' if you'd rather.",
+                    "description": "The seperator between the final two values. [Default: '&']",
                     "required": false,
                     "accepts": [
                         "$string",
@@ -2377,7 +2378,7 @@
                 {
                     "type": "argument",
                     "name": "Separator",
-                    "description": "Commas not good enough for you? Well you can provide your own separator if you wish.",
+                    "description": "Separator between values, not including the last two values. [Default:',']",
                     "required": false,
                     "accepts": [
                         "$string",
