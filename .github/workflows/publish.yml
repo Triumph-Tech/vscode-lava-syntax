@@ -1,6 +1,10 @@
-on:
-  release:
-    types: [published, created]
+on:  
+  push:
+    tags:
+      - '1.*'
+    tags-ignore:
+      - '2.*'
+      
 name: Deploy Extension
 jobs:
   deploy:
@@ -14,3 +18,14 @@ jobs:
           args: "publish -p $VSCE_TOKEN"
         env:
           VSCE_TOKEN: ${{ secrets.VS_MARKETPLACE_TOKEN }}
+      - name: Package extension
+        uses: lannonbr/vsce-action@master
+        with:
+          args: "package -o language-lava-${{ github.event.release.tag_name }}.vsix"
+      - name: Github Release
+        uses: softprops/action-gh-release@v1
+        with:
+          files: language-lava-${{ github.event.release.tag_name }}.vsix
+          draft: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
