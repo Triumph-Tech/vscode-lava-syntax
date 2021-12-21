@@ -2,8 +2,6 @@ on:
   push:
     tags:
       - '1.*'
-    tags-ignore:
-      - '2.*'
       
 name: Deploy Extension
 jobs:
