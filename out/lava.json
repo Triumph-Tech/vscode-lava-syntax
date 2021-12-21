@@ -55,6 +55,7 @@
         },
         "ifelse-": {
             "description": "Control flow tag: if else, whitespaced",
+            "example": "{%- if condition -%}\n\t...\n{%- else -%}\n\t...\n{%- endif -%}",
             "snippet": [
                 "{%- if ${1:condition} -%}",
                 "\t$2",
@@ -88,7 +89,7 @@
         },
         "ifelse": {
             "description": "Control flow tag: if else",
-            "example": "{% %}\n\t...\n{% else %}\n\t...\n{% endif %}",
+            "example": "{% if condition %}\n\t...\n{% else %}\n\t...\n{% endif %}",
             "snippet": [
                 "{% if ${1:condition} %}",
                 "\t$2",
@@ -3316,7 +3317,7 @@
         },
         "HasRightsTo": {
             "description": "This filter helps you check the security of the model you pass it.",
-            "example": "{{ person | HasRightsTo:'View' }}",
+            "example": "{{ Person | HasRightsTo:'View' }}",
             "snippet": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}'",
             "type": "Other",
             "returns": "boolean",
