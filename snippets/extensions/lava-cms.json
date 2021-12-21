@@ -11,7 +11,7 @@
     "description": "Add Canonical Link to head",
     "body": [
       "{{ ${1:Item.CreatedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:published_time' }}",
-      "{{ ${1:Item.ModifiedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:modified_time' }}",
+      "{{ ${1:Item.ModifiedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:modified_time' }}"
     ]
   },
   "title": {

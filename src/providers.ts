@@ -86,13 +86,9 @@ const getFilterProvider = (documentSelector: string | string[]) => {
       let linePrefix = currentLine.substr(0, position.character);
       let lineSuffix = currentLine.substr(position.character);
 
-      //let documentPrefix = document.getText(new vscode.Range(documentStart, position));
-      if (!utils.isLavaFilterable.test(linePrefix) && !utils.isInsideBrackets(currentLine, position.character) && !utils.isInsideObject(currentLine, position.character)) {
+      if (!utils.isLavaFilterable.test(linePrefix) && (!utils.isInsideBrackets(currentLine, position.character) || !utils.isInsideObject(currentLine, position.character))) {
         return;
       }
-
-      //const textUntilPosition = this.intellisense.utils.textUntilPosition(model, position);
-
 
       let completionItems: CompletionItem[] = [];
 

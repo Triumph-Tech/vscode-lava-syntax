@@ -1,7 +1,6 @@
 {
     "comments": {
         "blockComment": [ "{% comment %}", "{% endcomment %}" ]
-        //"lineComment": "//-"
     },
     // symbols used as brackets
     "brackets": [

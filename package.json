@@ -9,7 +9,7 @@
 		"name": "Garrett Johnson"
 	},
 	"engines": {
-		"vscode": "^1.61.0"
+		"vscode": "^1.62.0"
 	},
 	"categories": [
 		"Programming Languages",
@@ -159,18 +159,6 @@
 			}
 		],
 		"snippets": [
-			{
-				"language": "lava",
-				"path": "./snippets/lava-other.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/extensions/lava-shortcodes.json"
-			},
-			{
-				"language": "lava",
-				"path": "./snippets/extensions/lava-cms.json"
-			},
 			{
 				"language": "cshtml",
 				"path": "./snippets/rock-controls.json"

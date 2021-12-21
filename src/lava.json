@@ -6,7 +6,7 @@
     "assign": {
       "description": "Create a variables",
       "example": "{% assign name = 'Ted Decker' %}",
-      "snippet": "{%- assign ${1:variable} = ${2:value} $0-%}"
+      "snippet": "{% assign ${1:variable} = ${2:value} $0%}"
     },
     "capture": {
       "description": "Captures the string inside of the opening and closing tags and assigns it to a variable.",
@@ -36,7 +36,7 @@
     "include": {
       "description": "Theme tag: include",
       "snippet": [
-        "{%- include '${1:~~/Assets/Lava/${TM_FILENAME}}' -%}"
+        "{% include '${1:~~/Assets/Lava/${TM_FILENAME}}' %}"
       ]
     },
     "Global": {
@@ -55,6 +55,7 @@
     },
     "ifelse-": {
       "description": "Control flow tag: if else, whitespaced",
+      "example": "{%- if condition -%}\n\t...\n{%- else -%}\n\t...\n{%- endif -%}",
       "snippet": [
         "{%- if ${1:condition} -%}",
         "\t$2",
@@ -88,6 +89,7 @@
     },
     "ifelse": {
       "description": "Control flow tag: if else",
+      "example": "{% if condition %}\n\t...\n{% else %}\n\t...\n{% endif %}",
       "snippet": [
         "{% if ${1:condition} %}",
         "\t$2",
@@ -131,16 +133,16 @@
     },
     "assignAttribute": {
       "description": "Create a variable from an attribute.",
-      "example": "{%- assign variable = Item | Attribute:'variable' -%}",
+      "example": "{% assign variable = Item | Attribute:'variable' %}",
       "snippet": [
-        "{%- assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' -%}"
+        "{% assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' %}"
       ]
     },
     "assignTransform": {
       "description": "Transform an existing Lava variable",
-      "example": "{%- assign variable = variable -%}",
+      "example": "{% assign variable = variable %}",
       "snippet": [
-        "{%- assign ${1:variable} = ${1} $0 -%}"
+        "{% assign ${1:variable} = ${1} $0 %}"
       ]
     },
     "assignPersonAliases": {
@@ -152,9 +154,9 @@
     },
     "assignNow": {
       "description": "Assigns current date time to now.",
-      "example": "{%- assign now = 'Now' | Date -%}",
+      "example": "{% assign now = 'Now' | Date %}",
       "snippet": [
-        "{%- assign now = 'Now' | Date -%}"
+        "{% assign now = 'Now' | Date %}"
       ]
     },
     "now": {
@@ -166,16 +168,16 @@
     },
     "increment": {
       "description": "Increments a variable.",
-      "example": "{%- assign count = count | Plus:1 -%}",
+      "example": "{% assign count = count | Plus:1 %}",
       "snippet": [
-        "{%- assign ${1:count} = ${2:$1} | Plus:${3:1} -%}"
+        "{% assign ${1:count} = ${2:$1} | Plus:${3:1} %}"
       ]
     },
     "decrement": {
       "description": "Decreases a variable.",
-      "example": "{%- assign count = count | Minus:1 -%}",
+      "example": "{% assign count = count | Minus:1 %}",
       "snippet": [
-        "{%- assign ${1:count} = ${2:$1} | Minus:${3:1} -%}"
+        "{% assign ${1:count} = ${2:$1} | Minus:${3:1} %}"
       ]
     },
     "debug": {
@@ -187,116 +189,116 @@
     },
     "PersistedDataset": {
       "description": "Creates a variable from an attribute.",
-      "example": "{%- assign variable = 'Dataset' | PersistedDataset -%}",
+      "example": "{% assign variable = 'Dataset' | PersistedDataset %}",
       "snippet": [
-        "{%- assign ${1:variable} = '${2:Dataset}' | PersistedDataset -%}"
+        "{% assign ${1:variable} = '${2:Dataset}' | PersistedDataset %}"
       ]
     },
     "assignPageParameter": {
       "description": "Creates a variable from a page parameter.",
-      "example": "{%- assign variable = PageParameter.variable -%}",
+      "example": "{% assign variable = PageParameter.variable %}",
       "snippet": [
-        "{%- assign ${2:$1} = PageParameter.${1:variable} -%}"
+        "{% assign ${2:$1} = PageParameter.${1:variable} %}"
       ]
     },
     "Entity": {
       "description": "Entity command with conditions, a limit, and iterator option.",
-      "example": "{%- entityname where:'conditions' -%}\n\n\n{%- endentityname -%}",
+      "example": "{% entityname where:'conditions' %}\n\n\n{% endentityname %}",
       "snippet": [
-        "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' ${5:sort:'${6:Order}'} securityenabled:'${7|false,true|}' -%}",
-        "\t{%- for ${8:item} in $4 -%}",
+        "{% ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' ${5:sort:'${6:Order}'} securityenabled:'${7|false,true|}' %}",
+        "\t{% for ${8:item} in $4 %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- end${1:/downcase} -%}"
+        "\t{% endfor %}",
+        "{% end${1:/downcase} %}"
       ]
     },
     "EntityById": {
       "description": "Entity Command to get an entity by an ID.",
-      "example": "{%- entityname id:'100' -%}\n\t...\n{%- endentityname -%}",
+      "example": "{% entityname id:'100' %}\n\t...\n{% endentityname %}",
       "snippet": [
-        "{%- ${1:entityname} id:'${2:100}' securityenabled:'${3|false,true|}' -%}",
+        "{% ${1:entityname} id:'${2:100}' securityenabled:'${3|false,true|}' %}",
         "\t{{ ${1:/downcase}.${4} }}$0",
-        "{%- end${1:/downcase} -%}"
+        "{% end${1:/downcase} %}"
       ]
     },
     "EntityByIds": {
       "description": "Get an entity by a comma separated list of ids.",
-      "example": "{%- entityname ids:'3,4,5' -%}\n\t{%- for item in Items -%}\n\n\t{%- endfor -%}\n{%- endentityname -%}",
+      "example": "{% entityname ids:'3,4,5' %}\n\t{% for item in Items %}\n\n\t{% endfor %}\n{% endentityname %}",
       "snippet": [
-        "{%- ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
-        "\t{%- for ${5:item} in $3 -%}",
+        "{% ${1:entityname} ids:'${2:3,4,5}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' %}",
+        "\t{% for ${5:item} in $3 %}",
         "\t\t{{ ${5}.${6} }}$0",
-        "\t{%- endfor -%}",
-        "{%- end${1:/downcase} -%}"
+        "\t{% endfor %}",
+        "{% end${1:/downcase} %}"
       ]
     },
     "EntityByDataview": {
       "description": "Get an entity by a dataview ID",
-      "example": "{%- entityname dataview:'3' -%}\n\t{%- for item in Items -%}\n\n\t{%- endfor -%}\n{%- endentityname -%}",
+      "example": "{% entityname dataview:'3' %}\n\t{% for item in Items %}\n\n\t{% endfor %}\n{% endentityname %}",
       "snippet": [
-        "{%- ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' -%}",
-        "\t{%- for ${5:item} in $3 -%}",
+        "{% ${1:entityname} dataview:'${2:3}' iterator:'${3:Items}' securityenabled:'${4|false,true|}' %}",
+        "\t{% for ${5:item} in $3 %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- end${1:/downcase} -%}"
+        "\t{% endfor %}",
+        "{% end${1:/downcase} %}"
       ]
     },
     "EntityCount": {
       "description": "Entity command to return the count only.",
-      "example": "{%- entityname where:'conditions' count:'true' -%}\n\t{%- assign entitynameCount = count -%}\n{%- endentityname -%}",
+      "example": "{% entityname where:'conditions' count:'true' %}\n\t{% assign entitynameCount = count %}\n{% endentityname %}",
       "snippet": [
-        "{%- ${1:entityname} where:'${2:conditions}' count:'true' securityenabled:'false' -%}",
-        "\t{%- assign ${3:${1:entityname}Count} = count -%}",
-        "{%- end${1:/downcase} -%}"
+        "{% ${1:entityname} where:'${2:conditions}' count:'true' securityenabled:'false' %}",
+        "\t{% assign ${3:${1:entityname}Count} = count %}",
+        "{% end${1:/downcase} %}"
       ]
     },
     "Cache": {
       "description": "Cache the output of lava for reuse.",
-      "example": "{%- cache key:'variable' -%}\n\t...\n{%- endcache -%}",
+      "example": "{% cache key:'variable' %}\n\t...\n{% endcache %}",
       "snippet": [
-        "{%- cache key:'${1:variable}' duration:'${2:3600}' twopass:'${3|false,true|}' ${4:tags:'${5:tag,list,optional}'} -%}",
+        "{% cache key:'${1:variable}' duration:'${2:3600}' twopass:'${3|false,true|}' ${4:tags:'${5:tag,list,optional}'} %}",
         "\t$0",
-        "{%- endcache -%}"
+        "{% endcache %}"
       ]
     },
     "HasSignedIf": {
       "description": "If statement to determine if someone has signed a document.",
-      "example": "{%- assign hasSigned = CurrentPerson | HasSignedDocument:DocumentId -%}\n{%- if hasSigned -%}\n\t{{ CurrentPerson.NickName }} has signed this document.\n{%- endif -%}",
+      "example": "{% assign hasSigned = CurrentPerson | HasSignedDocument:DocumentId %}\n{% if hasSigned %}\n\t{{ CurrentPerson.NickName }} has signed this document.\n{% endif %}",
       "snippet": [
-        "{%- assign hasSigned = ${1:CurrentPerson} | HasSignedDocument:${2:DocumentId} -%}",
-        "{%- if hasSigned -%}",
+        "{% assign hasSigned = ${1:CurrentPerson} | HasSignedDocument:${2:DocumentId} %}",
+        "{% if hasSigned %}",
         "\t{{ ${1}.NickName }} has signed this document.",
-        "{%- endif -%}"
+        "{% endif %}"
       ]
     },
     "persistedEntity": {
       "description": "Basic entity command with conditions, a limit, and iterator option.",
       "snippet": [
         "[",
-        "{%- ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' -%}",
-        "\t{%- for ${5:item} in $4 -%}",
+        "{% ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' %}",
+        "\t{% for ${5:item} in $4 %}",
         "\t{",
         "\t\t\"Id\": {{ ${5:/downcase}.Id }},",
         "\t\t$0",
-        "\t}{% unless forloop.last -%},{% endunless %}",
-        "\t{%- endfor -%}",
-        "{%- end${1:/downcase} -%}",
+        "\t}{% unless forloop.last %},{% endunless %}",
+        "\t{% endfor %}",
+        "{% end${1:/downcase} %}",
         "]"
       ]
     },
     "persistedSql": {
       "description": "Basic SQL persisted dataset builder",
       "snippet": [
-        "{%- sql return:'${1:Items}' timeout:'90' -%}",
+        "{% sql return:'${1:Items}' timeout:'90' %}",
         "\t$2",
-        "{%- endsql -%}",
+        "{% endsql %}",
         "[",
         "{% for ${3:item} in ${1} %}",
         "\t{",
         "\t\t\"Id\": {{ ${3}.Id }},",
         "\t\t$0",
-        "\t}{% unless forloop.last -%},{% endunless %}",
-        "\t{%- endfor -%}",
+        "\t}{% unless forloop.last %},{% endunless %}",
+        "\t{% endfor %}",
         "]"
       ]
     },
@@ -316,10 +318,10 @@
     },
     "PersonTokenRead": {
       "description": "Converts a person token to a person object.",
-      "example": "{%- assign token = 'Global' | PageParameter:'rckipid' -%}\n{%- assign person = token | PersonTokenRead:false,optionalPageId -%}",
+      "example": "{% assign token = 'Global' | PageParameter:'rckipid' %}\n{% assign person = token | PersonTokenRead:false,optionalPageId %}",
       "snippet": [
-        "{%- assign token = 'Global' | PageParameter:'${1:rckipid}' -%}",
-        "{%- assign person = token | PersonTokenRead:${2|false,true|},${3:optionalPageId} -%}"
+        "{% assign token = 'Global' | PageParameter:'${1:rckipid}' %}",
+        "{% assign person = token | PersonTokenRead:${2|false,true|},${3:optionalPageId} %}"
       ]
     },
     "PluralizeForQuantity": {
@@ -329,45 +331,45 @@
     },
     "js": {
       "description": "Place a script into the page header",
-      "example": "{%- javascript -%}\n\n{%- endjavascript -%}",
+      "example": "{% javascript %}\n\n{% endjavascript %}",
       "snippet": [
-        "{%- javascript -%}",
+        "{% javascript %}",
         "\t$0",
-        "{%- endjavascript -%}"
+        "{% endjavascript %}"
       ]
     },
     "jsurl": {
       "description": "Javascript URL",
-      "example": "{%- javascript url:'https://' id:'uniqueid' -%}{%- endjavascript -%}",
+      "example": "{% javascript url:'https://' id:'uniqueid' %}{% endjavascript %}",
       "snippet": [
-        "{%- javascript url:'${1:https://}' id:'${2:uniqueid}' -%}{%- endjavascript -%}"
+        "{% javascript url:'${1:https://}' id:'${2:uniqueid}' %}{% endjavascript %}"
       ]
     },
     "js-escape": {
       "description": "",
       "snippet": [
-        "{%- javascript disableanonymousfunction:'true' -%}</script>",
+        "{% javascript disableanonymousfunction:'true' %}</script>",
         "\t$0",
-        "<script>{%- endjavascript -%}"
+        "<script>{% endjavascript %}"
       ]
     },
     "search": {
       "description": "Search using Universal Search",
-      "example": "{%- search query:'variable' -%}\n\t{%- for item in results -%}\n\n\n\t{%- endfor -%}\n{%- endsearch -%}",
+      "example": "{% search query:'variable' %}\n\t{% for item in results %}\n\n\n\t{% endfor %}\n{% endsearch %}",
       "snippet": [
-        "{%- search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' -%}",
-        "\t{%- for item in results -%}",
+        "{% search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' %}",
+        "\t{% for item in results %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- endsearch -%}"
+        "\t{% endfor %}",
+        "{% endsearch %}"
       ]
     },
     "sql": {
       "description": "Theme tag: SQL",
       "snippet": [
-        "{%- sql return:'${1:Items}' ${2:timeout:'${3:10}'} -%}",
+        "{% sql return:'${1:Items}' ${2:timeout:'${3:10}'} %}",
         "\t$4",
-        "{%- endsql -%}",
+        "{% endsql %}",
         "{% for ${5:item} in ${1} %}",
         "\t$0",
         "{% endfor %}"
@@ -377,20 +379,20 @@
       "description": "Place a CSS stylesheet into the page header",
       "example": "{% stylesheet %}\n#content-wrapper {\n\tbackground-color: red !important;\n\tcolor: #fff;\n}\n{% endstylesheet %}",
       "snippet": [
-        "{%- stylesheet id:'${1:uniqueid}' -%}",
+        "{% stylesheet id:'${1:uniqueid}' %}",
         "\t$0",
-        "{%- endstylesheet -%}"
+        "{% endstylesheet %}"
       ]
     },
     "webrequest": {
       "description": "Send a HTTP request to a remote server.",
-      "example": "{%- webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' -%}\n\n{%- endwebrequest -%}",
+      "example": "{% webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' %}\n\n{% endwebrequest %}",
       "snippet": [
-        "{%- webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' -%}",
-        "\t{%- for item in results -%}",
+        "{% webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' %}",
+        "\t{% for item in results %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- endwebrequest -%}"
+        "\t{% endfor %}",
+        "{% endwebrequest %}"
       ]
     },
     "workflowactivate": {
@@ -404,29 +406,29 @@
     },
     "eventscheduledinstance": {
       "description": "Get a summary list of EventScheduledInstances from the provided event.",
-      "example": "{%- eventscheduledinstance eventid:'1' -%}\n\t...\n{%- endeventscheduledinstance -%}",
+      "example": "{% eventscheduledinstance eventid:'1' %}\n\t...\n{% endeventscheduledinstance %}",
       "snippet": [
-        "{%- eventscheduledinstance eventid:'${1:1}' ${2:maxoccurrences:'${3:100}'} ${4:daterange:'${5:2m}'} ${6:campusids:'${7:1}'} -%}",
-        "\t{%- for ${8:item} in ${9|EventScheduledInstances,EventItems|} -%}",
+        "{% eventscheduledinstance eventid:'${1:1}' ${2:maxoccurrences:'${3:100}'} ${4:daterange:'${5:2m}'} ${6:campusids:'${7:1}'} %}",
+        "\t{% for ${8:item} in ${9|EventScheduledInstances,EventItems|} %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- endeventscheduledinstance -%}"
+        "\t{% endfor %}",
+        "{% endeventscheduledinstance %}"
       ]
     },
     "interactionwrite": {
       "description": "Write a Rock interaction.",
-      "example": "{%- interactionwrite ... -%}{{ currentUrl }}{%- endinteractionwrite -%}",
+      "example": "{% interactionwrite ... %}{{ currentUrl }}{% endinteractionwrite %}",
       "snippet": [
-        "{%- assign currentUrl = 'Global'| Page:'Url' -%}",
-        "{%- assign siteId = 'Global' | Page:'SiteId' -%}",
-        "{%- interactionwrite channeltypemediumvalueid:'${1:1}' channelentityid:'${3:{{ ${2:Item}.ChannelId \\}\\}}' channelname:'${4:{{ $2.ChannelName \\}\\}}' componententitytypeid:'${5:4}' componententityid:'${6:{{ $2.Id \\}\\}}' componentname:'${7:{{ $2.Title \\}\\}}' operation:'${8:View}' summary:'${9:Viewed \"{{ Item.Title \\}\\}\"}' channelcustom1:'${10:{{ siteId \\}\\}}' personaliasid:'${11:{{ CurrentPerson.PrimaryAliasId \\}\\}}' source:'${12:{{ PageParameter.utm_source \\}\\}}' medium:'${13:{{ PageParameter.utm_medium \\}\\}}' campaign:'${14:{{ PageParameter.utm_campaign \\}\\}}' -%}${15:{{ currentUrl \\}\\}}{%- endinteractionwrite -%}"
+        "{% assign currentUrl = 'Global'| Page:'Url' %}",
+        "{% assign siteId = 'Global' | Page:'SiteId' %}",
+        "{% interactionwrite channeltypemediumvalueid:'${1:1}' channelentityid:'${3:{{ ${2:Item}.ChannelId \\}\\}}' channelname:'${4:{{ $2.ChannelName \\}\\}}' componententitytypeid:'${5:4}' componententityid:'${6:{{ $2.Id \\}\\}}' componentname:'${7:{{ $2.Title \\}\\}}' operation:'${8:View}' summary:'${9:Viewed \"{{ Item.Title \\}\\}\"}' channelcustom1:'${10:{{ siteId \\}\\}}' personaliasid:'${11:{{ CurrentPerson.PrimaryAliasId \\}\\}}' source:'${12:{{ PageParameter.utm_source \\}\\}}' medium:'${13:{{ PageParameter.utm_medium \\}\\}}' campaign:'${14:{{ PageParameter.utm_campaign \\}\\}}' %}${15:{{ currentUrl \\}\\}}{% endinteractionwrite %}"
       ]
     },
     "interactioncontentchannelitemwrite": {
       "description": "Write a content channel interaction for the specified content channel item.",
-      "example": "{%- interactioncontentchannelitemwrite contentchannelitemid:'1' operation:'View' summary:'Viewed content channel item' ... -%}",
+      "example": "{% interactioncontentchannelitemwrite contentchannelitemid:'1' operation:'View' summary:'Viewed content channel item' ... %}",
       "snippet": [
-        "{%- interactioncontentchannelitemwrite contentchannelitemid:'${1:1}' operation:'${2:View}' summary:'${3:Viewed content channel item}' ${4:personaliasid:'${5:100}'} source:'${6:{{ PageParameter.utm_source \\}\\}}' medium:'${7:{{ PageParameter.utm_medium \\}\\}}' campaign:'${8:{{ PageParameter.utm_campaign \\}\\}}' -%}"
+        "{% interactioncontentchannelitemwrite contentchannelitemid:'${1:1}' operation:'${2:View}' summary:'${3:Viewed content channel item}' ${4:personaliasid:'${5:100}'} source:'${6:{{ PageParameter.utm_source \\}\\}}' medium:'${7:{{ PageParameter.utm_medium \\}\\}}' campaign:'${8:{{ PageParameter.utm_campaign \\}\\}}' %}"
       ]
     },
     "styleurl": {
@@ -438,13 +440,13 @@
     },
     "CalendarEvents": {
       "description": "Get a summary list of EventScheduledInstances from the provided calendar.",
-      "example": "{%- calendarevents calendarid:'1' -%}\n\t...\n{%- endcalendarevents -%}",
+      "example": "{% calendarevents calendarid:'1' %}\n\t...\n{% endcalendarevents %}",
       "snippet": [
-        "{%- calendarevents calendarid:'${1:1}' maxoccurrences:'${2:100}' ${3:audienceids:'${4:0}'} ${5:campusids:'${6:1}'} -%}",
-        "\t{%- for ${7:item} in EventScheduledInstances -%}",
+        "{% calendarevents calendarid:'${1:1}' maxoccurrences:'${2:100}' ${3:audienceids:'${4:0}'} ${5:campusids:'${6:1}'} %}",
+        "\t{% for ${7:item} in EventScheduledInstances %}",
         "\t\t$0",
-        "\t{%- endfor -%}",
-        "{%- endcalendarevents -%}"
+        "\t{% endfor %}",
+        "{% endcalendarevents %}"
       ]
     },
     "when": {
@@ -478,11 +480,11 @@
     },
     "execute": {
       "description": "Command tag: execute",
-      "example": "{%- execute -%}\n\t...\n{%- endexecute -%}",
+      "example": "{% execute %}\n\t...\n{% endexecute %}",
       "snippet": [
-        "{%- execute -%}",
+        "{% execute %}",
         "\t$0",
-        "{%- endexecute -%}"
+        "{% endexecute %}"
       ]
     },
     "raw": {
@@ -592,8 +594,8 @@
       "description": "Simple pagination starter template.",
       "snippet": [
         "<div class=\"${1:clearfix mt-5}\">",
-        "  {%- assign nextPageString = Pagination.NextPage | ToString -%}",
-        "  {%- assign prevPageString = Pagination.PreviousPage | ToString -%}",
+        "  {% assign nextPageString = Pagination.NextPage | ToString %}",
+        "  {% assign prevPageString = Pagination.PreviousPage | ToString %}",
         "",
         "  {% if Pagination.PreviousPage != -1 %}",
         "  <a class=\"btn btn-primary pull-left\" href=\"{{Pagination.UrlTemplate | Replace:'PageNum', prevPageString}}\">",
@@ -627,7 +629,7 @@
       "description": "Remove HTML (and HTML blocks) from a string.",
       "snippet": [
         "{% capture stripHtmlBlocks %}<script[\\S\\s]*?<\/script>|<!--[\\S\\s]*?-->|<style[\\S\\s]*?<\/style>{% endcapture %}",
-        "{%- assign ${1:variable} = ${1} | RegExReplace:stripHtmlBlocks,'' | Replace:'</',' </' | StripHtml | StripNewlines -%}"
+        "{% assign ${1:variable} = ${1} | RegExReplace:stripHtmlBlocks,'' | Replace:'</',' </' | StripHtml | StripNewlines %}"
       ]
     },
     "prejson": {
@@ -635,6 +637,88 @@
       "example": "<pre>{{ $0 | ToJSON }}</pre>",
       "snippet": [
         "<pre>{{ $0 | ToJSON }}</pre>"
+      ]
+    },
+    "meta:canonical": {
+      "description": "Add Canonical Link to head",
+      "example": "<link rel=\"canonical\" href=\"https://example.com/dresses/green-dresses\" />",
+      "snippet": [
+        "{{ ${1:'${2:https://rockrms.com/}'} | AddLinkTagToHead:'rel','canonical' }}"
+      ]
+    },
+    "meta:PublishedTime": {
+      "description": "Add Published and Modified dates to head",
+      "snippet": [
+        "{{ ${1:Item.CreatedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:published_time' }}",
+        "{{ ${1:Item.ModifiedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:modified_time' }}"
+      ]
+    },
+    "meta:title": {
+      "description": "Add Title to head",
+      "snippet": [
+        "{{ ${1:'${2:Ted Decker}'} | AddMetaTagToHead:'name','title' }}",
+        "{{ ${1} | AddMetaTagToHead:'property','og:title' }}"
+      ]
+    },
+    "meta:author": {
+      "description": "Add author name to head",
+      "snippet": [
+        "{{ ${1:'${2:Ted Decker}'} | AddMetaTagToHead:'property','author' }}"
+      ]
+    },
+    "meta:ogUrl": {
+      "description": "Add OpenGraph URL to head.",
+      "snippet": [
+        "{{ ${1:'${2:https://rockrms.com/}'} | AddMetaTagToHead:'property','og:url' }}"
+      ]
+    },
+    "meta:ogDesc": {
+      "description": "Add OpenGraph description to head.",
+      "snippet": [
+        "{{ ${1:'${2:Description}'} | AddMetaTagToHead:'property','og:description' }}"
+      ]
+    },
+    "meta:type": {
+      "description": "Add author name to head",
+      "snippet": [
+        "{{ ${1:'${2|article,book,music.song,music.album,music.playlist,music.radio_station,profile,video,video.movie,video.episode,video.tv_show,video.other|}'} | AddMetaTagToHead:'property','og:type' }}"
+      ]
+    },
+    "meta:type:article": {
+      "description": "All the SEO tags you need",
+      "snippet": [
+        "//- SEO For Articles",
+        "//- Item tag = ${1:Item}",
+        "{% assign canonicalUrl = 'http://www.rockrms.com/article/' | Append:${1}.PrimarySlug %}",
+        "{% assign socialTitle = ${1}.Title %}",
+        "{% assign socialDescription = ${1}.Description | StripHtml | Truncate:20,'...' %}",
+        "{% assign socialAuthor = Item.CreatedById | PersonById %}",
+        "{% assign authorFacebook = socialAuthor | Attribute:'Facebook' %}",
+        "{% assign socialImage = ${1} | Attribute:'Image','Object' %}",
+        "{% assign imageWidth = socialImage.Width %}",
+        "{% assign imageHeight = socialImage.Height %}",
+        "{{ canonicalUrl | AddLinkTagToHead:'rel','canonical' }}",
+        "{{ ${2:'${3:en_US}'} | AddMetaTagToHead:'property','og:locale' }}",
+        "{{ 'article' | AddMetaTagToHead:'property','og:type' }}",
+        "{{ socialTitle | AddMetaTagToHead:'name','title' }}",
+        "{{ socialTitle | AddMetaTagToHead:'property','og:title' }}",
+        "{{ socialDescription | AddMetaTagToHead:'property','og:description' }}",
+        "{{ canonicalUrl | AddLinkTagToHead:'property','og:url' }}",
+        "{{ authorFacebook | AddMetaTagToHead:'property','article:author' }}",
+        "{{ ${8:${1}.CreatedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:published_time' }}",
+        "{{ ${9:${1}.ModifiedDateTime} | Date:'yyyy-MM-ddTHH:mm:sszzz' | AddMetaTagToHead:'property','article:modified_time' }}",
+        "//- Delete if no image is provided",
+        "{% if socialImage != null %}",
+        "{{ socialImage | AddMetaTagToHead:'property','og:image' }}",
+        "{{ imageWidth | AddMetaTagToHead:'property','og:image:width' }}",
+        "{{ imageHeight | AddMetaTagToHead:'property','og:image:height' }}",
+        "{{ 'summary_large_image' | AddMetaTagToHead:'name','twitter:card' }}",
+        "{{ socialImage | AddMetaTagToHead:'name','twitter:image' }}",
+        "{% endif %}",
+        "{{ 'Written By' | AddMetaTagToHead:'name','twitter:label1' }}",
+        "{{ 'summary_large_image' | AddMetaTagToHead:'name','twitter:data1' }}",
+        "{{ 'Est. reading time' | AddMetaTagToHead:'name','twitter:label2' }}",
+        "{{ 'summary_large_image' | AddMetaTagToHead:'name','twitter:data2' }}"
       ]
     }
   },
@@ -2945,14 +3029,14 @@
     "AddLinkTagToHead": {
       "description": "Adds a link to the HTML head of the current page.",
       "example": "{{ CurrentPerson.PhotoUrl | AddLinkTagToHead:'rel','image_src' }}",
-      "snippet": "AddLinkTagToHead:'${1:tag}','${2:Value}'",
+      "snippet": "AddLinkTagToHead:'${1:Tag}','${2:Value}'",
       "cacheable": false,
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#addlinktagtohead",
       "arguments": [
         {
           "type": "argument",
-          "name": "AttributeName",
+          "name": "TagName",
           "description": "The value of the attribute, usually `rel`. _(Example: `rel=\"author\"`)_",
           "required": true,
           "accepts": [
@@ -2962,8 +3046,8 @@
         },
         {
           "type": "argument",
-          "name": "AttributeValue",
-          "description": "Value of the `AttributeName`.",
+          "name": "TagValue",
+          "description": "Value of the `TagName`.",
           "required": true,
           "accepts": [
             "$string",
@@ -2973,12 +3057,34 @@
       ]
     },
     "AddMetaTagToHead": {
-      "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. <meta TAG=\"VALUE\" content=\"/...\">",
+      "description": "Creates a meta tag that will be inserted into the HTML head. This is useful for adding social media links. `<meta TAG=\"VALUE\" content=\"/...\">`",
       "example": "{{ PhotoUrl | AddMetaTagToHead:'property','og:image' }}",
-      "snippet": "AddMetaTagToHead:'${1:tag}','${2:Value}'",
+      "snippet": "AddMetaTagToHead:'${1:Tag}','${2:Value}'",
       "cacheable": false,
       "type": "Other",
-      "link": "https://community.rockrms.com/lava/filters/other-filters#addmetatagtohead"
+      "link": "https://community.rockrms.com/lava/filters/other-filters#addmetatagtohead",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "Tag",
+          "description": "The tag to add, usually `name` for SEO or `property` for OpenGraph data.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "Value",
+          "description": "The value of the tag.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
     },
     "AddResponseHeader": {
       "description": "Adds a header to the HTTP response. This allows you to set custom headers. Note that any headers already being set in Rock will override the values you provide. These should only be used to add custom headers.",
@@ -3070,6 +3176,13 @@
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#base64encode"
     },
+    "Client": {
+      "description": "Returns information about the client browser.",
+      "example": "{{ 'Global' | Client:'ip' }}",
+      "snippet": "Client ",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#client"
+    },
     "FromBase64": {
       "description": "Decodes the base 64 encoded string and returns the resulting data.",
       "example": "{{ base64String | FromBase64 }}",
@@ -3160,6 +3273,27 @@
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#entityfromcachedobject"
     },
+    "AppendFollowing": {
+      "description": "Returns the following status for the currently logged in user to the results of an entity command or Persisted Dataset. The append following filter is exclusively used by entity commands and adds the property `IsFollowing` to the returned data object.",
+      "example": "{% assign followedItems = People | AppendFollowing %}",
+      "snippet": "AppendFollowing",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#appendfollowing"
+    },
+    "FilterFollowed": {
+      "description": "Returns a subset of followed entities for the current user from either a Persisted Dataset or an entity command.",
+      "example": "{% assign followedItems = People | AppendFollowing | FilterFollowed %}",
+      "snippet": "FilterFollowed",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#filterfollowed"
+    },
+    "FilterUnfollowed": {
+      "description": "Returns a subset of entities that have not been followed by the current user from either a Persisted Dataset or an entity command.",
+      "example": "{% assign followedItems = People | AppendFollowing | FilterUnfollowed %}",
+      "snippet": "FilterUnfollowed",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#filterunfollowed"
+    },
     "FromJSON": {
       "description": "Takes a JSON string and makes a Lava object from it.",
       "example": "{% assign object = json | FromJSON %}",
@@ -3183,7 +3317,7 @@
     },
     "HasRightsTo": {
       "description": "This filter helps you check the security of the model you pass it.",
-      "example": "{{ person | HasRightsTo:'View' }}",
+      "example": "{{ Person | HasRightsTo:'View' }}",
       "snippet": "HasRightsTo:'${1|View,Edit,Administrate,Approve|}'",
       "type": "Other",
       "returns": "boolean",
@@ -3276,7 +3410,7 @@
     "Notes": {
       "description": "Retrieves notes for the provided entity.",
       "example": "{% assign notes = Person | Notes:'4,5','asc',2 %}",
-      "snippet": "Notes:'${1:noteTypeIds}','${2|desc,asc|}',${3:limit}",
+      "snippet": "Notes:'${1:NoteTypeIds}','${2|desc,asc|}',${3:limit}",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#notes",
       "arguments": [
@@ -3471,7 +3605,7 @@
       ]
     },
     "SetPageTitle": {
-      "description": "Takes a string as input and sets the page's title.",
+      "description": "Takes a string as input and sets the title.",
       "example": "{{ title | SetPageTitle }}",
       "snippet": "SetPageTitle:'${1|All,BrowserTitle,PageTitle|}'",
       "type": "Other",
