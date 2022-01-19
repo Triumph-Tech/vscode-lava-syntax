@@ -1709,6 +1709,14 @@
       "returns": "date",
       "link": "https://community.rockrms.com/lava/filters/date-filters#sundaydate"
     },
+    "TimeOfDay": {
+      "description": "Returns a description [Morning,Afternoon,Evening,Night] for an input value that represents a date/time.",
+      "example": "{{ date | SundayDate }}",
+      "snippet": "TimeOfDay",
+      "type": "Date",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/date-filters#timeofday"
+    },
     "ToMidnight": {
       "description": "Sets the time to midnight for a specific day.",
       "example": "{{ date | ToMidnight }}",
