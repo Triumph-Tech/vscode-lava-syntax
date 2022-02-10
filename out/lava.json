@@ -98,6 +98,22 @@
                 "{% endif %}"
             ]
         },
+        "if != blank": {
+            "description": "Executes a block of code only if a certain condition is true",
+            "example": "{% if condition != '' %}\n\t...\n{% endif %}",
+            "snippet": [
+                "{% if ${1:condition} != '' %}",
+                "$0",
+                "{% endif %}"
+            ]
+        },
+        "if == blank": {
+            "description": "Executes a block of code only if a certain condition is true",
+            "example": "{% if condition == '' or condition == null %}\n\t...\n{% endif %}",
+            "snippet": [
+                "{% if ${1:condition} == '' or ${1:condition} == null %}$0{% endif %}"
+            ]
+        },
         "unless": {
             "description": "The opposite of if – executes a block of code only if a certain condition is not met.",
             "example": "{% unless condition %} {% endunless %}",
@@ -143,6 +159,13 @@
             "example": "{% assign variable = variable %}",
             "snippet": [
                 "{% assign ${1:variable} = ${1} $0 %}"
+            ]
+        },
+        "assignFromCache": {
+            "description": "Create a variable from a Cached object.",
+            "example": "{% assign variable = id | FromCache:'CacheKey' %}",
+            "snippet": [
+                "{% assign ${1:variable} = ${2:id} | FromCache:'${3|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}' %}"
             ]
         },
         "assignPersonAliases": {
@@ -252,6 +275,40 @@
                 "{% end${1:/downcase} %}"
             ]
         },
+        "EntityPagination": {
+            "description": "Entity command with conditions, a limit, and iterator option.",
+            "example": "{% entityname where:'conditions' %}\n\n\n{% endentityname %}",
+            "snippet": [
+                "{% assign itemsPerPage = ${1:10} %}",
+                "{% assign currentPageUrl = '${2:/page/{{ CurrentPage.Id \\}\\}}' %}",
+                "{% assign now = 'Now' | Date %}",
+                "{% assign page = PageParameter.page %}",
+                "{% assign entityLimit = itemsPerPage | Plus:1 %}",
+                "{% assign offset = page | Minus:1 | Times:itemsPerPage %}",
+                "",
+                "{% ${3:entityname} where:'${4:${3/(contentchannelitem)/${1:?ExpireDateTime > \"{{ now }}\" || ExpireDateTime _= \"\" && StartDateTime < \"{{ now }}\" && ContentChannelId == id:conditions}/}}' limit:'{{entityLimit}}' offset:'{{offset}}' iterator:'${5:Items}' ${6:sort:'${7:Order}'} securityenabled:'${8|false,true|}' %}",
+                "\t{% if $5.size > 0 %}",
+                "\t\t{% comment %}Iterate through ${3:entityname}s{% endcomment %}",
+                "\t\t{% for ${9:item} in $5 %}",
+                "\t\t\t$0",
+                "\t\t{% endfor %}",
+                "\t\t{% if page > 1 or $5.size == entityLimit %}",
+                "\t\t\t<div class=\"clearfix\">",
+                "\t\t\t\t{% if page > 1 %}",
+                "\t\t\t\t\t<a href=\"{{ currentPageUrl }}?Page={{ page | Minus:1 }}\" class=\"btn btn-primary pull-left\"><i class=\"fa fa-chevron-left\"></i> Prev</a>",
+                "\t\t\t\t{% endif %}",
+                "\t\t\t\t{% if $5.size == entityLimit %}",
+                "\t\t\t\t\t<a href=\"{{ currentPageUrl }}?Page={{ page | Plus:1 }}\" class=\"btn btn-primary pull-right\">Next <i class=\"fa fa-chevron-right\"></i></a>",
+                "\t\t\t\t{% endif %}",
+                "\t\t\t</div>",
+                "\t\t{% endif %}",
+                "\t{% else %}",
+                "\t\t{% comment %}No Items to Show{% endcomment %}",
+                "\t\t",
+                "\t{% endif %}",
+                "{% end${3:/downcase} %}"
+            ]
+        },
         "Cache": {
             "description": "Cache the output of lava for reuse.",
             "example": "{% cache key:'variable' %}\n\t...\n{% endcache %}",
@@ -275,10 +332,10 @@
             "description": "Basic entity command with conditions, a limit, and iterator option.",
             "snippet": [
                 "[",
-                "{% ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' %}",
-                "\t{% for ${5:item} in $4 %}",
+                "{% ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' %}",
+                "\t{% for ${6:item} in $4 %}",
                 "\t{",
-                "\t\t\"Id\": {{ ${5:/downcase}.Id }},",
+                "\t\t\"Id\": {{ ${6:/downcase}.Id }},",
                 "\t\t$0",
                 "\t}{% unless forloop.last %},{% endunless %}",
                 "\t{% endfor %}",
@@ -298,7 +355,7 @@
                 "\t\t\"Id\": {{ ${3}.Id }},",
                 "\t\t$0",
                 "\t}{% unless forloop.last %},{% endunless %}",
-                "\t{% endfor %}",
+                "{% endfor %}",
                 "]"
             ]
         },
@@ -357,7 +414,7 @@
             "description": "Search using Universal Search",
             "example": "{% search query:'variable' %}\n\t{% for item in results %}\n\n\n\t{% endfor %}\n{% endsearch %}",
             "snippet": [
-                "{% search query:'${1:variable}' entities'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' %}",
+                "{% search query:'${1:variable}' entities:'${2:person,group}' limit:'${3:50}' ${4:offset:'${5:0}'} searchtype:'${6|exactmatch,wildcard,fuzzy|}' %}",
                 "\t{% for item in results %}",
                 "\t\t$0",
                 "\t{% endfor %}",
@@ -380,6 +437,15 @@
             "example": "{% stylesheet %}\n#content-wrapper {\n\tbackground-color: red !important;\n\tcolor: #fff;\n}\n{% endstylesheet %}",
             "snippet": [
                 "{% stylesheet id:'${1:uniqueid}' %}",
+                "\t$0",
+                "{% endstylesheet %}"
+            ]
+        },
+        "less": {
+            "description": "Place a LESS stylesheet into the page header",
+            "example": "{% stylesheet %}\n#content-wrapper {\n\tbackground-color: red !important;\n\tcolor: #fff;\n}\n{% endstylesheet %}",
+            "snippet": [
+                "{% stylesheet id:'${1:uniqueid}' compile:'less' cacheduration:'${2:3600}' %}",
                 "\t$0",
                 "{% endstylesheet %}"
             ]
@@ -1244,8 +1310,8 @@
             "link": "https://community.rockrms.com/lava/filters/text-filters#size"
         },
         "Slice": {
-            "description": "The slice filter returns a substring, starting at the specified index. An optional second parameter can be passed to specify the length of the substring.",
-            "example": "{{ string | Slice: 0, 2 }}",
+            "description": "Returns a substring of one character or series of array items beginning at the index specified by the first argument. An optional second argument specifies the length of the substring or number of array items to be returned.",
+            "example": "{{ string | Slice:0,2 }}",
             "snippet": "Slice:${1:0},${2:5}",
             "type": "Text",
             "returns": "string",
@@ -1708,6 +1774,14 @@
             "type": "Date",
             "returns": "date",
             "link": "https://community.rockrms.com/lava/filters/date-filters#sundaydate"
+        },
+        "TimeOfDay": {
+            "description": "Returns a description [Morning,Afternoon,Evening,Night] for an input value that represents a date/time.",
+            "example": "{{ date | TimeOfDay }}",
+            "snippet": "TimeOfDay",
+            "type": "Date",
+            "returns": "string",
+            "link": "https://community.rockrms.com/lava/filters/date-filters#timeofday"
         },
         "ToMidnight": {
             "description": "Sets the time to midnight for a specific day.",
@@ -2910,7 +2984,7 @@
         },
         "Steps": {
             "description": "Returns a filtered list of steps that the person has engaged with.",
-            "example": "{% assign steps = CurrentPerson | Steps: '1','Complete' %}",
+            "example": "{% assign steps = CurrentPerson | Steps:'1','Complete' %}",
             "snippet": "Steps:'${1:stepProgramId}','${2:stepStatus}','${3:stepType}'",
             "type": "Person",
             "link": "https://community.rockrms.com/lava/filters/person-filters#steps",
