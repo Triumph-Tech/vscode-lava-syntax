@@ -36,7 +36,7 @@
         "include": {
             "description": "Theme tag: include",
             "snippet": [
-                "{% include '${1:~~/Assets/Lava/${TM_FILENAME}}' %}"
+                "{% include '${1:~~/Assets/Lava${TM_DIRECTORY/^.+Lava(?:([\\/\\\\])([^\\/\\\\]*))?(?:([\\/\\\\])([^\\/\\\\]*))?(?:([\\/\\\\])([^\\/\\\\]*))?/${1:+/}$2${3:+/}$4${5:+/}$6/}/${TM_FILENAME}}' %}"
             ]
         },
         "Global": {
@@ -151,7 +151,7 @@
             "description": "Create a variable from an attribute.",
             "example": "{% assign variable = Item | Attribute:'variable' %}",
             "snippet": [
-                "{% assign ${1:variable} = ${2:Item} | Attribute:'${3:${1:/capitalize}}' %}"
+                "{% assign ${1:variable} = ${2:Item} | Attribute:'${3:${1/(.*)/${1:/capitalize}/}}' %}"
             ]
         },
         "assignTransform": {
@@ -332,7 +332,7 @@
             "description": "Basic entity command with conditions, a limit, and iterator option.",
             "snippet": [
                 "[",
-                "{% ${1:entityname} where:'${2:conditions}' limit:'${3:10}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' %}",
+                "{% ${1:entityname} where:'${2:conditions}' limit:'${3:5000}' iterator:'${4:Items}' securityenabled:'${5|false,true|}' %}",
                 "\t{% for ${6:item} in $4 %}",
                 "\t{",
                 "\t\t\"Id\": {{ ${6:/downcase}.Id }},",
@@ -384,7 +384,7 @@
         "PluralizeForQuantity": {
             "description": "Pluralizes the provided word if the quantity provided is greater than 1.",
             "example": "{{ 'Word' | PluralizeForQuantity:wordCount }}",
-            "snippet": "{{ '${1:Word}' | PluralizeForQuantity:${2:wordCount} }}"
+            "snippet": "{{ '${1:Word}' | PluralizeForQuantity:${2:${1/(.*)/${1:/downcase}/}Count} }}"
         },
         "js": {
             "description": "Place a script into the page header",
@@ -443,7 +443,7 @@
         },
         "less": {
             "description": "Place a LESS stylesheet into the page header",
-            "example": "{% stylesheet %}\n#content-wrapper {\n\tbackground-color: red !important;\n\tcolor: #fff;\n}\n{% endstylesheet %}",
+            "example": "{% stylesheet compile:'less' %}\n\t#content-wrapper {\n\t\tbackground-color: red !important;\n\t\tcolor: #fff;\n\t}\n{% endstylesheet %}",
             "snippet": [
                 "{% stylesheet id:'${1:uniqueid}' compile:'less' cacheduration:'${2:3600}' %}",
                 "\t$0",
@@ -454,10 +454,19 @@
             "description": "Send a HTTP request to a remote server.",
             "example": "{% webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' %}\n\n{% endwebrequest %}",
             "snippet": [
-                "{% webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' %}",
+                "{% webrequest url:'${1:https://api.github.com/repos/SparkDevNetwork/Rock/commits}' responsecontenttype:'${2|json,xml,html|}' %}",
                 "\t{% for item in results %}",
                 "\t\t$0",
                 "\t{% endfor %}",
+                "{% endwebrequest %}"
+            ]
+        },
+        "webrequestPOST": {
+            "description": "Send a HTTP POST request to a remote server.",
+            "example": "{% webrequest url:'https://api.github.com/repos/SparkDevNetwork/Rock/commits' %}\n\n{% endwebrequest %}",
+            "snippet": [
+                "{% webrequest url:'https://${1:...}' method:'POST' body:'{{ ${2:requestbody} }}' requestcontenttype:'application/json' %}",
+                "\t{{ results | ToJSON }}",
                 "{% endwebrequest %}"
             ]
         },
