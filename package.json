@@ -3,7 +3,7 @@
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"license": "MIT",
-	"version": "1.1.9",
+	"version": "1.1.10",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
@@ -48,7 +48,8 @@
 			{
 				"command": "rock-lava.openconnectionstrings",
 				"title": "Open Connection Strings",
-				"category": "Rock"
+				"category": "Rock",
+				"icon": "$(database)"
 			}
 		],
 		"configuration": {
@@ -92,7 +93,11 @@
 				"extensions": [
 					".lava"
 				],
-				"configuration": "./syntaxes/lava.language-configuration.json"
+				"configuration": "./syntaxes/lava.language-configuration.json",
+				"icon": {
+					"dark": "/images/lava-icon.svg",
+					"light": "/images/lava-icon.svg"
+				}
 			},
 			{
 				"id": "lavadoc",
