@@ -183,7 +183,7 @@
 		"ts-loader": "^9.3.0",
 		"webpack": "^5.72.1",
 		"webpack-cli": "^4.9.2",
-		"@types/webpack-env": "^1.16.4",
+		"@types/webpack-env": "^1.17.0",
 		"assert": "^2.0.0",
 		"process": "^0.11.10"
 	}
