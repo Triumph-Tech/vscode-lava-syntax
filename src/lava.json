@@ -1416,6 +1416,22 @@
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#trim"
     },
+    "TrimStart": {
+      "description": "Removes all blank spaces at the beginning of a string.",
+      "example": "{{ string | TrimStart }}",
+      "snippet": "TrimStart",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#trimstart"
+    },
+    "TrimEnd": {
+      "description": "Removes all blank spaces at the end of a string.",
+      "example": "{{ string | TrimEnd }}",
+      "snippet": "TrimEnd",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#trimend"
+    },
     "Truncate": {
       "description": "Truncates a string down to the number of characters passed as the first parameter. An ellipsis (...) is appended to the truncated string and is included in the character count.",
       "example": "{{ string | Truncate:9,'...' }}",
@@ -1602,6 +1618,15 @@
         }
       ]
     },
+    "DateRangeFromSlidingFormat": {
+      "description": "Provides a start and end date from a sliding date range format (typically from the Sliding Date Range control).",
+      "example": "{% assign range = 'Previous|2|Week||' | DateRangeFromSlidingFormat %}{{ range.StartDate }} - {{ range.EndDate }}",
+      "snippet": "DateRangeFromSlidingFormat",
+      "type": "Date",
+      "returns": "object",
+      "link": "https://community.rockrms.com/lava/filters/date-filters#daterangefromslidingformat",
+      "arguments": []
+    },
     "DatesFromICal": {
       "description": "Returns a list of upcoming dates from an iCal string or List of iCal strings.",
       "example": "{{ object.Schedule.iCalendarContent | DatesFromICal }}",
@@ -1739,6 +1764,36 @@
           "name": "Precision",
           "description": "Optional precision value to enhance the detail of the description.",
           "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
+    },
+    "IsDateBetween": {
+      "description": "Determine if the provided date falls within a given range.",
+      "example": "{% assign isBetween = today | IsDateBetween:startDate,endDate }}",
+      "snippet": "IsDateBetween:${1:startDate},${2:endDate}",
+      "type": "Date",
+      "returns": "boolean",
+      "link": "https://community.rockrms.com/lava/filters/date-filters#isdatebetween",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "StartDate",
+          "description": "...",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "EndDate",
+          "description": "...",
+          "required": true,
           "accepts": [
             "$string",
             "$reference"
@@ -2756,6 +2811,13 @@
       "type": "Person",
       "link": "https://community.rockrms.com/lava/filters/person-filters#headofhousehold"
     },
+    "IsInSecurityRole": {
+      "description": "Returns a boolean value indicating if a person is in a security role.",
+      "snippet": "IsInSecurityRole:${1:GroupId}",
+      "example": "{% assign head = Person | IsInSecurityRole:18 %}",
+      "type": "Person",
+      "link": "https://community.rockrms.com/lava/filters/person-filters#isinsecurityrole"
+    },
     "LastAttendedGroupOfType": {
       "description": "Returns the latest attendance record for a group of the type given.",
       "example": "{% assign group = CurrentPerson | LastAttendedGroupOfType:'GroupTypeId' %}",
@@ -3699,6 +3761,46 @@
           "type": "argument",
           "name": "TitleLocation",
           "description": "The title location. `BrowserTitle` `PageTitle` or `All`",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
+    },
+    "SetUrlParameter": {
+      "description": "Sets a parameter in the input URL string and returns the updated URL.",
+      "example": "{{ url | SetUrlParameter:'ReportId','1' }}",
+      "snippet": "SetUrlParameter:'${1:UrlParameter}','${2:Value}','${1|absolute,relative|}'",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#seturlparameter",
+      "cacheable": true,
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "UrlParameter",
+          "description": "The title location. `BrowserTitle` `PageTitle` or `All`",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "ParameterValue",
+          "description": "The value of the URL parameter.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "OutputFormat",
+          "description": "[absolute|relative] The output format of the URL.",
           "required": false,
           "accepts": [
             "$string",

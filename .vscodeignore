@@ -7,7 +7,7 @@
 !*.json
 !.vscodeignore
 !package.json
-!images/rockrms-icon.jpg
+!images
 !snippets
 !snippets/*/**
 !README.md
