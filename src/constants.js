@@ -309,6 +309,5 @@ exports.voidElements = [
     'workflowformbuildertemplate',
     'workflowlog',
     'workflowtrigger',
-    'workflowtype',
-
+    'workflowtype'
   ]

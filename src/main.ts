@@ -1,6 +1,5 @@
 import { ExtensionContext, window, workspace, Disposable, commands } from "vscode";
 import * as vscode from 'vscode';
-
 import { getProvider, getChildrenProvider, getTextProvider, getFilterProvider, getSnippetProvider, getHoverFilterProvider } from "./providers";
 import { Context } from "vm";
 import { TextDecoder } from "util";
@@ -20,22 +19,11 @@ async function getConnectionStrings(workspace: any) {
 	return `${rockWebPath}web.ConnectionStrings.config`;
 }
 
-async function getFileUrl(uri?: vscode.Uri, editor?: vscode.TextEditor) {
-	// let uri = context.uri;
-
-	// if (context.type === 'viewItem') {
-	// 	uri = context.node.uri ?? context.uri;
-	// }
-	console.log(editor?.document?.uri);
-	console.log(uri);
-	return;
-}
-
 export async function activate(context: Context) {
 	let documentSelector: string | string[];
 	documentSelector = "lava";
 
-	const actions = ['openconnectionstrings','newLava','openFileInRock','openFolderInRock', 'copyTextToClipboard'];
+	const actions = ['openconnectionstrings', 'newLava', 'openFileInRock', 'openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];
 
 
 	let filterProvider = getFilterProvider(documentSelector);
@@ -62,101 +50,118 @@ export async function activate(context: Context) {
 				}
 			} else if (action == 'openFileInRock') {
 				if (target !== undefined) {
-						const folders = vscode.workspace.workspaceFolders;
-						if(!folders || folders.length === 0) {
-							window.showInformationMessage('No workspace folder is open. Please open a workspace folder first.');
-							throw new Error('No workspace folder is open. Please open a workspace folder first.');
-						}
+					const folders = vscode.workspace.workspaceFolders;
+					if (!folders || folders.length === 0) {
+						window.showInformationMessage('No workspace folder is open. Please open a workspace folder first.');
+						throw new Error('No workspace folder is open. Please open a workspace folder first.');
+					}
 
-						if (folders.length === 1) {
-							var path = target.path;
-							// if path contains "rockweb"
-							if (path.includes("RockWeb")) {
-								path = path.split('RockWeb')[1].replaceAll('/', '%2f');
-								let output = config.rockUrl + config.rockFileEditorPath + "?RelativeFilePath=~" + path;
-								vscode.env.openExternal(vscode.Uri.parse(output, true));
-							}
+					if (folders.length === 1) {
+						var path = target.path;
+						// if path contains "rockweb"
+						if (path.includes("RockWeb")) {
+							path = path.split('RockWeb')[1].replaceAll('/', '%2f');
+							let output = config.rockUrl + config.rockFileEditorPath + "?RelativeFilePath=~" + path;
+							vscode.env.openExternal(vscode.Uri.parse(output, true));
 						} else {
-							if (config.workspaceRoot !== '' && config.workspaceSitePath !== '') {
-								const workspaceRoot = String(config.workspaceRoot);
-								const workspaceSitePath = String(config.workspaceSitePath).replaceAll('/', '%2f');
-								const uri = folders?.find(folder => folder.name === workspaceRoot)?.uri;
-								const folderRoot = String(config.rockFolderRoot);
+							window.showInformationMessage('Please open a RockWeb folder first.');
+						}
+					} else {
+						if (config.workspaceRoot !== '' && config.workspaceSitePath !== '') {
+							const workspaceRoot = String(config.workspaceRoot);
+							const workspaceSitePath = String(config.workspaceSitePath).replaceAll('/', '%2f');
+							const uri = folders?.find(folder => folder.name === workspaceRoot)?.uri;
+							const folderRoot = String(config.rockFolderRoot);
 
-								if (!uri) {
-									throw new Error("Could not find Workspace Root folder.");
-								}
-								let output = config.rockUrl + config.rockFileEditorPath + "?RelativeFilePath=~%2f" + workspaceSitePath + target.path.replace(uri.path, '').replace('RockWeb' + '/', folderRoot).replaceAll('/', '%2f');
-								vscode.env.openExternal(vscode.Uri.parse(output, true));
-							} else {
-								if (config.workspaceRoot === '') {
-									window.showErrorMessage('Please set the workspace root in the settings.');
-								}
-								if (config.workspaceSitePath === '') {
-									window.showErrorMessage('Please set the workspace site path in the settings.');
-								}
+							if (!uri) {
+								throw new Error("Could not find Workspace Root folder.");
+							}
+							let output = config.rockUrl + config.rockFileEditorPath + "?RelativeFilePath=~%2f" + workspaceSitePath + target.path.replace(uri.path, '').replace('RockWeb' + '/', folderRoot).replaceAll('/', '%2f');
+							vscode.env.openExternal(vscode.Uri.parse(output, true));
+						} else {
+							if (config.workspaceRoot === '') {
+								window.showErrorMessage('Please set the workspace root in the settings.');
+							}
+							if (config.workspaceSitePath === '') {
+								window.showErrorMessage('Please set the workspace site path in the settings.');
 							}
 						}
+					}
 				}
 			} else if (action == 'openFolderInRock') {
 				if (target !== undefined) {
-						const folders = vscode.workspace.workspaceFolders;
-						if(!folders || folders.length === 0) {
-							window.showInformationMessage('No workspace folder is open. Please open a workspace folder first.');
-							throw new Error('No workspace folder is open. Please open a workspace folder first.');
+					const folders = vscode.workspace.workspaceFolders;
+					if (!folders || folders.length === 0) {
+						window.showInformationMessage('No workspace folder is open. Please open a workspace folder first.');
+						throw new Error('No workspace folder is open. Please open a workspace folder first.');
+					}
+
+					if (folders.length === 1) {
+						var path = target.path;
+						// if path contains "rockweb"
+						if (path.includes("RockWeb")) {
+							path = path.split('RockWeb')[1].replaceAll('/', '%2f');
+							let output = config.rockUrl + config.rockFileManagerPath + "?RelativeFilePath=~" + path;
+
+							// get first file inside target folder
+							let files = await workspace.fs.readDirectory(target);
+							if (files.length > 0) {
+								output = output + '%2f' + files[0][0];
+								vscode.env.openExternal(vscode.Uri.parse(output, true));
+								return;
+							}
+
+							window.showErrorMessage('Cannot open folder in Rock. Folder is empty.');
 						}
+					} else {
+						if (config.workspaceRoot !== '' && config.workspaceSitePath !== '') {
+							const workspaceRoot = String(config.workspaceRoot);
+							const workspaceSitePath = String(config.workspaceSitePath).replaceAll('/', '%2f');
+							const uri = folders?.find(folder => folder.name === workspaceRoot)?.uri;
+							if (!uri) {
+								throw new Error("Could not find Workspace Root folder.");
+							}
+							// get first file inside target folder
+							let files = await workspace.fs.readDirectory(target);
 
-						if (folders.length === 1) {
-							var path = target.path;
-							// if path contains "rockweb"
-							if (path.includes("RockWeb")) {
-								path = path.split('RockWeb')[1].replaceAll('/', '%2f');
-								let output = config.rockUrl + config.rockFileManagerPath + "?RelativeFilePath=~" + path;
-
-								// get first file inside target folder
-								let files = await workspace.fs.readDirectory(target);
-								if (files.length > 0) {
-									output = output + '%2f' + files[0][0];
-									vscode.env.openExternal(vscode.Uri.parse(output, true));
-									return;
-								}
-
-								window.showErrorMessage('Cannot open folder in Rock. Folder is empty.');
+							if (files.length > 0) {
+								let firstFile = files[0][0];
+								let output = config.rockUrl + config.rockFileManagerPath + "?RelativeFilePath=~%2f" + workspaceSitePath + target.path.replace(uri.path, '').replaceAll('/', '%2f') + '%2f' + firstFile;
+								vscode.env.openExternal(vscode.Uri.parse(output, true));
 							}
 						} else {
-							if (config.workspaceRoot !== '' && config.workspaceSitePath !== '') {
-								const workspaceRoot = String(config.workspaceRoot);
-								const workspaceSitePath = String(config.workspaceSitePath).replaceAll('/', '%2f');
-								const uri = folders?.find(folder => folder.name === workspaceRoot)?.uri;
-								if (!uri) {
-									throw new Error("Could not find Workspace Root folder.");
-								}
-								// get first file inside target folder
-								let files = await workspace.fs.readDirectory(target);
-
-								if (files.length > 0) {
-									let firstFile = files[0][0];
-									let output = config.rockUrl + config.rockFileManagerPath + "?RelativeFilePath=~%2f" + workspaceSitePath + target.path.replace(uri.path, '').replaceAll('/', '%2f') + '%2f' + firstFile;
-									vscode.env.openExternal(vscode.Uri.parse(output, true));
-								}
-							} else {
-								if (config.workspaceRoot === '') {
-									window.showErrorMessage('Please set the workspace root in the settings.');
-								}
-								if (config.workspaceSitePath === '') {
-									window.showErrorMessage('Please set the workspace site path in the settings.');
-								}
+							if (config.workspaceRoot === '') {
+								window.showErrorMessage('Please set the workspace root in the settings.');
+							}
+							if (config.workspaceSitePath === '') {
+								window.showErrorMessage('Please set the workspace site path in the settings.');
 							}
 						}
+					}
 				}
 			} else if (action == 'copyTextToClipboard') {
 				// Copy contents of the target to the clipboard
 				if (target !== undefined) {
-					let content : string | undefined = undefined;
+					let content: string | undefined = undefined;
 					if (target.scheme === 'file') {
-						try{
-							const data = await workspace.fs.readFile(target);
-							content = new TextDecoder("utf-8").decode(data);
+						try {
+							// if vscode has any visible text exitors
+							if (vscode.window.visibleTextEditors.length > 0) {
+								// loop through all visible text editors
+								vscode.window.visibleTextEditors.forEach(editor => {
+									// if the editor is open in the same file as the target
+									if (editor.document.uri.path == target.path) {
+										// get the contents of the editor
+										content = editor.document.getText();
+										return;
+									}
+								});
+							}
+
+							if (content === undefined) {
+								const data = await workspace.fs.readFile(target);
+								content = new TextDecoder("utf-8").decode(data);
+							}
 						} catch {
 							window.showErrorMessage('Could not read file.');
 						}
@@ -169,6 +174,10 @@ export async function activate(context: Context) {
 						window.showInformationMessage('Launching Rock File Editor.');
 					}
 				}
+			} else if (action == 'enableMenus') {
+				vscode.workspace.getConfiguration("lava").update("showExplorerContextMenu", true, true);
+			} else if (action == 'disableMenus') {
+				vscode.workspace.getConfiguration("lava").update("showExplorerContextMenu", false, true);
 			}
 		});
 		context.subscriptions.push(disposable);

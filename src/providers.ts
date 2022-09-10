@@ -109,7 +109,6 @@ const getFilterProvider = (documentSelector: string | string[]) => {
           text.push("```lava");
           text.push(childValue["example"]);
           text.push("```");
-          //text.push("---");
         }
 
         if (text.length > 0) text.push("");
@@ -226,7 +225,6 @@ const getSnippetProvider = (documentSelector: string | string[]) => {
 const getProvider = (sourceFile: any, documentSelector: string | string[]) => {
   return registerCompletionItemProvider(documentSelector, {
     provideCompletionItems(document: TextDocument, position: Position) {
-      const currentLine = document.lineAt(position).text;
 
       // if (true || !utils.isInsideBrackets(currentLine, position.character)) {
       //   return undefined;
@@ -336,10 +334,8 @@ const getChildrenProvider = (
               }
             }
           } else if (typeof currentNode === "object") {
-            let str = JSON.stringify(currentNode);
             for (let key in currentNode) {
               if (currentNode[key]["__Alias"] !== undefined) {
-                let magickey = `${JSONPath}.${key}`;
                 //console.log(linePrefix)
                 //console.log(magickey)
                 if (linePrefix.endsWith(`${JSONPath}.${key}.`)) {
@@ -400,9 +396,7 @@ const getTextProvider = (
   documentSelector: string | string[]
 ) => {
   return registerCompletionItemProvider(documentSelector, {
-    provideCompletionItems(document: TextDocument, position: Position) {
-      const currentLine = document.lineAt(position).text;
-
+    provideCompletionItems() { // document: TextDocument, position: Position
       // if (true ||  !utils.isInsideBrackets(currentLine, position.character)) {
       //   return undefined;
       // }

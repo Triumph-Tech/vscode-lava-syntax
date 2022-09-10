@@ -6,8 +6,8 @@
     "html",
     "lava"
   ],
-  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest)[^(%})]+-?%}",
-  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
+  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest|personalize|interactioncontentchannelitemwrite|interactionwrite|eventscheduledinstance|calendarevents)[^(%})]+-?%}",
+  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest|endpersonalize|endinteractioncontentchannelitemwrite|endinteractionwrite|endeventscheduledinstance|endcalendarevents)[^(%})]+-?%}",
   "patterns": [
     {
       "include": "#frontMatter"
@@ -34,6 +34,18 @@
       "include": "#sql"
     },
     {
+      "include": "#personalize"
+    },
+    {
+      "include": "#eventscheduledinstance"
+    },
+    {
+      "include": "#calendarevents"
+    },
+    {
+      "include": "#interactionccwrite"
+    },
+    {
       "include": "#search"
     },
     {
@@ -46,7 +58,7 @@
       "include": "#webrequest"
     },
     {
-      "include": "#template-tags"
+      "include": "#entity"
     },
     {
       "include": "#template-vars"
@@ -157,9 +169,6 @@
         },
         {
           "include": "#object-properties"
-        },
-        {
-          "include": "#variable-other"
         },
         {
           "include": "#invalid-assignment"
@@ -308,7 +317,7 @@
       }
     },
     "keyword-name-tag": {
-      "match": "(((?<={%)|(?<={%-))\\s*(if|endif|case|endcase|when|elseif|else|for|endfor|capture|endcapture|unless|endunless))",
+      "match": "(((?<={%)|(?<={%-))\\s*(if|endif|case|endcase|when|elseif|else|for|endfor|capture|endcapture|unless|endunless))\\b",
       "captures": {
         "1":{
           "name": "keyword.control.loop.lava"
@@ -408,7 +417,7 @@
       "match": "\\|\\s+[a-z].*\\b"
      },
     "support-function": {
-      "match": "(\\|)\\s*(First|LastAttendedGroupOfType|Last|AppendFollowing|Append|Capitalize|Decrypt|Default|Downcase|EscapeDataString|Escape|FromMarkdown|HtmlDecode|Linkify|NewlineToBr|PluralizeForQuantity|Pluralize|Possessive|Prepend|ReadTime|RegExMatchValues|RegExMatchValue|RegExMatch|ReplaceFirst|ReplaceLast|Replace|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|TruncateWords|Truncate|UnescapeDataString|Upcase|WithFallback|DateAdd|DateDiff|DatesFromICal|Date|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|Humanize|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|FormatAsCurrency|Format|Minus|Modulo|NumberToOrdinalWords|NumberToOrdinal|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Join|Map|OrderBy|Select|Shuffle|Size|SortByAttribute|Sort|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|GroupsAttended|HasSignedDocument|HeadOfHousehold|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Property|PageRedirect|PageParameter|PageRoute|Page|HasRightsTo|Notes|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|FromBase64|RunLava|RegExReplace|WriteCookie|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|Uniq|TriumphImgCdn|Steps|RemoveFirst|Remove|Groups|Group)\\:?",
+      "match": "(\\|)\\s*(First|LastAttendedGroupOfType|Last|AppendFollowing|Append|Capitalize|Decrypt|Default|Downcase|EscapeDataString|Escape|FromMarkdown|HtmlDecode|Linkify|NewlineToBr|PluralizeForQuantity|Pluralize|Possessive|Prepend|ReadTime|RegExMatchValues|RegExMatchValue|RegExMatch|ReplaceFirst|ReplaceLast|Replace|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|TrimEnd|TrimStart|Trim|TruncateWords|Truncate|UnescapeDataString|Upcase|WithFallback|DateAdd|DateDiff|DatesFromICal|Date|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|Humanize|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|FormatAsCurrency|Format|Minus|Modulo|NumberToOrdinalWords|NumberToOrdinal|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Join|Map|OrderBy|Select|Shuffle|Size|SortByAttribute|Sort|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|GroupsAttended|HasSignedDocument|HeadOfHousehold|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUrlParameter|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Property|PageRedirect|PageParameter|PageRoute|Page|HasRightsTo|Notes|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|FromBase64|RunLava|RegExReplace|WriteCookie|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsDateBetween|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|Uniq|TriumphImgCdn|Steps|RemoveFirst|Remove|Groups|Group|TimeOfDay|DateRangeFromSlidingFormat|IsInSecurityRole|PersonalizationItems|IsInDataView)\\:?",
       "captures": {
         "1": {
           "name": "punctuation.definition.tag.lava"
@@ -651,6 +660,231 @@
       "patterns": [
         {
           "include": "source.sql"
+        }
+      ]
+    },
+    "interactionccwrite": {
+			"match": "({%)(-)?\\s*(interactioncontentchannelitemwrite)\\s*(.*?)\\s*(-)?(%})",
+			"captures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(contentchannelitemid:|operation:|summary:|personaliasid:|campaign:|medium:|source:|content:|term:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			}
+    },
+    "calendarevents": {
+			"begin": "({%)(-)?\\s*(calendarevents )\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(calendarid:|maxoccurrences:|daterange:|audienceids:|campusids:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endcalendarevents)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "eventscheduledinstance": {
+			"begin": "({%)(-)?\\s*(eventscheduledinstance)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(eventid:|maxoccurrences:|daterange:|campusids:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endeventscheduledinstance)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "personalize": {
+			"begin": "({%)(-)?\\s*(personalize)\\s*(.*?)\\s*(-)?(%})",
+			"beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(segment:|requestfilter:|matchtype:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+			},
+      "end": "({%)(-)?\\s+(endpersonalize)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4":{
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
         }
       ]
     },
@@ -990,18 +1224,12 @@
 			}
     },
     "entity": {
-			"begin": "({%)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
+			"begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)([a-zA-Z0-9]+)\\s*(.*?)\\s*(?=%})",
 			"beginCaptures": {
         "1": {
-          "name": "punctuation.definition.tag.begin.lava"
+          "name": "entity.name.tag.$1.begin.lava"
         },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.$3.begin.lava"
-        },
-        "4": {
+        "2": {
           "patterns": [
             {
               "begin": "\\b(where:)\\s*(')",
@@ -1055,7 +1283,45 @@
               ]
             },
             {
-              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:)\\s*('[^']*')",
+              "begin": "\\b(select:)\\s*(')",
+              "beginCaptures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                }
+              },
+              "end": "(')",
+              "patterns": [
+                {
+                  "match": "(new\\b|Select)",
+                  "name": "entity.name.function.cs"
+                },
+                {
+                  "match": "\\b(AS)\\s*([a-zA-Z0-9]+)",
+                  "captures": {
+                    "1": {
+                      "name": "entity.name.type.cs"
+                    },
+                    "2": {
+                      "name": "entity.name.variable.local.cs"
+                    }
+                  }
+                },
+                {
+                  "match": "[0-9]+",
+                  "name": "constant.numeric.decimal.cs"
+                },
+                {
+                  "match": "([a-zA-Z0-9]+)",
+                  "name": "variable.other.object.cs"
+                },
+                {
+                  "name": "punctuation.separator.comma.cs",
+                  "match": ","
+                }
+              ]
+            },
+            {
+              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|lazyloadenabled:|expression:|count:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -1092,30 +1358,12 @@
               "name": "invalid.illegal.bad-command.lava"
             }
           ]
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
         }
 			},
-      "end": "({%)(-)?\\s+(end([a-zA-Z0-9]+))\\s+(-)?(%})",
+      "end": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(end([a-zA-Z0-9]+))(?:\\s+-?%})",
       "endCaptures": {
         "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.$4.end.lava"
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
+          "name": "entity.name.tag.$2.end.lava"
         }
       },
       "patterns": [

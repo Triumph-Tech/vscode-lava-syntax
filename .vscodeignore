@@ -7,6 +7,7 @@
 !*.json
 !.vscodeignore
 !package.json
+!rockout.json
 !images
 !snippets
 !snippets/*/**

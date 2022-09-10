@@ -1,0 +1,42 @@
+{
+  "$schema": "https://raw.githubusercontent.com/microsoft/vscode-html-languageservice/main/docs/customData.schema.json",
+  "version": 1.1,
+  "tags": [
+      {
+          "name": "Rock:AccordionPanel",
+          "description": ""
+      },
+      {
+          "name": "Rock:AddressControl",
+          "description": ""
+      },
+      {
+          "name": "Rock:AttributeEditor",
+          "description": ""
+      },
+      {
+          "name": "Rock:AttributeMatrixEditor",
+          "description": ""
+      },
+      {
+          "name": "Rock:AttributeValuesContainer",
+          "description": ""
+      },
+
+  ],
+  "globalAttributes": [
+    {
+      "name": "runat",
+      "values": [
+          {
+              "name": "server",
+              "description": ""
+          },
+          {
+              "name": "client",
+              "description":""
+          }
+      ]
+    }
+  ]
+}
