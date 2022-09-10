@@ -30,23 +30,11 @@ function getConnectionStrings(workspace) {
         return `${rockWebPath}web.ConnectionStrings.config`;
     });
 }
-function getFileUrl(uri, editor) {
-    var _a;
-    return __awaiter(this, void 0, void 0, function* () {
-        // let uri = context.uri;
-        // if (context.type === 'viewItem') {
-        // 	uri = context.node.uri ?? context.uri;
-        // }
-        console.log((_a = editor === null || editor === void 0 ? void 0 : editor.document) === null || _a === void 0 ? void 0 : _a.uri);
-        console.log(uri);
-        return;
-    });
-}
 function activate(context) {
     return __awaiter(this, void 0, void 0, function* () {
         let documentSelector;
         documentSelector = "lava";
-        const actions = ['openconnectionstrings', 'newLava', 'openFileInRock', 'openFolderInRock', 'copyTextToClipboard'];
+        const actions = ['openconnectionstrings', 'newLava', 'openFileInRock', 'openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];
         let filterProvider = (0, providers_1.getFilterProvider)(documentSelector);
         let snippetProvider = (0, providers_1.getSnippetProvider)(documentSelector);
         context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
@@ -175,6 +163,12 @@ function activate(context) {
                             vscode_1.window.showInformationMessage('Launching Rock File Editor.');
                         }
                     }
+                }
+                else if (action == 'enableMenus') {
+                    vscode.workspace.getConfiguration("lava").update("showMenus", true, true);
+                }
+                else if (action == 'disableMenus') {
+                    vscode.workspace.getConfiguration("lava").update("showMenus", false, true);
                 }
             }));
             context.subscriptions.push(disposable);

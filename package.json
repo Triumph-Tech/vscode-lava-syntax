@@ -3,13 +3,13 @@
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"license": "MIT",
-	"version": "1.1.11",
+	"version": "1.1.12",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
 	},
 	"engines": {
-		"vscode": "^1.67.0"
+		"vscode": "^1.71.0"
 	},
 	"categories": [
 		"Programming Languages",
@@ -59,7 +59,8 @@
 				"command": "rock-lava.openFileInRock",
 				"title": "Open in Rock",
 				"category": "Rock",
-				"icon": "$(file-code)"
+				"icon": "$(file-code)",
+				"enablement": "config.lava.showMenus"
 			},
 			{
 				"command": "rock-lava.openFolderInRock",
@@ -71,7 +72,22 @@
 				"command": "rock-lava.copyTextToClipboard",
 				"title": "Copy Text to Rock",
 				"category": "Rock",
-				"icon": "$(file-code)"
+				"icon": "$(file-code)",
+				"enablement": "config.lava.showMenus"
+			},
+			{
+				"command": "rock-lava.enableMenus",
+				"title": "Enable Menus",
+				"category": "Rock",
+				"icon": "$(file-code)",
+				"enablement": "!config.lava.showMenus"
+			},
+			{
+				"command": "rock-lava.disableMenus",
+				"title": "Disable Menus",
+				"category": "Rock",
+				"icon": "$(file-code)",
+				"enablement": "config.lava.showMenus"
 			}
 		],
 		"configuration": {
@@ -88,9 +104,9 @@
 					"default": true,
 					"description": "Enable Lava on hover."
 				},
-				"lava.showExplorerContextMenu": {
+				"lava.showMenus": {
 					"type": "boolean",
-					"default": true,
+					"default": false,
 					"description": "Show Lava context menu in Explorer."
 				},
 				"lava.rockUrl": {
@@ -223,6 +239,11 @@
 				"language": "xaml",
 				"scopeName": "text.xml.xaml",
 				"path": "./syntaxes/xaml.tmLanguage.json"
+			},
+			{
+				"language": "cshtml",
+				"scopeName": "text.html.cshtml",
+				"path": "./syntaxes/cshtml.tmLanguage.json"
 			}
 		],
 		"snippets": [
@@ -240,24 +261,24 @@
 				{
 					"command": "rock-lava.openFileInRock",
 					"group": "4_lava@1",
-					"when": "config.lava.showExplorerContextMenu && !explorerResourceIsRoot && !explorerResourceIsFolder"
+					"when": "config.lava.showMenus && !explorerResourceIsRoot && !explorerResourceIsFolder"
 				},
 				{
 					"command": "rock-lava.openFolderInRock",
 					"group": "4_lava@1",
-					"when": "config.lava.showExplorerContextMenu && !explorerResourceIsRoot && explorerResourceIsFolder"
+					"when": "config.lava.showMenus && !explorerResourceIsRoot && explorerResourceIsFolder"
 				},
 				{
 					"command": "rock-lava.copyTextToClipboard",
 					"group": "4_lava@2",
-					"when": "config.lava.showExplorerContextMenu && !explorerResourceIsRoot && !explorerResourceIsFolder"
+					"when": "config.lava.showMenus && !explorerResourceIsRoot && !explorerResourceIsFolder"
 				}
 			],
 			"editor/title/context": [
 				{
 					"command": "rock-lava.openFileInRock",
 					"group": "1_lava@1",
-					"when": "config.lava.showExplorerContextMenu && isFileSystemResource"
+					"when": "config.lava.showMenus && isFileSystemResource"
 				}
 			]
 		}

@@ -5,8 +5,6 @@
   "fileTypes": [
     "lavadoc"
   ],
-  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest)[^(%})]+-?%}",
-  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
   "patterns": [
     {
       "include": "#string-quoted-single"

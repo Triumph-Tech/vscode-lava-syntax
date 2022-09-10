@@ -186,10 +186,6 @@ exports.getSnippetProvider = getSnippetProvider;
 const getProvider = (sourceFile, documentSelector) => {
     return registerCompletionItemProvider(documentSelector, {
         provideCompletionItems(document, position) {
-            const currentLine = document.lineAt(position).text;
-            // if (true || !utils.isInsideBrackets(currentLine, position.character)) {
-            //   return undefined;
-            // }
             let completionItems = [];
             for (let key in sourceFile) {
                 let childValue = sourceFile[key];
@@ -292,12 +288,11 @@ const getChildrenProvider = (sourceFile, documentSelector) => {
                     let str = JSON.stringify(currentNode);
                     for (let key in currentNode) {
                         if (currentNode[key]["__Alias"] !== undefined) {
-                            let magickey = `${JSONPath}.${key}`;
+                            //let magickey = `${JSONPath}.${key}`;
                             //console.log(linePrefix)
                             //console.log(magickey)
                             if (linePrefix.endsWith(`${JSONPath}.${key}.`)) {
                                 isNodeFound = true;
-                                //console.log("hi")
                                 let alias = currentNode[key]["__Alias"];
                                 let i = 0;
                                 for (let kd in sourceFile[alias]) {

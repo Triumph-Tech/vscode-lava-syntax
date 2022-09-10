@@ -20,22 +20,11 @@ async function getConnectionStrings(workspace: any) {
 	return `${rockWebPath}web.ConnectionStrings.config`;
 }
 
-async function getFileUrl(uri?: vscode.Uri, editor?: vscode.TextEditor) {
-	// let uri = context.uri;
-
-	// if (context.type === 'viewItem') {
-	// 	uri = context.node.uri ?? context.uri;
-	// }
-	console.log(editor?.document?.uri);
-	console.log(uri);
-	return;
-}
-
 export async function activate(context: Context) {
 	let documentSelector: string | string[];
 	documentSelector = "lava";
 
-	const actions = ['openconnectionstrings','newLava','openFileInRock','openFolderInRock', 'copyTextToClipboard'];
+	const actions = ['openconnectionstrings','newLava','openFileInRock','openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];
 
 
 	let filterProvider = getFilterProvider(documentSelector);
@@ -169,6 +158,10 @@ export async function activate(context: Context) {
 						window.showInformationMessage('Launching Rock File Editor.');
 					}
 				}
+			} else if (action == 'enableMenus') {
+				vscode.workspace.getConfiguration("lava").update("showMenus", true, true);
+			} else if (action == 'disableMenus') {
+				vscode.workspace.getConfiguration("lava").update("showMenus", false, true);
 			}
 		});
 		context.subscriptions.push(disposable);
