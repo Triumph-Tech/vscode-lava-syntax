@@ -1,489 +1,285 @@
 {
-  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
   "name": "Lava",
   "scopeName": "text.html.lava",
   "fileTypes": [
-    "html",
     "lava"
   ],
-  "foldingStartMarker": "(?x){%-?\\s*(if|unless|for|capture|case|tablerow|raw|comment|block|stylesheet|javascript|cache|execute|sql|search|webrequest)[^(%})]+-?%}",
-  "foldingStopMarker": "(?x){%-?\\s*(endif|endunless|endfor|endcapture|endcase|endtablerow|endraw|endcomment|endblock|endstylesheet|endjavascript|endcache|endexecute|endsql|endsearch|endwebrequest)[^(%})]+-?%}",
+  "foldingStartMarker": "(?x)\n{%\n  -?\n  \\s*\n  (workflowtype|workflowtrigger|workflowlog|workflowformbuildertemplate|workflowactivitytype|workflowactivity|workflowactivate|workflowactiontype|workflowactionformsection|workflowactionformattribute|workflowactionform|workflowaction|workflow|webrequest|webfarmnodemetric|webfarmnodelog|webfarmnode|userlogin|taggeditem|tag|systememail|systemcommunication|stylesheet|streaktypeexclusion|streaktype|streak|stepworkflowtrigger|stepworkflow|steptypeprerequisite|steptype|stepstatus|stepprogramcompletion|stepprogram|step|sql|smspipeline|smsaction|sitedomain|site|signaturedocumenttemplate|signaturedocument|signaltype|servicelog|servicejobhistory|servicejob|search|schedulecategoryexclusion|schedule|restcontroller|restaction|resource|reservationworkflowtrigger|reservationworkflow|reservationtype|reservationresource|reservationministry|reservationlocation|reservation|reportfield|report|remoteauthenticationsession|relatedentity|registrationtemplateplacement|registrationtemplateformfield|registrationtemplateform|registrationtemplatefeeitem|registrationtemplatefee|registrationtemplatediscount|registrationtemplate|registrationsession|registrationregistrantfee|registrationregistrant|registrationinstance|registration|question|prayerrequest|pluginmigration|phonenumber|personviewed|persontoken|personsignal|personsearchkey|personscheduleexclusion|personpreviousname|personduplicate|personallinksectionorder|personallinksection|personallink|personalias|personaldevice|person|persisteddataset|paginate|pageshortlink|pageroute|pagecontext|page|notificationrecipient|notification|notewatch|notetype|noteattachment|note|ncoahistory|metricytddata|metricvaluepartition|metricvalue|metricpartition|metriccategory|metric|metanicknamelookup|metalastnamelookup|metafirstnamegenderlookup|mergetemplate|mediafolder|mediaelement|mediaaccount|locationlayout|location|layout|lavashortcode|javascript|interactionwrite|interactionsessionlocation|interactionsession|interactiondevicetype|interactioncontentchannelitemwrite|interactioncomponent|interactionchannel|interaction|if|identityverificationcode|identityverification|htmlcontent|history|grouptyperole|grouptype|groupsync|groupscheduleexclusion|grouprequirementtype|grouprequirement|groupmemberworkflowtrigger|groupmemberscheduletemplate|groupmemberrequirement|groupmemberhistorical|groupmemberassignment|groupmember|grouplocationhistoricalschedule|grouplocationhistorical|grouplocation|grouphistorical|groupdemographicvalue|groupdemographictype|group|for|followingsuggestiontype|followingsuggested|followingeventtype|followingeventsubscription|followingeventnotification|following|financialtransactionrefund|financialtransactionimage|financialtransactiondetail|financialtransactionalerttype|financialtransactionalert|financialtransaction|financialstatementtemplate|financialscheduledtransactiondetail|financialscheduledtransaction|financialpledge|financialpersonsavedaccount|financialpersonbankaccount|financialpaymentdetail|financialgateway|financialbatch|financialaccount|fieldtype|exceptionlog|eventscheduledinstance|eventitemoccurrencegroupmap|eventitemoccurrencechannelitem|eventitemoccurrence|eventitemaudience|eventitem|eventcalendaritem|eventcalendarcontentchannel|eventcalendar|entitytype|entitysetitem|entityset|entityname|entitycampusfilter|documenttype|document|device|definedvalue|definedtype|dataviewfilter|dataview|contentchanneltype|contentchannelitemslug|contentchannelitemassociation|contentchannelitem|contentchannel|connectionworkflow|connectiontype|connectionstatusautomation|connectionstatus|connectionrequestworkflow|connectionrequestactivity|connectionrequest|connectionopportunitygroupconfig|connectionopportunitygroup|connectionopportunityconnectorgroup|connectionopportunitycampus|connectionopportunity|connectionactivitytype|communicationtemplateattachment|communicationtemplate|communicationresponseattachment|communicationresponse|communicationrecipient|communicationattachment|communication|comment|category|case|capture|campustopic|campusschedule|campus|calendarevents|business|blocktype|block|binaryfiletype|binaryfiledata|binaryfile|benevolenceworkflow|benevolencetype|benevolenceresult|benevolencerequestdocument|benevolencerequest|badge|backgroundcheck|authscope|authclient|authclaim|authauditlog|auth|auditdetail|audit|attributevaluehistorical|attributevalue|attributequalifier|attributematrixtemplate|attributematrixitem|attributematrix|attribute|attendanceoccurrence|attendancecode|attendancecheckinsession|attendance|assetstorageprovider|assessmenttype|assessment|analyticssourcepersonhistorical|analyticssourcegivingunit|analyticssourcefinancialtransaction|analyticssourcefamilyhistorical|analyticssourcecampus|analyticssourceattendance|analyticsfactfinancialtransaction|analyticsfactattendance|analyticsdimpersonhistorical|analyticsdimpersoncurrent|analyticsdimfinancialbatch|analyticsdimfinancialaccount|analyticsdimfamilyhistorical|analyticsdimfamilyheadofhousehold|analyticsdimfamilycurrent|analyticsdimcampus|achievementtypeprerequisite|achievementtype|achievementattempt|Rock_Model_Block)\n  [^(%})]+\n%}\n",
+  "foldingStopMarker": "(?x)\n{%\n  \\s*\n  (endworkflowtype|endworkflowtrigger|endworkflowlog|endworkflowformbuildertemplate|endworkflowactivitytype|endworkflowactivity|endworkflowactivate|endworkflowactiontype|endworkflowactionformsection|endworkflowactionformattribute|endworkflowactionform|endworkflowaction|endworkflow|endwebrequest|endwebfarmnodemetric|endwebfarmnodelog|endwebfarmnode|enduserlogin|endtaggeditem|endtag|endsystememail|endsystemcommunication|endstylesheet|endstreaktypeexclusion|endstreaktype|endstreak|endstepworkflowtrigger|endstepworkflow|endsteptypeprerequisite|endsteptype|endstepstatus|endstepprogramcompletion|endstepprogram|endstep|endsql|endsmspipeline|endsmsaction|endsitedomain|endsite|endsignaturedocumenttemplate|endsignaturedocument|endsignaltype|endservicelog|endservicejobhistory|endservicejob|endsearch|endschedulecategoryexclusion|endschedule|endrestcontroller|endrestaction|endresource|endreservationworkflowtrigger|endreservationworkflow|endreservationtype|endreservationresource|endreservationministry|endreservationlocation|endreservation|endreportfield|endreport|endremoteauthenticationsession|endrelatedentity|endregistrationtemplateplacement|endregistrationtemplateformfield|endregistrationtemplateform|endregistrationtemplatefeeitem|endregistrationtemplatefee|endregistrationtemplatediscount|endregistrationtemplate|endregistrationsession|endregistrationregistrantfee|endregistrationregistrant|endregistrationinstance|endregistration|endquestion|endprayerrequest|endpluginmigration|endphonenumber|endpersonviewed|endpersontoken|endpersonsignal|endpersonsearchkey|endpersonscheduleexclusion|endpersonpreviousname|endpersonduplicate|endpersonallinksectionorder|endpersonallinksection|endpersonallink|endpersonalias|endpersonaldevice|endperson|endpersisteddataset|endpaginate|endpageshortlink|endpageroute|endpagecontext|endpage|endnotificationrecipient|endnotification|endnotewatch|endnotetype|endnoteattachment|endnote|endncoahistory|endmetricytddata|endmetricvaluepartition|endmetricvalue|endmetricpartition|endmetriccategory|endmetric|endmetanicknamelookup|endmetalastnamelookup|endmetafirstnamegenderlookup|endmergetemplate|endmediafolder|endmediaelement|endmediaaccount|endlocationlayout|endlocation|endlayout|endlavashortcode|endjavascript|endinteractionwrite|endinteractionsessionlocation|endinteractionsession|endinteractiondevicetype|endinteractioncontentchannelitemwrite|endinteractioncomponent|endinteractionchannel|endinteraction|endif|endidentityverificationcode|endidentityverification|endhtmlcontent|endhistory|endgrouptyperole|endgrouptype|endgroupsync|endgroupscheduleexclusion|endgrouprequirementtype|endgrouprequirement|endgroupmemberworkflowtrigger|endgroupmemberscheduletemplate|endgroupmemberrequirement|endgroupmemberhistorical|endgroupmemberassignment|endgroupmember|endgrouplocationhistoricalschedule|endgrouplocationhistorical|endgrouplocation|endgrouphistorical|endgroupdemographicvalue|endgroupdemographictype|endgroup|endfor|endfollowingsuggestiontype|endfollowingsuggested|endfollowingeventtype|endfollowingeventsubscription|endfollowingeventnotification|endfollowing|endfinancialtransactionrefund|endfinancialtransactionimage|endfinancialtransactiondetail|endfinancialtransactionalerttype|endfinancialtransactionalert|endfinancialtransaction|endfinancialstatementtemplate|endfinancialscheduledtransactiondetail|endfinancialscheduledtransaction|endfinancialpledge|endfinancialpersonsavedaccount|endfinancialpersonbankaccount|endfinancialpaymentdetail|endfinancialgateway|endfinancialbatch|endfinancialaccount|endfieldtype|endexceptionlog|endeventscheduledinstance|endeventitemoccurrencegroupmap|endeventitemoccurrencechannelitem|endeventitemoccurrence|endeventitemaudience|endeventitem|endeventcalendaritem|endeventcalendarcontentchannel|endeventcalendar|endentitytype|endentitysetitem|endentityset|endentityname|endentitycampusfilter|enddocumenttype|enddocument|enddevice|enddefinedvalue|enddefinedtype|enddataviewfilter|enddataview|endcontentchanneltype|endcontentchannelitemslug|endcontentchannelitemassociation|endcontentchannelitem|endcontentchannel|endconnectionworkflow|endconnectiontype|endconnectionstatusautomation|endconnectionstatus|endconnectionrequestworkflow|endconnectionrequestactivity|endconnectionrequest|endconnectionopportunitygroupconfig|endconnectionopportunitygroup|endconnectionopportunityconnectorgroup|endconnectionopportunitycampus|endconnectionopportunity|endconnectionactivitytype|endcommunicationtemplateattachment|endcommunicationtemplate|endcommunicationresponseattachment|endcommunicationresponse|endcommunicationrecipient|endcommunicationattachment|endcommunication|endcomment|endcategory|endcase|endcapture|endcampustopic|endcampusschedule|endcampus|endcalendarevents|endbusiness|endblocktype|endblock|endbinaryfiletype|endbinaryfiledata|endbinaryfile|endbenevolenceworkflow|endbenevolencetype|endbenevolenceresult|endbenevolencerequestdocument|endbenevolencerequest|endbadge|endbackgroundcheck|endauthscope|endauthclient|endauthclaim|endauthauditlog|endauth|endauditdetail|endaudit|endattributevaluehistorical|endattributevalue|endattributequalifier|endattributematrixtemplate|endattributematrixitem|endattributematrix|endattribute|endattendanceoccurrence|endattendancecode|endattendancecheckinsession|endattendance|endassetstorageprovider|endassessmenttype|endassessment|endanalyticssourcepersonhistorical|endanalyticssourcegivingunit|endanalyticssourcefinancialtransaction|endanalyticssourcefamilyhistorical|endanalyticssourcecampus|endanalyticssourceattendance|endanalyticsfactfinancialtransaction|endanalyticsfactattendance|endanalyticsdimpersonhistorical|endanalyticsdimpersoncurrent|endanalyticsdimfinancialbatch|endanalyticsdimfinancialaccount|endanalyticsdimfamilyhistorical|endanalyticsdimfamilyheadofhousehold|endanalyticsdimfamilycurrent|endanalyticsdimcampus|endachievementtypeprerequisite|endachievementtype|endachievementattempt|endRock_Model_Block)\n  [^(%})]+\n%}\n",
+  "injections": {
+    "L:meta.embedded.block.js, L:meta.embedded.block.css, L:meta.embedded.block.html, L:string.quoted": {
+      "patterns": [
+        {
+          "include": "#injection"
+        }
+      ]
+    }
+  },
   "patterns": [
     {
-      "include": "#frontMatter"
-    },
-    {
-      "include": "#comments"
-    },
-    {
-      "include": "#comments-new"
-    },
-    {
-      "include": "#comment-oneline"
-    },
-    {
-      "include": "#raw"
-    },
-    {
-      "include": "#cache"
-    },
-    {
-      "include": "#assign"
-    },
-    {
-      "include": "#forLoop"
-    },
-    {
-      "include": "#entity"
-    },
-    {
-      "include": "#csharp"
-    },
-    {
-      "include": "#sql"
-    },
-    {
-      "include": "#search"
-    },
-    {
-      "include": "#javascript"
-    },
-    {
-      "include": "#stylesheet"
-    },
-    {
-      "include": "#webrequest"
-    },
-    {
-      "include": "#template-tags"
-    },
-    {
-      "include": "#template-vars"
-    },
-    {
-      "include": "#shortcode"
-    },
-    {
-      "include": "#entity"
-    },
-    {
-      "include": "#html"
+      "include": "#core"
     }
   ],
   "repository": {
-    "template-tags": {
-      "name": "punctuation.tag.lava",
-      "begin": "({%)(-)?",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        }
-      },
-      "end": "(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "keyword.other.whitespace.lava"
-        },
-        "2": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
+    "core": {
       "patterns": [
         {
-          "include": "#invalid-control"
+          "include": "#frontMatter"
         },
         {
-          "include": "#constant-boolean"
+          "include": "#raw_tag"
         },
         {
-          "include": "#constant-numeric"
+          "include": "#comment_block"
         },
         {
-          "include": "#constant-boolean"
+          "include": "#comment_new"
         },
         {
-          "include": "#entity-danger-name-tag"
+          "include": "#comment_oneline"
         },
         {
-          "include": "#entity-name-tag"
+          "include": "#csharp_codefence"
         },
         {
-          "include": "#include-tag"
+          "include": "#sql_codefence"
         },
         {
-          "include": "#entity-danger-name-tag"
+          "include": "#style_codefence"
         },
         {
-          "include": "#entity-name-tag"
+          "include": "#javascript_codefence"
         },
         {
-          "include": "#invalid-ampersand"
+          "include": "#cache"
         },
         {
-          "include": "#invalid-or"
+          "include": "#personalize"
         },
         {
-          "include": "#invalid-array"
+          "include": "#webrequest"
         },
         {
-          "include": "#invalid-conditions"
+          "include": "#search"
         },
         {
-          "include": "#invalid-operators"
+          "include": "#eventscheduledinstance"
         },
         {
-          "include": "#keyword-control"
+          "include": "#calendarevents"
         },
         {
-          "include": "#keyword-operators"
+          "include": "#interactionwrite"
         },
         {
-          "include": "#keyword-operator-assignment"
+          "include": "#interactionccwrite"
         },
         {
-          "include": "#quoted-support-class"
+          "include": "#object"
         },
         {
-          "include": "#string-quoted-double"
+          "include": "#tag"
         },
         {
-          "include": "#string-quoted-single"
+          "include": "text.html.basic"
+        }
+      ]
+    },
+    "injection": {
+      "patterns": [
+        {
+          "include": "#raw_tag"
         },
         {
-          "include": "#support-class"
+          "include": "#comment_block"
         },
         {
-          "include": "#support-function"
+          "include": "#comment_inline"
         },
         {
-          "include": "#invalid-support-function"
+          "include": "#object"
         },
         {
-          "include": "#support-variable"
-        },
-        {
-          "include": "#support-constant"
-        },
-        {
-          "include": "#variable-parameter"
-        },
-        {
-          "include": "#variable-other"
-        },
-        {
-          "include": "#invalid-assignment"
+          "include": "#tag_injection"
         }
       ]
     },
     "frontMatter": {
-			"begin": "\\A{%-?\\s*comment\\s*-?%}\\s*-{3}\\s*$",
-			"contentName": "meta.embedded.block.frontmatter",
-			"patterns": [
-				{
-					"include": "source.yaml"
-				}
-			],
-			"end": "(^|\\G)-{3}\\s*{%-?\\s*endcomment\\s*-?%}"
-		},
-    "comments": {
-      "name": "comment.block.lava",
-      "begin": "{%-?\\s*comment\\s*-?%}",
-      "end": "{%-?\\s*endcomment\\s*-?%}"
-    },
-    "comments-new": {
-      "name": "comment.block.lava",
-      "begin": "(^[ \\t]+)?(?=/-)",
-      "end": "-/"
-		},
-    "comment-oneline": {
-			"begin": "(^[ \\t]+)?(?=//-)",
-			"beginCaptures": {
-				"1": {
-					"name": "punctuation.whitespace.comment.leading.lava"
-				}
-			},
-			"end": "(?!\\G)",
-			"patterns": [
-				{
-					"begin": "//-",
-					"beginCaptures": {
-						"0": {
-							"name": "punctuation.definition.comment.lava"
-						}
-					},
-					"end": "\\n",
-					"name": "comment.line.double-slash.lava"
-				}
-			]
-		},
-    "raw": {
-      "name": "markup.raw.block.lava",
-      "begin": "({%)(-)?\\s*(raw)\\s*(-)?(%})",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4": {
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "end": "({%)(-)?\\s*(endraw)\\s*(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4": {
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      }
-    },
-    "template-vars": {
-      "name": "punctuation.output.lava",
-      "begin": "({{)(-)?",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2": {
-          "name": "keyword.other.whitespace.lava"
-        }
-      },
-      "end": "(-)?(}})",
-      "endCaptures": {
-        "1": {
-          "name": "keyword.other.whitespace.lava"
-        },
-        "2": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
+      "begin": "\\A{%-?\\s*comment\\s*-?%}\\s*-{3}\\s*$",
+      "end": "(^|\\G)-{3}\\s*{%-?\\s*endcomment\\s*-?%}",
+      "contentName": "meta.embedded.block.frontmatter",
       "patterns": [
         {
-          "include": "#object-properties"
-        },
-        {
-          "include": "#quoted-support-class"
-        },
-        {
-          "include": "#string-quoted-double"
-        },
-        {
-          "include": "#string-quoted-single"
-        },
-        {
-          "include": "#support-class"
-        },
-        {
-          "include": "#invalid-support-function"
-        },
-        {
-          "include": "#support-function"
-        },
-        {
-          "include": "#support-function-bbm"
-        },
-        {
-          "include": "#support-variable"
-        },
-        {
-          "include": "#var-support-variable"
-        },
-        {
-          "include": "#variable-parameter"
-        },
-        {
-          "include": "#variable-other"
+          "include": "source.yaml"
         }
       ]
     },
-    "invalid-control": {
-      "name": "invalid.illegal.control.lava",
-      "match": "elsif"
-    },
-    "constant-boolean": {
-      "name": "constant.language.lava",
-      "match": "(false|true|nil|null|empty|blank)\\b"
-    },
-    "constant-numeric": {
-      "name": "constant.numeric.lava",
-      "match": "(-|\\+)?\\b[0-9]+(\\.[0-9]+)?\\b"
-    },
-    "entity-danger-name-tag": {
-      "match": "(((?<={%)|(?<={%-))\\s*(campus|endcampus|definedvalue|enddefinedvalue|definedtype|enddefineddype))",
-      "captures": {
-        "1":{
-          "name": "invalid.deprecated.tag.lava"
-        }
-      }
-    },
-    "entity-name-tag": {
-      "match": "(((?<={%)|(?<={%-))\\s*(\\w+))",
-      "captures": {
-        "1":{
+    "raw_tag": {
+      "begin": "{%-?\\s*(raw)\\s*-?%}",
+      "end": "{%-?\\s*(endraw)\\s*-?%}",
+      "beginCaptures": {
+        "1": {
           "name": "entity.name.tag.lava"
         }
-      }
-    },
-    "include-tag":{
-      "match": "(((?<={%)|(?<={%-))\\s*(include))",
-      "captures": {
-        "1":{
+      },
+      "endCaptures": {
+        "1": {
           "name": "entity.name.tag.lava"
         }
-      }
+      },
+      "name": "meta.entity.tag.raw.lava",
+      "contentName": "string.unquoted.lava",
+      "patterns": [
+        {
+          "match": "(.(?!{%-?\\s*endraw\\s*-?%}))*."
+        }
+      ]
     },
-    "invalid-ampersand": {
-      "match": "&",
-      "name": "invalid.illegal.bad-ampersand.lava"
+    "comment_block": {
+      "begin": "{%-?\\s*comment\\s*-?%}",
+      "end": "{%-?\\s*endcomment\\s*-?%}",
+      "name": "comment.block.lava",
+      "patterns": [
+        {
+          "include": "#comment_block"
+        },
+        {
+          "match": "(.(?!{%-?\\s*(comment|endcomment)\\s*-?%}))*."
+        }
+      ]
     },
-    "invalid-or": {
-      "match": "\\|\\|",
-      "name": "invalid.illegal.bad-or.lava"
+    "comment_new": {
+      "begin": "(^[ \\t]+)?(?=/-)",
+      "end": "-/",
+      "name": "comment.block.lava"
     },
-    "invalid-array": {
-      "match": "(\\[)(\\|)(?=[^\\]]*)(?=\\])",
-      "captures": {
+    "comment_oneline": {
+      "begin": "(^[ \\t]+)?(?=//-)",
+      "end": "(?!\\G)",
+      "patterns": [
+        {
+          "begin": "//-",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.comment.lava"
+            }
+          },
+          "end": "\\n",
+          "name": "comment.line.double-slash.lava"
+        }
+      ]
+    },
+    "csharp_codefence": {
+      "begin": "({%-?)\\s*(execute)\\s*(-?%})",
+      "end": "({%-?)\\s*(endexecute)\\s*(-?%})",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.tag.metadata.csharp.start.lava"
+        },
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
         "2": {
-          "name": "invalid.illegal.filter.lava"
+          "name": "entity.name.tag.csharp.lava"
         },
         "3": {
-          "name": "invalid.illegal.filter.lava"
+          "name": "punctuation.definition.tag.begin.lava"
         }
-      }
-    },
-    "invalid-conditions": {
-      "match": "(?=if|unless|elseif)\\s*[^%}]+\\s*(in|\\|[^%}]*)",
-      "captures": {
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.tag.metadata.csharp.end.lava"
+        },
         "1": {
-          "name": "invalid.illegal.operator.lava"
-        }
-      }
-    },
-    "invalid-operators": {
-      "name": "invalid.illegal.filter.lava",
-      "match": "(?<=\\s)(\\+|\\-|\\/|\\*)(?=\\s)"
-    },
-    "invalid-assignment": {
-      "match": "(?<=assign)([^\\=]+)(\\=\\=+)",
-      "captures": {
-        "2": {
-          "name": "invalid.illegal.assignment.lava"
-        }
-      }
-    },
-    "keyword-control": {
-      "name": "keyword.control.lava",
-      "match": "(?<=\\s)(with|offset\\:|limit\\:)(?=\\s)"
-    },
-    "keyword-control-conditional": {
-      "name": "keyword.control.conditional.lava"
-    },
-    "keyword-operators": {
-      "name": "keyword.operator.lava",
-      "match": "\\s+(and|or|not|contains|in|by|((\\!|\\=|\\<|\\>)\\=))\\s+"
-    },
-    "keyword-operator-assignment": {
-      "match": "/=",
-      "name": "keyword.operator.assignment.augmented.lava"
-    },
-    "object-properties": {
-      "match": "(?<=\\w.)(?<=\\w.)\\b\\w+?\\b\\s+?",
-      "name": "variable.parameter.lava"
-    },
-    "string-quoted-single": {
-      "name": "string.quoted.single.lava",
-      "begin": "'",
-      "end": "'"
-    },
-    "string-quoted-double": {
-      "name": "string.quoted.double.lava",
-      "begin": "\"",
-      "end": "\""
-    },
-    "support-class": {
-      "name": "support.class.lava",
-      "match": "\\b(PageParameter|comment|CurrentPerson|Campuses|CurrentPage|Person|CurrentBrowser|forloop|item|Items|javascript|order|scripts|search|settings|style|stylesheet|tablerow|tags|taxonomy|template|url)\\b"
-    },
-    "quoted-support-class": {
-      "name": "support.class.lava",
-      "match": "('Now'|'Global'|'Lava')"
-    },
-    "invalid-support-function": {
-      "name": "invalid.illegal.function.lava",
-      "match": "\\|\\s+[a-z].*\\b"
-     },
-    "support-function": {
-      "match": "(\\|)\\s*(First|Last|Append|Capitalize|Decrypt|Default|Downcase|Escape|EscapeDataString|FromMarkdown|HtmlDecode|Humanize|Linkify|NewlineToBr|Pluralize|PluralizeForQuantity|Possessive|Prepend|ReadTime|RegExMatch|RegExMatchValue|RegExMatchValues|Remove|RemoveFirst|Replace|ReplaceFirst|ReplaceLast|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|Trim|Truncate|TruncateWords|UnescapeDataString|Upcase|WithFallback|Date|DateAdd|DateDiff|DatesFromICal|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|Format|FormatAsCurrency|Minus|Modulo|NumberToOrdinal|NumberToOrdinalWords|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Indexer|Join|Map|OrderBy|Select|Shuffle|Size|Sort|SortByAttribute|Uniq|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|Group|Groups|GroupsAttended|HasSignedDocument|HeadOfHousehold|LastAttendedGroupOfType|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Page|PageRedirect|Property|HasRightsTo|Notes|PageParameter|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|AppendFollowing|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|BBM_ComputeHash|FromBase64|PageRoute|RunLava|BBM_ToBase64|RegExMatches|RegExReplace|BBM_Function|WriteCookie|RandomNumber|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier)\\b",
-      "captures": {
-        "1": {
-          "name": "punctuation.definition.tag.lava"
+          "name": "punctuation.definition.tag.end.lava"
         },
         "2": {
-          "name": "entity.name.function.lava"
+          "name": "entity.name.tag.csharp.lava"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.lava"
         }
-      }
+      },
+      "name": "meta.block.csharp.lava",
+      "contentName": "meta.embedded.block.csharp",
+      "patterns": [
+        {
+          "include": "source.cs"
+        }
+      ]
     },
-    "support-variable": {
-        "name": "support.variable.lava",
-        "match": "\\b(Date|Index|Size)\\b"
-    },
-    "support-constant": {
-      "name":"support.constant.lava",
-      "match": "\\b(Default|First|Last)\\b"
-    },
-    "support-function-with-args": {
-      "name": "support.function.with-args.lava",
-      "match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\:\\s+"
-    },
-    "support-function-without-args": {
-      "name": "support.function.without-args.lava",
-      "match": "\\|\\s+(?![\\.0-9])[a-zA-Z0-9_-]+\\s+"
-    },
-    "var-support-variable": {
-      "name": "support.variable.lava",
-      "match": "(?<=\\.)\\w+\\b"
-    },
-    "variable-parameter": {
-      "name": "variable.parameter.lava",
-      "match": "((?<=\\w\\:\\s)\\w+)"
-    },
-    "variable-other": {
-      "name": "variable.other.lava",
-      "match": "\\w+"
-    },
-    "stylesheet": {
-      "contentName": "meta.embedded.block.less",
-			"begin": "({%)(-)?\\s*(stylesheet)\\s*(.*?)\\s*(-)?(%})",
+    "sql_codefence": {
+      "begin": "({%)(-)?\\s*(sql)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endsql)\\s+(-)?(%})",
       "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
-          "name": "keyword.control.lava"
+          "name": "entity.name.tag.sql.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.sql.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "name": "embed.sql.lava",
+      "contentName": "meta.embedded.inline.sql",
+      "patterns": [
+        {
+          "include": "source.sql"
+        }
+      ]
+    },
+    "style_codefence": {
+      "begin": "({%)(-)?\\s*(stylesheet)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endstylesheet)\\s+(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "entity.name.tag.stylesheet.lava"
         },
         "4": {
           "patterns": [
@@ -526,45 +322,100 @@
             }
           ]
         },
-        "5":{
+        "5": {
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
-			},
-      "end": "({%)(-)?\\s+(endstylesheet)\\s+(-)?(%})",
+      },
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
-          "name": "keyword.control.lava"
+          "name": "entity.name.tag.stylesheet.lava"
         },
-        "4":{
+        "4": {
           "name": "keyword.other.whitespace.lava"
         },
         "5": {
           "name": "punctuation.definition.tag.end.lava"
         }
       },
+      "name": "meta.block.stylesheet.lava",
+      "contentName": "meta.embedded.block.less",
       "patterns": [
         {
           "include": "source.css.less"
         }
       ]
     },
-    "javascript": {
-      "contentName": "meta.embedded.block.javascript",
-      "begin": "({%)(-)?\\s*(javascript)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
+    "javascript_codefence": {
+      "begin": "({%-?)\\s*(javascript)\\s*(.*?)\\s*(-?%})",
+      "end": "({%-?)\\s*(endjavascript)\\s*(-?%})",
+      "beginCaptures": {
+        "0": {
+          "name": "meta.tag.metadata.javascript.start.lava"
+        },
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
+          "name": "entity.name.tag.javascript.lava"
+        },
+        "3": {
+          "patterns": [
+            {
+              "match": "\\b(id|references|disableanonymousfunction|url):\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.paramter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              },
+              "include": "#illegal_command_parameter"
+            }
+          ]
+        },
+        "4": {
+          "name": "punctuation.definition.tag.begin.lava"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "meta.tag.metadata.javascript.end.lava"
+        },
+        "1": {
+          "name": "punctuation.definition.tag.end.lava"
+        },
+        "2": {
+          "name": "entity.name.tag.javascript.lava"
+        },
+        "3": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "name": "meta.block.javascript.lava",
+      "contentName": "meta.embedded.block.js",
+      "patterns": [
+        {
+          "include": "source.js"
+        }
+      ]
+    },
+    "cache": {
+      "begin": "({%)(-)?\\s*(cache)\\s*(.*?)\\s*(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
@@ -573,7 +424,91 @@
         "4": {
           "patterns": [
             {
-              "match": "\\b(id:|references:|disableanonymousfunction:|url:)\\s*('[^']*')",
+              "match": "\\b(key:|twopass:|tags:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(duration:|maxcachesize:)\\s*('[0-9]*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(duration:|maxcachesize:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "invalid.illegal.string.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "end": "({%)(-)?\\s+(endcache)\\s+(-)?(%})",
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "personalize": {
+      "begin": "({%)(-)?\\s*(personalize)\\s*(.*?)\\s*(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(segment:|requestfilter:|matchtype:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -589,85 +524,25 @@
             }
           ]
         },
-        "5":{
+        "5": {
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
-			},
-      "end": "({%)(-)?\\s+(endjavascript)\\s+(-)?(%})",
+      },
+      "end": "({%)(-)?\\s+(endpersonalize)\\s+(-)?(%})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.js"
-        }
-      ]
-    },
-    "sql": {
-      "name": "embed.sql.lava",
-      "contentName": "meta.embedded.inline.sql",
-			"begin": "({%)(-)?\\s*(sql)\\s*(.*?)\\s*(-)?(%})",
-      "beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
           "name": "keyword.control.lava"
         },
         "4": {
-          "patterns": [
-            {
-              "match": "\\b(\\S+:)\\s*('[^']*')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            }
-          ]
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({%)(-)?\\s+(endsql)\\s+(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4":{
           "name": "keyword.other.whitespace.lava"
         },
         "5": {
@@ -676,17 +551,17 @@
       },
       "patterns": [
         {
-          "include": "source.sql"
+          "include": "text.html.lava"
         }
       ]
     },
     "search": {
-			"begin": "({%)(-)?\\s*(search)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
+      "begin": "({%)(-)?\\s*(search)\\s*(.*?)\\s*(-)?(%})",
+      "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
@@ -733,25 +608,25 @@
             }
           ]
         },
-        "5":{
+        "5": {
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
-			},
+      },
       "end": "({%)(-)?\\s+(endsearch)\\s+(-)?(%})",
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
           "name": "keyword.control.lava"
         },
-        "4":{
+        "4": {
           "name": "keyword.other.whitespace.lava"
         },
         "5": {
@@ -764,14 +639,14 @@
         }
       ]
     },
-    "webrequest": {
-      "contentName": "meta.embedded.block.webrequest",
-			"begin": "({%)(-)?\\s*(webrequest)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
+    "eventscheduledinstance": {
+      "begin": "({%)(-)?\\s*(eventscheduledinstance)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endeventscheduledinstance)\\s+(-)?(%})",
+      "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
@@ -780,7 +655,7 @@
         "4": {
           "patterns": [
             {
-              "match": "\\b(url:|parameters:|headers:|method:|basicauth:|body:|requestcontenttype:|responsecontenttype:|return:|requesttype:|timeout:)\\s*('[^']*')",
+              "match": "\\b(eventid:|maxoccurrences:|daterange:|campusids:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -796,25 +671,24 @@
             }
           ]
         },
-        "5":{
+        "5": {
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
-			},
-      "end": "({%)(-)?\\s+(endwebrequest)\\s+(-)?(%})",
+      },
       "endCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
           "name": "keyword.control.lava"
         },
-        "4":{
+        "4": {
           "name": "keyword.other.whitespace.lava"
         },
         "5": {
@@ -827,14 +701,14 @@
         }
       ]
     },
-    "cache": {
-      "contentName": "meta.embedded.block.cache",
-			"begin": "({%)(-)?\\s*(cache)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
+    "calendarevents": {
+      "begin": "({%)(-)?\\s*(calendarevents)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endcalendarevents)\\s+(-)?(%})",
+      "beginCaptures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
         },
-        "2":{
+        "2": {
           "name": "keyword.other.whitespace.lava"
         },
         "3": {
@@ -843,398 +717,10 @@
         "4": {
           "patterns": [
             {
-              "match": "\\b(key:|twopass:|tags:)\\s*('[^']*')",
+              "match": "\\b(calendarid:|maxoccurrences:|daterange:|audienceids:|campusids:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\b(duration:|maxcachesize:)\\s*('[0-9]*')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\b(duration:|maxcachesize:)\\s*('[^']*')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "invalid.illegal.string.lava"
-                }
-              }
-            },
-            {
-              "match": "\\S",
-              "name": "invalid.illegal.bad-command.lava"
-            }
-          ]
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({%)(-)?\\s+(endcache)\\s+(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "patterns": [
-        {
-          "include": "text.html.lava"
-        }
-      ]
-    },
-    "csharp": {
-      "contentName": "meta.embedded.block.csharp",
-			"begin": "({%)(-)?\\s*(execute)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4": {
-          "patterns": [
-            {
-              "match": "\\b(import:|type:)\\s*('[^']*')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\S",
-              "name": "invalid.illegal.bad-command.lava"
-            }
-          ]
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({%)(-)?\\s+(endexecute)\\s+(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "keyword.control.lava"
-        },
-        "4":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "patterns": [
-        {
-          "include": "source.cs"
-        }
-      ]
-    },
-    "assign": {
-			"match": "({%)(-)?\\s*(assign)\\s+([a-zA-Z0-9]+)\\s*(=)\\s*((?:'[^']*')|[a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
-			"captures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "storage.type.lava"
-        },
-        "4": {
-          "name": "variable.other.readwrite.lava"
-        },
-        "5": {
-          "name": "keyword.operator.assignment.lava"
-        },
-        "6": {
-          "name": "variable.other.constant.object.lava"
-        },
-        "7": {
-          "patterns": [
-            {
-              "include": "#support-function"
-            },
-            {
-              "match": "\\S",
-              "name": "invalid.illegal.bad-command.lava"
-            }
-          ]
-        },
-        "8":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "9": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			}
-    },
-    "entity": {
-			"begin": "({%)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.$3.begin.lava"
-        },
-        "4": {
-          "patterns": [
-            {
-              "begin": "\\b(where:)\\s*(')",
-              "beginCaptures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              },
-              "end": "(')",
-              "endCaptures": {
-                "1": {
-                  "name": "string.quoted.single.lava"
-                }
-              },
-              "patterns": [
-                {
-                  "name": "keyword.operator.comparison.lava",
-                  "match": "\\s+(\\*\\!|\\_\\!|\\>|\\<|((\\!|\\=|\\^|\\*|\\_|\\<|\\>\\$)\\=))\\s+"
-                },
-                {
-                  "name": "constant.language.lava",
-                  "match": "(false|true)"
-                },
-                {
-                  "name": "keyword.numeric.lava",
-                  "match": "\\b([0-9]+)"
-                },
-                {
-                  "name": "keyword.entity.lava",
-                  "match": "\\b([.a-zA-Z0-9]+)"
-                },
-                {
-                  "name": "keyword.operator.entity",
-                  "match": "\\s+(\\|\\||&&)\\s+"
-                },
-                {
-                  "include": "text.html.lava#template-vars"
-                },
-                {
-                  "name": "string.quoted.double.lava",
-                  "begin": "\"",
-                  "end": "\""
-                },
-                {
-                  "match": "\\S",
-                  "name": "invalid.illegal.good-command.lava"
-                }
-              ]
-            },
-            {
-              "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|count:|include:|expression:|select:|selectmany:|groupby:)\\s*(?:('[^']*')|[a-zA-Z0-9]+)",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\b(securityenabled:|lazyloadenabled:)\\s*('(?:true|false)')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\b(id:|dataview:|limit:|offset:)\\s*(?:('[0-9]*')|[a-zA-Z0-9]+)",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "string.quoted.single.lava"
-                }
-              }
-            },
-            {
-              "match": "\\b(id:|dataview:|limit:|offset:|securityenabled:|lazyloadenabled:)\\s*('[^']*')",
-              "captures": {
-                "1": {
-                  "name": "variable.parameter.lava"
-                },
-                "2": {
-                  "name": "invalid.illegal.string.lava"
-                }
-              }
-            },
-            {
-              "match": "\\S",
-              "name": "invalid.illegal.bad-command.lava"
-            }
-          ]
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({%)(-)?\\s+(end([a-zA-Z0-9]+))\\s+(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.$4.end.lava"
-        },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "patterns": [
-        {
-          "include": "text.html.lava"
-        }
-      ]
-    },
-    "forLoop": {
-			"begin": "({%)(-)?\\s*(for)\\s*([a-zA-Z0-9]+)\\s*(in)\\s*(.*?)\\s*(-)?(%})",
-			"beginCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.for.begin.lava"
-        },
-        "4": {
-          "name": "support.class.lava"
-        },
-        "5": {
-          "name": "keyword.operator.lava"
-        },
-        "6": {
-          "name": "variable.other.lava"
-        },
-        "7":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "8": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({%)(-)?\\s+(endfor)\\s+(-)?(%})",
-      "endCaptures": {
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.for.end.lava"
-        },
-        "4":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "5": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-      },
-      "patterns": [
-        {
-          "include": "text.html.lava"
-        }
-      ]
-    },
-    "shortcode": {
-			"begin": "({\\[)(-)?\\s*([a-zA-Z0-9]+)\\s*(.*?)\\s*(-)?(\\]})",
-			"beginCaptures": {
-        "0": {
-          "name": "meta.tag.structure.$3.start.lava"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.lava"
-        },
-        "4": {
-          "patterns": [
-            {
-              "match": "\\b((?=\\w*[A-Z])\\w+\\b:)\\s*('[^']*')",
-              "captures": {
-                "1": {
-                  "name": "invalid.illegal.parameter.lava"
                 },
                 "2": {
                   "name": "string.quoted.single.lava"
@@ -1243,6 +729,57 @@
             },
             {
               "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "interactionwrite": {
+      "begin": "({%)(-)?\\s*(interactionwrite)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endinteractionwrite)\\s+(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(channeltypemediumvalueid:|channelentityid:|channelname:|componententitytypeid:|componententityid:|componentname:|interactionentitytypeid:|entityid:|operation:|summary:|relatedentitytypeid:|relatedentityid:|channelcustom1:|channelcustom2:|channelcustomindexed1:|personaliasid:|campaign:|source:|medium:|content:|term:|data:)\\s*('[^']*')",
               "captures": {
                 "1": {
                   "name": "variable.parameter.lava"
@@ -1251,113 +788,943 @@
                   "name": "string.quoted.single.lava"
                 }
               }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
             }
           ]
         },
-        "5":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "6": {
-          "name": "punctuation.definition.tag.end.lava"
-        }
-			},
-      "end": "({\\[)(-)?\\s+(end([a-zA-Z0-9]+))\\s+(-)?(\\]})",
-      "endCaptures": {
-        "0": {
-          "name": "meta.tag.structure.$4.end.lava"
-        },
-        "1": {
-          "name": "punctuation.definition.tag.begin.lava"
-        },
-        "2":{
-          "name": "keyword.other.whitespace.lava"
-        },
-        "3": {
-          "name": "entity.name.tag.lava"
-        },
-        "5":{
+        "5": {
           "name": "keyword.other.whitespace.lava"
         },
         "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
       },
-      "patterns": [
-        {
-          "include": "#shortcodeitem"
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
         },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
         {
           "include": "text.html.lava"
         }
       ]
     },
-    "shortcodeitem": {
-      "name": "punctuation.shortcodeitem.lava",
-      "begin": "(\\[\\[)",
-      "beginCaptures": {
+    "interactionccwrite": {
+      "match": "({%)(-)?\\s*(interactioncontentchannelitemwrite)\\s*(.*?)\\s*(-)?(%})",
+      "captures": {
         "1": {
           "name": "punctuation.definition.tag.begin.lava"
-        }
-      },
-      "end": "(\\]\\])",
-      "endCaptures": {
-        "1": {
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(contentchannelitemid:|operation:|summary:|personaliasid:|campaign:|medium:|source:|content:|term:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single.lava"
+                }
+              }
+            },
+            {
+              "match": "\\b(\\S+:)\\s*('[^']*')",
+              "name": "invalid.illegal.filter.lava"
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
           "name": "punctuation.definition.tag.end.lava"
         }
       },
       "patterns": [
         {
-          "match": "((?<=\\[\\[)\\s*(\\w+))",
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "webrequest": {
+      "begin": "({%)(-)?\\s*(webrequest)\\s*(.*?)\\s*(-)?(%})",
+      "end": "({%)(-)?\\s+(endwebrequest)\\s+(-)?(%})",
+      "beginCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "patterns": [
+            {
+              "match": "\\b(url:|parameters:|headers:|method:|basicauth:|body:|requestcontenttype:|responsecontenttype:|return:|requesttype:|timeout:)\\s*('[^']*')",
+              "captures": {
+                "1": {
+                  "name": "variable.parameter.lava"
+                },
+                "2": {
+                  "name": "string.quoted.single"
+                }
+              }
+            }
+          ]
+        },
+        "5": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "6": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "endCaptures": {
+        "1": {
+          "name": "punctuation.definition.tag.begin.lava"
+        },
+        "2": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "3": {
+          "name": "keyword.control.lava"
+        },
+        "4": {
+          "name": "keyword.other.whitespace.lava"
+        },
+        "5": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "text.html.lava"
+        }
+      ]
+    },
+    "tag": {
+      "begin": "(?<!comment %})(?<!comment -%})(?<!comment%})(?<!comment-%})(?<!raw %})(?<!raw -%})(?<!raw%})(?<!raw-%}){%-?",
+      "end": "-?%}",
+      "name": "meta.tag.lava",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.begin.lava"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag_body"
+        }
+      ]
+    },
+    "tag_injection": {
+      "begin": "(?<!comment %})(?<!comment -%})(?<!comment%})(?<!comment-%})(?<!raw %})(?<!raw -%})(?<!raw%})(?<!raw-%}){%-?(?!-?\\s*(endstyle|endjavascript|endcomment|endraw))",
+      "end": "-?%}",
+      "name": "meta.tag.lava",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#tag_body"
+        }
+      ]
+    },
+    "tag_body": {
+      "patterns": [
+        {
+          "include": "#tag_lava"
+        },
+        {
+          "include": "#tag_entity_command"
+        },
+        {
+          "include": "#tag_assign"
+        },
+        {
+          "include": "#tag_case"
+        },
+        {
+          "include": "#tag_conditional"
+        },
+        {
+          "include": "#tag_for"
+        },
+        {
+          "include": "#tag_render"
+        },
+        {
+          "include": "#tag_include"
+        },
+        {
+          "include": "#tag_tablerow"
+        },
+        {
+          "include": "#tag_expression"
+        }
+      ]
+    },
+    "tag_lava": {
+      "name": "meta.entity.tag.lava.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(lava)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.lava.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#tag_comment_lava"
+        },
+        {
+          "include": "#tag_assign_lava"
+        },
+        {
+          "include": "#tag_case_lava"
+        },
+        {
+          "include": "#tag_conditional_lava"
+        },
+        {
+          "include": "#tag_for_lava"
+        },
+        {
+          "include": "#tag_render_lava"
+        },
+        {
+          "include": "#tag_include_lava"
+        },
+        {
+          "include": "#tag_tablerow_lava"
+        },
+        {
+          "include": "#tag_expression_lava"
+        }
+      ]
+    },
+    "tag_comment_lava": {
+      "name": "comment.block.lava",
+      "begin": "(?:^\\s*)(comment)\\b",
+      "end": "(?:^\\s*)(endcomment)\\b"
+    },
+    "tag_tablerow": {
+      "name": "meta.entity.tag.tablerow.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(tablerow)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.tablerow.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#tag_tablerow_body"
+        }
+      ]
+    },
+    "tag_tablerow_lava": {
+      "name": "meta.entity.tag.tablerow.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(tablerow)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.tablerow.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#tag_tablerow_body"
+        }
+      ]
+    },
+    "tag_tablerow_body": {
+      "patterns": [
+        {
+          "match": "\\b(in)\\b",
+          "name": "keyword.control.lava"
+        },
+        {
+          "match": "\\b(cols|offset|limit):",
+          "name": "keyword.control.lava"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_for": {
+      "name": "meta.entity.tag.for.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(for)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.for.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#tag_for_body"
+        }
+      ]
+    },
+    "tag_for_lava": {
+      "name": "meta.entity.tag.for.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(for)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.for.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#tag_for_body"
+        }
+      ]
+    },
+    "tag_for_body": {
+      "patterns": [
+        {
+          "match": "\\b(in|reversed)\\b",
+          "name": "keyword.control.lava"
+        },
+        {
+          "match": "\\b(offset|limit):",
+          "name": "keyword.control.lava"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_assign": {
+      "name": "meta.entity.tag.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9]+)\\s*(=)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.lava"
+        },
+        "2": {
+          "name": "variable.other.readwrite.lava"
+        },
+        "3": {
+          "name": "keyword.operator.assignment.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#filter"
+        },
+        {
+          "include": "#attribute"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_assign_lava": {
+      "name": "meta.entity.tag.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9]+)\\s*(=)\\s*",
+      "beginCaptures": {
+        "1": {
+          "name": "storage.type.lava"
+        },
+        "2": {
+          "name": "variable.other.readwrite.lava"
+        },
+        "3": {
+          "name": "keyword.operator.assignment.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#filter"
+        },
+        {
+          "include": "#attribute_lava"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_render": {
+      "name": "meta.entity.tag.render.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(render)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.render.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#tag_render_special_keywords"
+        },
+        {
+          "include": "#attribute"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_render_lava": {
+      "name": "meta.entity.tag.render.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(render)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.render.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#tag_render_special_keywords"
+        },
+        {
+          "include": "#attribute_lava"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_render_special_keywords": {
+      "match": "\\b(with|as|for)\\b",
+      "name": "keyword.control.other.lava"
+    },
+    "tag_include": {
+      "name": "meta.entity.tag.include.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(include)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.render.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#attribute"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_include_lava": {
+      "name": "meta.entity.tag.include.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(include)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "entity.name.tag.include.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#attribute_lava"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_conditional": {
+      "name": "meta.entity.tag.conditional.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(if|elseif|unless)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.conditional.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_conditional_lava": {
+      "name": "meta.entity.tag.conditional.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(if|elseif|unless)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.conditional.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_case": {
+      "name": "meta.entity.tag.case.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(case|when)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.case.lava"
+        }
+      },
+      "end": "(?=%})",
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_case_lava": {
+      "name": "meta.entity.tag.case.lava",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(case|when)\\b",
+      "beginCaptures": {
+        "1": {
+          "name": "keyword.control.case.lava"
+        }
+      },
+      "end": "$",
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "tag_expression_without_arguments": {
+      "patterns": [
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(endunless|endif)\\b",
           "captures": {
-            "1":{
-              "name": "entity.name.tag.lava"
+            "1": {
+              "name": "keyword.control.conditional.lava"
             }
           }
         },
         {
-          "match": "\\b(\\S+:)\\s*('[^']*')",
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(end(workflowtype|workflowtrigger|workflowlog|workflowformbuildertemplate|workflowactivitytype|workflowactivity|workflowactivate|workflowactiontype|workflowactionformsection|workflowactionformattribute|workflowactionform|workflowaction|workflow|webrequest|webfarmnodemetric|webfarmnodelog|webfarmnode|userlogin|taggeditem|tag|systememail|systemcommunication|stylesheet|streaktypeexclusion|streaktype|streak|stepworkflowtrigger|stepworkflow|steptypeprerequisite|steptype|stepstatus|stepprogramcompletion|stepprogram|step|sql|smspipeline|smsaction|sitedomain|site|signaturedocumenttemplate|signaturedocument|signaltype|servicelog|servicejobhistory|servicejob|search|schedulecategoryexclusion|schedule|restcontroller|restaction|resource|reservationworkflowtrigger|reservationworkflow|reservationtype|reservationresource|reservationministry|reservationlocation|reservation|reportfield|report|remoteauthenticationsession|relatedentity|registrationtemplateplacement|registrationtemplateformfield|registrationtemplateform|registrationtemplatefeeitem|registrationtemplatefee|registrationtemplatediscount|registrationtemplate|registrationsession|registrationregistrantfee|registrationregistrant|registrationinstance|registration|question|prayerrequest|pluginmigration|phonenumber|personviewed|persontoken|personsignal|personsearchkey|personscheduleexclusion|personpreviousname|personduplicate|personallinksectionorder|personallinksection|personallink|personalias|personaldevice|person|persisteddataset|pageshortlink|pageroute|pagecontext|page|notificationrecipient|notification|notewatch|notetype|noteattachment|note|ncoahistory|metricytddata|metricvaluepartition|metricvalue|metricpartition|metriccategory|metric|metanicknamelookup|metalastnamelookup|metafirstnamegenderlookup|mergetemplate|mediafolder|mediaelement|mediaaccount|locationlayout|location|layout|lavashortcode|javascript|interactionwrite|interactionsessionlocation|interactionsession|interactiondevicetype|interactioncontentchannelitemwrite|interactioncomponent|interactionchannel|interaction|identityverificationcode|identityverification|htmlcontent|history|grouptyperole|grouptype|groupsync|groupscheduleexclusion|grouprequirementtype|grouprequirement|groupmemberworkflowtrigger|groupmemberscheduletemplate|groupmemberrequirement|groupmemberhistorical|groupmemberassignment|groupmember|grouplocationhistoricalschedule|grouplocationhistorical|grouplocation|grouphistorical|groupdemographicvalue|groupdemographictype|group|followingsuggestiontype|followingsuggested|followingeventtype|followingeventsubscription|followingeventnotification|following|financialtransactionrefund|financialtransactionimage|financialtransactiondetail|financialtransactionalerttype|financialtransactionalert|financialtransaction|financialstatementtemplate|financialscheduledtransactiondetail|financialscheduledtransaction|financialpledge|financialpersonsavedaccount|financialpersonbankaccount|financialpaymentdetail|financialgateway|financialbatch|financialaccount|fieldtype|exceptionlog|eventscheduledinstance|eventitemoccurrencegroupmap|eventitemoccurrencechannelitem|eventitemoccurrence|eventitemaudience|eventitem|eventcalendaritem|eventcalendarcontentchannel|eventcalendar|entitytype|entitysetitem|entityset|entityname|entitycampusfilter|documenttype|document|device|definedvalue|definedtype|dataviewfilter|dataview|contentchanneltype|contentchannelitemslug|contentchannelitemassociation|contentchannelitem|contentchannel|connectionworkflow|connectiontype|connectionstatusautomation|connectionstatus|connectionrequestworkflow|connectionrequestactivity|connectionrequest|connectionopportunitygroupconfig|connectionopportunitygroup|connectionopportunityconnectorgroup|connectionopportunitycampus|connectionopportunity|connectionactivitytype|communicationtemplateattachment|communicationtemplate|communicationresponseattachment|communicationresponse|communicationrecipient|communicationattachment|communication|category|campustopic|campusschedule|campus|calendarevents|business|blocktype|block|binaryfiletype|binaryfiledata|binaryfile|benevolenceworkflow|benevolencetype|benevolenceresult|benevolencerequestdocument|benevolencerequest|badge|backgroundcheck|authscope|authclient|authclaim|authauditlog|auth|auditdetail|audit|attributevaluehistorical|attributevalue|attributequalifier|attributematrixtemplate|attributematrixitem|attributematrix|attribute|attendanceoccurrence|attendancecode|attendancecheckinsession|attendance|assetstorageprovider|assessmenttype|assessment|analyticssourcepersonhistorical|analyticssourcegivingunit|analyticssourcefinancialtransaction|analyticssourcefamilyhistorical|analyticssourcecampus|analyticssourceattendance|analyticsfactfinancialtransaction|analyticsfactattendance|analyticsdimpersonhistorical|analyticsdimpersoncurrent|analyticsdimfinancialbatch|analyticsdimfinancialaccount|analyticsdimfamilyhistorical|analyticsdimfamilyheadofhousehold|analyticsdimfamilycurrent|analyticsdimcampus|achievementtypeprerequisite|achievementtype|achievementattempt|Rock_Model_Block))\\b",
           "captures": {
+            "1": {
+              "name": "keyword.control.$2.end.lava"
+            }
+          }
+        },
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(endfor|endtablerow)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.loop.lava"
+            }
+          }
+        },
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(endcase)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.case.lava"
+            }
+          }
+        },
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(workflowtype|workflowtrigger|workflowlog|workflowformbuildertemplate|workflowactivitytype|workflowactivity|workflowactivate|workflowactiontype|workflowactionformsection|workflowactionformattribute|workflowactionform|workflowaction|workflow|webrequest|webfarmnodemetric|webfarmnodelog|webfarmnode|userlogin|taggeditem|tag|systememail|systemcommunication|stylesheet|streaktypeexclusion|streaktype|streak|stepworkflowtrigger|stepworkflow|steptypeprerequisite|steptype|stepstatus|stepprogramcompletion|stepprogram|step|sql|smspipeline|smsaction|sitedomain|site|signaturedocumenttemplate|signaturedocument|signaltype|servicelog|servicejobhistory|servicejob|search|schedulecategoryexclusion|schedule|restcontroller|restaction|resource|reservationworkflowtrigger|reservationworkflow|reservationtype|reservationresource|reservationministry|reservationlocation|reservation|reportfield|report|remoteauthenticationsession|relatedentity|registrationtemplateplacement|registrationtemplateformfield|registrationtemplateform|registrationtemplatefeeitem|registrationtemplatefee|registrationtemplatediscount|registrationtemplate|registrationsession|registrationregistrantfee|registrationregistrant|registrationinstance|registration|question|prayerrequest|pluginmigration|phonenumber|personviewed|persontoken|personsignal|personsearchkey|personscheduleexclusion|personpreviousname|personduplicate|personallinksectionorder|personallinksection|personallink|personalias|personaldevice|person|persisteddataset|paginate|pageshortlink|pageroute|pagecontext|page|notificationrecipient|notification|notewatch|notetype|noteattachment|note|ncoahistory|metricytddata|metricvaluepartition|metricvalue|metricpartition|metriccategory|metric|metanicknamelookup|metalastnamelookup|metafirstnamegenderlookup|mergetemplate|mediafolder|mediaelement|mediaaccount|locationlayout|location|layout|lavashortcode|javascript|interactionwrite|interactionsessionlocation|interactionsession|interactiondevicetype|interactioncontentchannelitemwrite|interactioncomponent|interactionchannel|interaction|if|identityverificationcode|identityverification|htmlcontent|history|grouptyperole|grouptype|groupsync|groupscheduleexclusion|grouprequirementtype|grouprequirement|groupmemberworkflowtrigger|groupmemberscheduletemplate|groupmemberrequirement|groupmemberhistorical|groupmemberassignment|groupmember|grouplocationhistoricalschedule|grouplocationhistorical|grouplocation|grouphistorical|groupdemographicvalue|groupdemographictype|group|for|followingsuggestiontype|followingsuggested|followingeventtype|followingeventsubscription|followingeventnotification|following|financialtransactionrefund|financialtransactionimage|financialtransactiondetail|financialtransactionalerttype|financialtransactionalert|financialtransaction|financialstatementtemplate|financialscheduledtransactiondetail|financialscheduledtransaction|financialpledge|financialpersonsavedaccount|financialpersonbankaccount|financialpaymentdetail|financialgateway|financialbatch|financialaccount|fieldtype|exceptionlog|eventscheduledinstance|eventitemoccurrencegroupmap|eventitemoccurrencechannelitem|eventitemoccurrence|eventitemaudience|eventitem|eventcalendaritem|eventcalendarcontentchannel|eventcalendar|entitytype|entitysetitem|entityset|entityname|entitycampusfilter|documenttype|document|device|definedvalue|definedtype|dataviewfilter|dataview|contentchanneltype|contentchannelitemslug|contentchannelitemassociation|contentchannelitem|contentchannel|connectionworkflow|connectiontype|connectionstatusautomation|connectionstatus|connectionrequestworkflow|connectionrequestactivity|connectionrequest|connectionopportunitygroupconfig|connectionopportunitygroup|connectionopportunityconnectorgroup|connectionopportunitycampus|connectionopportunity|connectionactivitytype|communicationtemplateattachment|communicationtemplate|communicationresponseattachment|communicationresponse|communicationrecipient|communicationattachment|communication|comment|category|case|capture|campustopic|campusschedule|campus|calendarevents|business|blocktype|block|binaryfiletype|binaryfiledata|binaryfile|benevolenceworkflow|benevolencetype|benevolenceresult|benevolencerequestdocument|benevolencerequest|badge|backgroundcheck|authscope|authclient|authclaim|authauditlog|auth|auditdetail|audit|attributevaluehistorical|attributevalue|attributequalifier|attributematrixtemplate|attributematrixitem|attributematrix|attribute|attendanceoccurrence|attendancecode|attendancecheckinsession|attendance|assetstorageprovider|assessmenttype|assessment|analyticssourcepersonhistorical|analyticssourcegivingunit|analyticssourcefinancialtransaction|analyticssourcefamilyhistorical|analyticssourcecampus|analyticssourceattendance|analyticsfactfinancialtransaction|analyticsfactattendance|analyticsdimpersonhistorical|analyticsdimpersoncurrent|analyticsdimfinancialbatch|analyticsdimfinancialaccount|analyticsdimfamilyhistorical|analyticsdimfamilyheadofhousehold|analyticsdimfamilycurrent|analyticsdimcampus|achievementtypeprerequisite|achievementtype|achievementattempt|Rock_Model_Block)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.other.lava"
+            }
+          }
+        },
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(endworkflowtype|endworkflowtrigger|endworkflowlog|endworkflowformbuildertemplate|endworkflowactivitytype|endworkflowactivity|endworkflowactivate|endworkflowactiontype|endworkflowactionformsection|endworkflowactionformattribute|endworkflowactionform|endworkflowaction|endworkflow|endwebrequest|endwebfarmnodemetric|endwebfarmnodelog|endwebfarmnode|enduserlogin|endtaggeditem|endtag|endsystememail|endsystemcommunication|endstylesheet|endstreaktypeexclusion|endstreaktype|endstreak|endstepworkflowtrigger|endstepworkflow|endsteptypeprerequisite|endsteptype|endstepstatus|endstepprogramcompletion|endstepprogram|endstep|endsql|endsmspipeline|endsmsaction|endsitedomain|endsite|endsignaturedocumenttemplate|endsignaturedocument|endsignaltype|endservicelog|endservicejobhistory|endservicejob|endsearch|endschedulecategoryexclusion|endschedule|endrestcontroller|endrestaction|endresource|endreservationworkflowtrigger|endreservationworkflow|endreservationtype|endreservationresource|endreservationministry|endreservationlocation|endreservation|endreportfield|endreport|endremoteauthenticationsession|endrelatedentity|endregistrationtemplateplacement|endregistrationtemplateformfield|endregistrationtemplateform|endregistrationtemplatefeeitem|endregistrationtemplatefee|endregistrationtemplatediscount|endregistrationtemplate|endregistrationsession|endregistrationregistrantfee|endregistrationregistrant|endregistrationinstance|endregistration|endquestion|endprayerrequest|endpluginmigration|endphonenumber|endpersonviewed|endpersontoken|endpersonsignal|endpersonsearchkey|endpersonscheduleexclusion|endpersonpreviousname|endpersonduplicate|endpersonallinksectionorder|endpersonallinksection|endpersonallink|endpersonalias|endpersonaldevice|endperson|endpersisteddataset|endpaginate|endpageshortlink|endpageroute|endpagecontext|endpage|endnotificationrecipient|endnotification|endnotewatch|endnotetype|endnoteattachment|endnote|endncoahistory|endmetricytddata|endmetricvaluepartition|endmetricvalue|endmetricpartition|endmetriccategory|endmetric|endmetanicknamelookup|endmetalastnamelookup|endmetafirstnamegenderlookup|endmergetemplate|endmediafolder|endmediaelement|endmediaaccount|endlocationlayout|endlocation|endlayout|endlavashortcode|endjavascript|endinteractionwrite|endinteractionsessionlocation|endinteractionsession|endinteractiondevicetype|endinteractioncontentchannelitemwrite|endinteractioncomponent|endinteractionchannel|endinteraction|endif|endidentityverificationcode|endidentityverification|endhtmlcontent|endhistory|endgrouptyperole|endgrouptype|endgroupsync|endgroupscheduleexclusion|endgrouprequirementtype|endgrouprequirement|endgroupmemberworkflowtrigger|endgroupmemberscheduletemplate|endgroupmemberrequirement|endgroupmemberhistorical|endgroupmemberassignment|endgroupmember|endgrouplocationhistoricalschedule|endgrouplocationhistorical|endgrouplocation|endgrouphistorical|endgroupdemographicvalue|endgroupdemographictype|endgroup|endfor|endfollowingsuggestiontype|endfollowingsuggested|endfollowingeventtype|endfollowingeventsubscription|endfollowingeventnotification|endfollowing|endfinancialtransactionrefund|endfinancialtransactionimage|endfinancialtransactiondetail|endfinancialtransactionalerttype|endfinancialtransactionalert|endfinancialtransaction|endfinancialstatementtemplate|endfinancialscheduledtransactiondetail|endfinancialscheduledtransaction|endfinancialpledge|endfinancialpersonsavedaccount|endfinancialpersonbankaccount|endfinancialpaymentdetail|endfinancialgateway|endfinancialbatch|endfinancialaccount|endfieldtype|endexceptionlog|endeventscheduledinstance|endeventitemoccurrencegroupmap|endeventitemoccurrencechannelitem|endeventitemoccurrence|endeventitemaudience|endeventitem|endeventcalendaritem|endeventcalendarcontentchannel|endeventcalendar|endentitytype|endentitysetitem|endentityset|endentityname|endentitycampusfilter|enddocumenttype|enddocument|enddevice|enddefinedvalue|enddefinedtype|enddataviewfilter|enddataview|endcontentchanneltype|endcontentchannelitemslug|endcontentchannelitemassociation|endcontentchannelitem|endcontentchannel|endconnectionworkflow|endconnectiontype|endconnectionstatusautomation|endconnectionstatus|endconnectionrequestworkflow|endconnectionrequestactivity|endconnectionrequest|endconnectionopportunitygroupconfig|endconnectionopportunitygroup|endconnectionopportunityconnectorgroup|endconnectionopportunitycampus|endconnectionopportunity|endconnectionactivitytype|endcommunicationtemplateattachment|endcommunicationtemplate|endcommunicationresponseattachment|endcommunicationresponse|endcommunicationrecipient|endcommunicationattachment|endcommunication|endcomment|endcategory|endcase|endcapture|endcampustopic|endcampusschedule|endcampus|endcalendarevents|endbusiness|endblocktype|endblock|endbinaryfiletype|endbinaryfiledata|endbinaryfile|endbenevolenceworkflow|endbenevolencetype|endbenevolenceresult|endbenevolencerequestdocument|endbenevolencerequest|endbadge|endbackgroundcheck|endauthscope|endauthclient|endauthclaim|endauthauditlog|endauth|endauditdetail|endaudit|endattributevaluehistorical|endattributevalue|endattributequalifier|endattributematrixtemplate|endattributematrixitem|endattributematrix|endattribute|endattendanceoccurrence|endattendancecode|endattendancecheckinsession|endattendance|endassetstorageprovider|endassessmenttype|endassessment|endanalyticssourcepersonhistorical|endanalyticssourcegivingunit|endanalyticssourcefinancialtransaction|endanalyticssourcefamilyhistorical|endanalyticssourcecampus|endanalyticssourceattendance|endanalyticsfactfinancialtransaction|endanalyticsfactattendance|endanalyticsdimpersonhistorical|endanalyticsdimpersoncurrent|endanalyticsdimfinancialbatch|endanalyticsdimfinancialaccount|endanalyticsdimfamilyhistorical|endanalyticsdimfamilyheadofhousehold|endanalyticsdimfamilycurrent|endanalyticsdimcampus|endachievementtypeprerequisite|endachievementtype|endachievementattempt|endRock_Model_Block)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.other.lava"
+            }
+          }
+        },
+        {
+          "match": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(else|break|continue|return)\\b",
+          "captures": {
+            "1": {
+              "name": "keyword.control.other.lava"
+            }
+          }
+        }
+      ]
+    },
+    "tag_entity_command": {
+      "patterns": [
+        {
+          "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(workflowtype|workflowtrigger|workflowlog|workflowformbuildertemplate|workflowactivitytype|workflowactivity|workflowactivate|workflowactiontype|workflowactionformsection|workflowactionformattribute|workflowactionform|workflowaction|workflow|webrequest|webfarmnodemetric|webfarmnodelog|webfarmnode|userlogin|taggeditem|tag|systememail|systemcommunication|stylesheet|streaktypeexclusion|streaktype|streak|stepworkflowtrigger|stepworkflow|steptypeprerequisite|steptype|stepstatus|stepprogramcompletion|stepprogram|step|sql|smspipeline|smsaction|sitedomain|site|signaturedocumenttemplate|signaturedocument|signaltype|servicelog|servicejobhistory|servicejob|search|schedulecategoryexclusion|schedule|restcontroller|restaction|resource|reservationworkflowtrigger|reservationworkflow|reservationtype|reservationresource|reservationministry|reservationlocation|reservation|reportfield|report|remoteauthenticationsession|relatedentity|registrationtemplateplacement|registrationtemplateformfield|registrationtemplateform|registrationtemplatefeeitem|registrationtemplatefee|registrationtemplatediscount|registrationtemplate|registrationsession|registrationregistrantfee|registrationregistrant|registrationinstance|registration|question|prayerrequest|pluginmigration|phonenumber|personviewed|persontoken|personsignal|personsearchkey|personscheduleexclusion|personpreviousname|personduplicate|personallinksectionorder|personallinksection|personallink|personalias|personaldevice|person|persisteddataset|pageshortlink|pageroute|pagecontext|page|notificationrecipient|notification|notewatch|notetype|noteattachment|note|ncoahistory|metricytddata|metricvaluepartition|metricvalue|metricpartition|metriccategory|metric|metanicknamelookup|metalastnamelookup|metafirstnamegenderlookup|mergetemplate|mediafolder|mediaelement|mediaaccount|locationlayout|location|layout|lavashortcode|javascript|interactionwrite|interactionsessionlocation|interactionsession|interactiondevicetype|interactioncontentchannelitemwrite|interactioncomponent|interactionchannel|interaction|identityverificationcode|identityverification|htmlcontent|history|grouptyperole|grouptype|groupsync|groupscheduleexclusion|grouprequirementtype|grouprequirement|groupmemberworkflowtrigger|groupmemberscheduletemplate|groupmemberrequirement|groupmemberhistorical|groupmemberassignment|groupmember|grouplocationhistoricalschedule|grouplocationhistorical|grouplocation|grouphistorical|groupdemographicvalue|groupdemographictype|group|followingsuggestiontype|followingsuggested|followingeventtype|followingeventsubscription|followingeventnotification|following|financialtransactionrefund|financialtransactionimage|financialtransactiondetail|financialtransactionalerttype|financialtransactionalert|financialtransaction|financialstatementtemplate|financialscheduledtransactiondetail|financialscheduledtransaction|financialpledge|financialpersonsavedaccount|financialpersonbankaccount|financialpaymentdetail|financialgateway|financialbatch|financialaccount|fieldtype|exceptionlog|eventscheduledinstance|eventitemoccurrencegroupmap|eventitemoccurrencechannelitem|eventitemoccurrence|eventitemaudience|eventitem|eventcalendaritem|eventcalendarcontentchannel|eventcalendar|entitytype|entitysetitem|entityset|entityname|entitycampusfilter|documenttype|document|device|definedvalue|definedtype|dataviewfilter|dataview|contentchanneltype|contentchannelitemslug|contentchannelitemassociation|contentchannelitem|contentchannel|connectionworkflow|connectiontype|connectionstatusautomation|connectionstatus|connectionrequestworkflow|connectionrequestactivity|connectionrequest|connectionopportunitygroupconfig|connectionopportunitygroup|connectionopportunityconnectorgroup|connectionopportunitycampus|connectionopportunity|connectionactivitytype|communicationtemplateattachment|communicationtemplate|communicationresponseattachment|communicationresponse|communicationrecipient|communicationattachment|communication|category|campustopic|campusschedule|campus|calendarevents|business|blocktype|block|binaryfiletype|binaryfiledata|binaryfile|benevolenceworkflow|benevolencetype|benevolenceresult|benevolencerequestdocument|benevolencerequest|badge|backgroundcheck|authscope|authclient|authclaim|authauditlog|auth|auditdetail|audit|attributevaluehistorical|attributevalue|attributequalifier|attributematrixtemplate|attributematrixitem|attributematrix|attribute|attendanceoccurrence|attendancecode|attendancecheckinsession|attendance|assetstorageprovider|assessmenttype|assessment|analyticssourcepersonhistorical|analyticssourcegivingunit|analyticssourcefinancialtransaction|analyticssourcefamilyhistorical|analyticssourcecampus|analyticssourceattendance|analyticsfactfinancialtransaction|analyticsfactattendance|analyticsdimpersonhistorical|analyticsdimpersoncurrent|analyticsdimfinancialbatch|analyticsdimfinancialaccount|analyticsdimfamilyhistorical|analyticsdimfamilyheadofhousehold|analyticsdimfamilycurrent|analyticsdimcampus|achievementtypeprerequisite|achievementtype|achievementattempt|Rock_Model_Block)\\b",
+          "beginCaptures": {
+            "1": {
+              "name": "keyword.control.$1.start.lava"
+            }
+          },
+          "end": "(?=%})",
+          "patterns": [
+            {
+              "include": "#tag_entity_command_body"
+            }
+          ]
+        }
+      ]
+    },
+    "tag_entity_command_body": {
+      "patterns": [
+        {
+          "begin": "\\b(where:)\\s*(')",
+          "beginCaptures": {
             "1": {
               "name": "variable.parameter.lava"
             },
             "2": {
               "name": "string.quoted.single.lava"
             }
+          },
+          "end": "(')",
+          "endCaptures": {
+            "1": {
+              "name": "string.quoted.single.lava"
+            }
+          },
+          "patterns": [
+            {
+              "name": "keyword.operator.comparison.lava",
+              "match": "\\s+(\\*\\!|\\_\\!|\\>|\\<|((\\!|\\=|\\^|\\*|\\_|\\<|\\>\\$)\\=))\\s+"
+            },
+            {
+              "name": "constant.language.lava",
+              "match": "(false|true)"
+            },
+            {
+              "name": "keyword.numeric.lava",
+              "match": "\\b([0-9]+)"
+            },
+            {
+              "name": "keyword.entity.lava",
+              "match": "\\b([.a-zA-Z0-9]+)"
+            },
+            {
+              "name": "keyword.operator.entity",
+              "match": "\\s+(\\|\\||&&)\\s+"
+            },
+            {
+              "include": "#string_double"
+            },
+            {
+              "name": "invalid.illegal.good-command.lava",
+              "match": "\\S"
+            }
+          ]
+        },
+        {
+          "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:)\\s*('[^']*')",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.lava"
+            },
+            "2": {
+              "name": "string.quote.single.lava"
+            }
           }
         },
         {
-          "include": "#string-quoted-double"
+          "match": "\\b(id:|dataview:|limit:|offset:)\\s*('[0-9]*')",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.lava"
+            },
+            "2": {
+              "name": "string.quote.single.lava"
+            }
+          }
         },
         {
-          "include": "#string-quoted-single"
-        },
-        {
-          "include": "#var-support-variable"
-        },
-        {
-          "include": "#variable-parameter"
-        },
-        {
-          "include": "#variable-other"
+          "match": "\\S",
+          "name": "invalid.illegal.bad-command.lava"
         }
       ]
     },
-    "entitywhere": {
-      "begin": "\\b(where:)\\s*'",
-      "beginCaptures": {
-        "1": {
-          "name": "variable.parameter.lava"
-        }
-      },
-      "end": "'",
+    "tag_expression": {
       "patterns": [
         {
-          "include": "text.html.basic"
+          "include": "#tag_expression_without_arguments"
         }
       ]
     },
-    "html": {
-      "include": "text.html.basic"
+    "tag_expression_lava": {
+      "patterns": [
+        {
+          "include": "#tag_expression_without_arguments"
+        }
+      ]
+    },
+    "object": {
+      "begin": "(?<!comment %})(?<!comment -%})(?<!comment%})(?<!comment-%})(?<!raw %})(?<!raw -%})(?<!raw%})(?<!raw-%}){{-?",
+      "end": "-?}}",
+      "name": "meta.object.lava",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.begin.lava"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.definition.tag.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#filter"
+        },
+        {
+          "include": "#attribute"
+        },
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "invalid_range": {
+      "match": "\\((.(?!\\.\\.))+\\)",
+      "name": "invalid.illegal.range.lava"
+    },
+    "range": {
+      "begin": "\\(",
+      "end": "\\)",
+      "name": "meta.range.lava",
+      "beginCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.begin.lava"
+        }
+      },
+      "endCaptures": {
+        "0": {
+          "name": "punctuation.section.parens.end.lava"
+        }
+      },
+      "patterns": [
+        {
+          "match": "\\.\\.",
+          "name": "punctuation.range.lava"
+        },
+        {
+          "include": "#variable_lookup"
+        },
+        {
+          "include": "#number"
+        }
+      ]
+    },
+    "number": {
+      "match": "((-|\\+)\\s*)?[0-9]+(\\.[0-9]+)?",
+      "name": "constant.numeric.lava"
+    },
+    "string": {
+      "patterns": [
+        {
+          "include": "#string_single"
+        },
+        {
+          "include": "#string_double"
+        }
+      ]
+    },
+    "string_double": {
+      "begin": "\"",
+      "end": "\"",
+      "name": "string.quoted.double.lava"
+    },
+    "string_single": {
+      "begin": "'",
+      "end": "'",
+      "name": "string.quoted.single.lava"
+    },
+    "operator": {
+      "match": "(?:(?<=\\s)|\\b)(\\=\\=|!\\=|\\>|\\<|\\>\\=|\\<\\=|or|and|contains)(?:(?=\\s)|\\b)",
+      "captures": {
+        "1": {
+          "name": "keyword.operator.expression.lava"
+        }
+      }
+    },
+    "language_constant": {
+      "match": "\\b(false|true|nil|blank)\\b|empty(?!\\?)",
+      "name": "constant.language.lava"
+    },
+    "language_quoted_support": {
+      "match": "\\s*('Now'|'Global'|'Lava')\\s*",
+      "name": "support.class.lava"
+    },
+    "attribute": {
+      "begin": "\\w+:",
+      "end": "(?=,|%}|}}|\\|)",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.other.attribute-name.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "attribute_lava": {
+      "begin": "\\w+:",
+      "end": "(?=,|\\|)|$",
+      "beginCaptures": {
+        "0": {
+          "name": "entity.other.attribute-name.lava"
+        }
+      },
+      "patterns": [
+        {
+          "include": "#value_expression"
+        }
+      ]
+    },
+    "filter": {
+      "match": "(\\|)\\s*(First|LastAttendedGroupOfType|Last|AppendFollowing|Append|Capitalize|Decrypt|Default|Downcase|EscapeDataString|Escape|FromMarkdown|HtmlDecode|Linkify|NewlineToBr|PluralizeForQuantity|Pluralize|Possessive|Prepend|ReadTime|RegExMatchValues|RegExMatchValue|RegExMatch|ReplaceFirst|ReplaceLast|Replace|Right|SanitizeSql|SentenceCase|Singularize|Size|Slice|Split|StripHtml|StripNewlines|TitleCase|ToCssClass|ToPascal|TrimStart|TrimEnd|Trim|TruncateWords|Truncate|UnescapeDataString|Upcase|WithFallback|DateAdd|DateDiff|DatesFromICal|Date|DaysFromNow|DaysInMonth|DaysSince|DaysUntil|HumanizeDateTime|HumanizeTimeSpan|Humanize|NextDayOfTheWeek|SundayDate|ToMidnight|AtLeast|AtMost|Ceiling|DividedBy|Floor|FormatAsCurrency|Format|Minus|Modulo|NumberToOrdinalWords|NumberToOrdinal|NumberToRomanNumerals|NumberToWords|ObfuscateEmail|Plus|Times|ToQuantity|ToString|Lighten|Darken|Desaturate|Saturate|FadeIn|FadeOut|AdjustHue|Tint|Shade|Mix|Grayscale|Contains|Join|Map|OrderBy|Select|Shuffle|Size|SortByAttribute|Sort|Where|Address|Campus|Children|DeleteUserPreference|FamilySalutation|GeofencingGroupMembers|GeofencingGroups|GetPersonAlternateId|GetUserPreference|GroupsAttended|HasSignedDocument|HeadOfHousehold|NearestGroup|Parents|PersonActionIdentifier|PersonByAliasGuid|PersonByAliasId|PersonByGuid|PersonById|PersonByPersonAlternateId|PersonImpersonationToken|PersonTokenCreate|PersonTokenRead|PhoneNumber|SetUrlParameter|SetUserPreference|Spouse|ZebraPhoto|Attribute|AddLinkTagToHead|AddMetaTagToHead|Postback|SetPageTitle|PropertyToKeyValue|Property|PageRedirect|PageParameter|PageRoute|Page|HasRightsTo|Notes|FromCache|ResolveRockUrl|AsBoolean|AsInteger|AsDecimal|AsDouble|AsString|AsDateTime|Debug|Client|AddCssLink|AddScriptLink|Url|Base64Encode|GroupById|GroupByGuid|CreateShortLink|Md5|Sha1|Sha256|HmacSha1|HmacSha256|XamlWrap|PersistedDataset|FilterFollowed|FilterUnfollowed|ToJSON|FromJSON|AddToArray|Distinct|GroupBy|RemoveFromArray|Sum|AddToDictionary|AllKeysFromDictionary|RemoveFromDictionary|AddResponseHeader|FromBase64|RunLava|RegExReplace|WriteCookie|RandomNumber|Index|EntityFromCachedObject|ImageUrl|IsFollowed|ReadCookie|RockInstanceConfig|AddQuickReturn|UniqueIdentifier|Uniq|TriumphImgCdn|Steps|RemoveFirst|Remove|Groups|Group|TimeOfDay|DateRangeFromSlidingFormat|IsInSecurityRole|IsDateBetween|PersonalizationItems)\\:?",
+      "captures": {
+        "1": {
+          "name": "punctuation.definition.tag.lava"
+        },
+        "2": {
+          "name": "entity.name.function.lava"
+        }
+      }
+    },
+    "value_expression": {
+      "patterns": [
+        {
+          "match": "(\\[)(\\|)(?=[^\\]]*)(?=\\])",
+          "captures": {
+            "2": {
+              "name": "invalid.illegal.filter.lava"
+            },
+            "3": {
+              "name": "invalid.illegal.filter.lava"
+            }
+          }
+        },
+        {
+          "match": "(?<=\\s)(\\+|\\-|\\/|\\*)(?=\\s)",
+          "name": "invalid.illegal.filter.lava"
+        },
+        {
+          "include": "#language_quoted_support"
+        },
+        {
+          "include": "#language_constant"
+        },
+        {
+          "include": "#operator"
+        },
+        {
+          "include": "#invalid_range"
+        },
+        {
+          "include": "#range"
+        },
+        {
+          "include": "#number"
+        },
+        {
+          "include": "#string"
+        },
+        {
+          "include": "#variable_lookup"
+        }
+      ]
+    },
+    "variable_lookup": {
+      "patterns": [
+        {
+          "match": "\\b(CurrentPerson|Context|Campuses|PageParameter|CurrentPage|Person|CurrentBrowser|forloop|Item|item|Items)\\b",
+          "name": "variable.language.lava"
+        },
+        {
+          "match": "((?<=\\w\\:\\s)\\w+)",
+          "name": "variable.parameter.lava"
+        },
+        {
+          "begin": "(?<=\\w)\\[",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.section.brackets.begin.lava"
+            }
+          },
+          "end": "\\]",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.section.brackets.end.lava"
+            }
+          },
+          "name": "meta.brackets.lava",
+          "patterns": [
+            {
+              "include": "#string"
+            }
+          ]
+        },
+        {
+          "match": "(?<=(\\w|\\])\\.)([-\\w]+\\??)",
+          "name": "variable.other.member.lava"
+        },
+        {
+          "match": "(?<=\\w)\\.(?=\\w)",
+          "name": "punctuation.accessor.lava"
+        },
+        {
+          "match": "(?i)[a-z_](\\w|(?:-(?!\\}\\})))*",
+          "name": "variable.parameter.lava"
+        }
+      ]
+    },
+    "illegal_command_parameter": {
+      "match": "\\b(\\S+:)\\s*('[^']*')",
+      "name": "invalid.illegal.filter.lava"
     }
   }
 }

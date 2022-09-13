@@ -309,6 +309,20 @@
         "{% end${3:/downcase} %}"
       ]
     },
+    "Personalize": {
+      "description": "Entity command with conditions, a limit, and iterator option.",
+      "example": "{% personalize segment:'conditions' %}\n\n\n{% endpersonalize %}",
+      "snippet": [
+        "{% personalize segment:'${1:segmentname}' requestfilter:'${2:keys}' matchtype:'${3|any,all|}' %}",
+        "\t\t$0",
+        "{% endpersonalize %}"
+      ]
+    },
+    "Otherwise": {
+      "description": "{% else %} for the Personalize block.",
+      "example": "{% otherwise %}",
+      "snippet": "{% otherwise %}"
+    },
     "Cache": {
       "description": "Cache the output of lava for reuse.",
       "example": "{% cache key:'variable' %}\n\t...\n{% endcache %}",
@@ -2879,6 +2893,24 @@
           "accepts": [
             "$string",
             "$reference"
+          ]
+        }
+      ]
+    },
+    "PersonalizationItems": {
+      "description": "Returns an array of personalization items for the specified person and the current page context.",
+      "example": "{% assign items = CurrentVisitor | PersonalizationItems:'Segments,RequestFilters' %}",
+      "snippet": "PersonalizationItems:'${1|Segments\\,RequestFilters,Segments,RequestFilters|}'",
+      "type": "Person",
+      "link": "https://community.rockrms.com/lava/filters/person-filters#personalizationitems",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "ItemTypes",
+          "description": "The item types, specified as a comma-delimited list",
+          "required": true,
+          "accepts": [
+            "$string"
           ]
         }
       ]
