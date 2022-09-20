@@ -285,7 +285,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "^8.0.0",
-		"@types/node": "^18.7.16",
+		"@types/node": "^18.7.18",
 		"@types/vscode": "^1.71.0",
 		"typescript": "^4.8.3",
 		"@vscode/test-web": "^0.0.30",
