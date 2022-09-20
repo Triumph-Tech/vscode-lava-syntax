@@ -173,7 +173,7 @@
                 "9": { "name": "punctuation.definition.string.begin.cshtml" },
                 "10": { "name": "punctuation.definition.string.end.cshtml" }
             },
-            "end": "(/)((?i:script))(>)",
+            "end": "(/)((?i:Rock:Lava))(>)",
             "endCaptures": {
                 "0": { "name": "meta.tag.metadata.lava.end.html" },
                 "1": { "name": "punctuation.definition.tag.begin.html" },
@@ -192,19 +192,19 @@
                                 "0": { "name": "meta.tag.metadata.lava.start.html" },
                                 "1": { "name": "punctuation.definition.tag.end.html" }
                             },
-                            "end": "((<))(?=/(?i:script))",
+                            "end": "((<))(?=/(?i:Rock:Lava))",
                             "endCaptures": {
                                 "0": { "name": "meta.tag.metadata.lava.end.html" },
                                 "1": { "name": "punctuation.definition.tag.begin.html" },
-                                "2": { "name": "source.cs" }
+                                "2": { "name": "source.lava" }
                             },
                             "patterns": [
                                 {
                                     "begin": "\\G",
-                                    "end": "(?=</(?i:script))",
-                                    "name": "source.cs",
+                                    "end": "(?=</(?i:Rock:Lava))",
+                                    "name": "source.lava",
                                     "patterns": [
-                                        { "include": "source.cs" }
+                                        { "include": "text.html.lava" }
                                     ]
                                 }
                             ]
