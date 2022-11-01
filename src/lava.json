@@ -3,6 +3,15 @@
   "engine": "Lava",
   "updated": "10-17-2020",
   "snippets": {
+    "lava": {
+      "example": "{% lava ... %}",
+      "snippet": [
+        "{% lava",
+        "\t$0",
+        "%}"
+      ],
+      "description": "Lava command"
+    },
     "assign": {
       "description": "Create a variables",
       "example": "{% assign name = 'Ted Decker' %}",
@@ -564,7 +573,7 @@
       "description": "Theme tag: include with parameters",
       "example": "{% include 'snippet', variable:value %}",
       "snippet": [
-        "{% include '${1:snippet}', ${2:variable}:${3:value} %}"
+        "{% include '${2:~~/Assets/Lava/${1:filename}.lava}', ${3:variable}:${4:value} %}"
       ]
     },
     "execute": {

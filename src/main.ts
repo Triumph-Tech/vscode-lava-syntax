@@ -21,6 +21,13 @@ async function getConnectionStrings(workspace: any) {
 }
 
 export async function activate(context: Context) {
+	const htmlExtension = vscode.extensions.getExtension('vscode.html-language-features');
+	if (!htmlExtension) {
+		vscode.window.showErrorMessage('The "vscode.html-language-features" extension is required to use this extension.');
+	}
+
+	htmlExtension?.activate();
+
 	let documentSelector: string | string[];
 	documentSelector = "lava";
 

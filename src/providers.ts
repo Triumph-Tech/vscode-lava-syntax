@@ -169,6 +169,7 @@ const getSnippetProvider = (documentSelector: string | string[]) => {
       let currentLine = document.lineAt(position).text;
 
       if (utils.isInsideBrackets(currentLine, position.character) || utils.isInsideObject(currentLine, position.character)) {
+        //if (utils.isInsideBrackets(currentLine, position.character) ) {
         return undefined;
       }
 
@@ -190,7 +191,6 @@ const getSnippetProvider = (documentSelector: string | string[]) => {
           text.push("```lava");
           text.push(childValue["example"]);
           text.push("```");
-          //text.push("---");
         }
 
         completionItem.kind = CompletionItemKind.Function;
@@ -202,8 +202,15 @@ const getSnippetProvider = (documentSelector: string | string[]) => {
           if (Array.isArray(childValue["snippet"])) {
             childValue["snippet"] = childValue["snippet"].join('\n');
           }
+
           completionItem.insertText = new SnippetString(childValue["snippet"])
-          //console.log(completionItem.insertText)
+
+          // if (utils.isInsideLavaTag(document, position)) {
+          //   let snippet = childValue["snippet"].replace(/{%\s*/g, '').replace(/\s*%}/g, '').replace(/{{\s*/g, 'echo ').replace(/\s*}}/g, '');
+          //   completionItem.insertText = new SnippetString(snippet)
+          // } else {
+          //   completionItem.insertText = new SnippetString(childValue["snippet"])
+          // }
 
           if (isSet(childValue["sortPriority"])) {
             //console.log("priority");

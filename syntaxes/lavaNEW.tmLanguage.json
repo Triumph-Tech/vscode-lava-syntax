@@ -1458,7 +1458,7 @@
           ]
         },
         {
-          "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:)\\s*('[^']*')",
+          "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:|expression:|lazyloadenabled:|include:|select:|selectmany:|groupby:|prefetchattributes:|disableattributeprefetch:)\\s*('[^']*')",
           "captures": {
             "1": {
               "name": "variable.parameter.lava"
@@ -1489,6 +1489,21 @@
       "patterns": [
         {
           "include": "#tag_expression_without_arguments"
+        },
+        {
+          "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(\\w+)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.tag.lava"
+            }
+          },
+          "end": "(?=%})",
+          "name": "meta.entity.tag.lava",
+          "patterns": [
+            {
+              "include": "#value_expression"
+            }
+          ]
         }
       ]
     },
@@ -1496,6 +1511,21 @@
       "patterns": [
         {
           "include": "#tag_expression_without_arguments"
+        },
+        {
+          "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(\\w+)",
+          "beginCaptures": {
+            "1": {
+              "name": "entity.name.tag.lava"
+            }
+          },
+          "end": "$",
+          "name": "meta.entity.tag.lava",
+          "patterns": [
+            {
+              "include": "#value_expression"
+            }
+          ]
         }
       ]
     },

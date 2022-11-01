@@ -137,7 +137,7 @@ const getSnippetProvider = (documentSelector) => {
     return registerCompletionItemProvider(documentSelector, {
         provideCompletionItems(document, position) {
             let currentLine = document.lineAt(position).text;
-            if (utils.isInsideBrackets(currentLine, position.character) || utils.isInsideObject(currentLine, position.character)) {
+            if (utils.isInsideBrackets(currentLine, position.character)) {
                 return undefined;
             }
             let completionItems = [];
@@ -156,7 +156,6 @@ const getSnippetProvider = (documentSelector) => {
                     text.push("```lava");
                     text.push(childValue["example"]);
                     text.push("```");
-                    //text.push("---");
                 }
                 completionItem.kind = vscode_1.CompletionItemKind.Function;
                 const contents = new vscode_1.MarkdownString(text.join("  \n"));
@@ -165,8 +164,14 @@ const getSnippetProvider = (documentSelector) => {
                     if (Array.isArray(childValue["snippet"])) {
                         childValue["snippet"] = childValue["snippet"].join('\n');
                     }
-                    completionItem.insertText = new vscode_1.SnippetString(childValue["snippet"]);
-                    //console.log(completionItem.insertText)
+                    if (utils.isInsideLavaTag(document, position)) {
+                        let snippet = childValue["snippet"].replace(/{%\s*/g, '').replace(/\s*%}/g, '').replace(/{{\s*/g, 'echo ').replace(/\s*}}/g, '');
+                        completionItem.insertText = new vscode_1.SnippetString(snippet);
+                    }
+                    else {
+                        console.log("outside lava tag");
+                        completionItem.insertText = new vscode_1.SnippetString(childValue["snippet"]);
+                    }
                     if (isSet(childValue["sortPriority"])) {
                         //console.log("priority");
                         //console.log(childValue["sortPriority"].toString().padStart(8, 'A') + childValue["snippet"])

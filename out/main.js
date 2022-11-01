@@ -32,6 +32,11 @@ function getConnectionStrings(workspace) {
 }
 function activate(context) {
     return __awaiter(this, void 0, void 0, function* () {
+        const htmlExtension = vscode.extensions.getExtension('vscode.html-language-features');
+        if (!htmlExtension) {
+            vscode.window.showErrorMessage('The "vscode.html-language-features" extension is required to use this extension.');
+        }
+        htmlExtension === null || htmlExtension === void 0 ? void 0 : htmlExtension.activate();
         let documentSelector;
         documentSelector = "lava";
         const actions = ['openconnectionstrings', 'newLava', 'openFileInRock', 'openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];

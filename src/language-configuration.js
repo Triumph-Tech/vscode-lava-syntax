@@ -37,7 +37,6 @@ module.exports = {
     ["(", ")"],
     ["\"", "\""],
     ["'", "'"],
-    ["<", ">"],
   ],
   "autoCloseBefore": "%-:.,=}])>'\"` \n\t",
   "surroundingPairs": [

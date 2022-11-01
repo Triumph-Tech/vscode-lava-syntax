@@ -3,7 +3,7 @@
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"license": "MIT",
-	"version": "1.1.14",
+	"version": "1.1.15",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
@@ -32,6 +32,9 @@
 	"bugs": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"qna": "https://github.com/garrettjohnson/vscode-lava-syntax",
 	"main": "./out/main.js",
+	"extensionDependencies": [
+		"vscode.html-language-features"
+	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
 		"compile": "tsc -p ./",
@@ -142,13 +145,18 @@
 			}
 		},
 		"configurationDefaults": {
+			"emmet.includeLanguages": {
+				"lava": "html",
+				"cshtml": "html"
+			},
 			"[lava]": {
 				"editor.insertSpaces": true,
 				"editor.tabSize": 4,
 				"editor.autoIndent": "full",
 				"editor.snippetSuggestions": "bottom",
 				"files.insertFinalNewline": true,
-				"files.trimTrailingWhitespace": true
+				"files.trimTrailingWhitespace": true,
+				"editor.linkedEditing": true
 			},
 			"[xaml]": {
 				"editor.wordBasedSuggestions": false,
@@ -246,6 +254,16 @@
 				"path": "./syntaxes/cshtml.tmLanguage.json"
 			}
 		],
+		"htmlLanguageParticipants": [
+			{
+			  "languageId": "lava",
+			  "autoInsert": true
+			},
+			{
+				"languageId": "cshtml",
+				"autoInsert": true
+			}
+		  ],
 		"snippets": [
 			{
 				"language": "cshtml",
