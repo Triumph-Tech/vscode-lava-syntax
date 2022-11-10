@@ -1458,7 +1458,38 @@
           ]
         },
         {
-          "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:|expression:|lazyloadenabled:|include:|select:|selectmany:|groupby:|prefetchattributes:|disableattributeprefetch:)\\s*('[^']*')",
+          "match": "\\b(select:|selectmany:)\\s*('[^']*')",
+          "captures": {
+            "1": {
+              "name": "variable.parameter.lava"
+            },
+            "2": {
+              "patterns": [
+                {
+                  "begin": "'",
+                  "beginCaptures": {
+                    "0": {
+                      "name": "string.quoted.single.lava"
+                    }
+                  },
+                  "end": "'",
+                  "endCaptures": {
+                    "0": {
+                      "name": "string.quoted.single.lava"
+                    }
+                  },
+                  "patterns": [
+                    {
+                      "include": "source.cs#expression"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        {
+          "match": "\\b(ids:|sort:|dynamicparameters:|iterator:|securityenabled:|count:|expression:|lazyloadenabled:|include:|groupby:|prefetchattributes:|disableattributeprefetch:)\\s*('[^']*')",
           "captures": {
             "1": {
               "name": "variable.parameter.lava"
