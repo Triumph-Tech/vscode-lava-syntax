@@ -29,6 +29,7 @@ module.exports = {
       resolve: 'gatsby-plugin-manifest',
       options: {
         name: 'Lava for VSCode',
+        icon: 'src/images/LavaCodeIcon.png',
         short_name: 'VSCode Lava',
         start_url: '/',
         background_color: '#ffffff',
