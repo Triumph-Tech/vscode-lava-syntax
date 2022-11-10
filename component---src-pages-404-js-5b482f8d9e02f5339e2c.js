@@ -1,0 +1,2 @@
+"use strict";(self.webpackChunklava_documentation=self.webpackChunklava_documentation||[]).push([[883],{429:function(t,e,n){n.r(e);var a=n(7294),s=n(8680),r=[{href:"/getting-started",text:"Getting Started"},{href:"/snippets",text:"Snippets"},{href:"/updates",text:"Updates"}];e.default=function(){return a.createElement(s.e9,{links:r})}}}]);
+//# sourceMappingURL=component---src-pages-404-js-5b482f8d9e02f5339e2c.js.map
