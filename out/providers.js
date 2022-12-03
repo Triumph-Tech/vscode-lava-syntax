@@ -67,8 +67,8 @@ const getFilterProvider = (documentSelector) => {
     return registerCompletionItemProvider(documentSelector, {
         provideCompletionItems(document, position) {
             let currentLine = document.lineAt(position).text;
-            let linePrefix = currentLine.substr(0, position.character);
-            let lineSuffix = currentLine.substr(position.character);
+            let linePrefix = currentLine.substring(0, position.character);
+            let lineSuffix = currentLine.substring(position.character);
             if (!utils.isLavaFilterable.test(linePrefix) && (!utils.isInsideBrackets(currentLine, position.character) || !utils.isInsideObject(currentLine, position.character))) {
                 return;
             }
@@ -214,7 +214,7 @@ const getChildrenProvider = (sourceFile, documentSelector) => {
             // }
             let isNodeFound = false;
             let completionItems = [];
-            let linePrefix = currentLine.substr(0, position.character);
+            let linePrefix = currentLine.substring(0, position.character);
             const searchNode = (currentNode, JSONPath) => {
                 if (isNodeFound) {
                     return;

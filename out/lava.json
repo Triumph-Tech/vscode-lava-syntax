@@ -188,14 +188,14 @@
             "description": "Assigns current date time to now.",
             "example": "{% assign now = 'Now' | Date %}",
             "snippet": [
-                "{% assign now = 'Now' | Date %}"
+                "{% assign now = 'Now' | Date:'${1|yyyy-MM-ddTHH:mm:sszzz,M/d/yyyy,MMMM d\\, yyyy,dddd\\, MMMM d\\, yyyy,h:mm tt,sd,st|}' %}"
             ]
         },
         "now": {
             "description": "Displays the date given a format string. The string 'Now' can be used for the current DateTime.",
             "example": "{{ 'Now' | Date:'M/d/yyyy' }}",
             "snippet": [
-                "{{ 'Now' | Date:'${1:M/d/yyyy}' $2}}"
+                "{{ 'Now' | Date:'${1|M/d/yyyy,MMMM d\\, yyyy,dddd\\, MMMM d\\, yyyy,yyyy-MM-ddTHH:mm:sszzz,h:mm tt,sd,st|}' $0}}"
             ]
         },
         "increment": {
@@ -304,10 +304,12 @@
                 "\t\t{% if page > 1 or $5.size == entityLimit %}",
                 "\t\t\t<div class=\"clearfix\">",
                 "\t\t\t\t{% if page > 1 %}",
-                "\t\t\t\t\t<a href=\"{{ currentPageUrl }}?Page={{ page | Minus:1 }}\" class=\"btn btn-primary pull-left\"><i class=\"fa fa-chevron-left\"></i> Prev</a>",
+                "\t\t\t\t\t{% assign prevPage = page | Minus:1 %}",
+                "\t\t\t\t\t<a href=\"{{ currentPageUrl | SetUrlParameter:'Page',prevPage }}\" class=\"btn btn-primary pull-left\"><i class=\"fa fa-chevron-left\"></i> Prev</a>",
                 "\t\t\t\t{% endif %}",
                 "\t\t\t\t{% if $5.size == entityLimit %}",
-                "\t\t\t\t\t<a href=\"{{ currentPageUrl }}?Page={{ page | Plus:1 }}\" class=\"btn btn-primary pull-right\">Next <i class=\"fa fa-chevron-right\"></i></a>",
+                "\t\t\t\t\t{% assign nextPage = page | Plus:1 %}",
+                "\t\t\t\t\t<a href=\"{{ currentPageUrl | SetUrlParameter:'Page',nextPage }}\" class=\"btn btn-primary pull-right\">Next <i class=\"fa fa-chevron-right\"></i></a>",
                 "\t\t\t\t{% endif %}",
                 "\t\t\t</div>",
                 "\t\t{% endif %}",
@@ -2522,6 +2524,25 @@
                 }
             ]
         },
+        "AddSegment": {
+            "description": "Adds a person to one or more personalization segments.",
+            "example": "{{ CurrentVisitor | AddSegment:'Segment1,Segment2' }}",
+            "snippet": "AddSegment:'${1:Segment1,Segment2}'",
+            "type": "Person",
+            "link": "https://community.rockrms.com/lava/filters/person-filters#addsegment",
+            "arguments": [
+                {
+                    "type": "argument",
+                    "name": "SegmentNames",
+                    "description": "Comma-delimited list of segment names.",
+                    "required": true,
+                    "accepts": [
+                        "$string",
+                        "$reference"
+                    ]
+                }
+            ]
+        },
         "Campus": {
             "description": "Campus returns the person's campus.",
             "example": "{{ Person | Campus }}",
@@ -3355,6 +3376,13 @@
             "type": "Other",
             "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetime"
         },
+        "AsDateTimeUtc": {
+            "description": "Converts the input to a DateTime value in UTC.",
+            "example": "{{ content | AsDateTimeUtc }}",
+            "snippet": "AsDateTimeUtc",
+            "type": "Other",
+            "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetimeutc"
+        },
         "Base64Encode": {
             "description": "Converts a binary file to a base-64 encoded string.",
             "example": "{{ binaryFile | Base64Encode }}",
@@ -3813,7 +3841,7 @@
         "SetUrlParameter": {
             "description": "Sets a parameter in the input URL string and returns the updated URL.",
             "example": "{{ url | SetUrlParameter:'ReportId','1' }}",
-            "snippet": "SetUrlParameter:'${1:UrlParameter}','${2:Value}','${1|absolute,relative|}'",
+            "snippet": "SetUrlParameter:'${1:UrlParameter}','${2:Value}','${3|absolute,relative|}'",
             "type": "Other",
             "link": "https://community.rockrms.com/lava/filters/other-filters#seturlparameter",
             "cacheable": true,
@@ -3841,7 +3869,7 @@
                 {
                     "type": "argument",
                     "name": "OutputFormat",
-                    "description": "[absolute|relative] The output format of the URL.",
+                    "description": "`[absolute|relative]` The output format of the URL.",
                     "required": false,
                     "accepts": [
                         "$string",
