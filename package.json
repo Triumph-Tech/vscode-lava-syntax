@@ -303,7 +303,7 @@
 	},
 	"devDependencies": {
 		"@types/glob": "^8.1.0",
-		"@types/node": "^18.15.0",
+		"@types/node": "^18.15.6",
 		"@types/vscode": "^1.76.0",
 		"typescript": "^4.9.5",
 		"@vscode/test-web": "^0.0.35",
