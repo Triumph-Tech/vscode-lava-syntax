@@ -42,6 +42,15 @@
         "{% endfor %}"
       ]
     },
+    "forAttributes": {
+      "description": "Iteration tag: For range. Defines a range of numbers to loop through. The range can be defined by both literal and variable numbers.",
+      "example": "{% for attribute in CurrentPerson.AttributeValues %}\n\t...\n{% endfor %}",
+      "snippet": [
+        "{% for ${1:attribute} in ${2:CurrentPerson}.AttributeValues %}",
+        "\t{{ ${1}.AttributeName }} {{ ${1}.${3|ValueFormatted,Value|} }}",
+        "{% endfor %}"
+      ]
+    },
     "include": {
       "description": "Theme tag: include",
       "snippet": [
@@ -52,6 +61,11 @@
       "description": "Create a variable",
       "example": "{{ 'Global' | Attribute:'AttributeKey' }}",
       "snippet": "{{ 'Global' | Attribute:'${1|CurrencySymbol,EmailFooter,EmailHeader,EmailHeaderLogo,GoogleAPIKey,GradeTransitionDate,InternalApplicationRoot,OrganizationAbbreviation,OrganizationAddress,OrganizationEmail,OrganizationName,OrganizationPhone,OrganizationWebsite,PublicApplicationRoot|}' }}"
+    },
+    "Global: Page": {
+      "description": "",
+      "example": "{{ 'Global' | Page:'Url' }}",
+      "snippet": "{{ 'Global' | Page:'${1|Title,Description,Url,Id,Host,Path,SiteName,SiteId,Theme,Layout,Scheme,QueryString|}'"
     },
     "if-": {
       "description": "Control flow tag: if, whitespaced",
@@ -160,7 +174,7 @@
       "description": "Create a variable from an attribute.",
       "example": "{% assign variable = Item | Attribute:'variable' %}",
       "snippet": [
-        "{% assign ${1:variable} = ${2:Item} | Attribute:'${3:${1/(.*)/${1:/capitalize}/}}' %}"
+        "{% assign ${1:variable} = ${2:Item} | Attribute:'${3:${1/(.*)/${1:/capitalize}/}}'$0 %}"
       ]
     },
     "assignTransform": {
@@ -325,7 +339,7 @@
       "example": "{% personalize segment:'conditions' %}\n\n\n{% endpersonalize %}",
       "snippet": [
         "{% personalize segment:'${1:segmentname}' requestfilter:'${2:keys}' matchtype:'${3|any,all|}' %}",
-        "\t\t$0",
+        "\t$0",
         "{% endpersonalize %}"
       ]
     },
@@ -2213,12 +2227,24 @@
       ]
     },
     "Distinct": {
-      "description": "Takes an array as input and returns the distinct (unique) elements of the array.",
-      "example": "{% assign array = Items | Distinct %}",
+      "description": "Takes an array and returns the distinct (unique) elements of the array.",
+      "example": "{% assign array = Items | Distinct %}\n{% assign array = Items | Distinct:'PersonId' %}",
       "snippet": "Distinct",
       "type": "Array",
       "returns": "array",
-      "link": "https://community.rockrms.com/lava/filters/array-filters#distinct"
+      "link": "https://community.rockrms.com/lava/filters/array-filters#distinct",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "Property",
+          "description": "An optional property to return distinct values for.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
     },
     "First": {
       "description": "Returns the first item of an array.",
@@ -2251,8 +2277,9 @@
     "Index": {
       "description": "Provides an easy way to retrieve an item from an array using its index when chaining filters.",
       "example": "{% assign secondItem = Items | Index:1 %}",
-      "snippet": "Index:'${1:0}'",
+      "snippet": "Index:${1:0}",
       "type": "Array",
+      "returns": "object",
       "link": "https://community.rockrms.com/lava/filters/array-filters#index",
       "arguments": [
         {
@@ -3367,6 +3394,7 @@
       "example": "{{ content | AsString }}",
       "snippet": "AsString",
       "type": "Other",
+      "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/other-filters#asstring"
     },
     "AsDateTime": {
@@ -3374,17 +3402,27 @@
       "example": "{{ content | AsDateTime }}",
       "snippet": "AsDateTime",
       "type": "Other",
+      "returns": "date",
       "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetime"
     },
     "AsDateTimeUtc": {
       "description": "Converts the input to a DateTime value in UTC.",
       "example": "{{ content | AsDateTimeUtc }}",
       "snippet": "AsDateTimeUtc",
-      "type": "Other",
+      "type": "Date",
+      "returns": "date",
       "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetimeutc"
     },
+    "Base64": {
+      "description": "Converts a string to a base-64 encoded string. (Use Base64Encode to encode a binary file.)",
+      "example": "{{ 'My String' | Base64 }}",
+      "snippet": "Base64",
+      "type": "Other",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#base64encode"
+    },
     "Base64Encode": {
-      "description": "Converts a binary file to a base-64 encoded string.",
+      "description": "Converts a binary file to a base-64 encoded string. (Use Base64 to encode a string.)",
       "example": "{{ binaryFile | Base64Encode }}",
       "snippet": "Base64Encode",
       "type": "Other",
@@ -3393,7 +3431,7 @@
     "Client": {
       "description": "Returns information about the client browser.",
       "example": "{{ 'Global' | Client:'ip' }}",
-      "snippet": "Client ",
+      "snippet": "Client:'${1|ip,login,browser,parmlist|}'",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#client"
     },
@@ -3407,7 +3445,7 @@
     "CreateShortLink": {
       "description": "Decodes the base 64 encoded string and returns the resulting data.",
       "example": "{{ url | CreateShortlink }}",
-      "snippet": "CreateShortLink${1::'${2:}',${3:siteId},${4:'OverwriteT/F'},${5:lengthInt}}",
+      "snippet": "CreateShortLink${1::'${2:}',${3:siteId},${4|overwrite?,t,f|},${5:lengthInt}}",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#createshortlink",
       "arguments": [

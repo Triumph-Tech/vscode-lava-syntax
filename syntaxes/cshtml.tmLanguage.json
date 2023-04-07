@@ -164,7 +164,7 @@
                 "0": { "name": "meta.tag.metadata.lava.start.html" },
                 "1": { "name": "punctuation.definition.tag.begin.html" },
                 "2": { "name": "entity.name.tag.lava.html" },
-                "3": { "name": "constant.language.processing-directive.cshtml" },
+                "3": { "name": "entity.other.attribute-name.cshtml" },
                 "4": { "name": "punctuation.separator.key-value.cshtml" },
                 "5": { "name": "string.quoted.single.cshtml" },
                 "6": { "name": "punctuation.definition.string.begin.cshtml" },

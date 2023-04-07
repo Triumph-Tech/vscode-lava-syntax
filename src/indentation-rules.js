@@ -1,8 +1,6 @@
 const { voidElements, openingLiquidTags } = require('./constants');
 
-const closingLiquidTags = openingLiquidTags.map(
-  (name) => `end${name}`,
-);
+const closingLiquidTags = openingLiquidTags.map((name) => `end${name}`);
 
 // https://regex101.com/r/G4OYnb/1
 function increaseIndentPattern() {
@@ -66,9 +64,9 @@ function decreaseIndentPattern() {
     String.raw`-->`,
 
     // Multiline Closing Braces (JS/CSS)
-    // String.raw`}`,
-    // String.raw`\)`,
-    // String.raw`\]`,
+    String.raw`}`,
+    String.raw`\)`,
+    String.raw`\]`,
   ];
 
   // The line must start by one of those patterns
