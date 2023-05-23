@@ -2882,6 +2882,25 @@
       "type": "Person",
       "link": "https://community.rockrms.com/lava/filters/person-filters#headofhousehold"
     },
+    "IsInDataview": {
+      "description": "Takes the given Entity or Entity Id and returns a boolean that indicates whether the entity is in the data view or not.",
+      "snippet": "IsInDataview:${1:DataviewId}",
+      "example": "{% assign isInDataview = Person | IsInDataview:1 %}",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#isinsecurityrole",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "DataviewId",
+          "description": "The ID of the dataview.",
+          "required": true,
+          "accepts": [
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "IsInSecurityRole": {
       "description": "Returns a boolean value indicating if a person is in a security role.",
       "snippet": "IsInSecurityRole:${1:GroupId}",
@@ -3105,6 +3124,13 @@
           ]
         }
       ]
+    },
+    "RenderStructuredContentAsHtml": {
+      "description": "Renders a block of structured content as HTML.",
+      "example": "{{ StructuredContent | RenderStructuredContentAsHtml }}",
+      "snippet": "RenderStructuredContentAsHtml",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#renderstructuredcontentashtml"
     },
     "SetUserPreference": {
       "description": "Rock has the concept of saved settings / preferences for each user. This filter allows you to save the setting based on its key and provided value. This is a great way of remembering something about the user (like settings from the last time they ran something) for use when they return.",
