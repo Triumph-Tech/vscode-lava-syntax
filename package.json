@@ -307,7 +307,7 @@
 		"@types/vscode": "^1.78.0",
 		"typescript": "^5.0.4",
 		"@vscode/test-web": "^0.0.43",
-		"ts-loader": "^9.4.2",
+		"ts-loader": "^9.4.3",
 		"webpack": "^5.83.1",
 		"webpack-cli": "^5.1.1",
 		"@types/webpack-env": "^1.18.0",
