@@ -305,7 +305,7 @@
 		"@types/glob": "^8.1.0",
 		"@types/node": "^20.3.2",
 		"@types/vscode": "^1.79.1",
-		"typescript": "^5.1.3",
+		"typescript": "^5.1.5",
 		"@vscode/test-web": "^0.0.44",
 		"ts-loader": "^9.4.3",
 		"webpack": "^5.88.0",
