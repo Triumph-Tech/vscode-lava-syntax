@@ -6,7 +6,7 @@
   "title": "Lava Schema (Lava Language Server)",
   "description": "Schema reference for the Lava used in Rock RMS.",
   "allowComments": true,
-  "definitions": {
+  "$defs": {
     "$schema": {
       "title": "Schema",
       "description": "The schema to verify this document against.",

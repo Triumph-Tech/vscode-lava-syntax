@@ -21,24 +21,27 @@ async function getConnectionStrings(workspace: any) {
 }
 
 export async function activate(context: Context) {
+	let documentSelector: string | string[];
 	const htmlExtension = vscode.extensions.getExtension('vscode.html-language-features');
+	let language = window.activeTextEditor?.document.languageId;
 	if (!htmlExtension) {
 		vscode.window.showErrorMessage('The "vscode.html-language-features" extension is required to use this extension.');
 	}
 
-	htmlExtension?.activate();
+	if (language === 'lava') {
+		htmlExtension?.activate();
+	}
 
-	let documentSelector: string | string[];
-	documentSelector = "lava";
+	// for xaml getLanguageService and set use
+	if (language === 'lava' || language === 'xaml') {
+		
+		let documentSelector = ["lava","xaml"];
+		let filterProvider = getFilterProvider(documentSelector);
+		let snippetProvider = getSnippetProvider(documentSelector);
+		context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
+	}
 
 	const actions = ['openconnectionstrings','newLava','openFileInRock','openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];
-
-
-	let filterProvider = getFilterProvider(documentSelector);
-	let snippetProvider = getSnippetProvider(documentSelector);
-
-
-	context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
 
 	if (config.hover === true) {
 		context.subscriptions.push(getHoverFilterProvider);

@@ -19,7 +19,7 @@ function isSet(val: any) {
   return typeof val != "undefined" && val != "";
 }
 
-const getHoverFilterProvider = registerHoverProvider("lava", {
+const getHoverFilterProvider = registerHoverProvider(["lava", "xaml"], {
   provideHover(document, position) {
     const rockFilters: any = filters.filters;
     const range = document.getWordRangeAtPosition(position); //[^\^] , /\^([B-Z0-9]{2}|A@?)/g

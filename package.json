@@ -3,13 +3,13 @@
 	"displayName": "Lava",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"license": "MIT",
-	"version": "1.1.18",
+	"version": "1.1.19",
 	"publisher": "GarrettJohnson",
 	"author": {
 		"name": "Garrett Johnson"
 	},
 	"engines": {
-		"vscode": "^1.78.0"
+		"vscode": "^1.79.1"
 	},
 	"categories": [
 		"Programming Languages",
@@ -48,7 +48,8 @@
 		"onCommand:rock-lava.openFileInRock",
 		"onCommand:rock-lava.openFolderInRock",
 		"onCommand:rock-lava.copyTextToClipboard",
-		"onLanguage:lava"
+		"onLanguage:lava",
+		"onLanguage:xaml"
 	],
 	"contributes": {
 		"commands": [
@@ -161,7 +162,8 @@
 			"[xaml]": {
 				"editor.wordBasedSuggestions": false,
 				"files.insertFinalNewline": true,
-				"files.trimTrailingWhitespace": true
+				"files.trimTrailingWhitespace": true,
+				"editor.snippetSuggestions": "top"
 			}
 		},
 		"languages": [

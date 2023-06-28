@@ -8,7 +8,7 @@ const { registerCompletionItemProvider, registerHoverProvider } = vscode_1.langu
 function isSet(val) {
     return typeof val != "undefined" && val != "";
 }
-const getHoverFilterProvider = registerHoverProvider("lava", {
+const getHoverFilterProvider = registerHoverProvider(["lava", "xaml"], {
     provideHover(document, position) {
         const rockFilters = filters.filters;
         const range = document.getWordRangeAtPosition(position); //[^\^] , /\^([B-Z0-9]{2}|A@?)/g

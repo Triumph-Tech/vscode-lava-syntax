@@ -31,18 +31,25 @@ function getConnectionStrings(workspace) {
     });
 }
 function activate(context) {
+    var _a;
     return __awaiter(this, void 0, void 0, function* () {
+        let documentSelector;
         const htmlExtension = vscode.extensions.getExtension('vscode.html-language-features');
+        let language = (_a = vscode_1.window.activeTextEditor) === null || _a === void 0 ? void 0 : _a.document.languageId;
         if (!htmlExtension) {
             vscode.window.showErrorMessage('The "vscode.html-language-features" extension is required to use this extension.');
         }
-        htmlExtension === null || htmlExtension === void 0 ? void 0 : htmlExtension.activate();
-        let documentSelector;
-        documentSelector = "lava";
+        if (language === 'lava') {
+            htmlExtension === null || htmlExtension === void 0 ? void 0 : htmlExtension.activate();
+        }
+        // for xaml getLanguageService and set use
+        if (language === 'lava' || language === 'xaml') {
+            let documentSelector = ["lava", "xaml"];
+            let filterProvider = (0, providers_1.getFilterProvider)(documentSelector);
+            let snippetProvider = (0, providers_1.getSnippetProvider)(documentSelector);
+            context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
+        }
         const actions = ['openconnectionstrings', 'newLava', 'openFileInRock', 'openFolderInRock', 'copyTextToClipboard', 'enableMenus', 'disableMenus'];
-        let filterProvider = (0, providers_1.getFilterProvider)(documentSelector);
-        let snippetProvider = (0, providers_1.getSnippetProvider)(documentSelector);
-        context.subscriptions.push(filterProvider, snippetProvider); // , childrenProvider, textProvider
         if (config.hover === true) {
             context.subscriptions.push(providers_1.getHoverFilterProvider);
         }

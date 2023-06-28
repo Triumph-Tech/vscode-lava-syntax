@@ -2427,24 +2427,20 @@
             "link": "https://community.rockrms.com/lava/filters/array-filters#shuffle"
         },
         "Sort": {
-            "description": "Sorts the array/collection based on the property provided (note: does not work with attribute values).",
-            "example": "{% assign campusesSorted = Campuses | Sort:'Name' %}",
-            "snippet": "Sort:'${1:key}'",
+            "description": "Sorts a simple primative array. For comple objects use OrderBy.",
+            "example": "{% assign arraySorted = array | Sort %}",
+            "snippet": "Sort",
             "type": "Array",
             "returns": "array",
-            "link": "https://community.rockrms.com/lava/filters/array-filters#sort",
-            "arguments": [
-                {
-                    "type": "argument",
-                    "name": "PropertyKey",
-                    "description": "Property to sort on.",
-                    "required": true,
-                    "accepts": [
-                        "$string",
-                        "$reference"
-                    ]
-                }
-            ]
+            "link": "https://community.rockrms.com/lava/filters/array-filters#sort"
+        },
+        "Reverse": {
+            "description": "Reverses the order of an array.",
+            "example": "{% assign reversed = Array | Reverse %}",
+            "snippet": "Reverse",
+            "type": "Array",
+            "returns": "array",
+            "link": "https://community.rockrms.com/lava/filters/array-filters#reverse"
         },
         "SortByAttribute": {
             "description": "Sorts an array of items based on a attribute value.",
@@ -3130,6 +3126,7 @@
             "example": "{{ StructuredContent | RenderStructuredContentAsHtml }}",
             "snippet": "RenderStructuredContentAsHtml",
             "type": "Other",
+            "returns": "string",
             "link": "https://community.rockrms.com/lava/filters/other-filters#renderstructuredcontentashtml"
         },
         "SetUserPreference": {
@@ -3137,6 +3134,7 @@
             "example": "{{ Person | SetUserPreference:'key','value' }}",
             "snippet": "SetUserPreference:'${1:settingKey}','${2:settingValue}'",
             "type": "Person",
+            "returns": "null",
             "link": "https://community.rockrms.com/lava/filters/person-filters#setuserpreference",
             "arguments": [
                 {
