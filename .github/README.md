@@ -18,17 +18,7 @@
          alt="GitHub issues"></a>
 </p>
 
-## Documentation
-
-All new documentation site: [https://lavadocs.garrett.io](https://lavadocs.garrett.io)
-
 
 ## Download
 
 You can [download](https://marketplace.visualstudio.com/items?itemName=GarrettJohnson.language-lava) the latest installable version of Lava for VSCode at the [Visual Studio Marketplace](https://marketplace.visualstudio.com/items?itemName=GarrettJohnson.language-lava).
-
----
-
-> [garrett.io](https://www.garrett.io) &nbsp;&middot;&nbsp;
-> GitHub [@garrettjohnson](https://github.com/garrettjohnson/) &nbsp;&middot;&nbsp;
-> Twitter [@neverarriving](https://twitter.com/neverarriving)
