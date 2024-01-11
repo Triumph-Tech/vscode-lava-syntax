@@ -48,7 +48,7 @@ export async function activate(context: Context) {
 	}
 
 	actions.forEach(action => {
-		let disposable = commands.registerCommand(`rock-lava.${action}`, async (target?: vscode.Uri) => {
+		let disposable = commands.registerCommand(`triumphtech.rock-lava.${action}`, async (target?: vscode.Uri) => {
 			if (action == 'openconnectionstrings') {
 
 				const connectionStringFile = await getConnectionStrings(workspace);
@@ -164,7 +164,7 @@ export async function activate(context: Context) {
 					if (content !== undefined) {
 						vscode.env.clipboard.writeText(content);
 						window.showInformationMessage('Copied to clipboard.');
-						vscode.commands.executeCommand('rock-lava.openFileInRock', target);
+						vscode.commands.executeCommand('triumphtech.rock-lava.openFileInRock', target);
 						window.showInformationMessage('Launching Rock File Editor.');
 					}
 				}

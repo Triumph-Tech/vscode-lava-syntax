@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava"><img src="https://raw.githubusercontent.com/TriumphTech/vscode-lava-syntax/master/images/hub-banner.jpg" alt="Lava for VSCode"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava"><img src="https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/hub-banner.jpg" alt="Lava for VSCode"></a>
 </h1>
 <h4 align="center">Lava for VSCode</h4>
 
@@ -22,6 +22,9 @@ The Visual Studio Code syntax package for the Lava templating language used in [
 Key Features:
 - Syntax highlighting for Lava and inline JavaScript, JSON, LESS, SQL, and csharp.
 - Autocomplete for lava tags, filters, and entity commands.
+- Inline documentation for Lava filters.
 - Alpha support for Rock XAML.
+
+![Sample](https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/sample.png)
 
 Learn more about Lava at [rockrms.com/lava](https://community.rockrms.com/lava)

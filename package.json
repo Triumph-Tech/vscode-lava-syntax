@@ -27,9 +27,9 @@
 		"grammar",
 		"church"
 	],
-	"repository": "https://github.com/TriumphTech/vscode-lava-syntax.git",
-	"bugs": "https://github.com/TriumphTech/vscode-lava-syntax",
-	"qna": "https://github.com/TriumphTech/vscode-lava-syntax",
+	"repository": "https://github.com/-vscode-lava-syntax.git",
+	"bugs": "https://github.com/Triumph-Tech/vscode-lava-syntax",
+	"qna": "https://github.com/Triumph-Tech/vscode-lava-syntax",
 	"main": "./out/main.js",
 	"extensionDependencies": [
 		"vscode.html-language-features"
@@ -47,40 +47,40 @@
 	"contributes": {
 		"commands": [
 			{
-				"command": "rock-lava.openconnectionstrings",
+				"command": "triumphtech.rock-lava.openconnectionstrings",
 				"title": "Open Connection Strings",
 				"category": "Rock",
 				"icon": "$(database)"
 			},
 			{
-				"command": "rock-lava.openFileInRock",
+				"command": "triumphtech.rock-lava.openFileInRock",
 				"title": "Open in Rock",
 				"category": "Rock",
 				"icon": "$(file-code)",
 				"enablement": "config.lava.showMenus"
 			},
 			{
-				"command": "rock-lava.openFolderInRock",
+				"command": "triumphtech.rock-lava.openFolderInRock",
 				"title": "Reveal Folder in Rock",
 				"category": "Rock",
 				"icon": "$(file-code)"
 			},
 			{
-				"command": "rock-lava.copyTextToClipboard",
+				"command": "triumphtech.rock-lava.copyTextToClipboard",
 				"title": "Copy Text to Rock",
 				"category": "Rock",
 				"icon": "$(file-code)",
 				"enablement": "config.lava.showMenus"
 			},
 			{
-				"command": "rock-lava.enableMenus",
+				"command": "triumphtech.rock-lava.enableMenus",
 				"title": "Enable Menus",
 				"category": "Rock",
 				"icon": "$(file-code)",
 				"enablement": "!config.lava.showMenus"
 			},
 			{
-				"command": "rock-lava.disableMenus",
+				"command": "triumphtech.rock-lava.disableMenus",
 				"title": "Disable Menus",
 				"category": "Rock",
 				"icon": "$(file-code)",
@@ -272,24 +272,24 @@
 		"menus": {
 			"explorer/context": [
 				{
-					"command": "rock-lava.openFileInRock",
+					"command": "triumphtech.rock-lava.openFileInRock",
 					"group": "4_lava@1",
 					"when": "config.lava.showMenus && !explorerResourceIsRoot && !explorerResourceIsFolder"
 				},
 				{
-					"command": "rock-lava.openFolderInRock",
+					"command": "triumphtech.rock-lava.openFolderInRock",
 					"group": "4_lava@1",
 					"when": "config.lava.showMenus && !explorerResourceIsRoot && explorerResourceIsFolder"
 				},
 				{
-					"command": "rock-lava.copyTextToClipboard",
+					"command": "triumphtech.rock-lava.copyTextToClipboard",
 					"group": "4_lava@2",
 					"when": "config.lava.showMenus && !explorerResourceIsRoot && !explorerResourceIsFolder"
 				}
 			],
 			"editor/title/context": [
 				{
-					"command": "rock-lava.openFileInRock",
+					"command": "triumphtech.rock-lava.openFileInRock",
 					"group": "1_lava@1",
 					"when": "config.lava.showMenus && isFileSystemResource"
 				}
