@@ -44,12 +44,6 @@
 		"test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=$extensionLocation"
 	},
 	"activationEvents": [
-		"onCommand:rock-lava.openconnectionstrings",
-		"onCommand:rock-lava.openFileInRock",
-		"onCommand:rock-lava.openFolderInRock",
-		"onCommand:rock-lava.copyTextToClipboard",
-		"onLanguage:lava",
-		"onLanguage:xaml"
 	],
 	"contributes": {
 		"commands": [
@@ -160,7 +154,7 @@
 				"editor.linkedEditing": true
 			},
 			"[xaml]": {
-				"editor.wordBasedSuggestions": false,
+				"editor.wordBasedSuggestions": "off",
 				"files.insertFinalNewline": true,
 				"files.trimTrailingWhitespace": true,
 				"editor.snippetSuggestions": "top"
