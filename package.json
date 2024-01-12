@@ -1,6 +1,6 @@
 {
 	"name": "language-rockrms-lava",
-	"displayName": "Lava",
+	"displayName": "Lava Language",
 	"description": "Rock RMS Lava language support for Visual Studio Code.",
 	"license": "MIT",
 	"version": "2.0.0",
