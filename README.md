@@ -1,6 +1,6 @@
 <h1 align="center">
   <br>
-  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava"><img src="https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/hub-banner.jpg" alt="Lava for VSCode"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava"><img src="https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/hub-banner.png" alt="Lava for VSCode"></a>
 </h1>
 
 
