@@ -1,16 +1,16 @@
 <h1 align="center">
   <br>
-  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava"><img src="https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/hub-banner.png" alt="Lava for VSCode"></a>
+  <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-rockrms-lava"><img src="https://raw.githubusercontent.com/Triumph-Tech/vscode-lava-syntax/master/images/hub-banner.png" alt="Lava for VSCode"></a>
 </h1>
 
 
 <p align="center">
-    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava">
+    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-rockrms-lava">
     <img alt="Install" src="https://img.shields.io/badge/vscode-install-blue.svg?style=popout-square"></a>
-    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava">
-    <img alt="Visual Studio Marketplace Installs" src="https://img.shields.io/visual-studio-marketplace/d/TriumphTech.language-lava?style=flat-square"></a>
-    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-lava">
-    <img alt="Visual Studio Marketplace Rating" src="https://img.shields.io/visual-studio-marketplace/r/TriumphTech.language-lava?style=flat-square">
+    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-rockrms-lava">
+    <img alt="Visual Studio Marketplace Installs" src="https://img.shields.io/visual-studio-marketplace/d/TriumphTech.language-rockrms-lava?style=flat-square"></a>
+    <a href="https://marketplace.visualstudio.com/items?itemName=TriumphTech.language-rockrms-lava">
+    <img alt="Visual Studio Marketplace Rating" src="https://img.shields.io/visual-studio-marketplace/r/TriumphTech.language-rockrms-lava?style=flat-square">
     </a>
 </p>
 

@@ -19,11 +19,11 @@ jobs:
       - name: Package extension
         uses: lannonbr/vsce-action@master
         with:
-          args: "package -o language-lava-${{ github.event.release.tag_name }}.vsix"
+          args: "package -o language-rockrms-lava-${{ github.event.release.tag_name }}.vsix"
       - name: Github Release
         uses: softprops/action-gh-release@v1
         with:
-          files: language-lava-${{ github.event.release.tag_name }}.vsix
+          files: language-rockrms-lava-${{ github.event.release.tag_name }}.vsix
           draft: false
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
