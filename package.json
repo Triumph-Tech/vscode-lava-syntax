@@ -222,7 +222,7 @@
 			{
 				"language": "lava",
 				"scopeName": "text.html.lava",
-				"path": "./syntaxes/lavaNEW.tmLanguage.json",
+				"path": "./syntaxes/lava.tmLanguage.json",
 				"embeddedLanguages": {
 					"meta.embedded.inline.css": "css",
 					"meta.embedded.inline.javascript": "javascript",
