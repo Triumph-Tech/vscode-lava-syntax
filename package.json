@@ -27,7 +27,7 @@
 		"grammar",
 		"church"
 	],
-	"repository": "https://github.com/-vscode-lava-syntax.git",
+	"repository": "https://github.com/Triumph-Tech/vscode-lava-syntax.git",
 	"bugs": "https://github.com/Triumph-Tech/vscode-lava-syntax",
 	"qna": "https://github.com/Triumph-Tech/vscode-lava-syntax",
 	"main": "./out/main.js",
