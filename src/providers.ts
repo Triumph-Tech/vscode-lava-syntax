@@ -22,8 +22,15 @@ function isSet(val: any) {
 const getHoverFilterProvider = registerHoverProvider(["lava", "xaml"], {
   provideHover(document, position) {
     const rockFilters: any = filters.filters;
-    const range = document.getWordRangeAtPosition(position); //[^\^] , /\^([B-Z0-9]{2}|A@?)/g
-    const word = document.getText(range);
+    const range = document.getWordRangeAtPosition(position, /\|\s*\w+/); //[^\^] , /\^([B-Z0-9]{2}|A@?)/g
+
+    if (!range) {
+      return;
+    }
+
+    let word = document.getText(range);
+
+    word = word.replace(/^\|\s+/, "");
 
     if (word in rockFilters) {
       let childValue = rockFilters[word];
