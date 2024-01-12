@@ -42,8 +42,7 @@
 		"publish": "vsce publish",
 		"test-web": "vscode-test-web --browserType=chromium --extensionDevelopmentPath=$extensionLocation"
 	},
-	"activationEvents": [
-	],
+	"activationEvents": [],
 	"contributes": {
 		"commands": [
 			{
@@ -251,14 +250,14 @@
 		],
 		"htmlLanguageParticipants": [
 			{
-			  "languageId": "lava",
-			  "autoInsert": true
+				"languageId": "lava",
+				"autoInsert": true
 			},
 			{
 				"languageId": "cshtml",
 				"autoInsert": true
 			}
-		  ],
+		],
 		"snippets": [
 			{
 				"language": "cshtml",
@@ -299,14 +298,14 @@
 	"devDependencies": {
 		"@types/glob": "^8.1.0",
 		"@types/node": "^20.11.0",
-		"@types/vscode": "^1.85.0",
-		"typescript": "^5.3.3",
-		"@vscode/test-web": "^0.0.50",
-		"ts-loader": "^9.5.1",
-		"webpack": "^5.89.0",
-		"webpack-cli": "^5.1.4",
+		"@types/vscode": "^1.80.0",
 		"@types/webpack-env": "^1.18.4",
+		"@vscode/test-web": "^0.0.50",
 		"assert": "^2.1.0",
-		"process": "^0.11.10"
+		"process": "^0.11.10",
+		"ts-loader": "^9.5.1",
+		"typescript": "^5.3.3",
+		"webpack": "^5.89.0",
+		"webpack-cli": "^5.1.4"
 	}
 }
