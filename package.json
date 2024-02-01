@@ -298,7 +298,7 @@
 	"devDependencies": {
 		"@types/glob": "^8.1.0",
 		"@types/node": "^20.11.0",
-		"@types/vscode": "^1.80.0",
+		"@types/vscode": "^1.85.0",
 		"@types/webpack-env": "^1.18.4",
 		"@vscode/test-web": "^0.0.50",
 		"assert": "^2.1.0",
