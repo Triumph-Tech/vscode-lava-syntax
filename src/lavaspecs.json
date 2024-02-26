@@ -47,19 +47,15 @@
           },
           "type": {
             "description": "Type of the filter.",
-            "oneOf": [
-              {
-                "enum": [
-                  "Text",
-                  "Date",
-                  "Numeric",
-                  "Color",
-                  "Array",
-                  "Person",
-                  "Attributes",
-                  "Other"
-                ]
-              }
+            "enum": [
+              "Text",
+              "Date",
+              "Numeric",
+              "Color",
+              "Array",
+              "Person",
+              "Attributes",
+              "Other"
             ]
           },
           "sortPriority": {
@@ -68,7 +64,16 @@
           },
           "returns": {
             "description": "What the filter returns.",
-            "type": "string"
+            "enum": [
+              "string",
+              "integer",
+              "numeric",
+              "boolean",
+              "date",
+              "object",
+              "array",
+              "null"
+            ]
           },
           "snippet": {
             "type": "string",

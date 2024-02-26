@@ -2467,7 +2467,7 @@
       "example": "{{ Items | Select:'Price' | Sum }}",
       "snippet": "Sum:'${1:key}'",
       "type": "Array",
-      "returns": "Numeric",
+      "returns": "numeric",
       "link": "https://community.rockrms.com/lava/filters/array-filters#sum"
     },
     "Uniq": {
@@ -3527,7 +3527,7 @@
       "example": "{{ CurrentPerson.PrimaryCampusId | FromCache:'Campus' }}",
       "snippet": "FromCache:'${1|DefinedValue,DefinedType,Campus,Category,GroupType,Page,Block,BlockType,EventCalendar,Attribute,NoteType,ContentChannel|}'",
       "type": "Other",
-      "returns": "Object",
+      "returns": "object",
       "link": "https://community.rockrms.com/lava/filters/other-filters#fromcache",
       "arguments": [
         {
