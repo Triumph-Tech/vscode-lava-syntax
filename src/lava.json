@@ -894,6 +894,68 @@
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#capitalize"
     },
+    "CreateEntitySet": {
+      "description": "Creates a new EntitySet from a list of entity identifiers of the specified type.",
+      "example": "{% assign entitySet = personIdList | CreateEntitySet:'Person',5,null,'Test note.','' %}",
+      "snippet": "CreateEntitySet",
+      "type": "Other",
+      "returns": "object",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#createentityset",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "EntityType",
+          "description": "The Id, IdKey, Guid or Name of the Entity Type that identifies the type of the entities supplied in the filter input. This parameter is ignored if the input is an entity collection.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$integer",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "ExpireInMinutes",
+          "description": "The number of minutes after which the EntitySet is considered to be expired. If not specified, expiry is set to 20 minutes.",
+          "required": false,
+          "accepts": [
+            "$integer",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "EntitySetPurposeValueId",
+          "description": "The identifier of a value from the Defined Type \"Entity Set Purpose\" that specifies the intended use of the EntitySet.",
+          "required": false,
+          "accepts": [
+            "$integer",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "Note",
+          "description": "Additional information that describes the content of the EntitySet.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "ParentEntitySetId",
+          "description": "Specifies a parent relationship between this EntitySet and an existing set.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "Decrypt": {
       "description": "Decrypts an encrypted value.",
       "example": "{{ content | Decrypt }}",
@@ -953,6 +1015,27 @@
       "type": "Text",
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#frommarkdown"
+    },
+    "GuidToId": {
+      "description": "Converts one or more entity Guid identifiers to corresponding Id values for the specified entity type.",
+      "example": "{{ '72657ed8-d16e-492e-ac12-144c5e7567e7' | GuidToId:'EntityType' }}",
+      "snippet": "GuidToId:'${1:entitytype}'",
+      "type": "Other",
+      "returns": "integer",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#guidtoid",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "EntityType",
+          "description": "The Id, Guid or Name of the Entity Type that matches the type of entity identified by the input Guid.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
     },
     "HtmlDecode": {
       "description": "Decodes an escaped string of HTML.",
