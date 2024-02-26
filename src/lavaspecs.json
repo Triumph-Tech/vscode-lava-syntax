@@ -47,7 +47,20 @@
           },
           "type": {
             "description": "Type of the filter.",
-            "type": "string"
+            "oneOf": [
+              {
+                "enum": [
+                  "Text",
+                  "Date",
+                  "Numeric",
+                  "Color",
+                  "Array",
+                  "Person",
+                  "Attributes",
+                  "Other"
+                ]
+              }
+            ]
           },
           "sortPriority": {
             "description": "Priority",
