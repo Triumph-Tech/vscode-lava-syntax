@@ -21,7 +21,7 @@
       "title": "Last Updated",
       "description": "The data this specification was last updated",
       "type": "string",
-      "pattern": "\\d{2}\\-\\d{2}\\-\\d{4}"
+      "pattern": "\\d{4}\\-\\d{2}\\-\\d{2}"
     },
     "filters": {
       "type": "object",
@@ -219,23 +219,28 @@
   ],
   "additionalProperties": false,
   "properties": {
+    "$schema": {
+      "type": "string",
+      "title": "Schema",
+      "description": "Pointer to the schema against which this document should be validated."
+    },
     "engine": {
-      "$ref": "#/definitions/engine"
+      "$ref": "#/$defs/engine"
     },
     "updated": {
-      "$ref": "#/definitions/updated"
+      "$ref": "#/$defs/updated"
     },
     "filters": {
-      "$ref": "#/definitions/filters"
+      "$ref": "#/$defs/filters"
     },
     "snippets": {
-      "$ref": "#/definitions/snippets"
+      "$ref": "#/$defs/snippets"
     },
     "objects": {
-      "$ref": "#/definitions/objects"
+      "$ref": "#/$defs/objects"
     },
     "tags": {
-      "$ref": "#/definitions/tags"
+      "$ref": "#/$defs/tags"
     }
   }
 }

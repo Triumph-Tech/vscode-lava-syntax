@@ -1,7 +1,7 @@
 {
   "$schema": "./lavaspecs.json",
   "engine": "Lava",
-  "updated": "10-17-2020",
+  "updated": "2024-02-26",
   "snippets": {
     "lava": {
       "example": "{% lava ... %}",
