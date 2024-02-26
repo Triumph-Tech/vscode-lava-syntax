@@ -1140,7 +1140,7 @@
     },
     "tag_assign": {
       "name": "meta.entity.tag.lava",
-      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9]+)\\s*(=)\\s*",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9_]+)\\s*(=)\\s*",
       "beginCaptures": {
         "1": {
           "name": "storage.type.lava"
@@ -1167,7 +1167,7 @@
     },
     "tag_assign_lava": {
       "name": "meta.entity.tag.lava",
-      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9]+)\\s*(=)\\s*",
+      "begin": "(?:(?:(?<={%)|(?<={%-)|^)\\s*)(assign|echo)\\s*([a-zA-Z0-9_]+)\\s*(=)\\s*",
       "beginCaptures": {
         "1": {
           "name": "storage.type.lava"
