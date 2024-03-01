@@ -300,7 +300,7 @@
 		"@types/node": "^20.11.0",
 		"@types/vscode": "^1.80.0",
 		"@types/webpack-env": "^1.18.4",
-		"@vscode/test-web": "^0.0.50",
+		"@vscode/test-web": "^0.0.52",
 		"assert": "^2.1.0",
 		"process": "^0.11.10",
 		"ts-loader": "^9.5.1",
