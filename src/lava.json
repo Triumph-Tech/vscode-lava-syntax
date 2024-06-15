@@ -992,6 +992,14 @@
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#downcase"
     },
+    "Encrypt": {
+      "description": "Encrypts a string of text using the encryption key configured for the current Rock instance.",
+      "example": "{{ 'This is my secret!' | Encrypt }}",
+      "snippet": "Encrypt",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#encrypt"
+    },
     "Escape": {
       "description": "HTML encode string. All <tags> will be encoded to '&lt;tags&gt;'",
       "example": "{{ content | Escape }}",
@@ -1007,6 +1015,14 @@
       "type": "Text",
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#escapedatastring"
+    },
+    "EscapeOnce": {
+      "description": "HTML encode string. All <tags> will be encoded to '&lt;tags&gt;', whereas previously encoded text such as '&lt;tags&gt;' won't be modified.",
+      "example": "{{ content | EscapeOnce }}",
+      "snippet": "EscapeOnce",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#escapeonce"
     },
     "FromMarkdown": {
       "description": "Converts a string of Markdown to HTML. See the Commonmark website for details on Markdown syntax.",
@@ -1630,6 +1646,22 @@
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#upcase"
     },
+    "UrlDecode": {
+      "description": "Converts a string to its unescaped representation using Uri.UnescapeDataString (aka URL Decoding). An alias for the UnescapeDataString filter.",
+      "example": "{{ 'Hello%20There' | UrlDecode }}",
+      "snippet": "UrlDecode",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#unescapedatastring-aka-urldecode-"
+    },
+    "UrlEncode": {
+      "description": "Converts a string to its escaped representation using Uri.EscapeDataString (aka URL Encoding). An alias for the EscapeDataString filter.",
+      "example": "{{ content | UrlEncode }}",
+      "snippet": "UrlEncode",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#escapedatastring-aka-urlencode-"
+    },
     "WithFallback": {
       "description": "This filter allows you to eliminate conditional tests for `null` or empty values by allowing you to provide fallback text.",
       "example": "{{ CurrentPerson.NickName | WithFallback:', are', 'Are' }}",
@@ -1977,6 +2009,14 @@
       "returns": "date",
       "link": "https://community.rockrms.com/lava/filters/date-filters#tomidnight"
     },
+    "Abs": {
+      "description": "Returns the absolute or unsigned value of any input that can be converted to a number.",
+      "example": "{{ number | Abs }}",
+      "snippet": "Abs",
+      "type": "Numeric",
+      "returns": "numeric",
+      "link": "https://community.rockrms.com/lava/filters/numeric-filters#abs"
+    },
     "AtLeast": {
       "description": "Limits a number to a minimum value.",
       "example": "{{ number | AtLeast:5 }}",
@@ -2181,6 +2221,26 @@
       "returns": "integer",
       "link": "https://community.rockrms.com/lava/filters/numeric-filters#randomnumber"
     },
+    "Round": {
+      "description": "Rounds a number to the nearest integer, or to a specified number of decimal places.",
+      "example": "{{ 183.357 | Round: 2 }}",
+      "snippet": "Round:${1:DecimalPlaces}",
+      "type": "Numeric",
+      "returns": "numeric",
+      "link": "https://community.rockrms.com/lava/filters/numeric-filters#round",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "DecimalPlaces",
+          "description": "The number of decimal places to retain after rounding.",
+          "required": false,
+          "accepts": [
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "Times": {
       "description": "Multiplies a number by the number provided.",
       "example": "{{ number | Times:2 }}",
@@ -2288,6 +2348,33 @@
       "type": "Array",
       "returns": "object",
       "link": "https://community.rockrms.com/lava/filters/array-filters#allkeysfromdictionary"
+    },
+    "Compact": {
+      "description": "Removes empty or null values from an array.",
+      "example": "{% assign squashedFruits = fruits | Compact %}",
+      "snippet": "Compact",
+      "type": "Array",
+      "returns": "array",
+      "link": "https://community.rockrms.com/lava/filters/array-filters#compact"
+    },
+    "Concat": {
+      "description": "Joins multiple arrays together so that the result contains all the items from the input arrays.",
+      "example": "{% assign allColors = primaryColors | Concat: secondaryColors %}",
+      "snippet": "Concat:${1:Array}",
+      "type": "Array",
+      "returns": "array",
+      "link": "https://community.rockrms.com/lava/filters/array-filters#concat",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "Array",
+          "description": "The array to concatenate with the input array.",
+          "required": true,
+          "accepts": [
+            "$reference"
+          ]
+        }
+      ]
     },
     "Contains": {
       "description": "The contains filter returns `true` if the specified value is in the array.",
@@ -2544,6 +2631,14 @@
           ]
         }
       ]
+    },
+    "SortNatural": {
+      "description": "Sorts a primitive array, in case-insensitive order.",
+      "example": "{% assign namesSorted = names | SortNatural %}",
+      "snippet": "SortNatural",
+      "type": "Array",
+      "returns": "array",
+      "link": "https://community.rockrms.com/lava/filters/array-filters#sortnatural"
     },
     "Sum": {
       "description": "Performs a mathematical summation of all numeric values in an array and outputs the result.",
@@ -2999,6 +3094,25 @@
           "name": "GroupTypeId",
           "description": "...",
           "required": true,
+          "accepts": [
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
+    },
+    "NearestCampus": {
+      "description": "Returns the nearest campus or campuses for a person's mapped location address.",
+      "example": "{% assign campusList = Person | NearestCampus:2  %}",
+      "snippet": "NearestCampus:${1:ResultCount}",
+      "type": "Person",
+      "link": "https://community.rockrms.com/lava/filters/person-filters#nearestcampus",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "ResultCount",
+          "description": "...",
+          "required": false,
           "accepts": [
             "$integer",
             "$reference"
@@ -3467,6 +3581,25 @@
         }
       ]
     },
+    "AddToMergeFields": {
+      "description": "Adds a new item to the provided Lava merge fields.",
+      "example": "{{ 'Ted Decker' | AddToMergeFields:'SelectedPerson' }}",
+      "snippet": "AddToMergeFields:'${1:Key}'",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#addtomergefields",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "Key",
+          "description": "The key that will be used to reference the merge field.",
+          "required": true,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "AsBoolean": {
       "description": "Converts the input to a Boolean (true/false) value.",
       "example": "{{ content | AsBoolean }}",
@@ -3495,6 +3628,13 @@
       "snippet": "AsDouble",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#asdouble"
+    },
+    "AsGuid": {
+      "description": "Converts the input to a Guid value.",
+      "example": "{{ content | AsGuid }}",
+      "snippet": "AsGuid",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#asguid"
     },
     "AsString": {
       "description": "Converts the input to an string value.",
@@ -3639,6 +3779,36 @@
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#appendfollowing"
     },
+    "AppendWatches": {
+      "description": "Returns information about whether the current person has watched various media files provided.",
+      "example": "{% assign messagesWithWatches = messages | AppendWatches:'Media',30 %}",
+      "snippet": "AppendWatches:'${1:AttributeKey}',${2:WatchWindow}",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#appendwatches",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "AttributeKey",
+          "description": "The key of the attribute that represents the media element for the entity. This is only needed when working with entities.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        },
+        {
+          "type": "argument",
+          "name": "WatchWindow",
+          "description": "The number of days to look back, or the start date of the window to consider.",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$integer",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "FilterFollowed": {
       "description": "Returns a subset of followed entities for the current user from either a Persisted Dataset or an entity command.",
       "example": "{% assign followedItems = People | AppendFollowing | FilterFollowed %}",
@@ -3652,6 +3822,13 @@
       "snippet": "FilterUnfollowed",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#filterunfollowed"
+    },
+    "FromIdHash": {
+      "description": "Returns a Rock Entity Id from an IdHash string generated by the ToIdHash filter.",
+      "example": "{{ '5R6B5VmEYw' | FromIdHash }}",
+      "snippet": "FromIdHash",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#fromidhash"
     },
     "FromJSON": {
       "description": "Takes a JSON string and makes a Lava object from it.",
@@ -4036,6 +4213,13 @@
       "snippet": "Sha256",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#sha256"
+    },
+    "ToIdHash": {
+      "description": "Returns an alphanumeric string that can be used to uniquely identify a Rock Entity.",
+      "example": "{{ object | ToIdHash }}",
+      "snippet": "ToIdHash",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#toidhash"
     },
     "ToJSON": {
       "description": "Returns a JSON representation of the object.",
