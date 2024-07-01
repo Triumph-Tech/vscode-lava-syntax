@@ -3779,6 +3779,25 @@
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#appendfollowing"
     },
+    "AppendSegments": {
+      "description": "Adds personalization segment information for the currently logged in user to the results of an entity command or Persisted Dataset.",
+      "example": "{% assign segments = Items | AppendSegments:'MARRIED' %}",
+      "snippet": "AppendSegments:'${1:Segment}'",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#appendsegments",
+      "arguments": [
+        {
+          "type": "argument",
+          "name": "Segment",
+          "description": "A Personalization Segment Key that can be used to restrict the output to a single segment",
+          "required": false,
+          "accepts": [
+            "$string",
+            "$reference"
+          ]
+        }
+      ]
+    },
     "AppendWatches": {
       "description": "Returns information about whether the current person has watched various media files provided.",
       "example": "{% assign messagesWithWatches = messages | AppendWatches:'Media',30 %}",
