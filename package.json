@@ -266,6 +266,18 @@
 			{
 				"language": "xaml",
 				"path": "./snippets/rock-xaml.json"
+			},
+			{
+				"language": "lava",
+				"path": "./snippets/extensions/lava-shortcodes.json"
+			},
+			{
+				"language":"lava",
+				"path": "./snippets/extensions/lava-cms.json"
+			},
+			{
+				"language":"lava",
+				"path": "./snippets/lava-other.json"
 			}
 		],
 		"menus": {
