@@ -3661,15 +3661,15 @@
       "link": "https://community.rockrms.com/lava/filters/other-filters#asdatetimeutc"
     },
     "Base64": {
-      "description": "Converts a string to a base-64 encoded string. (Use Base64Encode to encode a binary file.)",
+      "description": "[Obsolete] Use ToBase64",
       "example": "{{ 'My String' | Base64 }}",
       "snippet": "Base64",
       "type": "Other",
       "returns": "string",
-      "link": "https://community.rockrms.com/lava/filters/other-filters#base64encode"
+      "link": "https://community.rockrms.com/lava/filters/other-filters#tobase64"
     },
     "Base64Encode": {
-      "description": "Converts a binary file to a base-64 encoded string. (Use Base64 to encode a string.)",
+      "description": "Converts a Rock BinaryFile to a base-64 encoded string. (Use ToBase64 to encode a string.)",
       "example": "{{ binaryFile | Base64Encode }}",
       "snippet": "Base64Encode",
       "type": "Other",
@@ -4232,6 +4232,13 @@
       "snippet": "Sha256",
       "type": "Other",
       "link": "https://community.rockrms.com/lava/filters/other-filters#sha256"
+    },
+    "ToBase64": {
+      "description": "Encodes a string (or byte collection) as a Base64 string. [v19]",
+      "example": "{{ 'string' | ToBase64 }}",
+      "snippet": "ToBase64",
+      "type": "Other",
+      "link": "https://community.rockrms.com/lava/filters/other-filters#tobase64"
     },
     "ToIdHash": {
       "description": "Returns an alphanumeric string that can be used to uniquely identify a Rock Entity.",

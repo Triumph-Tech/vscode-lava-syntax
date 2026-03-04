@@ -36,7 +36,7 @@
 	],
 	"scripts": {
 		"vscode:prepublish": "npm run compile",
-		"compile": "tsc -p ./",
+		"compile": "npx tsc -p ./",
 		"build:language-config": "node scripts/make-language-configuration",
 		"pack": "vsce package",
 		"publish": "vsce publish",
@@ -272,11 +272,11 @@
 				"path": "./snippets/extensions/lava-shortcodes.json"
 			},
 			{
-				"language":"lava",
+				"language": "lava",
 				"path": "./snippets/extensions/lava-cms.json"
 			},
 			{
-				"language":"lava",
+				"language": "lava",
 				"path": "./snippets/lava-other.json"
 			}
 		],
