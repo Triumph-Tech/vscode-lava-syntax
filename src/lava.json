@@ -1538,6 +1538,14 @@
       "returns": "string",
       "link": "https://community.rockrms.com/lava/filters/text-filters#tocssclass"
     },
+    "ToMarkdown": {
+      "description": "Converts a string of HTML to Markdown. See the Commonmark website for details on Markdown syntax.",
+      "example": "{{ content | ToMarkdown }}",
+      "snippet": "ToMarkdown",
+      "type": "Text",
+      "returns": "string",
+      "link": "https://community.rockrms.com/lava/filters/text-filters#tomarkdown"
+    },
     "ToPascal": {
       "description": "Converts a string to PascalCase.",
       "example": "{{ string | ToPascal }}",
